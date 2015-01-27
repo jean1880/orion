@@ -1,3 +1,3 @@
 #  Server folder
 ---
-All files pertaining to the database server are to be housed in this folder
+Preliminary ERM [model] (https://editor.ponyorm.com/user/jean1880/DogTool)
