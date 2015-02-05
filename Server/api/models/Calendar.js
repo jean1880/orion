@@ -1,9 +1,12 @@
 /**
  * Calendar.js
  *
- * @description ::  Model of the Calendar table/collection. Refer to the ERD
- *                  for more info: https://editor.ponyorm.com/user/jean1880/DogTool
- * @docs        ::  http://sailsjs.org/#!documentation/models
+ * The Sails (Waterline) model of the Calendar table/collection. Route to model:
+ * /server/calendar/
+ *
+ * Refer to the ERD for more info:
+ * https://editor.ponyorm.com/user/jean1880/DogTool
+ * @class Calendar
 */
 
 /*jslint node:true*/

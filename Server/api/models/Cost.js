@@ -1,9 +1,12 @@
 /**
  * Cost.js
  *
- * @description ::  Model of the Cost table/collection. Refer to the ERD
- *                  for more info: https://editor.ponyorm.com/user/jean1880/DogTool
- * @docs        ::  http://sailsjs.org/#!documentation/models
+ * The Sails (Waterline) model of the Cost table/collection. Route to model:
+ * /server/cost/
+ *
+ * Refer to the ERD for more info:
+ * https://editor.ponyorm.com/user/jean1880/DogTool
+ * @class Cost
 */
 
 /*jslint node:true*/

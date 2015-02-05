@@ -1,9 +1,12 @@
 /**
  * Homework.js
  *
- * @description ::  Model of the Homework table/collection. Refer to the ERD
- *                  for more info: https://editor.ponyorm.com/user/jean1880/DogTool
- * @docs        ::  http://sailsjs.org/#!documentation/models
+ * The Sails (Waterline) model of the Homework table/collection. Route to model:
+ * /server/homework/
+ *
+ * Refer to the ERD for more info:
+ * https://editor.ponyorm.com/user/jean1880/DogTool
+ * @class Homework
 */
 
 /*jslint node:true*/

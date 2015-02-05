@@ -1,9 +1,12 @@
 /**
  * Business_info.js
  *
- * @description ::  Model of the Business_info table/collection. Refer to the ERD
- *                  for more info: https://editor.ponyorm.com/user/jean1880/DogTool
- * @docs        ::  http://sailsjs.org/#!documentation/models
+ * The Sails (Waterline) model of the Business_info table/collection. Route to model:
+ * /server/business_info/
+ *
+ * Refer to the ERD for more info:
+ * https://editor.ponyorm.com/user/jean1880/DogTool
+ * @class Business_info
 */
 
 /*jslint node:true*/

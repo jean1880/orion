@@ -1,9 +1,12 @@
 /**
  * People_type.js
  *
- * @description ::  Model of the People_type table/collection. Refer to the ERD
- *                  for more info: https://editor.ponyorm.com/user/jean1880/DogTool
- * @docs        ::  http://sailsjs.org/#!documentation/models
+ * The Sails (Waterline) model of the People_type table/collection. Route to model:
+ * /server/people_type/
+ *
+ * Refer to the ERD for more info:
+ * https://editor.ponyorm.com/user/jean1880/DogTool
+ * @class People_type
 */
 
 /*jslint node:true*/

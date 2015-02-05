@@ -1,9 +1,12 @@
 /**
  * Weight.js
  *
- * @description ::  Model of the Weight table/collection. Refer to the ERD
- *                  for more info: https://editor.ponyorm.com/user/jean1880/DogTool
- * @docs        ::  http://sailsjs.org/#!documentation/models
+ * The Sails (Waterline) model of the Weight table/collection. Route to model:
+ * /server/weight/
+ *
+ * Refer to the ERD for more info:
+ * https://editor.ponyorm.com/user/jean1880/DogTool
+ * @class Weight
 */
 
 /*jslint node:true*/

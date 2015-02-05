@@ -1,9 +1,12 @@
 /**
  * Address.js
  *
- * @description ::  Model of the Address table/collection. Refer to the ERD
- *                  for more info: https://editor.ponyorm.com/user/jean1880/DogTool
- * @docs        ::  http://sailsjs.org/#!documentation/models
+ * The Sails (Waterline) model of the Address table/collection. Route to model:
+ * /server/address/
+ *
+ * Refer to the ERD for more info:
+ * https://editor.ponyorm.com/user/jean1880/DogTool
+ * @class Address
 */
 
 /*jslint node:true*/
