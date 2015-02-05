@@ -48,7 +48,7 @@ module.exports = {
             via: 'dogs'
         },
         referral: {
-            model: 'referrals'
+            model: 'referral'
         },
         homeworks: {
             collection: 'homework',

@@ -24,7 +24,7 @@ module.exports = {
             via: 'consultations'
         },
         note: {
-            
+            model: 'note'
         },
         invoice: {
             model: 'invoice',

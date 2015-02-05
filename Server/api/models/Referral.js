@@ -21,7 +21,7 @@ module.exports = {
             type: 'string'
         },
         Payed_forward: {
-            type: 'bool',
+            type: 'boolean',
             required: 'true'
         },
         cost: {

@@ -24,7 +24,7 @@ module.exports = {
             via: 'daycares'
         },
         note: {
-            
+            model: 'note'
         },
         invoice: {
             model: 'invoice',
