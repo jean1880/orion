@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Cost
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,15 +16,15 @@ module.exports = {
     attributes: {
         Date: {
             type: 'datetime',
-            required: 'true'
+            required: true
         },
         Description: {
             type: 'string',
-            required: 'true'
+            required: true
         },
         Cost: {
             type: 'float',
-            required: 'true'
+            required: true
         },
         consultations: {
             collection: 'consultation',

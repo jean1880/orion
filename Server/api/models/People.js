@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class People
-*/
+ */
 
 /*jslint node:true*/
 
@@ -20,15 +20,15 @@ module.exports = {
         },
         People_type: {
             model: 'people_type',
-            required: 'true'
+            required: true
         },
-        referrals : {
+        referrals: {
             collection: 'referral',
             via: 'people'
         },
         address: {
             model: 'address',
-            required: 'true'
+            required: true
         },
         Name: {
             type: 'string',

@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Note_Type
-*/
+ */
 
 /*jslint node:true*/
 
@@ -20,7 +20,7 @@ module.exports = {
         },
         Type: {
             type: 'string',
-            required: 'true'
+            required: true
         }
     }
 };

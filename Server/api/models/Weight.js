@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Weight
-*/
+ */
 
 /*jslint node:true*/
 
@@ -20,11 +20,11 @@ module.exports = {
         },
         Date_taken: {
             type: 'datetime',
-            required: 'true'
+            required: true
         },
         Weight: {
             type: 'integer',
-            required: 'true'
+            required: true
         }
     }
 };

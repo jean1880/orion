@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Service
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,11 +16,11 @@ module.exports = {
     attributes: {
         Name: {
             type: 'string',
-            required: 'true'
+            required: true
         },
         Value: {
             type: 'float',
-            required: 'true'
+            required: true
         },
         charges: {
             collection: 'charge',

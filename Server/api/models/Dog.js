@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Dog
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,31 +16,24 @@ module.exports = {
     attributes: {
         people: {
             model: 'people',
-            required: 'true'
+            required: true
         },
         weights: {
             collection: 'weight',
-            via: 'dogs'
+            via: 'dogs',
+            dominant: true
         },
         compatabilitys: {
             collection: 'compatability',
             via: 'dog'
         },
-        compatabilitys2: {
-            collection: 'compatability',
-            via: 'dog2'
-        },
         Age: {
             type: 'integer',
-            required: 'true'
+            required: true
         },
-        Health_notes: {
+        Notes: {
             collection: 'note',
             via: 'dogs'
-        },
-        Behavioural_notes: {
-            collection: 'note',
-            via: 'dogs2'
         },
         consultations: {
             collection: 'consultation',

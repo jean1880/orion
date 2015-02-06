@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Homework
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,7 +16,7 @@ module.exports = {
     attributes: {
         Start_Date: {
             type: 'datetime',
-            required: 'true'
+            required: true
         },
         End_Date: {
             type: 'datetime'
@@ -29,4 +29,3 @@ module.exports = {
         }
     }
 };
-

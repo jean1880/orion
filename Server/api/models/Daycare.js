@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Daycare
-*/
+ */
 
 /*jslint node:true*/
 
@@ -31,7 +31,7 @@ module.exports = {
         },
         invoice: {
             model: 'invoice',
-            required: 'true'
+            required: true
         }
     }
 };

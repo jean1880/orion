@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Compatability
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,11 +16,11 @@ module.exports = {
     attributes: {
         dog: {
             model: 'dog',
-            required: 'true'
+            required: true
         },
         dog2: {
             model: 'dog',
-            required: 'true'
+            required: true
         }
     }
 };

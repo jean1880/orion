@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Business_info
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,11 +16,11 @@ module.exports = {
     attributes: {
         Business_name: {
             type: 'string',
-            required: 'true'
+            required: true
         },
         Owner: {
             type: 'string',
-            required: 'true'
+            required: true
         },
         Tax_number: {
             type: 'string'
@@ -30,7 +30,7 @@ module.exports = {
         },
         address: {
             model: 'address',
-            required: 'true'
+            required: true
         }
     }
 };

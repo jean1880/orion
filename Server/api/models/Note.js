@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Note
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,23 +16,19 @@ module.exports = {
     attributes: {
         Title: {
             type: 'string',
-            required: 'true'
+            required: true
         },
         Note: {
             type: 'text',
-            required: 'true'
+            required: true
         },
         dogs: {
             collection: 'dog',
-            via: 'Health_notes'
-        },
-        dogs2: {
-            collection: 'dog',
-            via: 'Behavioural_notes'
+            via: 'Notes'
         },
         note_type: {
             model: 'note_type',
-            required: 'true'
+            required: true
         },
         charges: {
             collection: 'charge',

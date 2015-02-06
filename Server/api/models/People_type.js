@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class People_type
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,7 +16,7 @@ module.exports = {
     attributes: {
         Type: {
             type: 'string',
-            required: 'true'
+            required: true
         },
         peoples: {
             collection: 'people',

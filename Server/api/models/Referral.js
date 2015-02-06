@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class People
-*/
+ */
 
 /*jslint node:true*/
 
@@ -15,7 +15,7 @@ module.exports = {
 
     attributes: {
         dog: {
-            models: 'dog'
+            model: 'dog'
         },
         people: {
             model: 'people'
@@ -25,7 +25,7 @@ module.exports = {
         },
         Payed_forward: {
             type: 'boolean',
-            required: 'true'
+            required: true
         },
         cost: {
             model: 'cost'

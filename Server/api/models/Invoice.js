@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Invoice
-*/
+ */
 
 /*jslint node:true*/
 
@@ -16,10 +16,11 @@ module.exports = {
     attributes: {
         Date: {
             type: 'datetime',
-            required: 'true'
+            required: true
         },
         charges: {
-            
+            collection: 'charge',
+            via: 'invoice'
         },
         consultations: {
             collection: 'consulation',
