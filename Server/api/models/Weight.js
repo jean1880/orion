@@ -14,9 +14,8 @@
 module.exports = {
 
     attributes: {
-        dogs: {
-            collection: 'dog',
-            via: 'weights'
+        dog: {
+            model: 'dog'
         },
         Date_taken: {
             type: 'datetime',

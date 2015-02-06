@@ -15,12 +15,10 @@ module.exports = {
 
     attributes: {
         dog: {
-            model: 'dog',
-            required: true
+            model: 'dog'
         },
         dog2: {
-            model: 'dog',
-            required: true
+            model: 'dog'
         }
     }
 };

@@ -19,8 +19,7 @@ module.exports = {
             required: true
         },
         invoice: {
-            model: 'invoice',
-            required: true
+            model: 'invoice'
         },
         service: {
             model: 'service'

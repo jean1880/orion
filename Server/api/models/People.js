@@ -19,16 +19,14 @@ module.exports = {
             via: 'people'
         },
         People_type: {
-            model: 'people_type',
-            required: true
+            model: 'people_type'
         },
         referrals: {
             collection: 'referral',
             via: 'people'
         },
         address: {
-            model: 'address',
-            required: true
+            model: 'address'
         },
         Name: {
             type: 'string',

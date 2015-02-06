@@ -7,7 +7,7 @@
  * Refer to the ERD for more info:
  * https://editor.ponyorm.com/user/jean1880/DogTool
  * @class Consultation
-*/
+ */
 
 /*jslint node:true*/
 
@@ -30,8 +30,7 @@ module.exports = {
             model: 'note'
         },
         invoice: {
-            model: 'invoice',
-            required: 'true'
+            model: 'invoice'
         }
     }
 };

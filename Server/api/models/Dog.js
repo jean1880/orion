@@ -20,8 +20,7 @@ module.exports = {
         },
         weights: {
             collection: 'weight',
-            via: 'dogs',
-            dominant: true
+            via: 'dog'
         },
         compatabilitys: {
             collection: 'compatability',

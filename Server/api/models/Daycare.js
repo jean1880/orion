@@ -30,8 +30,7 @@ module.exports = {
             model: 'note'
         },
         invoice: {
-            model: 'invoice',
-            required: true
+            model: 'invoice'
         }
     }
 };
