@@ -26,17 +26,14 @@ module.exports = {
             type: 'float',
             required: true
         },
-        consultations: {
-            collection: 'consultation',
-            via: 'costs'
+        consultation: {
+            model: 'consultation'
         },
-        daycares: {
-            collection: 'daycare',
-            via: 'costs'
+        daycare: {
+            model: 'daycare'
         },
-        referrals: {
-            collection: 'referral',
-            via: 'cost'
+        referral: {
+            model: 'referral'
         }
     }
 };

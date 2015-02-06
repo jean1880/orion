@@ -25,7 +25,7 @@ module.exports = {
         },
         costs: {
             collection: 'cost',
-            via: 'consultations'
+            via: 'consultation'
         },
         note: {
             model: 'note'
