@@ -24,11 +24,13 @@ module.exports = {
         },
         consultations: {
             collection: 'consultation',
-            via: 'calendars'
+            via: 'calendars',
+            dominant: true
         },
         daycares: {
             collection: 'daycare',
-            via: 'calendars'
+            via: 'calendars',
+            dominant: true
         }
     }
 };

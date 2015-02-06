@@ -16,7 +16,8 @@ module.exports = {
     attributes: {
         dogs: {
             collection: 'dog',
-            via: 'consultations'
+            via: 'consultations',
+            dominant: true
         },
         calendars: {
             collection: 'calendar',
