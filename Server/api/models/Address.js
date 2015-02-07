@@ -34,13 +34,11 @@ module.exports = {
             type: 'string',
             defaultsTo: 'CA'
         },
-        business_infos: {
-            collection: 'business_info',
-            via: 'address'
+        business_info: {
+            model: 'business_info'
         },
         peoples: {
-            collection: 'people',
-            via: 'address'
+            model: 'people'
         }
     }
 };

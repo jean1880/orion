@@ -22,7 +22,7 @@ module.exports = {
             required: true
         },
         Weight: {
-            type: 'integer',
+            type: 'float',
             required: true
         }
     }

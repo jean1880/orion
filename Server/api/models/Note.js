@@ -19,7 +19,7 @@ module.exports = {
             required: true
         },
         Note: {
-            type: 'text',
+            type: 'string',
             required: true
         },
         dogs: {
@@ -27,8 +27,7 @@ module.exports = {
             via: 'Notes'
         },
         note_type: {
-            model: 'note_type',
-            required: true
+            model: 'note_type'
         },
         charges: {
             collection: 'charge',

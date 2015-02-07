@@ -14,11 +14,11 @@
 module.exports = {
 
     attributes: {
-        Start_Date: {
+        StartDate: {
             type: 'datetime',
             required: true
         },
-        End_Date: {
+        EndDate: {
             type: 'datetime',
             required: true
         },
