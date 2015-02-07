@@ -22,10 +22,12 @@ module.exports = {
             type: 'datetime'
         },
         Dog: {
-            model: 'dog'
+            collection: 'dog',
+            via: 'homeworks',
+            dominant: true
         },
         Description: {
-            type: 'text'
+            type: 'string'
         }
     }
 };

@@ -14,7 +14,7 @@
 module.exports = {
 
     attributes: {
-        Business_name: {
+        BusinessName: {
             type: 'string',
             required: true
         },
@@ -22,10 +22,10 @@ module.exports = {
             type: 'string',
             required: true
         },
-        Tax_number: {
+        TaxNumber: {
             type: 'string'
         },
-        BN_number: {
+        BNNumber: {
             type: 'string'
         },
         address: {

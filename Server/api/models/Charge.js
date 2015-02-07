@@ -24,7 +24,7 @@ module.exports = {
         service: {
             model: 'service'
         },
-        Service_custom: {
+        ServiceCustom: {
             type: 'string'
         },
         note: {

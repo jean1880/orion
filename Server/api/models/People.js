@@ -18,7 +18,7 @@ module.exports = {
             collection: 'dog',
             via: 'people'
         },
-        People_type: {
+        PeopleType: {
             model: 'people_type'
         },
         referrals: {

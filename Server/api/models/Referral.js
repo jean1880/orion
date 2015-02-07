@@ -23,7 +23,7 @@ module.exports = {
         Other_source: {
             type: 'string'
         },
-        Payed_forward: {
+        PayedForward: {
             type: 'boolean',
             required: true
         },

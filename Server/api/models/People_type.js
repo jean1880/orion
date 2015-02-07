@@ -20,7 +20,7 @@ module.exports = {
         },
         peoples: {
             collection: 'people',
-            via: 'People_type'
+            via: 'PeopleType'
         }
     }
 };

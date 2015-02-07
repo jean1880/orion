@@ -34,7 +34,7 @@ module.exports = {
             type: 'string',
             defaultsTo: 'CA'
         },
-        business_info: {
+        BusinessInfo: {
             model: 'business_info'
         },
         peoples: {

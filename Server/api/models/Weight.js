@@ -17,7 +17,7 @@ module.exports = {
         dog: {
             model: 'dog'
         },
-        Date_taken: {
+        DateTaken: {
             type: 'datetime',
             required: true
         },
