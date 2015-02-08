@@ -14,9 +14,17 @@
 module.exports = {
 
     attributes: {
-        dogs: {
+        DogsOwned: {
             collection: 'dog',
-            via: 'people'
+            via: 'Owner'
+        },
+        DogsVet: {
+            collection: 'dog',
+            via: 'Vet'
+        },
+        DogsEmergencyContact: {
+            collection: 'dog',
+            via: 'EmergencyContact'
         },
         PeopleType: {
             model: 'people_type'
