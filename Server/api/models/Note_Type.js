@@ -16,7 +16,7 @@ module.exports = {
     attributes: {
         notes: {
             collection: 'note',
-            via: 'note_type'
+            via: 'NoteType'
         },
         Type: {
             type: 'string',

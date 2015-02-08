@@ -20,7 +20,7 @@ module.exports = {
         people: {
             model: 'people'
         },
-        Other_source: {
+        OtherSource: {
             type: 'string'
         },
         PayedForward: {

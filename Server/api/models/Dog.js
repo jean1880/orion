@@ -22,10 +22,6 @@ module.exports = {
             collection: 'weight',
             via: 'dog'
         },
-        compatabilitys: {
-            collection: 'compatability',
-            via: 'dog'
-        },
         Age: {
             type: 'integer',
             required: true
@@ -47,7 +43,7 @@ module.exports = {
         },
         homeworks: {
             collection: 'homework',
-            via: 'dog'
+            via: 'Dogs'
         },
         Photo: {
             type: 'binary'

@@ -23,7 +23,7 @@ module.exports = {
             via: 'invoice'
         },
         consultations: {
-            collection: 'consulation',
+            collection: 'consultation',
             via: 'invoice'
         },
         daycares: {

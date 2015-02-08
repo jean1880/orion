@@ -21,7 +21,7 @@ module.exports = {
         End_Date: {
             type: 'datetime'
         },
-        Dog: {
+        Dogs: {
             collection: 'dog',
             via: 'homeworks',
             dominant: true
