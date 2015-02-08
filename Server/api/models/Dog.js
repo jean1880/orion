@@ -14,9 +14,14 @@
 module.exports = {
 
     attributes: {
-        people: {
-            model: 'people',
-            required: true
+        Owner: {
+            model: 'people'
+        },
+        Vet: {
+            model: 'people'
+        },
+        EmergencyContact: {
+            model: 'people'
         },
         weights: {
             collection: 'weight',
