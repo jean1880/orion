@@ -22,9 +22,15 @@ module.exports = {
             collection: 'weight',
             via: 'dog'
         },
-        Age: {
-            type: 'integer',
+        Name: {
+            type: 'string',
             required: true
+        },
+        Breed: {
+            type: 'string'
+        },
+        Age: {
+            type: 'date'
         },
         Notes: {
             collection: 'note',
