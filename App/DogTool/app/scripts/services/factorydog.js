@@ -18,7 +18,7 @@ angular.module('dogToolApp')
             /**
              * One time fetch from server for single Dog dataset
              * @method get
-             @param
+             * @param id
              */
             get: function (id) {
                 return $sails.get(route + '/' + id);
@@ -33,13 +33,24 @@ angular.module('dogToolApp')
             /**
              * One time fetch from server for full Dog dataset
              * @method listen
+             * @param callback
              */
             listen: function (callback) {
                 $sails.on(route, callback);
             },
+            /**
+             * One time fetch from server for full Dog dataset
+             * @method post
+             * @param dog
+             */
             post: function (dog) {
                 return $sails.post(route, dog);
             },
+            /**
+             * One time fetch from server for full Dog dataset
+             * @method find
+             * @param searchObject
+             */
             find: function (searchObject) {
                 return $sails.post(route + '/find', searchObject);
             }

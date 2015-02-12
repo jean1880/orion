@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>App/DogTool/bower_components/sails.io.js/dist/sails.io.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Address.html">Address</a></li>
+                                <li><a href="../classes/Business_info.html">Business_info</a></li>
+                                <li><a href="../classes/Calendar.html">Calendar</a></li>
+                                <li><a href="../classes/Charge.html">Charge</a></li>
+                                <li><a href="../classes/Consultation.html">Consultation</a></li>
+                                <li><a href="../classes/Cost.html">Cost</a></li>
+                                <li><a href="../classes/Daycare.html">Daycare</a></li>
+                                <li><a href="../classes/Dog.html">Dog</a></li>
+                                <li><a href="../classes/dogToolApp.html">dogToolApp</a></li>
+                                <li><a href="../classes/FactoryDog.html">FactoryDog</a></li>
+                                <li><a href="../classes/Homework.html">Homework</a></li>
+                                <li><a href="../classes/Invoice.html">Invoice</a></li>
+                                <li><a href="../classes/Note.html">Note</a></li>
+                                <li><a href="../classes/Note_Type.html">Note_Type</a></li>
+                                <li><a href="../classes/People.html">People</a></li>
+                                <li><a href="../classes/People_type.html">People_type</a></li>
+                                <li><a href="../classes/Service.html">Service</a></li>
+                                <li><a href="../classes/Weight.html">Weight</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/:: Policy.html">:: Policy</a></li>
+                                <li><a href="../modules/ng.html">ng</a></li>
+                                <li><a href="../modules/ngMock.html">ngMock</a></li>
+                                <li><a href="../modules/ngMockE2E.html">ngMockE2E</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: App/DogTool/bower_components/sails.io.js/dist/sails.io.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+// socket.io-1.2.1
+// (from http://socket.io/download/)
+!function(e){if(&quot;object&quot;==typeof exports&amp;&amp;&quot;undefined&quot;!=typeof module)module.exports=e();else if(&quot;function&quot;==typeof define&amp;&amp;define.amd)define([],e);else{var f;&quot;undefined&quot;!=typeof window?f=window:&quot;undefined&quot;!=typeof global?f=global:&quot;undefined&quot;!=typeof self&amp;&amp;(f=self),f.io=e()}}(function(){var define,module,exports;return function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require==&quot;function&quot;&amp;&amp;require;if(!u&amp;&amp;a)return a(o,!0);if(i)return i(o,!0);throw new Error(&quot;Cannot find module &#x27;&quot;+o+&quot;&#x27;&quot;)}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require==&quot;function&quot;&amp;&amp;require;for(var o=0;o&lt;r.length;o++)s(r[o]);return s}({1:[function(_dereq_,module,exports){module.exports=_dereq_(&quot;./lib/&quot;)},{&quot;./lib/&quot;:2}],2:[function(_dereq_,module,exports){var url=_dereq_(&quot;./url&quot;);var parser=_dereq_(&quot;socket.io-parser&quot;);var Manager=_dereq_(&quot;./manager&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;socket.io-client&quot;);module.exports=exports=lookup;var cache=exports.managers={};function lookup(uri,opts){if(typeof uri==&quot;object&quot;){opts=uri;uri=undefined}opts=opts||{};var parsed=url(uri);var source=parsed.source;var id=parsed.id;var io;if(opts.forceNew||opts[&quot;force new connection&quot;]||false===opts.multiplex){debug(&quot;ignoring socket cache for %s&quot;,source);io=Manager(source,opts)}else{if(!cache[id]){debug(&quot;new io instance for %s&quot;,source);cache[id]=Manager(source,opts)}io=cache[id]}return io.socket(parsed.path)}exports.protocol=parser.protocol;exports.connect=lookup;exports.Manager=_dereq_(&quot;./manager&quot;);exports.Socket=_dereq_(&quot;./socket&quot;)},{&quot;./manager&quot;:3,&quot;./socket&quot;:5,&quot;./url&quot;:6,debug:9,&quot;socket.io-parser&quot;:43}],3:[function(_dereq_,module,exports){var url=_dereq_(&quot;./url&quot;);var eio=_dereq_(&quot;engine.io-client&quot;);var Socket=_dereq_(&quot;./socket&quot;);var Emitter=_dereq_(&quot;component-emitter&quot;);var parser=_dereq_(&quot;socket.io-parser&quot;);var on=_dereq_(&quot;./on&quot;);var bind=_dereq_(&quot;component-bind&quot;);var object=_dereq_(&quot;object-component&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;socket.io-client:manager&quot;);var indexOf=_dereq_(&quot;indexof&quot;);module.exports=Manager;function Manager(uri,opts){if(!(this instanceof Manager))return new Manager(uri,opts);if(uri&amp;&amp;&quot;object&quot;==typeof uri){opts=uri;uri=undefined}opts=opts||{};opts.path=opts.path||&quot;/socket.io&quot;;this.nsps={};this.subs=[];this.opts=opts;this.reconnection(opts.reconnection!==false);this.reconnectionAttempts(opts.reconnectionAttempts||Infinity);this.reconnectionDelay(opts.reconnectionDelay||1e3);this.reconnectionDelayMax(opts.reconnectionDelayMax||5e3);this.timeout(null==opts.timeout?2e4:opts.timeout);this.readyState=&quot;closed&quot;;this.uri=uri;this.connected=[];this.attempts=0;this.encoding=false;this.packetBuffer=[];this.encoder=new parser.Encoder;this.decoder=new parser.Decoder;this.autoConnect=opts.autoConnect!==false;if(this.autoConnect)this.open()}Manager.prototype.emitAll=function(){this.emit.apply(this,arguments);for(var nsp in this.nsps){this.nsps[nsp].emit.apply(this.nsps[nsp],arguments)}};Emitter(Manager.prototype);Manager.prototype.reconnection=function(v){if(!arguments.length)return this._reconnection;this._reconnection=!!v;return this};Manager.prototype.reconnectionAttempts=function(v){if(!arguments.length)return this._reconnectionAttempts;this._reconnectionAttempts=v;return this};Manager.prototype.reconnectionDelay=function(v){if(!arguments.length)return this._reconnectionDelay;this._reconnectionDelay=v;return this};Manager.prototype.reconnectionDelayMax=function(v){if(!arguments.length)return this._reconnectionDelayMax;this._reconnectionDelayMax=v;return this};Manager.prototype.timeout=function(v){if(!arguments.length)return this._timeout;this._timeout=v;return this};Manager.prototype.maybeReconnectOnOpen=function(){if(!this.openReconnect&amp;&amp;!this.reconnecting&amp;&amp;this._reconnection&amp;&amp;this.attempts===0){this.openReconnect=true;this.reconnect()}};Manager.prototype.open=Manager.prototype.connect=function(fn){debug(&quot;readyState %s&quot;,this.readyState);if(~this.readyState.indexOf(&quot;open&quot;))return this;debug(&quot;opening %s&quot;,this.uri);this.engine=eio(this.uri,this.opts);var socket=this.engine;var self=this;this.readyState=&quot;opening&quot;;this.skipReconnect=false;var openSub=on(socket,&quot;open&quot;,function(){self.onopen();fn&amp;&amp;fn()});var errorSub=on(socket,&quot;error&quot;,function(data){debug(&quot;connect_error&quot;);self.cleanup();self.readyState=&quot;closed&quot;;self.emitAll(&quot;connect_error&quot;,data);if(fn){var err=new Error(&quot;Connection error&quot;);err.data=data;fn(err)}self.maybeReconnectOnOpen()});if(false!==this._timeout){var timeout=this._timeout;debug(&quot;connect attempt will timeout after %d&quot;,timeout);var timer=setTimeout(function(){debug(&quot;connect attempt timed out after %d&quot;,timeout);openSub.destroy();socket.close();socket.emit(&quot;error&quot;,&quot;timeout&quot;);self.emitAll(&quot;connect_timeout&quot;,timeout)},timeout);this.subs.push({destroy:function(){clearTimeout(timer)}})}this.subs.push(openSub);this.subs.push(errorSub);return this};Manager.prototype.onopen=function(){debug(&quot;open&quot;);this.cleanup();this.readyState=&quot;open&quot;;this.emit(&quot;open&quot;);var socket=this.engine;this.subs.push(on(socket,&quot;data&quot;,bind(this,&quot;ondata&quot;)));this.subs.push(on(this.decoder,&quot;decoded&quot;,bind(this,&quot;ondecoded&quot;)));this.subs.push(on(socket,&quot;error&quot;,bind(this,&quot;onerror&quot;)));this.subs.push(on(socket,&quot;close&quot;,bind(this,&quot;onclose&quot;)))};Manager.prototype.ondata=function(data){this.decoder.add(data)};Manager.prototype.ondecoded=function(packet){this.emit(&quot;packet&quot;,packet)};Manager.prototype.onerror=function(err){debug(&quot;error&quot;,err);this.emitAll(&quot;error&quot;,err)};Manager.prototype.socket=function(nsp){var socket=this.nsps[nsp];if(!socket){socket=new Socket(this,nsp);this.nsps[nsp]=socket;var self=this;socket.on(&quot;connect&quot;,function(){if(!~indexOf(self.connected,socket)){self.connected.push(socket)}})}return socket};Manager.prototype.destroy=function(socket){var index=indexOf(this.connected,socket);if(~index)this.connected.splice(index,1);if(this.connected.length)return;this.close()};Manager.prototype.packet=function(packet){debug(&quot;writing packet %j&quot;,packet);var self=this;if(!self.encoding){self.encoding=true;this.encoder.encode(packet,function(encodedPackets){for(var i=0;i&lt;encodedPackets.length;i++){self.engine.write(encodedPackets[i])}self.encoding=false;self.processPacketQueue()})}else{self.packetBuffer.push(packet)}};Manager.prototype.processPacketQueue=function(){if(this.packetBuffer.length&gt;0&amp;&amp;!this.encoding){var pack=this.packetBuffer.shift();this.packet(pack)}};Manager.prototype.cleanup=function(){var sub;while(sub=this.subs.shift())sub.destroy();this.packetBuffer=[];this.encoding=false;this.decoder.destroy()};Manager.prototype.close=Manager.prototype.disconnect=function(){this.skipReconnect=true;this.readyState=&quot;closed&quot;;this.engine&amp;&amp;this.engine.close()};Manager.prototype.onclose=function(reason){debug(&quot;close&quot;);this.cleanup();this.readyState=&quot;closed&quot;;this.emit(&quot;close&quot;,reason);if(this._reconnection&amp;&amp;!this.skipReconnect){this.reconnect()}};Manager.prototype.reconnect=function(){if(this.reconnecting||this.skipReconnect)return this;var self=this;this.attempts++;if(this.attempts&gt;this._reconnectionAttempts){debug(&quot;reconnect failed&quot;);this.emitAll(&quot;reconnect_failed&quot;);this.reconnecting=false}else{var delay=this.attempts*this.reconnectionDelay();delay=Math.min(delay,this.reconnectionDelayMax());debug(&quot;will wait %dms before reconnect attempt&quot;,delay);this.reconnecting=true;var timer=setTimeout(function(){if(self.skipReconnect)return;debug(&quot;attempting reconnect&quot;);self.emitAll(&quot;reconnect_attempt&quot;,self.attempts);self.emitAll(&quot;reconnecting&quot;,self.attempts);if(self.skipReconnect)return;self.open(function(err){if(err){debug(&quot;reconnect attempt error&quot;);self.reconnecting=false;self.reconnect();self.emitAll(&quot;reconnect_error&quot;,err.data)}else{debug(&quot;reconnect success&quot;);self.onreconnect()}})},delay);this.subs.push({destroy:function(){clearTimeout(timer)}})}};Manager.prototype.onreconnect=function(){var attempt=this.attempts;this.attempts=0;this.reconnecting=false;this.emitAll(&quot;reconnect&quot;,attempt)}},{&quot;./on&quot;:4,&quot;./socket&quot;:5,&quot;./url&quot;:6,&quot;component-bind&quot;:7,&quot;component-emitter&quot;:8,debug:9,&quot;engine.io-client&quot;:10,indexof:39,&quot;object-component&quot;:40,&quot;socket.io-parser&quot;:43}],4:[function(_dereq_,module,exports){module.exports=on;function on(obj,ev,fn){obj.on(ev,fn);return{destroy:function(){obj.removeListener(ev,fn)}}}},{}],5:[function(_dereq_,module,exports){var parser=_dereq_(&quot;socket.io-parser&quot;);var Emitter=_dereq_(&quot;component-emitter&quot;);var toArray=_dereq_(&quot;to-array&quot;);var on=_dereq_(&quot;./on&quot;);var bind=_dereq_(&quot;component-bind&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;socket.io-client:socket&quot;);var hasBin=_dereq_(&quot;has-binary&quot;);module.exports=exports=Socket;var events={connect:1,connect_error:1,connect_timeout:1,disconnect:1,error:1,reconnect:1,reconnect_attempt:1,reconnect_failed:1,reconnect_error:1,reconnecting:1};var emit=Emitter.prototype.emit;function Socket(io,nsp){this.io=io;this.nsp=nsp;this.json=this;this.ids=0;this.acks={};if(this.io.autoConnect)this.open();this.receiveBuffer=[];this.sendBuffer=[];this.connected=false;this.disconnected=true}Emitter(Socket.prototype);Socket.prototype.subEvents=function(){if(this.subs)return;var io=this.io;this.subs=[on(io,&quot;open&quot;,bind(this,&quot;onopen&quot;)),on(io,&quot;packet&quot;,bind(this,&quot;onpacket&quot;)),on(io,&quot;close&quot;,bind(this,&quot;onclose&quot;))]};Socket.prototype.open=Socket.prototype.connect=function(){if(this.connected)return this;this.subEvents();this.io.open();if(&quot;open&quot;==this.io.readyState)this.onopen();return this};Socket.prototype.send=function(){var args=toArray(arguments);args.unshift(&quot;message&quot;);this.emit.apply(this,args);return this};Socket.prototype.emit=function(ev){if(events.hasOwnProperty(ev)){emit.apply(this,arguments);return this}var args=toArray(arguments);var parserType=parser.EVENT;if(hasBin(args)){parserType=parser.BINARY_EVENT}var packet={type:parserType,data:args};if(&quot;function&quot;==typeof args[args.length-1]){debug(&quot;emitting packet with ack id %d&quot;,this.ids);this.acks[this.ids]=args.pop();packet.id=this.ids++}if(this.connected){this.packet(packet)}else{this.sendBuffer.push(packet)}return this};Socket.prototype.packet=function(packet){packet.nsp=this.nsp;this.io.packet(packet)};Socket.prototype.onopen=function(){debug(&quot;transport is open - connecting&quot;);if(&quot;/&quot;!=this.nsp){this.packet({type:parser.CONNECT})}};Socket.prototype.onclose=function(reason){debug(&quot;close (%s)&quot;,reason);this.connected=false;this.disconnected=true;this.emit(&quot;disconnect&quot;,reason)};Socket.prototype.onpacket=function(packet){if(packet.nsp!=this.nsp)return;switch(packet.type){case parser.CONNECT:this.onconnect();break;case parser.EVENT:this.onevent(packet);break;case parser.BINARY_EVENT:this.onevent(packet);break;case parser.ACK:this.onack(packet);break;case parser.BINARY_ACK:this.onack(packet);break;case parser.DISCONNECT:this.ondisconnect();break;case parser.ERROR:this.emit(&quot;error&quot;,packet.data);break}};Socket.prototype.onevent=function(packet){var args=packet.data||[];debug(&quot;emitting event %j&quot;,args);if(null!=packet.id){debug(&quot;attaching ack callback to event&quot;);args.push(this.ack(packet.id))}if(this.connected){emit.apply(this,args)}else{this.receiveBuffer.push(args)}};Socket.prototype.ack=function(id){var self=this;var sent=false;return function(){if(sent)return;sent=true;var args=toArray(arguments);debug(&quot;sending ack %j&quot;,args);var type=hasBin(args)?parser.BINARY_ACK:parser.ACK;self.packet({type:type,id:id,data:args})}};Socket.prototype.onack=function(packet){debug(&quot;calling ack %s with %j&quot;,packet.id,packet.data);var fn=this.acks[packet.id];fn.apply(this,packet.data);delete this.acks[packet.id]};Socket.prototype.onconnect=function(){this.connected=true;this.disconnected=false;this.emit(&quot;connect&quot;);this.emitBuffered()};Socket.prototype.emitBuffered=function(){var i;for(i=0;i&lt;this.receiveBuffer.length;i++){emit.apply(this,this.receiveBuffer[i])}this.receiveBuffer=[];for(i=0;i&lt;this.sendBuffer.length;i++){this.packet(this.sendBuffer[i])}this.sendBuffer=[]};Socket.prototype.ondisconnect=function(){debug(&quot;server disconnect (%s)&quot;,this.nsp);this.destroy();this.onclose(&quot;io server disconnect&quot;)};Socket.prototype.destroy=function(){if(this.subs){for(var i=0;i&lt;this.subs.length;i++){this.subs[i].destroy()}this.subs=null}this.io.destroy(this)};Socket.prototype.close=Socket.prototype.disconnect=function(){if(this.connected){debug(&quot;performing disconnect (%s)&quot;,this.nsp);this.packet({type:parser.DISCONNECT})}this.destroy();if(this.connected){this.onclose(&quot;io client disconnect&quot;)}return this}},{&quot;./on&quot;:4,&quot;component-bind&quot;:7,&quot;component-emitter&quot;:8,debug:9,&quot;has-binary&quot;:35,&quot;socket.io-parser&quot;:43,&quot;to-array&quot;:47}],6:[function(_dereq_,module,exports){(function(global){var parseuri=_dereq_(&quot;parseuri&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;socket.io-client:url&quot;);module.exports=url;function url(uri,loc){var obj=uri;var loc=loc||global.location;if(null==uri)uri=loc.protocol+&quot;//&quot;+loc.hostname;if(&quot;string&quot;==typeof uri){if(&quot;/&quot;==uri.charAt(0)){if(&quot;/&quot;==uri.charAt(1)){uri=loc.protocol+uri}else{uri=loc.hostname+uri}}if(!/^(https?|wss?):\/\//.test(uri)){debug(&quot;protocol-less url %s&quot;,uri);if(&quot;undefined&quot;!=typeof loc){uri=loc.protocol+&quot;//&quot;+uri}else{uri=&quot;https://&quot;+uri}}debug(&quot;parse %s&quot;,uri);obj=parseuri(uri)}if(!obj.port){if(/^(http|ws)$/.test(obj.protocol)){obj.port=&quot;80&quot;}else if(/^(http|ws)s$/.test(obj.protocol)){obj.port=&quot;443&quot;}}obj.path=obj.path||&quot;/&quot;;obj.id=obj.protocol+&quot;://&quot;+obj.host+&quot;:&quot;+obj.port;obj.href=obj.protocol+&quot;://&quot;+obj.host+(loc&amp;&amp;loc.port==obj.port?&quot;&quot;:&quot;:&quot;+obj.port);return obj}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{debug:9,parseuri:41}],7:[function(_dereq_,module,exports){var slice=[].slice;module.exports=function(obj,fn){if(&quot;string&quot;==typeof fn)fn=obj[fn];if(&quot;function&quot;!=typeof fn)throw new Error(&quot;bind() requires a function&quot;);var args=slice.call(arguments,2);return function(){return fn.apply(obj,args.concat(slice.call(arguments)))}}},{}],8:[function(_dereq_,module,exports){module.exports=Emitter;function Emitter(obj){if(obj)return mixin(obj)}function mixin(obj){for(var key in Emitter.prototype){obj[key]=Emitter.prototype[key]}return obj}Emitter.prototype.on=Emitter.prototype.addEventListener=function(event,fn){this._callbacks=this._callbacks||{};(this._callbacks[event]=this._callbacks[event]||[]).push(fn);return this};Emitter.prototype.once=function(event,fn){var self=this;this._callbacks=this._callbacks||{};function on(){self.off(event,on);fn.apply(this,arguments)}on.fn=fn;this.on(event,on);return this};Emitter.prototype.off=Emitter.prototype.removeListener=Emitter.prototype.removeAllListeners=Emitter.prototype.removeEventListener=function(event,fn){this._callbacks=this._callbacks||{};if(0==arguments.length){this._callbacks={};return this}var callbacks=this._callbacks[event];if(!callbacks)return this;if(1==arguments.length){delete this._callbacks[event];return this}var cb;for(var i=0;i&lt;callbacks.length;i++){cb=callbacks[i];if(cb===fn||cb.fn===fn){callbacks.splice(i,1);break}}return this};Emitter.prototype.emit=function(event){this._callbacks=this._callbacks||{};var args=[].slice.call(arguments,1),callbacks=this._callbacks[event];if(callbacks){callbacks=callbacks.slice(0);for(var i=0,len=callbacks.length;i&lt;len;++i){callbacks[i].apply(this,args)}}return this};Emitter.prototype.listeners=function(event){this._callbacks=this._callbacks||{};return this._callbacks[event]||[]};Emitter.prototype.hasListeners=function(event){return!!this.listeners(event).length}},{}],9:[function(_dereq_,module,exports){module.exports=debug;function debug(name){if(!debug.enabled(name))return function(){};return function(fmt){fmt=coerce(fmt);var curr=new Date;var ms=curr-(debug[name]||curr);debug[name]=curr;fmt=name+&quot; &quot;+fmt+&quot; +&quot;+debug.humanize(ms);window.console&amp;&amp;console.log&amp;&amp;Function.prototype.apply.call(console.log,console,arguments)}}debug.names=[];debug.skips=[];debug.enable=function(name){try{localStorage.debug=name}catch(e){}var split=(name||&quot;&quot;).split(/[\s,]+/),len=split.length;for(var i=0;i&lt;len;i++){name=split[i].replace(&quot;*&quot;,&quot;.*?&quot;);if(name[0]===&quot;-&quot;){debug.skips.push(new RegExp(&quot;^&quot;+name.substr(1)+&quot;$&quot;))}else{debug.names.push(new RegExp(&quot;^&quot;+name+&quot;$&quot;))}}};debug.disable=function(){debug.enable(&quot;&quot;)};debug.humanize=function(ms){var sec=1e3,min=60*1e3,hour=60*min;if(ms&gt;=hour)return(ms/hour).toFixed(1)+&quot;h&quot;;if(ms&gt;=min)return(ms/min).toFixed(1)+&quot;m&quot;;if(ms&gt;=sec)return(ms/sec|0)+&quot;s&quot;;return ms+&quot;ms&quot;};debug.enabled=function(name){for(var i=0,len=debug.skips.length;i&lt;len;i++){if(debug.skips[i].test(name)){return false}}for(var i=0,len=debug.names.length;i&lt;len;i++){if(debug.names[i].test(name)){return true}}return false};function coerce(val){if(val instanceof Error)return val.stack||val.message;return val}try{if(window.localStorage)debug.enable(localStorage.debug)}catch(e){}},{}],10:[function(_dereq_,module,exports){module.exports=_dereq_(&quot;./lib/&quot;)},{&quot;./lib/&quot;:11}],11:[function(_dereq_,module,exports){module.exports=_dereq_(&quot;./socket&quot;);module.exports.parser=_dereq_(&quot;engine.io-parser&quot;)},{&quot;./socket&quot;:12,&quot;engine.io-parser&quot;:24}],12:[function(_dereq_,module,exports){(function(global){var transports=_dereq_(&quot;./transports&quot;);var Emitter=_dereq_(&quot;component-emitter&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;engine.io-client:socket&quot;);var index=_dereq_(&quot;indexof&quot;);var parser=_dereq_(&quot;engine.io-parser&quot;);var parseuri=_dereq_(&quot;parseuri&quot;);var parsejson=_dereq_(&quot;parsejson&quot;);var parseqs=_dereq_(&quot;parseqs&quot;);module.exports=Socket;function noop(){}function Socket(uri,opts){if(!(this instanceof Socket))return new Socket(uri,opts);opts=opts||{};if(uri&amp;&amp;&quot;object&quot;==typeof uri){opts=uri;uri=null}if(uri){uri=parseuri(uri);opts.host=uri.host;opts.secure=uri.protocol==&quot;https&quot;||uri.protocol==&quot;wss&quot;;opts.port=uri.port;if(uri.query)opts.query=uri.query}this.secure=null!=opts.secure?opts.secure:global.location&amp;&amp;&quot;https:&quot;==location.protocol;if(opts.host){var pieces=opts.host.split(&quot;:&quot;);opts.hostname=pieces.shift();if(pieces.length)opts.port=pieces.pop()}this.agent=opts.agent||false;this.hostname=opts.hostname||(global.location?location.hostname:&quot;localhost&quot;);this.port=opts.port||(global.location&amp;&amp;location.port?location.port:this.secure?443:80);this.query=opts.query||{};if(&quot;string&quot;==typeof this.query)this.query=parseqs.decode(this.query);this.upgrade=false!==opts.upgrade;this.path=(opts.path||&quot;/engine.io&quot;).replace(/\/$/,&quot;&quot;)+&quot;/&quot;;this.forceJSONP=!!opts.forceJSONP;this.jsonp=false!==opts.jsonp;this.forceBase64=!!opts.forceBase64;this.enablesXDR=!!opts.enablesXDR;this.timestampParam=opts.timestampParam||&quot;t&quot;;this.timestampRequests=opts.timestampRequests;this.transports=opts.transports||[&quot;polling&quot;,&quot;websocket&quot;];this.readyState=&quot;&quot;;this.writeBuffer=[];this.callbackBuffer=[];this.policyPort=opts.policyPort||843;this.rememberUpgrade=opts.rememberUpgrade||false;this.open();this.binaryType=null;this.onlyBinaryUpgrades=opts.onlyBinaryUpgrades}Socket.priorWebsocketSuccess=false;Emitter(Socket.prototype);Socket.protocol=parser.protocol;Socket.Socket=Socket;Socket.Transport=_dereq_(&quot;./transport&quot;);Socket.transports=_dereq_(&quot;./transports&quot;);Socket.parser=_dereq_(&quot;engine.io-parser&quot;);Socket.prototype.createTransport=function(name){debug(&#x27;creating transport &quot;%s&quot;&#x27;,name);var query=clone(this.query);query.EIO=parser.protocol;query.transport=name;if(this.id)query.sid=this.id;var transport=new transports[name]({agent:this.agent,hostname:this.hostname,port:this.port,secure:this.secure,path:this.path,query:query,forceJSONP:this.forceJSONP,jsonp:this.jsonp,forceBase64:this.forceBase64,enablesXDR:this.enablesXDR,timestampRequests:this.timestampRequests,timestampParam:this.timestampParam,policyPort:this.policyPort,socket:this});return transport};function clone(obj){var o={};for(var i in obj){if(obj.hasOwnProperty(i)){o[i]=obj[i]}}return o}Socket.prototype.open=function(){var transport;if(this.rememberUpgrade&amp;&amp;Socket.priorWebsocketSuccess&amp;&amp;this.transports.indexOf(&quot;websocket&quot;)!=-1){transport=&quot;websocket&quot;}else if(0==this.transports.length){var self=this;setTimeout(function(){self.emit(&quot;error&quot;,&quot;No transports available&quot;)},0);return}else{transport=this.transports[0]}this.readyState=&quot;opening&quot;;var transport;try{transport=this.createTransport(transport)}catch(e){this.transports.shift();this.open();return}transport.open();this.setTransport(transport)};Socket.prototype.setTransport=function(transport){debug(&quot;setting transport %s&quot;,transport.name);var self=this;if(this.transport){debug(&quot;clearing existing transport %s&quot;,this.transport.name);this.transport.removeAllListeners()}this.transport=transport;transport.on(&quot;drain&quot;,function(){self.onDrain()}).on(&quot;packet&quot;,function(packet){self.onPacket(packet)}).on(&quot;error&quot;,function(e){self.onError(e)}).on(&quot;close&quot;,function(){self.onClose(&quot;transport close&quot;)})};Socket.prototype.probe=function(name){debug(&#x27;probing transport &quot;%s&quot;&#x27;,name);var transport=this.createTransport(name,{probe:1}),failed=false,self=this;Socket.priorWebsocketSuccess=false;function onTransportOpen(){if(self.onlyBinaryUpgrades){var upgradeLosesBinary=!this.supportsBinary&amp;&amp;self.transport.supportsBinary;failed=failed||upgradeLosesBinary}if(failed)return;debug(&#x27;probe transport &quot;%s&quot; opened&#x27;,name);transport.send([{type:&quot;ping&quot;,data:&quot;probe&quot;}]);transport.once(&quot;packet&quot;,function(msg){if(failed)return;if(&quot;pong&quot;==msg.type&amp;&amp;&quot;probe&quot;==msg.data){debug(&#x27;probe transport &quot;%s&quot; pong&#x27;,name);self.upgrading=true;self.emit(&quot;upgrading&quot;,transport);if(!transport)return;Socket.priorWebsocketSuccess=&quot;websocket&quot;==transport.name;debug(&#x27;pausing current transport &quot;%s&quot;&#x27;,self.transport.name);self.transport.pause(function(){if(failed)return;if(&quot;closed&quot;==self.readyState)return;debug(&quot;changing transport and sending upgrade packet&quot;);cleanup();self.setTransport(transport);transport.send([{type:&quot;upgrade&quot;}]);self.emit(&quot;upgrade&quot;,transport);transport=null;self.upgrading=false;self.flush()})}else{debug(&#x27;probe transport &quot;%s&quot; failed&#x27;,name);var err=new Error(&quot;probe error&quot;);err.transport=transport.name;self.emit(&quot;upgradeError&quot;,err)}})}function freezeTransport(){if(failed)return;failed=true;cleanup();transport.close();transport=null}function onerror(err){var error=new Error(&quot;probe error: &quot;+err);error.transport=transport.name;freezeTransport();debug(&#x27;probe transport &quot;%s&quot; failed because of error: %s&#x27;,name,err);self.emit(&quot;upgradeError&quot;,error)}function onTransportClose(){onerror(&quot;transport closed&quot;)}function onclose(){onerror(&quot;socket closed&quot;)}function onupgrade(to){if(transport&amp;&amp;to.name!=transport.name){debug(&#x27;&quot;%s&quot; works - aborting &quot;%s&quot;&#x27;,to.name,transport.name);freezeTransport()}}function cleanup(){transport.removeListener(&quot;open&quot;,onTransportOpen);transport.removeListener(&quot;error&quot;,onerror);transport.removeListener(&quot;close&quot;,onTransportClose);self.removeListener(&quot;close&quot;,onclose);self.removeListener(&quot;upgrading&quot;,onupgrade)}transport.once(&quot;open&quot;,onTransportOpen);transport.once(&quot;error&quot;,onerror);transport.once(&quot;close&quot;,onTransportClose);this.once(&quot;close&quot;,onclose);this.once(&quot;upgrading&quot;,onupgrade);transport.open()};Socket.prototype.onOpen=function(){debug(&quot;socket open&quot;);this.readyState=&quot;open&quot;;Socket.priorWebsocketSuccess=&quot;websocket&quot;==this.transport.name;this.emit(&quot;open&quot;);this.flush();if(&quot;open&quot;==this.readyState&amp;&amp;this.upgrade&amp;&amp;this.transport.pause){debug(&quot;starting upgrade probes&quot;);for(var i=0,l=this.upgrades.length;i&lt;l;i++){this.probe(this.upgrades[i])}}};Socket.prototype.onPacket=function(packet){if(&quot;opening&quot;==this.readyState||&quot;open&quot;==this.readyState){debug(&#x27;socket receive: type &quot;%s&quot;, data &quot;%s&quot;&#x27;,packet.type,packet.data);this.emit(&quot;packet&quot;,packet);this.emit(&quot;heartbeat&quot;);switch(packet.type){case&quot;open&quot;:this.onHandshake(parsejson(packet.data));break;case&quot;pong&quot;:this.setPing();break;case&quot;error&quot;:var err=new Error(&quot;server error&quot;);err.code=packet.data;this.emit(&quot;error&quot;,err);break;case&quot;message&quot;:this.emit(&quot;data&quot;,packet.data);this.emit(&quot;message&quot;,packet.data);break}}else{debug(&#x27;packet received with socket readyState &quot;%s&quot;&#x27;,this.readyState)}};Socket.prototype.onHandshake=function(data){this.emit(&quot;handshake&quot;,data);this.id=data.sid;this.transport.query.sid=data.sid;this.upgrades=this.filterUpgrades(data.upgrades);this.pingInterval=data.pingInterval;this.pingTimeout=data.pingTimeout;this.onOpen();if(&quot;closed&quot;==this.readyState)return;this.setPing();this.removeListener(&quot;heartbeat&quot;,this.onHeartbeat);this.on(&quot;heartbeat&quot;,this.onHeartbeat)};Socket.prototype.onHeartbeat=function(timeout){clearTimeout(this.pingTimeoutTimer);var self=this;self.pingTimeoutTimer=setTimeout(function(){if(&quot;closed&quot;==self.readyState)return;self.onClose(&quot;ping timeout&quot;)},timeout||self.pingInterval+self.pingTimeout)};Socket.prototype.setPing=function(){var self=this;clearTimeout(self.pingIntervalTimer);self.pingIntervalTimer=setTimeout(function(){debug(&quot;writing ping packet - expecting pong within %sms&quot;,self.pingTimeout);self.ping();self.onHeartbeat(self.pingTimeout)},self.pingInterval)};Socket.prototype.ping=function(){this.sendPacket(&quot;ping&quot;)};Socket.prototype.onDrain=function(){for(var i=0;i&lt;this.prevBufferLen;i++){if(this.callbackBuffer[i]){this.callbackBuffer[i]()}}this.writeBuffer.splice(0,this.prevBufferLen);this.callbackBuffer.splice(0,this.prevBufferLen);this.prevBufferLen=0;if(this.writeBuffer.length==0){this.emit(&quot;drain&quot;)}else{this.flush()}};Socket.prototype.flush=function(){if(&quot;closed&quot;!=this.readyState&amp;&amp;this.transport.writable&amp;&amp;!this.upgrading&amp;&amp;this.writeBuffer.length){debug(&quot;flushing %d packets in socket&quot;,this.writeBuffer.length);this.transport.send(this.writeBuffer);this.prevBufferLen=this.writeBuffer.length;this.emit(&quot;flush&quot;)}};Socket.prototype.write=Socket.prototype.send=function(msg,fn){this.sendPacket(&quot;message&quot;,msg,fn);return this};Socket.prototype.sendPacket=function(type,data,fn){if(&quot;closing&quot;==this.readyState||&quot;closed&quot;==this.readyState){return}var packet={type:type,data:data};this.emit(&quot;packetCreate&quot;,packet);this.writeBuffer.push(packet);this.callbackBuffer.push(fn);this.flush()};Socket.prototype.close=function(){if(&quot;opening&quot;==this.readyState||&quot;open&quot;==this.readyState){this.readyState=&quot;closing&quot;;var self=this;function close(){self.onClose(&quot;forced close&quot;);debug(&quot;socket closing - telling transport to close&quot;);self.transport.close()}function cleanupAndClose(){self.removeListener(&quot;upgrade&quot;,cleanupAndClose);self.removeListener(&quot;upgradeError&quot;,cleanupAndClose);close()}function waitForUpgrade(){self.once(&quot;upgrade&quot;,cleanupAndClose);self.once(&quot;upgradeError&quot;,cleanupAndClose)}if(this.writeBuffer.length){this.once(&quot;drain&quot;,function(){if(this.upgrading){waitForUpgrade()}else{close()}})}else if(this.upgrading){waitForUpgrade()}else{close()}}return this};Socket.prototype.onError=function(err){debug(&quot;socket error %j&quot;,err);Socket.priorWebsocketSuccess=false;this.emit(&quot;error&quot;,err);this.onClose(&quot;transport error&quot;,err)};Socket.prototype.onClose=function(reason,desc){if(&quot;opening&quot;==this.readyState||&quot;open&quot;==this.readyState||&quot;closing&quot;==this.readyState){debug(&#x27;socket close with reason: &quot;%s&quot;&#x27;,reason);var self=this;clearTimeout(this.pingIntervalTimer);clearTimeout(this.pingTimeoutTimer);setTimeout(function(){self.writeBuffer=[];self.callbackBuffer=[];self.prevBufferLen=0},0);this.transport.removeAllListeners(&quot;close&quot;);this.transport.close();this.transport.removeAllListeners();this.readyState=&quot;closed&quot;;this.id=null;this.emit(&quot;close&quot;,reason,desc)}};Socket.prototype.filterUpgrades=function(upgrades){var filteredUpgrades=[];for(var i=0,j=upgrades.length;i&lt;j;i++){if(~index(this.transports,upgrades[i]))filteredUpgrades.push(upgrades[i])}return filteredUpgrades}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{&quot;./transport&quot;:13,&quot;./transports&quot;:14,&quot;component-emitter&quot;:8,debug:21,&quot;engine.io-parser&quot;:24,indexof:39,parsejson:31,parseqs:32,parseuri:33}],13:[function(_dereq_,module,exports){var parser=_dereq_(&quot;engine.io-parser&quot;);var Emitter=_dereq_(&quot;component-emitter&quot;);module.exports=Transport;function Transport(opts){this.path=opts.path;this.hostname=opts.hostname;this.port=opts.port;this.secure=opts.secure;this.query=opts.query;this.timestampParam=opts.timestampParam;this.timestampRequests=opts.timestampRequests;this.readyState=&quot;&quot;;this.agent=opts.agent||false;this.socket=opts.socket;this.enablesXDR=opts.enablesXDR}Emitter(Transport.prototype);Transport.timestamps=0;Transport.prototype.onError=function(msg,desc){var err=new Error(msg);err.type=&quot;TransportError&quot;;err.description=desc;this.emit(&quot;error&quot;,err);return this};Transport.prototype.open=function(){if(&quot;closed&quot;==this.readyState||&quot;&quot;==this.readyState){this.readyState=&quot;opening&quot;;this.doOpen()}return this};Transport.prototype.close=function(){if(&quot;opening&quot;==this.readyState||&quot;open&quot;==this.readyState){this.doClose();this.onClose()}return this};Transport.prototype.send=function(packets){if(&quot;open&quot;==this.readyState){this.write(packets)}else{throw new Error(&quot;Transport not open&quot;)}};Transport.prototype.onOpen=function(){this.readyState=&quot;open&quot;;this.writable=true;this.emit(&quot;open&quot;)};Transport.prototype.onData=function(data){var packet=parser.decodePacket(data,this.socket.binaryType);this.onPacket(packet)};Transport.prototype.onPacket=function(packet){this.emit(&quot;packet&quot;,packet)};Transport.prototype.onClose=function(){this.readyState=&quot;closed&quot;;this.emit(&quot;close&quot;)}},{&quot;component-emitter&quot;:8,&quot;engine.io-parser&quot;:24}],14:[function(_dereq_,module,exports){(function(global){var XMLHttpRequest=_dereq_(&quot;xmlhttprequest&quot;);var XHR=_dereq_(&quot;./polling-xhr&quot;);var JSONP=_dereq_(&quot;./polling-jsonp&quot;);var websocket=_dereq_(&quot;./websocket&quot;);exports.polling=polling;exports.websocket=websocket;function polling(opts){var xhr;var xd=false;var xs=false;var jsonp=false!==opts.jsonp;if(global.location){var isSSL=&quot;https:&quot;==location.protocol;var port=location.port;if(!port){port=isSSL?443:80}xd=opts.hostname!=location.hostname||port!=opts.port;xs=opts.secure!=isSSL}opts.xdomain=xd;opts.xscheme=xs;xhr=new XMLHttpRequest(opts);if(&quot;open&quot;in xhr&amp;&amp;!opts.forceJSONP){return new XHR(opts)}else{if(!jsonp)throw new Error(&quot;JSONP disabled&quot;);return new JSONP(opts)}}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{&quot;./polling-jsonp&quot;:15,&quot;./polling-xhr&quot;:16,&quot;./websocket&quot;:18,xmlhttprequest:19}],15:[function(_dereq_,module,exports){(function(global){var Polling=_dereq_(&quot;./polling&quot;);var inherit=_dereq_(&quot;component-inherit&quot;);module.exports=JSONPPolling;var rNewline=/\n/g;var rEscapedNewline=/\\n/g;var callbacks;var index=0;function empty(){}function JSONPPolling(opts){Polling.call(this,opts);this.query=this.query||{};if(!callbacks){if(!global.___eio)global.___eio=[];callbacks=global.___eio}this.index=callbacks.length;var self=this;callbacks.push(function(msg){self.onData(msg)});this.query.j=this.index;if(global.document&amp;&amp;global.addEventListener){global.addEventListener(&quot;beforeunload&quot;,function(){if(self.script)self.script.onerror=empty},false)}}inherit(JSONPPolling,Polling);JSONPPolling.prototype.supportsBinary=false;JSONPPolling.prototype.doClose=function(){if(this.script){this.script.parentNode.removeChild(this.script);this.script=null}if(this.form){this.form.parentNode.removeChild(this.form);this.form=null;this.iframe=null}Polling.prototype.doClose.call(this)};JSONPPolling.prototype.doPoll=function(){var self=this;var script=document.createElement(&quot;script&quot;);if(this.script){this.script.parentNode.removeChild(this.script);this.script=null}script.async=true;script.src=this.uri();script.onerror=function(e){self.onError(&quot;jsonp poll error&quot;,e)};var insertAt=document.getElementsByTagName(&quot;script&quot;)[0];insertAt.parentNode.insertBefore(script,insertAt);this.script=script;var isUAgecko=&quot;undefined&quot;!=typeof navigator&amp;&amp;/gecko/i.test(navigator.userAgent);if(isUAgecko){setTimeout(function(){var iframe=document.createElement(&quot;iframe&quot;);document.body.appendChild(iframe);document.body.removeChild(iframe)},100)}};JSONPPolling.prototype.doWrite=function(data,fn){var self=this;if(!this.form){var form=document.createElement(&quot;form&quot;);var area=document.createElement(&quot;textarea&quot;);var id=this.iframeId=&quot;eio_iframe_&quot;+this.index;var iframe;form.className=&quot;socketio&quot;;form.style.position=&quot;absolute&quot;;form.style.top=&quot;-1000px&quot;;form.style.left=&quot;-1000px&quot;;form.target=id;form.method=&quot;POST&quot;;form.setAttribute(&quot;accept-charset&quot;,&quot;utf-8&quot;);area.name=&quot;d&quot;;form.appendChild(area);document.body.appendChild(form);this.form=form;this.area=area}this.form.action=this.uri();function complete(){initIframe();fn()}function initIframe(){if(self.iframe){try{self.form.removeChild(self.iframe)
+}catch(e){self.onError(&quot;jsonp polling iframe removal error&quot;,e)}}try{var html=&#x27;&lt;iframe src=&quot;javascript:0&quot; name=&quot;&#x27;+self.iframeId+&#x27;&quot;&gt;&#x27;;iframe=document.createElement(html)}catch(e){iframe=document.createElement(&quot;iframe&quot;);iframe.name=self.iframeId;iframe.src=&quot;javascript:0&quot;}iframe.id=self.iframeId;self.form.appendChild(iframe);self.iframe=iframe}initIframe();data=data.replace(rEscapedNewline,&quot;\\\n&quot;);this.area.value=data.replace(rNewline,&quot;\\n&quot;);try{this.form.submit()}catch(e){}if(this.iframe.attachEvent){this.iframe.onreadystatechange=function(){if(self.iframe.readyState==&quot;complete&quot;){complete()}}}else{this.iframe.onload=complete}}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{&quot;./polling&quot;:17,&quot;component-inherit&quot;:20}],16:[function(_dereq_,module,exports){(function(global){var XMLHttpRequest=_dereq_(&quot;xmlhttprequest&quot;);var Polling=_dereq_(&quot;./polling&quot;);var Emitter=_dereq_(&quot;component-emitter&quot;);var inherit=_dereq_(&quot;component-inherit&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;engine.io-client:polling-xhr&quot;);module.exports=XHR;module.exports.Request=Request;function empty(){}function XHR(opts){Polling.call(this,opts);if(global.location){var isSSL=&quot;https:&quot;==location.protocol;var port=location.port;if(!port){port=isSSL?443:80}this.xd=opts.hostname!=global.location.hostname||port!=opts.port;this.xs=opts.secure!=isSSL}}inherit(XHR,Polling);XHR.prototype.supportsBinary=true;XHR.prototype.request=function(opts){opts=opts||{};opts.uri=this.uri();opts.xd=this.xd;opts.xs=this.xs;opts.agent=this.agent||false;opts.supportsBinary=this.supportsBinary;opts.enablesXDR=this.enablesXDR;return new Request(opts)};XHR.prototype.doWrite=function(data,fn){var isBinary=typeof data!==&quot;string&quot;&amp;&amp;data!==undefined;var req=this.request({method:&quot;POST&quot;,data:data,isBinary:isBinary});var self=this;req.on(&quot;success&quot;,fn);req.on(&quot;error&quot;,function(err){self.onError(&quot;xhr post error&quot;,err)});this.sendXhr=req};XHR.prototype.doPoll=function(){debug(&quot;xhr poll&quot;);var req=this.request();var self=this;req.on(&quot;data&quot;,function(data){self.onData(data)});req.on(&quot;error&quot;,function(err){self.onError(&quot;xhr poll error&quot;,err)});this.pollXhr=req};function Request(opts){this.method=opts.method||&quot;GET&quot;;this.uri=opts.uri;this.xd=!!opts.xd;this.xs=!!opts.xs;this.async=false!==opts.async;this.data=undefined!=opts.data?opts.data:null;this.agent=opts.agent;this.isBinary=opts.isBinary;this.supportsBinary=opts.supportsBinary;this.enablesXDR=opts.enablesXDR;this.create()}Emitter(Request.prototype);Request.prototype.create=function(){var xhr=this.xhr=new XMLHttpRequest({agent:this.agent,xdomain:this.xd,xscheme:this.xs,enablesXDR:this.enablesXDR});var self=this;try{debug(&quot;xhr open %s: %s&quot;,this.method,this.uri);xhr.open(this.method,this.uri,this.async);if(this.supportsBinary){xhr.responseType=&quot;arraybuffer&quot;}if(&quot;POST&quot;==this.method){try{if(this.isBinary){xhr.setRequestHeader(&quot;Content-type&quot;,&quot;application/octet-stream&quot;)}else{xhr.setRequestHeader(&quot;Content-type&quot;,&quot;text/plain;charset=UTF-8&quot;)}}catch(e){}}if(&quot;withCredentials&quot;in xhr){xhr.withCredentials=true}if(this.hasXDR()){xhr.onload=function(){self.onLoad()};xhr.onerror=function(){self.onError(xhr.responseText)}}else{xhr.onreadystatechange=function(){if(4!=xhr.readyState)return;if(200==xhr.status||1223==xhr.status){self.onLoad()}else{setTimeout(function(){self.onError(xhr.status)},0)}}}debug(&quot;xhr data %s&quot;,this.data);xhr.send(this.data)}catch(e){setTimeout(function(){self.onError(e)},0);return}if(global.document){this.index=Request.requestsCount++;Request.requests[this.index]=this}};Request.prototype.onSuccess=function(){this.emit(&quot;success&quot;);this.cleanup()};Request.prototype.onData=function(data){this.emit(&quot;data&quot;,data);this.onSuccess()};Request.prototype.onError=function(err){this.emit(&quot;error&quot;,err);this.cleanup()};Request.prototype.cleanup=function(){if(&quot;undefined&quot;==typeof this.xhr||null===this.xhr){return}if(this.hasXDR()){this.xhr.onload=this.xhr.onerror=empty}else{this.xhr.onreadystatechange=empty}try{this.xhr.abort()}catch(e){}if(global.document){delete Request.requests[this.index]}this.xhr=null};Request.prototype.onLoad=function(){var data;try{var contentType;try{contentType=this.xhr.getResponseHeader(&quot;Content-Type&quot;).split(&quot;;&quot;)[0]}catch(e){}if(contentType===&quot;application/octet-stream&quot;){data=this.xhr.response}else{if(!this.supportsBinary){data=this.xhr.responseText}else{data=&quot;ok&quot;}}}catch(e){this.onError(e)}if(null!=data){this.onData(data)}};Request.prototype.hasXDR=function(){return&quot;undefined&quot;!==typeof global.XDomainRequest&amp;&amp;!this.xs&amp;&amp;this.enablesXDR};Request.prototype.abort=function(){this.cleanup()};if(global.document){Request.requestsCount=0;Request.requests={};if(global.attachEvent){global.attachEvent(&quot;onunload&quot;,unloadHandler)}else if(global.addEventListener){global.addEventListener(&quot;beforeunload&quot;,unloadHandler,false)}}function unloadHandler(){for(var i in Request.requests){if(Request.requests.hasOwnProperty(i)){Request.requests[i].abort()}}}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{&quot;./polling&quot;:17,&quot;component-emitter&quot;:8,&quot;component-inherit&quot;:20,debug:21,xmlhttprequest:19}],17:[function(_dereq_,module,exports){var Transport=_dereq_(&quot;../transport&quot;);var parseqs=_dereq_(&quot;parseqs&quot;);var parser=_dereq_(&quot;engine.io-parser&quot;);var inherit=_dereq_(&quot;component-inherit&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;engine.io-client:polling&quot;);module.exports=Polling;var hasXHR2=function(){var XMLHttpRequest=_dereq_(&quot;xmlhttprequest&quot;);var xhr=new XMLHttpRequest({xdomain:false});return null!=xhr.responseType}();function Polling(opts){var forceBase64=opts&amp;&amp;opts.forceBase64;if(!hasXHR2||forceBase64){this.supportsBinary=false}Transport.call(this,opts)}inherit(Polling,Transport);Polling.prototype.name=&quot;polling&quot;;Polling.prototype.doOpen=function(){this.poll()};Polling.prototype.pause=function(onPause){var pending=0;var self=this;this.readyState=&quot;pausing&quot;;function pause(){debug(&quot;paused&quot;);self.readyState=&quot;paused&quot;;onPause()}if(this.polling||!this.writable){var total=0;if(this.polling){debug(&quot;we are currently polling - waiting to pause&quot;);total++;this.once(&quot;pollComplete&quot;,function(){debug(&quot;pre-pause polling complete&quot;);--total||pause()})}if(!this.writable){debug(&quot;we are currently writing - waiting to pause&quot;);total++;this.once(&quot;drain&quot;,function(){debug(&quot;pre-pause writing complete&quot;);--total||pause()})}}else{pause()}};Polling.prototype.poll=function(){debug(&quot;polling&quot;);this.polling=true;this.doPoll();this.emit(&quot;poll&quot;)};Polling.prototype.onData=function(data){var self=this;debug(&quot;polling got data %s&quot;,data);var callback=function(packet,index,total){if(&quot;opening&quot;==self.readyState){self.onOpen()}if(&quot;close&quot;==packet.type){self.onClose();return false}self.onPacket(packet)};parser.decodePayload(data,this.socket.binaryType,callback);if(&quot;closed&quot;!=this.readyState){this.polling=false;this.emit(&quot;pollComplete&quot;);if(&quot;open&quot;==this.readyState){this.poll()}else{debug(&#x27;ignoring poll - transport state &quot;%s&quot;&#x27;,this.readyState)}}};Polling.prototype.doClose=function(){var self=this;function close(){debug(&quot;writing close packet&quot;);self.write([{type:&quot;close&quot;}])}if(&quot;open&quot;==this.readyState){debug(&quot;transport open - closing&quot;);close()}else{debug(&quot;transport not open - deferring close&quot;);this.once(&quot;open&quot;,close)}};Polling.prototype.write=function(packets){var self=this;this.writable=false;var callbackfn=function(){self.writable=true;self.emit(&quot;drain&quot;)};var self=this;parser.encodePayload(packets,this.supportsBinary,function(data){self.doWrite(data,callbackfn)})};Polling.prototype.uri=function(){var query=this.query||{};var schema=this.secure?&quot;https&quot;:&quot;http&quot;;var port=&quot;&quot;;if(false!==this.timestampRequests){query[this.timestampParam]=+new Date+&quot;-&quot;+Transport.timestamps++}if(!this.supportsBinary&amp;&amp;!query.sid){query.b64=1}query=parseqs.encode(query);if(this.port&amp;&amp;(&quot;https&quot;==schema&amp;&amp;this.port!=443||&quot;http&quot;==schema&amp;&amp;this.port!=80)){port=&quot;:&quot;+this.port}if(query.length){query=&quot;?&quot;+query}return schema+&quot;://&quot;+this.hostname+port+this.path+query}},{&quot;../transport&quot;:13,&quot;component-inherit&quot;:20,debug:21,&quot;engine.io-parser&quot;:24,parseqs:32,xmlhttprequest:19}],18:[function(_dereq_,module,exports){var Transport=_dereq_(&quot;../transport&quot;);var parser=_dereq_(&quot;engine.io-parser&quot;);var parseqs=_dereq_(&quot;parseqs&quot;);var inherit=_dereq_(&quot;component-inherit&quot;);var debug=_dereq_(&quot;debug&quot;)(&quot;engine.io-client:websocket&quot;);var WebSocket=_dereq_(&quot;ws&quot;);module.exports=WS;function WS(opts){var forceBase64=opts&amp;&amp;opts.forceBase64;if(forceBase64){this.supportsBinary=false}Transport.call(this,opts)}inherit(WS,Transport);WS.prototype.name=&quot;websocket&quot;;WS.prototype.supportsBinary=true;WS.prototype.doOpen=function(){if(!this.check()){return}var self=this;var uri=this.uri();var protocols=void 0;var opts={agent:this.agent};this.ws=new WebSocket(uri,protocols,opts);if(this.ws.binaryType===undefined){this.supportsBinary=false}this.ws.binaryType=&quot;arraybuffer&quot;;this.addEventListeners()};WS.prototype.addEventListeners=function(){var self=this;this.ws.onopen=function(){self.onOpen()};this.ws.onclose=function(){self.onClose()};this.ws.onmessage=function(ev){self.onData(ev.data)};this.ws.onerror=function(e){self.onError(&quot;websocket error&quot;,e)}};if(&quot;undefined&quot;!=typeof navigator&amp;&amp;/iPad|iPhone|iPod/i.test(navigator.userAgent)){WS.prototype.onData=function(data){var self=this;setTimeout(function(){Transport.prototype.onData.call(self,data)},0)}}WS.prototype.write=function(packets){var self=this;this.writable=false;for(var i=0,l=packets.length;i&lt;l;i++){parser.encodePacket(packets[i],this.supportsBinary,function(data){try{self.ws.send(data)}catch(e){debug(&quot;websocket closed before onclose event&quot;)}})}function ondrain(){self.writable=true;self.emit(&quot;drain&quot;)}setTimeout(ondrain,0)};WS.prototype.onClose=function(){Transport.prototype.onClose.call(this)};WS.prototype.doClose=function(){if(typeof this.ws!==&quot;undefined&quot;){this.ws.close()}};WS.prototype.uri=function(){var query=this.query||{};var schema=this.secure?&quot;wss&quot;:&quot;ws&quot;;var port=&quot;&quot;;if(this.port&amp;&amp;(&quot;wss&quot;==schema&amp;&amp;this.port!=443||&quot;ws&quot;==schema&amp;&amp;this.port!=80)){port=&quot;:&quot;+this.port}if(this.timestampRequests){query[this.timestampParam]=+new Date}if(!this.supportsBinary){query.b64=1}query=parseqs.encode(query);if(query.length){query=&quot;?&quot;+query}return schema+&quot;://&quot;+this.hostname+port+this.path+query};WS.prototype.check=function(){return!!WebSocket&amp;&amp;!(&quot;__initialize&quot;in WebSocket&amp;&amp;this.name===WS.prototype.name)}},{&quot;../transport&quot;:13,&quot;component-inherit&quot;:20,debug:21,&quot;engine.io-parser&quot;:24,parseqs:32,ws:34}],19:[function(_dereq_,module,exports){var hasCORS=_dereq_(&quot;has-cors&quot;);module.exports=function(opts){var xdomain=opts.xdomain;var xscheme=opts.xscheme;var enablesXDR=opts.enablesXDR;try{if(&quot;undefined&quot;!=typeof XMLHttpRequest&amp;&amp;(!xdomain||hasCORS)){return new XMLHttpRequest}}catch(e){}try{if(&quot;undefined&quot;!=typeof XDomainRequest&amp;&amp;!xscheme&amp;&amp;enablesXDR){return new XDomainRequest}}catch(e){}if(!xdomain){try{return new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)}catch(e){}}}},{&quot;has-cors&quot;:37}],20:[function(_dereq_,module,exports){module.exports=function(a,b){var fn=function(){};fn.prototype=b.prototype;a.prototype=new fn;a.prototype.constructor=a}},{}],21:[function(_dereq_,module,exports){exports=module.exports=_dereq_(&quot;./debug&quot;);exports.log=log;exports.formatArgs=formatArgs;exports.save=save;exports.load=load;exports.useColors=useColors;exports.colors=[&quot;lightseagreen&quot;,&quot;forestgreen&quot;,&quot;goldenrod&quot;,&quot;dodgerblue&quot;,&quot;darkorchid&quot;,&quot;crimson&quot;];function useColors(){return&quot;WebkitAppearance&quot;in document.documentElement.style||window.console&amp;&amp;(console.firebug||console.exception&amp;&amp;console.table)||navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)&amp;&amp;parseInt(RegExp.$1,10)&gt;=31}exports.formatters.j=function(v){return JSON.stringify(v)};function formatArgs(){var args=arguments;var useColors=this.useColors;args[0]=(useColors?&quot;%c&quot;:&quot;&quot;)+this.namespace+(useColors?&quot; %c&quot;:&quot; &quot;)+args[0]+(useColors?&quot;%c &quot;:&quot; &quot;)+&quot;+&quot;+exports.humanize(this.diff);if(!useColors)return args;var c=&quot;color: &quot;+this.color;args=[args[0],c,&quot;color: inherit&quot;].concat(Array.prototype.slice.call(args,1));var index=0;var lastC=0;args[0].replace(/%[a-z%]/g,function(match){if(&quot;%&quot;===match)return;index++;if(&quot;%c&quot;===match){lastC=index}});args.splice(lastC,0,c);return args}function log(){return&quot;object&quot;==typeof console&amp;&amp;&quot;function&quot;==typeof console.log&amp;&amp;Function.prototype.apply.call(console.log,console,arguments)}function save(namespaces){try{if(null==namespaces){localStorage.removeItem(&quot;debug&quot;)}else{localStorage.debug=namespaces}}catch(e){}}function load(){var r;try{r=localStorage.debug}catch(e){}return r}exports.enable(load())},{&quot;./debug&quot;:22}],22:[function(_dereq_,module,exports){exports=module.exports=debug;exports.coerce=coerce;exports.disable=disable;exports.enable=enable;exports.enabled=enabled;exports.humanize=_dereq_(&quot;ms&quot;);exports.names=[];exports.skips=[];exports.formatters={};var prevColor=0;var prevTime;function selectColor(){return exports.colors[prevColor++%exports.colors.length]}function debug(namespace){function disabled(){}disabled.enabled=false;function enabled(){var self=enabled;var curr=+new Date;var ms=curr-(prevTime||curr);self.diff=ms;self.prev=prevTime;self.curr=curr;prevTime=curr;if(null==self.useColors)self.useColors=exports.useColors();if(null==self.color&amp;&amp;self.useColors)self.color=selectColor();var args=Array.prototype.slice.call(arguments);args[0]=exports.coerce(args[0]);if(&quot;string&quot;!==typeof args[0]){args=[&quot;%o&quot;].concat(args)}var index=0;args[0]=args[0].replace(/%([a-z%])/g,function(match,format){if(match===&quot;%&quot;)return match;index++;var formatter=exports.formatters[format];if(&quot;function&quot;===typeof formatter){var val=args[index];match=formatter.call(self,val);args.splice(index,1);index--}return match});if(&quot;function&quot;===typeof exports.formatArgs){args=exports.formatArgs.apply(self,args)}var logFn=enabled.log||exports.log||console.log.bind(console);logFn.apply(self,args)}enabled.enabled=true;var fn=exports.enabled(namespace)?enabled:disabled;fn.namespace=namespace;return fn}function enable(namespaces){exports.save(namespaces);var split=(namespaces||&quot;&quot;).split(/[\s,]+/);var len=split.length;for(var i=0;i&lt;len;i++){if(!split[i])continue;namespaces=split[i].replace(/\*/g,&quot;.*?&quot;);if(namespaces[0]===&quot;-&quot;){exports.skips.push(new RegExp(&quot;^&quot;+namespaces.substr(1)+&quot;$&quot;))}else{exports.names.push(new RegExp(&quot;^&quot;+namespaces+&quot;$&quot;))}}}function disable(){exports.enable(&quot;&quot;)}function enabled(name){var i,len;for(i=0,len=exports.skips.length;i&lt;len;i++){if(exports.skips[i].test(name)){return false}}for(i=0,len=exports.names.length;i&lt;len;i++){if(exports.names[i].test(name)){return true}}return false}function coerce(val){if(val instanceof Error)return val.stack||val.message;return val}},{ms:23}],23:[function(_dereq_,module,exports){var s=1e3;var m=s*60;var h=m*60;var d=h*24;var y=d*365.25;module.exports=function(val,options){options=options||{};if(&quot;string&quot;==typeof val)return parse(val);return options.long?long(val):short(val)};function parse(str){var match=/^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(str);if(!match)return;var n=parseFloat(match[1]);var type=(match[2]||&quot;ms&quot;).toLowerCase();switch(type){case&quot;years&quot;:case&quot;year&quot;:case&quot;y&quot;:return n*y;case&quot;days&quot;:case&quot;day&quot;:case&quot;d&quot;:return n*d;case&quot;hours&quot;:case&quot;hour&quot;:case&quot;h&quot;:return n*h;case&quot;minutes&quot;:case&quot;minute&quot;:case&quot;m&quot;:return n*m;case&quot;seconds&quot;:case&quot;second&quot;:case&quot;s&quot;:return n*s;case&quot;ms&quot;:return n}}function short(ms){if(ms&gt;=d)return Math.round(ms/d)+&quot;d&quot;;if(ms&gt;=h)return Math.round(ms/h)+&quot;h&quot;;if(ms&gt;=m)return Math.round(ms/m)+&quot;m&quot;;if(ms&gt;=s)return Math.round(ms/s)+&quot;s&quot;;return ms+&quot;ms&quot;}function long(ms){return plural(ms,d,&quot;day&quot;)||plural(ms,h,&quot;hour&quot;)||plural(ms,m,&quot;minute&quot;)||plural(ms,s,&quot;second&quot;)||ms+&quot; ms&quot;}function plural(ms,n,name){if(ms&lt;n)return;if(ms&lt;n*1.5)return Math.floor(ms/n)+&quot; &quot;+name;return Math.ceil(ms/n)+&quot; &quot;+name+&quot;s&quot;}},{}],24:[function(_dereq_,module,exports){(function(global){var keys=_dereq_(&quot;./keys&quot;);var sliceBuffer=_dereq_(&quot;arraybuffer.slice&quot;);var base64encoder=_dereq_(&quot;base64-arraybuffer&quot;);var after=_dereq_(&quot;after&quot;);var utf8=_dereq_(&quot;utf8&quot;);var isAndroid=navigator.userAgent.match(/Android/i);exports.protocol=3;var packets=exports.packets={open:0,close:1,ping:2,pong:3,message:4,upgrade:5,noop:6};var packetslist=keys(packets);var err={type:&quot;error&quot;,data:&quot;parser error&quot;};var Blob=_dereq_(&quot;blob&quot;);exports.encodePacket=function(packet,supportsBinary,utf8encode,callback){if(&quot;function&quot;==typeof supportsBinary){callback=supportsBinary;supportsBinary=false}if(&quot;function&quot;==typeof utf8encode){callback=utf8encode;utf8encode=null}var data=packet.data===undefined?undefined:packet.data.buffer||packet.data;if(global.ArrayBuffer&amp;&amp;data instanceof ArrayBuffer){return encodeArrayBuffer(packet,supportsBinary,callback)}else if(Blob&amp;&amp;data instanceof global.Blob){return encodeBlob(packet,supportsBinary,callback)}var encoded=packets[packet.type];if(undefined!==packet.data){encoded+=utf8encode?utf8.encode(String(packet.data)):String(packet.data)}return callback(&quot;&quot;+encoded)};function encodeArrayBuffer(packet,supportsBinary,callback){if(!supportsBinary){return exports.encodeBase64Packet(packet,callback)}var data=packet.data;var contentArray=new Uint8Array(data);var resultBuffer=new Uint8Array(1+data.byteLength);resultBuffer[0]=packets[packet.type];for(var i=0;i&lt;contentArray.length;i++){resultBuffer[i+1]=contentArray[i]}return callback(resultBuffer.buffer)}function encodeBlobAsArrayBuffer(packet,supportsBinary,callback){if(!supportsBinary){return exports.encodeBase64Packet(packet,callback)}var fr=new FileReader;fr.onload=function(){packet.data=fr.result;exports.encodePacket(packet,supportsBinary,true,callback)};return fr.readAsArrayBuffer(packet.data)}function encodeBlob(packet,supportsBinary,callback){if(!supportsBinary){return exports.encodeBase64Packet(packet,callback)}if(isAndroid){return encodeBlobAsArrayBuffer(packet,supportsBinary,callback)}var length=new Uint8Array(1);length[0]=packets[packet.type];var blob=new Blob([length.buffer,packet.data]);return callback(blob)}exports.encodeBase64Packet=function(packet,callback){var message=&quot;b&quot;+exports.packets[packet.type];if(Blob&amp;&amp;packet.data instanceof Blob){var fr=new FileReader;fr.onload=function(){var b64=fr.result.split(&quot;,&quot;)[1];callback(message+b64)};return fr.readAsDataURL(packet.data)}var b64data;try{b64data=String.fromCharCode.apply(null,new Uint8Array(packet.data))}catch(e){var typed=new Uint8Array(packet.data);var basic=new Array(typed.length);for(var i=0;i&lt;typed.length;i++){basic[i]=typed[i]}b64data=String.fromCharCode.apply(null,basic)}message+=global.btoa(b64data);return callback(message)};exports.decodePacket=function(data,binaryType,utf8decode){if(typeof data==&quot;string&quot;||data===undefined){if(data.charAt(0)==&quot;b&quot;){return exports.decodeBase64Packet(data.substr(1),binaryType)}if(utf8decode){try{data=utf8.decode(data)}catch(e){return err}}var type=data.charAt(0);if(Number(type)!=type||!packetslist[type]){return err}if(data.length&gt;1){return{type:packetslist[type],data:data.substring(1)}}else{return{type:packetslist[type]}}}var asArray=new Uint8Array(data);var type=asArray[0];var rest=sliceBuffer(data,1);if(Blob&amp;&amp;binaryType===&quot;blob&quot;){rest=new Blob([rest])}return{type:packetslist[type],data:rest}};exports.decodeBase64Packet=function(msg,binaryType){var type=packetslist[msg.charAt(0)];if(!global.ArrayBuffer){return{type:type,data:{base64:true,data:msg.substr(1)}}}var data=base64encoder.decode(msg.substr(1));if(binaryType===&quot;blob&quot;&amp;&amp;Blob){data=new Blob([data])}return{type:type,data:data}};exports.encodePayload=function(packets,supportsBinary,callback){if(typeof supportsBinary==&quot;function&quot;){callback=supportsBinary;supportsBinary=null}if(supportsBinary){if(Blob&amp;&amp;!isAndroid){return exports.encodePayloadAsBlob(packets,callback)}return exports.encodePayloadAsArrayBuffer(packets,callback)}if(!packets.length){return callback(&quot;0:&quot;)}function setLengthHeader(message){return message.length+&quot;:&quot;+message}function encodeOne(packet,doneCallback){exports.encodePacket(packet,supportsBinary,true,function(message){doneCallback(null,setLengthHeader(message))})}map(packets,encodeOne,function(err,results){return callback(results.join(&quot;&quot;))})};function map(ary,each,done){var result=new Array(ary.length);var next=after(ary.length,done);var eachWithIndex=function(i,el,cb){each(el,function(error,msg){result[i]=msg;cb(error,result)})};for(var i=0;i&lt;ary.length;i++){eachWithIndex(i,ary[i],next)}}exports.decodePayload=function(data,binaryType,callback){if(typeof data!=&quot;string&quot;){return exports.decodePayloadAsBinary(data,binaryType,callback)}if(typeof binaryType===&quot;function&quot;){callback=binaryType;binaryType=null}var packet;if(data==&quot;&quot;){return callback(err,0,1)}var length=&quot;&quot;,n,msg;for(var i=0,l=data.length;i&lt;l;i++){var chr=data.charAt(i);if(&quot;:&quot;!=chr){length+=chr}else{if(&quot;&quot;==length||length!=(n=Number(length))){return callback(err,0,1)}msg=data.substr(i+1,n);if(length!=msg.length){return callback(err,0,1)}if(msg.length){packet=exports.decodePacket(msg,binaryType,true);if(err.type==packet.type&amp;&amp;err.data==packet.data){return callback(err,0,1)}var ret=callback(packet,i+n,l);if(false===ret)return}i+=n;length=&quot;&quot;}}if(length!=&quot;&quot;){return callback(err,0,1)}};exports.encodePayloadAsArrayBuffer=function(packets,callback){if(!packets.length){return callback(new ArrayBuffer(0))}function encodeOne(packet,doneCallback){exports.encodePacket(packet,true,true,function(data){return doneCallback(null,data)})}map(packets,encodeOne,function(err,encodedPackets){var totalLength=encodedPackets.reduce(function(acc,p){var len;if(typeof p===&quot;string&quot;){len=p.length}else{len=p.byteLength}return acc+len.toString().length+len+2},0);var resultArray=new Uint8Array(totalLength);var bufferIndex=0;encodedPackets.forEach(function(p){var isString=typeof p===&quot;string&quot;;var ab=p;if(isString){var view=new Uint8Array(p.length);for(var i=0;i&lt;p.length;i++){view[i]=p.charCodeAt(i)}ab=view.buffer}if(isString){resultArray[bufferIndex++]=0}else{resultArray[bufferIndex++]=1}var lenStr=ab.byteLength.toString();for(var i=0;i&lt;lenStr.length;i++){resultArray[bufferIndex++]=parseInt(lenStr[i])}resultArray[bufferIndex++]=255;var view=new Uint8Array(ab);for(var i=0;i&lt;view.length;i++){resultArray[bufferIndex++]=view[i]}});return callback(resultArray.buffer)})};exports.encodePayloadAsBlob=function(packets,callback){function encodeOne(packet,doneCallback){exports.encodePacket(packet,true,true,function(encoded){var binaryIdentifier=new Uint8Array(1);binaryIdentifier[0]=1;if(typeof encoded===&quot;string&quot;){var view=new Uint8Array(encoded.length);for(var i=0;i&lt;encoded.length;i++){view[i]=encoded.charCodeAt(i)}encoded=view.buffer;binaryIdentifier[0]=0}var len=encoded instanceof ArrayBuffer?encoded.byteLength:encoded.size;var lenStr=len.toString();var lengthAry=new Uint8Array(lenStr.length+1);for(var i=0;i&lt;lenStr.length;i++){lengthAry[i]=parseInt(lenStr[i])}lengthAry[lenStr.length]=255;if(Blob){var blob=new Blob([binaryIdentifier.buffer,lengthAry.buffer,encoded]);doneCallback(null,blob)}})}map(packets,encodeOne,function(err,results){return callback(new Blob(results))})};exports.decodePayloadAsBinary=function(data,binaryType,callback){if(typeof binaryType===&quot;function&quot;){callback=binaryType;binaryType=null}var bufferTail=data;var buffers=[];var numberTooLong=false;while(bufferTail.byteLength&gt;0){var tailArray=new Uint8Array(bufferTail);var isString=tailArray[0]===0;var msgLength=&quot;&quot;;for(var i=1;;i++){if(tailArray[i]==255)break;if(msgLength.length&gt;310){numberTooLong=true;break}msgLength+=tailArray[i]}if(numberTooLong)return callback(err,0,1);bufferTail=sliceBuffer(bufferTail,2+msgLength.length);msgLength=parseInt(msgLength);var msg=sliceBuffer(bufferTail,0,msgLength);if(isString){try{msg=String.fromCharCode.apply(null,new Uint8Array(msg))}catch(e){var typed=new Uint8Array(msg);msg=&quot;&quot;;for(var i=0;i&lt;typed.length;i++){msg+=String.fromCharCode(typed[i])}}}buffers.push(msg);bufferTail=sliceBuffer(bufferTail,msgLength)}var total=buffers.length;buffers.forEach(function(buffer,i){callback(exports.decodePacket(buffer,binaryType,true),i,total)})}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{&quot;./keys&quot;:25,after:26,&quot;arraybuffer.slice&quot;:27,&quot;base64-arraybuffer&quot;:28,blob:29,utf8:30}],25:[function(_dereq_,module,exports){module.exports=Object.keys||function keys(obj){var arr=[];var has=Object.prototype.hasOwnProperty;for(var i in obj){if(has.call(obj,i)){arr.push(i)}}return arr}},{}],26:[function(_dereq_,module,exports){module.exports=after;function after(count,callback,err_cb){var bail=false;err_cb=err_cb||noop;proxy.count=count;return count===0?callback():proxy;function proxy(err,result){if(proxy.count&lt;=0){throw new Error(&quot;after called too many times&quot;)}--proxy.count;if(err){bail=true;callback(err);callback=err_cb}else if(proxy.count===0&amp;&amp;!bail){callback(null,result)}}}function noop(){}},{}],27:[function(_dereq_,module,exports){module.exports=function(arraybuffer,start,end){var bytes=arraybuffer.byteLength;start=start||0;end=end||bytes;if(arraybuffer.slice){return arraybuffer.slice(start,end)}if(start&lt;0){start+=bytes}if(end&lt;0){end+=bytes}if(end&gt;bytes){end=bytes}if(start&gt;=bytes||start&gt;=end||bytes===0){return new ArrayBuffer(0)}var abv=new Uint8Array(arraybuffer);var result=new Uint8Array(end-start);for(var i=start,ii=0;i&lt;end;i++,ii++){result[ii]=abv[i]}return result.buffer}},{}],28:[function(_dereq_,module,exports){(function(chars){&quot;use strict&quot;;exports.encode=function(arraybuffer){var bytes=new Uint8Array(arraybuffer),i,len=bytes.length,base64=&quot;&quot;;for(i=0;i&lt;len;i+=3){base64+=chars[bytes[i]&gt;&gt;2];base64+=chars[(bytes[i]&amp;3)&lt;&lt;4|bytes[i+1]&gt;&gt;4];base64+=chars[(bytes[i+1]&amp;15)&lt;&lt;2|bytes[i+2]&gt;&gt;6];base64+=chars[bytes[i+2]&amp;63]}if(len%3===2){base64=base64.substring(0,base64.length-1)+&quot;=&quot;}else if(len%3===1){base64=base64.substring(0,base64.length-2)+&quot;==&quot;}return base64};exports.decode=function(base64){var bufferLength=base64.length*.75,len=base64.length,i,p=0,encoded1,encoded2,encoded3,encoded4;if(base64[base64.length-1]===&quot;=&quot;){bufferLength--;if(base64[base64.length-2]===&quot;=&quot;){bufferLength--}}var arraybuffer=new ArrayBuffer(bufferLength),bytes=new Uint8Array(arraybuffer);for(i=0;i&lt;len;i+=4){encoded1=chars.indexOf(base64[i]);encoded2=chars.indexOf(base64[i+1]);encoded3=chars.indexOf(base64[i+2]);encoded4=chars.indexOf(base64[i+3]);bytes[p++]=encoded1&lt;&lt;2|encoded2&gt;&gt;4;bytes[p++]=(encoded2&amp;15)&lt;&lt;4|encoded3&gt;&gt;2;bytes[p++]=(encoded3&amp;3)&lt;&lt;6|encoded4&amp;63}return arraybuffer}})(&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;)},{}],29:[function(_dereq_,module,exports){(function(global){var BlobBuilder=global.BlobBuilder||global.WebKitBlobBuilder||global.MSBlobBuilder||global.MozBlobBuilder;var blobSupported=function(){try{var b=new Blob([&quot;hi&quot;]);return b.size==2}catch(e){return false}}();var blobBuilderSupported=BlobBuilder&amp;&amp;BlobBuilder.prototype.append&amp;&amp;BlobBuilder.prototype.getBlob;function BlobBuilderConstructor(ary,options){options=options||{};var bb=new BlobBuilder;for(var i=0;i&lt;ary.length;i++){bb.append(ary[i])}return options.type?bb.getBlob(options.type):bb.getBlob()}module.exports=function(){if(blobSupported){return global.Blob}else if(blobBuilderSupported){return BlobBuilderConstructor}else{return undefined}}()}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{}],30:[function(_dereq_,module,exports){(function(global){(function(root){var freeExports=typeof exports==&quot;object&quot;&amp;&amp;exports;var freeModule=typeof module==&quot;object&quot;&amp;&amp;module&amp;&amp;module.exports==freeExports&amp;&amp;module;var freeGlobal=typeof global==&quot;object&quot;&amp;&amp;global;if(freeGlobal.global===freeGlobal||freeGlobal.window===freeGlobal){root=freeGlobal}var stringFromCharCode=String.fromCharCode;function ucs2decode(string){var output=[];var counter=0;var length=string.length;var value;var extra;while(counter&lt;length){value=string.charCodeAt(counter++);if(value&gt;=55296&amp;&amp;value&lt;=56319&amp;&amp;counter&lt;length){extra=string.charCodeAt(counter++);if((extra&amp;64512)==56320){output.push(((value&amp;1023)&lt;&lt;10)+(extra&amp;1023)+65536)}else{output.push(value);counter--}}else{output.push(value)}}return output}function ucs2encode(array){var length=array.length;var index=-1;var value;var output=&quot;&quot;;while(++index&lt;length){value=array[index];if(value&gt;65535){value-=65536;output+=stringFromCharCode(value&gt;&gt;&gt;10&amp;1023|55296);value=56320|value&amp;1023}output+=stringFromCharCode(value)}return output}function createByte(codePoint,shift){return stringFromCharCode(codePoint&gt;&gt;shift&amp;63|128)}function encodeCodePoint(codePoint){if((codePoint&amp;4294967168)==0){return stringFromCharCode(codePoint)}var symbol=&quot;&quot;;if((codePoint&amp;4294965248)==0){symbol=stringFromCharCode(codePoint&gt;&gt;6&amp;31|192)}else if((codePoint&amp;4294901760)==0){symbol=stringFromCharCode(codePoint&gt;&gt;12&amp;15|224);symbol+=createByte(codePoint,6)}else if((codePoint&amp;4292870144)==0){symbol=stringFromCharCode(codePoint&gt;&gt;18&amp;7|240);symbol+=createByte(codePoint,12);symbol+=createByte(codePoint,6)}symbol+=stringFromCharCode(codePoint&amp;63|128);return symbol}function utf8encode(string){var codePoints=ucs2decode(string);var length=codePoints.length;var index=-1;var codePoint;var byteString=&quot;&quot;;while(++index&lt;length){codePoint=codePoints[index];byteString+=encodeCodePoint(codePoint)}return byteString}function readContinuationByte(){if(byteIndex&gt;=byteCount){throw Error(&quot;Invalid byte index&quot;)}var continuationByte=byteArray[byteIndex]&amp;255;byteIndex++;if((continuationByte&amp;192)==128){return continuationByte&amp;63}throw Error(&quot;Invalid continuation byte&quot;)}function decodeSymbol(){var byte1;var byte2;var byte3;var byte4;var codePoint;if(byteIndex&gt;byteCount){throw Error(&quot;Invalid byte index&quot;)}if(byteIndex==byteCount){return false}byte1=byteArray[byteIndex]&amp;255;byteIndex++;if((byte1&amp;128)==0){return byte1}if((byte1&amp;224)==192){var byte2=readContinuationByte();codePoint=(byte1&amp;31)&lt;&lt;6|byte2;if(codePoint&gt;=128){return codePoint}else{throw Error(&quot;Invalid continuation byte&quot;)}}if((byte1&amp;240)==224){byte2=readContinuationByte();byte3=readContinuationByte();codePoint=(byte1&amp;15)&lt;&lt;12|byte2&lt;&lt;6|byte3;if(codePoint&gt;=2048){return codePoint}else{throw Error(&quot;Invalid continuation byte&quot;)}}if((byte1&amp;248)==240){byte2=readContinuationByte();byte3=readContinuationByte();byte4=readContinuationByte();codePoint=(byte1&amp;15)&lt;&lt;18|byte2&lt;&lt;12|byte3&lt;&lt;6|byte4;if(codePoint&gt;=65536&amp;&amp;codePoint&lt;=1114111){return codePoint}}throw Error(&quot;Invalid UTF-8 detected&quot;)}var byteArray;var byteCount;var byteIndex;function utf8decode(byteString){byteArray=ucs2decode(byteString);byteCount=byteArray.length;byteIndex=0;var codePoints=[];var tmp;while((tmp=decodeSymbol())!==false){codePoints.push(tmp)}return ucs2encode(codePoints)}var utf8={version:&quot;2.0.0&quot;,encode:utf8encode,decode:utf8decode};if(typeof define==&quot;function&quot;&amp;&amp;typeof define.amd==&quot;object&quot;&amp;&amp;define.amd){define(function(){return utf8})}else if(freeExports&amp;&amp;!freeExports.nodeType){if(freeModule){freeModule.exports=utf8}else{var object={};var hasOwnProperty=object.hasOwnProperty;for(var key in utf8){hasOwnProperty.call(utf8,key)&amp;&amp;(freeExports[key]=utf8[key])}}}else{root.utf8=utf8}})(this)}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{}],31:[function(_dereq_,module,exports){(function(global){var rvalidchars=/^[\],:{}\s]*$/;var rvalidescape=/\\(?:[&quot;\\\/bfnrt]|u[0-9a-fA-F]{4})/g;var rvalidtokens=/&quot;[^&quot;\\\n\r]*&quot;|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;var rvalidbraces=/(?:^|:|,)(?:\s*\[)+/g;var rtrimLeft=/^\s+/;var rtrimRight=/\s+$/;module.exports=function parsejson(data){if(&quot;string&quot;!=typeof data||!data){return null}data=data.replace(rtrimLeft,&quot;&quot;).replace(rtrimRight,&quot;&quot;);if(global.JSON&amp;&amp;JSON.parse){return JSON.parse(data)}if(rvalidchars.test(data.replace(rvalidescape,&quot;@&quot;).replace(rvalidtokens,&quot;]&quot;).replace(rvalidbraces,&quot;&quot;))){return new Function(&quot;return &quot;+data)()}}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{}],32:[function(_dereq_,module,exports){exports.encode=function(obj){var str=&quot;&quot;;for(var i in obj){if(obj.hasOwnProperty(i)){if(str.length)str+=&quot;&amp;&quot;;str+=encodeURIComponent(i)+&quot;=&quot;+encodeURIComponent(obj[i])}}return str};exports.decode=function(qs){var qry={};var pairs=qs.split(&quot;&amp;&quot;);for(var i=0,l=pairs.length;i&lt;l;i++){var pair=pairs[i].split(&quot;=&quot;);qry[decodeURIComponent(pair[0])]=decodeURIComponent(pair[1])}return qry}},{}],33:[function(_dereq_,module,exports){var re=/^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+var parts=[&quot;source&quot;,&quot;protocol&quot;,&quot;authority&quot;,&quot;userInfo&quot;,&quot;user&quot;,&quot;password&quot;,&quot;host&quot;,&quot;port&quot;,&quot;relative&quot;,&quot;path&quot;,&quot;directory&quot;,&quot;file&quot;,&quot;query&quot;,&quot;anchor&quot;];module.exports=function parseuri(str){var src=str,b=str.indexOf(&quot;[&quot;),e=str.indexOf(&quot;]&quot;);if(b!=-1&amp;&amp;e!=-1){str=str.substring(0,b)+str.substring(b,e).replace(/:/g,&quot;;&quot;)+str.substring(e,str.length)}var m=re.exec(str||&quot;&quot;),uri={},i=14;while(i--){uri[parts[i]]=m[i]||&quot;&quot;}if(b!=-1&amp;&amp;e!=-1){uri.source=src;uri.host=uri.host.substring(1,uri.host.length-1).replace(/;/g,&quot;:&quot;);uri.authority=uri.authority.replace(&quot;[&quot;,&quot;&quot;).replace(&quot;]&quot;,&quot;&quot;).replace(/;/g,&quot;:&quot;);uri.ipv6uri=true}return uri}},{}],34:[function(_dereq_,module,exports){var global=function(){return this}();var WebSocket=global.WebSocket||global.MozWebSocket;module.exports=WebSocket?ws:null;function ws(uri,protocols,opts){var instance;if(protocols){instance=new WebSocket(uri,protocols)}else{instance=new WebSocket(uri)}return instance}if(WebSocket)ws.prototype=WebSocket.prototype},{}],35:[function(_dereq_,module,exports){(function(global){var isArray=_dereq_(&quot;isarray&quot;);module.exports=hasBinary;function hasBinary(data){function _hasBinary(obj){if(!obj)return false;if(global.Buffer&amp;&amp;global.Buffer.isBuffer(obj)||global.ArrayBuffer&amp;&amp;obj instanceof ArrayBuffer||global.Blob&amp;&amp;obj instanceof Blob||global.File&amp;&amp;obj instanceof File){return true}if(isArray(obj)){for(var i=0;i&lt;obj.length;i++){if(_hasBinary(obj[i])){return true}}}else if(obj&amp;&amp;&quot;object&quot;==typeof obj){if(obj.toJSON){obj=obj.toJSON()}for(var key in obj){if(obj.hasOwnProperty(key)&amp;&amp;_hasBinary(obj[key])){return true}}}return false}return _hasBinary(data)}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{isarray:36}],36:[function(_dereq_,module,exports){module.exports=Array.isArray||function(arr){return Object.prototype.toString.call(arr)==&quot;[object Array]&quot;}},{}],37:[function(_dereq_,module,exports){var global=_dereq_(&quot;global&quot;);try{module.exports=&quot;XMLHttpRequest&quot;in global&amp;&amp;&quot;withCredentials&quot;in new global.XMLHttpRequest}catch(err){module.exports=false}},{global:38}],38:[function(_dereq_,module,exports){module.exports=function(){return this}()},{}],39:[function(_dereq_,module,exports){var indexOf=[].indexOf;module.exports=function(arr,obj){if(indexOf)return arr.indexOf(obj);for(var i=0;i&lt;arr.length;++i){if(arr[i]===obj)return i}return-1}},{}],40:[function(_dereq_,module,exports){var has=Object.prototype.hasOwnProperty;exports.keys=Object.keys||function(obj){var keys=[];for(var key in obj){if(has.call(obj,key)){keys.push(key)}}return keys};exports.values=function(obj){var vals=[];for(var key in obj){if(has.call(obj,key)){vals.push(obj[key])}}return vals};exports.merge=function(a,b){for(var key in b){if(has.call(b,key)){a[key]=b[key]}}return a};exports.length=function(obj){return exports.keys(obj).length};exports.isEmpty=function(obj){return 0==exports.length(obj)}},{}],41:[function(_dereq_,module,exports){var re=/^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;var parts=[&quot;source&quot;,&quot;protocol&quot;,&quot;authority&quot;,&quot;userInfo&quot;,&quot;user&quot;,&quot;password&quot;,&quot;host&quot;,&quot;port&quot;,&quot;relative&quot;,&quot;path&quot;,&quot;directory&quot;,&quot;file&quot;,&quot;query&quot;,&quot;anchor&quot;];module.exports=function parseuri(str){var m=re.exec(str||&quot;&quot;),uri={},i=14;while(i--){uri[parts[i]]=m[i]||&quot;&quot;}return uri}},{}],42:[function(_dereq_,module,exports){(function(global){var isArray=_dereq_(&quot;isarray&quot;);var isBuf=_dereq_(&quot;./is-buffer&quot;);exports.deconstructPacket=function(packet){var buffers=[];var packetData=packet.data;function _deconstructPacket(data){if(!data)return data;if(isBuf(data)){var placeholder={_placeholder:true,num:buffers.length};buffers.push(data);return placeholder}else if(isArray(data)){var newData=new Array(data.length);for(var i=0;i&lt;data.length;i++){newData[i]=_deconstructPacket(data[i])}return newData}else if(&quot;object&quot;==typeof data&amp;&amp;!(data instanceof Date)){var newData={};for(var key in data){newData[key]=_deconstructPacket(data[key])}return newData}return data}var pack=packet;pack.data=_deconstructPacket(packetData);pack.attachments=buffers.length;return{packet:pack,buffers:buffers}};exports.reconstructPacket=function(packet,buffers){var curPlaceHolder=0;function _reconstructPacket(data){if(data&amp;&amp;data._placeholder){var buf=buffers[data.num];return buf}else if(isArray(data)){for(var i=0;i&lt;data.length;i++){data[i]=_reconstructPacket(data[i])}return data}else if(data&amp;&amp;&quot;object&quot;==typeof data){for(var key in data){data[key]=_reconstructPacket(data[key])}return data}return data}packet.data=_reconstructPacket(packet.data);packet.attachments=undefined;return packet};exports.removeBlobs=function(data,callback){function _removeBlobs(obj,curKey,containingObject){if(!obj)return obj;if(global.Blob&amp;&amp;obj instanceof Blob||global.File&amp;&amp;obj instanceof File){pendingBlobs++;var fileReader=new FileReader;fileReader.onload=function(){if(containingObject){containingObject[curKey]=this.result}else{bloblessData=this.result}if(!--pendingBlobs){callback(bloblessData)}};fileReader.readAsArrayBuffer(obj)}else if(isArray(obj)){for(var i=0;i&lt;obj.length;i++){_removeBlobs(obj[i],i,obj)}}else if(obj&amp;&amp;&quot;object&quot;==typeof obj&amp;&amp;!isBuf(obj)){for(var key in obj){_removeBlobs(obj[key],key,obj)}}}var pendingBlobs=0;var bloblessData=data;_removeBlobs(bloblessData);if(!pendingBlobs){callback(bloblessData)}}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{&quot;./is-buffer&quot;:44,isarray:45}],43:[function(_dereq_,module,exports){var debug=_dereq_(&quot;debug&quot;)(&quot;socket.io-parser&quot;);var json=_dereq_(&quot;json3&quot;);var isArray=_dereq_(&quot;isarray&quot;);var Emitter=_dereq_(&quot;component-emitter&quot;);var binary=_dereq_(&quot;./binary&quot;);var isBuf=_dereq_(&quot;./is-buffer&quot;);exports.protocol=4;exports.types=[&quot;CONNECT&quot;,&quot;DISCONNECT&quot;,&quot;EVENT&quot;,&quot;BINARY_EVENT&quot;,&quot;ACK&quot;,&quot;BINARY_ACK&quot;,&quot;ERROR&quot;];exports.CONNECT=0;exports.DISCONNECT=1;exports.EVENT=2;exports.ACK=3;exports.ERROR=4;exports.BINARY_EVENT=5;exports.BINARY_ACK=6;exports.Encoder=Encoder;exports.Decoder=Decoder;function Encoder(){}Encoder.prototype.encode=function(obj,callback){debug(&quot;encoding packet %j&quot;,obj);if(exports.BINARY_EVENT==obj.type||exports.BINARY_ACK==obj.type){encodeAsBinary(obj,callback)}else{var encoding=encodeAsString(obj);callback([encoding])}};function encodeAsString(obj){var str=&quot;&quot;;var nsp=false;str+=obj.type;if(exports.BINARY_EVENT==obj.type||exports.BINARY_ACK==obj.type){str+=obj.attachments;str+=&quot;-&quot;}if(obj.nsp&amp;&amp;&quot;/&quot;!=obj.nsp){nsp=true;str+=obj.nsp}if(null!=obj.id){if(nsp){str+=&quot;,&quot;;nsp=false}str+=obj.id}if(null!=obj.data){if(nsp)str+=&quot;,&quot;;str+=json.stringify(obj.data)}debug(&quot;encoded %j as %s&quot;,obj,str);return str}function encodeAsBinary(obj,callback){function writeEncoding(bloblessData){var deconstruction=binary.deconstructPacket(bloblessData);var pack=encodeAsString(deconstruction.packet);var buffers=deconstruction.buffers;buffers.unshift(pack);callback(buffers)}binary.removeBlobs(obj,writeEncoding)}function Decoder(){this.reconstructor=null}Emitter(Decoder.prototype);Decoder.prototype.add=function(obj){var packet;if(&quot;string&quot;==typeof obj){packet=decodeString(obj);if(exports.BINARY_EVENT==packet.type||exports.BINARY_ACK==packet.type){this.reconstructor=new BinaryReconstructor(packet);if(this.reconstructor.reconPack.attachments==0){this.emit(&quot;decoded&quot;,packet)}}else{this.emit(&quot;decoded&quot;,packet)}}else if(isBuf(obj)||obj.base64){if(!this.reconstructor){throw new Error(&quot;got binary data when not reconstructing a packet&quot;)}else{packet=this.reconstructor.takeBinaryData(obj);if(packet){this.reconstructor=null;this.emit(&quot;decoded&quot;,packet)}}}else{throw new Error(&quot;Unknown type: &quot;+obj)}};function decodeString(str){var p={};var i=0;p.type=Number(str.charAt(0));if(null==exports.types[p.type])return error();if(exports.BINARY_EVENT==p.type||exports.BINARY_ACK==p.type){p.attachments=&quot;&quot;;while(str.charAt(++i)!=&quot;-&quot;){p.attachments+=str.charAt(i)}p.attachments=Number(p.attachments)}if(&quot;/&quot;==str.charAt(i+1)){p.nsp=&quot;&quot;;while(++i){var c=str.charAt(i);if(&quot;,&quot;==c)break;p.nsp+=c;if(i+1==str.length)break}}else{p.nsp=&quot;/&quot;}var next=str.charAt(i+1);if(&quot;&quot;!=next&amp;&amp;Number(next)==next){p.id=&quot;&quot;;while(++i){var c=str.charAt(i);if(null==c||Number(c)!=c){--i;break}p.id+=str.charAt(i);if(i+1==str.length)break}p.id=Number(p.id)}if(str.charAt(++i)){try{p.data=json.parse(str.substr(i))}catch(e){return error()}}debug(&quot;decoded %s as %j&quot;,str,p);return p}Decoder.prototype.destroy=function(){if(this.reconstructor){this.reconstructor.finishedReconstruction()}};function BinaryReconstructor(packet){this.reconPack=packet;this.buffers=[]}BinaryReconstructor.prototype.takeBinaryData=function(binData){this.buffers.push(binData);if(this.buffers.length==this.reconPack.attachments){var packet=binary.reconstructPacket(this.reconPack,this.buffers);this.finishedReconstruction();return packet}return null};BinaryReconstructor.prototype.finishedReconstruction=function(){this.reconPack=null;this.buffers=[]};function error(data){return{type:exports.ERROR,data:&quot;parser error&quot;}}},{&quot;./binary&quot;:42,&quot;./is-buffer&quot;:44,&quot;component-emitter&quot;:8,debug:9,isarray:45,json3:46}],44:[function(_dereq_,module,exports){(function(global){module.exports=isBuf;function isBuf(obj){return global.Buffer&amp;&amp;global.Buffer.isBuffer(obj)||global.ArrayBuffer&amp;&amp;obj instanceof ArrayBuffer}}).call(this,typeof self!==&quot;undefined&quot;?self:typeof window!==&quot;undefined&quot;?window:{})},{}],45:[function(_dereq_,module,exports){module.exports=_dereq_(36)},{}],46:[function(_dereq_,module,exports){(function(window){var getClass={}.toString,isProperty,forEach,undef;var isLoader=typeof define===&quot;function&quot;&amp;&amp;define.amd;var nativeJSON=typeof JSON==&quot;object&quot;&amp;&amp;JSON;var JSON3=typeof exports==&quot;object&quot;&amp;&amp;exports&amp;&amp;!exports.nodeType&amp;&amp;exports;if(JSON3&amp;&amp;nativeJSON){JSON3.stringify=nativeJSON.stringify;JSON3.parse=nativeJSON.parse}else{JSON3=window.JSON=nativeJSON||{}}var isExtended=new Date(-0xc782b5b800cec);try{isExtended=isExtended.getUTCFullYear()==-109252&amp;&amp;isExtended.getUTCMonth()===0&amp;&amp;isExtended.getUTCDate()===1&amp;&amp;isExtended.getUTCHours()==10&amp;&amp;isExtended.getUTCMinutes()==37&amp;&amp;isExtended.getUTCSeconds()==6&amp;&amp;isExtended.getUTCMilliseconds()==708}catch(exception){}function has(name){if(has[name]!==undef){return has[name]}var isSupported;if(name==&quot;bug-string-char-index&quot;){isSupported=&quot;a&quot;[0]!=&quot;a&quot;}else if(name==&quot;json&quot;){isSupported=has(&quot;json-stringify&quot;)&amp;&amp;has(&quot;json-parse&quot;)}else{var value,serialized=&#x27;{&quot;a&quot;:[1,true,false,null,&quot;\\u0000\\b\\n\\f\\r\\t&quot;]}&#x27;;if(name==&quot;json-stringify&quot;){var stringify=JSON3.stringify,stringifySupported=typeof stringify==&quot;function&quot;&amp;&amp;isExtended;if(stringifySupported){(value=function(){return 1}).toJSON=value;try{stringifySupported=stringify(0)===&quot;0&quot;&amp;&amp;stringify(new Number)===&quot;0&quot;&amp;&amp;stringify(new String)==&#x27;&quot;&quot;&#x27;&amp;&amp;stringify(getClass)===undef&amp;&amp;stringify(undef)===undef&amp;&amp;stringify()===undef&amp;&amp;stringify(value)===&quot;1&quot;&amp;&amp;stringify([value])==&quot;[1]&quot;&amp;&amp;stringify([undef])==&quot;[null]&quot;&amp;&amp;stringify(null)==&quot;null&quot;&amp;&amp;stringify([undef,getClass,null])==&quot;[null,null,null]&quot;&amp;&amp;stringify({a:[value,true,false,null,&quot;\x00\b\n\f\r  &quot;]})==serialized&amp;&amp;stringify(null,value)===&quot;1&quot;&amp;&amp;stringify([1,2],null,1)==&quot;[\n 1,\n 2\n]&quot;&amp;&amp;stringify(new Date(-864e13))==&#x27;&quot;-271821-04-20T00:00:00.000Z&quot;&#x27;&amp;&amp;stringify(new Date(864e13))==&#x27;&quot;+275760-09-13T00:00:00.000Z&quot;&#x27;&amp;&amp;stringify(new Date(-621987552e5))==&#x27;&quot;-000001-01-01T00:00:00.000Z&quot;&#x27;&amp;&amp;stringify(new Date(-1))==&#x27;&quot;1969-12-31T23:59:59.999Z&quot;&#x27;}catch(exception){stringifySupported=false}}isSupported=stringifySupported}if(name==&quot;json-parse&quot;){var parse=JSON3.parse;if(typeof parse==&quot;function&quot;){try{if(parse(&quot;0&quot;)===0&amp;&amp;!parse(false)){value=parse(serialized);var parseSupported=value[&quot;a&quot;].length==5&amp;&amp;value[&quot;a&quot;][0]===1;if(parseSupported){try{parseSupported=!parse(&#x27;&quot;  &quot;&#x27;)}catch(exception){}if(parseSupported){try{parseSupported=parse(&quot;01&quot;)!==1}catch(exception){}}if(parseSupported){try{parseSupported=parse(&quot;1.&quot;)!==1}catch(exception){}}}}}catch(exception){parseSupported=false}}isSupported=parseSupported}}return has[name]=!!isSupported}if(!has(&quot;json&quot;)){var functionClass=&quot;[object Function]&quot;;var dateClass=&quot;[object Date]&quot;;var numberClass=&quot;[object Number]&quot;;var stringClass=&quot;[object String]&quot;;var arrayClass=&quot;[object Array]&quot;;var booleanClass=&quot;[object Boolean]&quot;;var charIndexBuggy=has(&quot;bug-string-char-index&quot;);if(!isExtended){var floor=Math.floor;var Months=[0,31,59,90,120,151,181,212,243,273,304,334];var getDay=function(year,month){return Months[month]+365*(year-1970)+floor((year-1969+(month=+(month&gt;1)))/4)-floor((year-1901+month)/100)+floor((year-1601+month)/400)}}if(!(isProperty={}.hasOwnProperty)){isProperty=function(property){var members={},constructor;if((members.__proto__=null,members.__proto__={toString:1},members).toString!=getClass){isProperty=function(property){var original=this.__proto__,result=property in(this.__proto__=null,this);this.__proto__=original;return result}}else{constructor=members.constructor;isProperty=function(property){var parent=(this.constructor||constructor).prototype;return property in this&amp;&amp;!(property in parent&amp;&amp;this[property]===parent[property])}}members=null;return isProperty.call(this,property)}}var PrimitiveTypes={&quot;boolean&quot;:1,number:1,string:1,undefined:1};var isHostType=function(object,property){var type=typeof object[property];return type==&quot;object&quot;?!!object[property]:!PrimitiveTypes[type]};forEach=function(object,callback){var size=0,Properties,members,property;(Properties=function(){this.valueOf=0}).prototype.valueOf=0;members=new Properties;for(property in members){if(isProperty.call(members,property)){size++}}Properties=members=null;if(!size){members=[&quot;valueOf&quot;,&quot;toString&quot;,&quot;toLocaleString&quot;,&quot;propertyIsEnumerable&quot;,&quot;isPrototypeOf&quot;,&quot;hasOwnProperty&quot;,&quot;constructor&quot;];forEach=function(object,callback){var isFunction=getClass.call(object)==functionClass,property,length;var hasProperty=!isFunction&amp;&amp;typeof object.constructor!=&quot;function&quot;&amp;&amp;isHostType(object,&quot;hasOwnProperty&quot;)?object.hasOwnProperty:isProperty;for(property in object){if(!(isFunction&amp;&amp;property==&quot;prototype&quot;)&amp;&amp;hasProperty.call(object,property)){callback(property)}}for(length=members.length;property=members[--length];hasProperty.call(object,property)&amp;&amp;callback(property));}}else if(size==2){forEach=function(object,callback){var members={},isFunction=getClass.call(object)==functionClass,property;for(property in object){if(!(isFunction&amp;&amp;property==&quot;prototype&quot;)&amp;&amp;!isProperty.call(members,property)&amp;&amp;(members[property]=1)&amp;&amp;isProperty.call(object,property)){callback(property)}}}}else{forEach=function(object,callback){var isFunction=getClass.call(object)==functionClass,property,isConstructor;for(property in object){if(!(isFunction&amp;&amp;property==&quot;prototype&quot;)&amp;&amp;isProperty.call(object,property)&amp;&amp;!(isConstructor=property===&quot;constructor&quot;)){callback(property)}}if(isConstructor||isProperty.call(object,property=&quot;constructor&quot;)){callback(property)}}}return forEach(object,callback)};if(!has(&quot;json-stringify&quot;)){var Escapes={92:&quot;\\\\&quot;,34:&#x27;\\&quot;&#x27;,8:&quot;\\b&quot;,12:&quot;\\f&quot;,10:&quot;\\n&quot;,13:&quot;\\r&quot;,9:&quot;\\t&quot;};var leadingZeroes=&quot;000000&quot;;var toPaddedString=function(width,value){return(leadingZeroes+(value||0)).slice(-width)};var unicodePrefix=&quot;\\u00&quot;;var quote=function(value){var result=&#x27;&quot;&#x27;,index=0,length=value.length,isLarge=length&gt;10&amp;&amp;charIndexBuggy,symbols;if(isLarge){symbols=value.split(&quot;&quot;)}for(;index&lt;length;index++){var charCode=value.charCodeAt(index);switch(charCode){case 8:case 9:case 10:case 12:case 13:case 34:case 92:result+=Escapes[charCode];break;default:if(charCode&lt;32){result+=unicodePrefix+toPaddedString(2,charCode.toString(16));break}result+=isLarge?symbols[index]:charIndexBuggy?value.charAt(index):value[index]}}return result+&#x27;&quot;&#x27;};var serialize=function(property,object,callback,properties,whitespace,indentation,stack){var value,className,year,month,date,time,hours,minutes,seconds,milliseconds,results,element,index,length,prefix,result;try{value=object[property]}catch(exception){}if(typeof value==&quot;object&quot;&amp;&amp;value){className=getClass.call(value);if(className==dateClass&amp;&amp;!isProperty.call(value,&quot;toJSON&quot;)){if(value&gt;-1/0&amp;&amp;value&lt;1/0){if(getDay){date=floor(value/864e5);for(year=floor(date/365.2425)+1970-1;getDay(year+1,0)&lt;=date;year++);for(month=floor((date-getDay(year,0))/30.42);getDay(year,month+1)&lt;=date;month++);date=1+date-getDay(year,month);time=(value%864e5+864e5)%864e5;hours=floor(time/36e5)%24;minutes=floor(time/6e4)%60;seconds=floor(time/1e3)%60;milliseconds=time%1e3}else{year=value.getUTCFullYear();month=value.getUTCMonth();date=value.getUTCDate();hours=value.getUTCHours();minutes=value.getUTCMinutes();seconds=value.getUTCSeconds();milliseconds=value.getUTCMilliseconds()}value=(year&lt;=0||year&gt;=1e4?(year&lt;0?&quot;-&quot;:&quot;+&quot;)+toPaddedString(6,year&lt;0?-year:year):toPaddedString(4,year))+&quot;-&quot;+toPaddedString(2,month+1)+&quot;-&quot;+toPaddedString(2,date)+&quot;T&quot;+toPaddedString(2,hours)+&quot;:&quot;+toPaddedString(2,minutes)+&quot;:&quot;+toPaddedString(2,seconds)+&quot;.&quot;+toPaddedString(3,milliseconds)+&quot;Z&quot;}else{value=null}}else if(typeof value.toJSON==&quot;function&quot;&amp;&amp;(className!=numberClass&amp;&amp;className!=stringClass&amp;&amp;className!=arrayClass||isProperty.call(value,&quot;toJSON&quot;))){value=value.toJSON(property)}}if(callback){value=callback.call(object,property,value)}if(value===null){return&quot;null&quot;}className=getClass.call(value);if(className==booleanClass){return&quot;&quot;+value}else if(className==numberClass){return value&gt;-1/0&amp;&amp;value&lt;1/0?&quot;&quot;+value:&quot;null&quot;}else if(className==stringClass){return quote(&quot;&quot;+value)}if(typeof value==&quot;object&quot;){for(length=stack.length;length--;){if(stack[length]===value){throw TypeError()}}stack.push(value);results=[];prefix=indentation;indentation+=whitespace;if(className==arrayClass){for(index=0,length=value.length;index&lt;length;index++){element=serialize(index,value,callback,properties,whitespace,indentation,stack);results.push(element===undef?&quot;null&quot;:element)}result=results.length?whitespace?&quot;[\n&quot;+indentation+results.join(&quot;,\n&quot;+indentation)+&quot;\n&quot;+prefix+&quot;]&quot;:&quot;[&quot;+results.join(&quot;,&quot;)+&quot;]&quot;:&quot;[]&quot;}else{forEach(properties||value,function(property){var element=serialize(property,value,callback,properties,whitespace,indentation,stack);if(element!==undef){results.push(quote(property)+&quot;:&quot;+(whitespace?&quot; &quot;:&quot;&quot;)+element)}});result=results.length?whitespace?&quot;{\n&quot;+indentation+results.join(&quot;,\n&quot;+indentation)+&quot;\n&quot;+prefix+&quot;}&quot;:&quot;{&quot;+results.join(&quot;,&quot;)+&quot;}&quot;:&quot;{}&quot;}stack.pop();return result}};JSON3.stringify=function(source,filter,width){var whitespace,callback,properties,className;if(typeof filter==&quot;function&quot;||typeof filter==&quot;object&quot;&amp;&amp;filter){if((className=getClass.call(filter))==functionClass){callback=filter}else if(className==arrayClass){properties={};for(var index=0,length=filter.length,value;index&lt;length;value=filter[index++],(className=getClass.call(value),className==stringClass||className==numberClass)&amp;&amp;(properties[value]=1));}}if(width){if((className=getClass.call(width))==numberClass){if((width-=width%1)&gt;0){for(whitespace=&quot;&quot;,width&gt;10&amp;&amp;(width=10);whitespace.length&lt;width;whitespace+=&quot; &quot;);}}else if(className==stringClass){whitespace=width.length&lt;=10?width:width.slice(0,10)}}return serialize(&quot;&quot;,(value={},value[&quot;&quot;]=source,value),callback,properties,whitespace,&quot;&quot;,[])}}if(!has(&quot;json-parse&quot;)){var fromCharCode=String.fromCharCode;var Unescapes={92:&quot;\\&quot;,34:&#x27;&quot;&#x27;,47:&quot;/&quot;,98:&quot;\b&quot;,116:&quot;  &quot;,110:&quot;\n&quot;,102:&quot;\f&quot;,114:&quot;\r&quot;};var Index,Source;var abort=function(){Index=Source=null;throw SyntaxError()};var lex=function(){var source=Source,length=source.length,value,begin,position,isSigned,charCode;while(Index&lt;length){charCode=source.charCodeAt(Index);switch(charCode){case 9:case 10:case 13:case 32:Index++;break;case 123:case 125:case 91:case 93:case 58:case 44:value=charIndexBuggy?source.charAt(Index):source[Index];Index++;return value;case 34:for(value=&quot;@&quot;,Index++;Index&lt;length;){charCode=source.charCodeAt(Index);if(charCode&lt;32){abort()}else if(charCode==92){charCode=source.charCodeAt(++Index);switch(charCode){case 92:case 34:case 47:case 98:case 116:case 110:case 102:case 114:value+=Unescapes[charCode];Index++;break;case 117:begin=++Index;for(position=Index+4;Index&lt;position;Index++){charCode=source.charCodeAt(Index);if(!(charCode&gt;=48&amp;&amp;charCode&lt;=57||charCode&gt;=97&amp;&amp;charCode&lt;=102||charCode&gt;=65&amp;&amp;charCode&lt;=70)){abort()}}value+=fromCharCode(&quot;0x&quot;+source.slice(begin,Index));break;default:abort()}}else{if(charCode==34){break}charCode=source.charCodeAt(Index);begin=Index;while(charCode&gt;=32&amp;&amp;charCode!=92&amp;&amp;charCode!=34){charCode=source.charCodeAt(++Index)}value+=source.slice(begin,Index)}}if(source.charCodeAt(Index)==34){Index++;return value}abort();default:begin=Index;if(charCode==45){isSigned=true;charCode=source.charCodeAt(++Index)}if(charCode&gt;=48&amp;&amp;charCode&lt;=57){if(charCode==48&amp;&amp;(charCode=source.charCodeAt(Index+1),charCode&gt;=48&amp;&amp;charCode&lt;=57)){abort()}isSigned=false;for(;Index&lt;length&amp;&amp;(charCode=source.charCodeAt(Index),charCode&gt;=48&amp;&amp;charCode&lt;=57);Index++);if(source.charCodeAt(Index)==46){position=++Index;for(;position&lt;length&amp;&amp;(charCode=source.charCodeAt(position),charCode&gt;=48&amp;&amp;charCode&lt;=57);position++);if(position==Index){abort()}Index=position}charCode=source.charCodeAt(Index);if(charCode==101||charCode==69){charCode=source.charCodeAt(++Index);if(charCode==43||charCode==45){Index++}for(position=Index;position&lt;length&amp;&amp;(charCode=source.charCodeAt(position),charCode&gt;=48&amp;&amp;charCode&lt;=57);position++);if(position==Index){abort()}Index=position}return+source.slice(begin,Index)}if(isSigned){abort()}if(source.slice(Index,Index+4)==&quot;true&quot;){Index+=4;return true}else if(source.slice(Index,Index+5)==&quot;false&quot;){Index+=5;return false}else if(source.slice(Index,Index+4)==&quot;null&quot;){Index+=4;return null}abort()}}return&quot;$&quot;};var get=function(value){var results,hasMembers;if(value==&quot;$&quot;){abort()}if(typeof value==&quot;string&quot;){if((charIndexBuggy?value.charAt(0):value[0])==&quot;@&quot;){return value.slice(1)}if(value==&quot;[&quot;){results=[];for(;;hasMembers||(hasMembers=true)){value=lex();if(value==&quot;]&quot;){break}if(hasMembers){if(value==&quot;,&quot;){value=lex();if(value==&quot;]&quot;){abort()}}else{abort()}}if(value==&quot;,&quot;){abort()}results.push(get(value))}return results}else if(value==&quot;{&quot;){results={};for(;;hasMembers||(hasMembers=true)){value=lex();if(value==&quot;}&quot;){break}if(hasMembers){if(value==&quot;,&quot;){value=lex();if(value==&quot;}&quot;){abort()}}else{abort()}}if(value==&quot;,&quot;||typeof value!=&quot;string&quot;||(charIndexBuggy?value.charAt(0):value[0])!=&quot;@&quot;||lex()!=&quot;:&quot;){abort()}results[value.slice(1)]=get(lex())}return results}abort()}return value};var update=function(source,property,callback){var element=walk(source,property,callback);if(element===undef){delete source[property]}else{source[property]=element}};var walk=function(source,property,callback){var value=source[property],length;if(typeof value==&quot;object&quot;&amp;&amp;value){if(getClass.call(value)==arrayClass){for(length=value.length;length--;){update(value,length,callback)}}else{forEach(value,function(property){update(value,property,callback)})}}return callback.call(source,property,value)};JSON3.parse=function(source,callback){var result,value;Index=0;Source=&quot;&quot;+source;result=get(lex());if(lex()!=&quot;$&quot;){abort()}Index=Source=null;return callback&amp;&amp;getClass.call(callback)==functionClass?walk((value={},value[&quot;&quot;]=result,value),&quot;&quot;,callback):result}}}if(isLoader){define(function(){return JSON3})}})(this)},{}],47:[function(_dereq_,module,exports){module.exports=toArray;function toArray(list,index){var array=[];index=index||0;for(var i=index||0;i&lt;list.length;i++){array[i-index]=list[i]}return array}},{}]},{},[1])(1)});
+;
+
+/**
+ * sails.io.js
+ * ------------------------------------------------------------------------
+ * JavaScript Client (SDK) for communicating with Sails.
+ *
+ * Note that this script is completely optional, but it is handy if you&#x27;re
+ * using WebSockets from the browser to talk to your Sails server.
+ *
+ * For tips and documentation, visit:
+ * http://sailsjs.org/#!documentation/reference/BrowserSDK/BrowserSDK.html
+ * ------------------------------------------------------------------------
+ *
+ * This file allows you to send and receive socket.io messages to &amp; from Sails
+ * by simulating a REST client interface on top of socket.io. It models its API
+ * after the $.ajax pattern from jQuery you might already be familiar with.
+ *
+ * So if you&#x27;re switching from using AJAX to sockets, instead of:
+ *    &#x60;$.post( url, [data], [cb] )&#x60;
+ *
+ * You would use:
+ *    &#x60;socket.post( url, [data], [cb] )&#x60;
+ */
+
+
+(function() {
+
+  // Save the URL that this script was fetched from for use below.
+  // (skip this if this SDK is being used outside of the DOM, i.e. in a Node process)
+  var urlThisScriptWasFetchedFrom = (function() {
+    if (
+      typeof window !== &#x27;object&#x27; ||
+      typeof window.document !== &#x27;object&#x27; ||
+      typeof window.document.getElementsByTagName !== &#x27;function&#x27;
+    ) {
+      return &#x27;&#x27;;
+    }
+
+    // Return the URL of the last script loaded (i.e. this one)
+    // (this must run before nextTick; see http://stackoverflow.com/a/2976714/486547)
+    var allScriptsCurrentlyInDOM = window.document.getElementsByTagName(&#x27;script&#x27;);
+    var thisScript = allScriptsCurrentlyInDOM[allScriptsCurrentlyInDOM.length - 1];
+    return thisScript.src;
+  })();
+
+  // Constants
+  var CONNECTION_METADATA_PARAMS = {
+    version: &#x27;__sails_io_sdk_version&#x27;,
+    platform: &#x27;__sails_io_sdk_platform&#x27;,
+    language: &#x27;__sails_io_sdk_language&#x27;
+  };
+
+  // Current version of this SDK (sailsDK?!?!) and other metadata
+  // that will be sent along w/ the initial connection request.
+  var SDK_INFO = {
+    version: &#x27;0.11.0&#x27;, // TODO: pull this automatically from package.json during build.
+    platform: typeof module === &#x27;undefined&#x27; ? &#x27;browser&#x27; : &#x27;node&#x27;,
+    language: &#x27;javascript&#x27;
+  };
+  SDK_INFO.versionString =
+    CONNECTION_METADATA_PARAMS.version + &#x27;=&#x27; + SDK_INFO.version + &#x27;&amp;&#x27; +
+    CONNECTION_METADATA_PARAMS.platform + &#x27;=&#x27; + SDK_INFO.platform + &#x27;&amp;&#x27; +
+    CONNECTION_METADATA_PARAMS.language + &#x27;=&#x27; + SDK_INFO.language;
+
+
+  // In case you&#x27;re wrapping the socket.io client to prevent pollution of the
+  // global namespace, you can pass in your own &#x60;io&#x60; to replace the global one.
+  // But we still grab access to the global one if it&#x27;s available here:
+  var _io = (typeof io !== &#x27;undefined&#x27;) ? io : null;
+
+  /**
+   * Augment the &#x60;io&#x60; object passed in with methods for talking and listening
+   * to one or more Sails backend(s).  Automatically connects a socket and
+   * exposes it on &#x60;io.socket&#x60;.  If a socket tries to make requests before it
+   * is connected, the sails.io.js client will queue it up.
+   *
+   * @param {SocketIO} io
+   */
+
+  function SailsIOClient(io) {
+
+    // Prefer the passed-in &#x60;io&#x60; instance, but also use the global one if we&#x27;ve got it.
+    if (!io) {
+      io = _io;
+    }
+
+
+    // If the socket.io client is not available, none of this will work.
+    if (!io) throw new Error(&#x27;&#x60;sails.io.js&#x60; requires a socket.io client, but &#x60;io&#x60; was not passed in.&#x27;);
+
+
+
+    //////////////////////////////////////////////////////////////
+    /////                              ///////////////////////////
+    ///// PRIVATE METHODS/CONSTRUCTORS ///////////////////////////
+    /////                              ///////////////////////////
+    //////////////////////////////////////////////////////////////
+
+
+    /**
+     * A little logger for this library to use internally.
+     * Basically just a wrapper around &#x60;console.log&#x60; with
+     * support for feature-detection.
+     *
+     * @api private
+     * @factory
+     */
+    function LoggerFactory(options) {
+      options = options || {
+        prefix: true
+      };
+
+      // If &#x60;console.log&#x60; is not accessible, &#x60;log&#x60; is a noop.
+      if (
+        typeof console !== &#x27;object&#x27; ||
+        typeof console.log !== &#x27;function&#x27; ||
+        typeof console.log.bind !== &#x27;function&#x27;
+      ) {
+        return function noop() {};
+      }
+
+      return function log() {
+        var args = Array.prototype.slice.call(arguments);
+
+        // All logs are disabled when &#x60;io.sails.environment = &#x27;production&#x27;&#x60;.
+        if (io.sails.environment === &#x27;production&#x27;) return;
+
+        // Add prefix to log messages (unless disabled)
+        var PREFIX = &#x27;&#x27;;
+        if (options.prefix) {
+          args.unshift(PREFIX);
+        }
+
+        // Call wrapped logger
+        console.log
+          .bind(console)
+          .apply(this, args);
+      };
+    }
+
+    // Create a private logger instance
+    var consolog = LoggerFactory();
+    consolog.noPrefix = LoggerFactory({
+      prefix: false
+    });
+
+
+
+    /**
+     * What is the &#x60;requestQueue&#x60;?
+     * 
+     * The request queue is used to simplify app-level connection logic--
+     * i.e. so you don&#x27;t have to wait for the socket to be connected
+     * to start trying to  synchronize data.
+     * 
+     * @api private
+     * @param  {SailsSocket}  socket
+     */
+
+    function runRequestQueue (socket) {
+      var queue = socket.requestQueue;
+
+      if (!queue) return;
+      for (var i in queue) {
+
+        // Double-check that &#x60;queue[i]&#x60; will not
+        // inadvertently discover extra properties attached to the Object
+        // and/or Array prototype by other libraries/frameworks/tools.
+        // (e.g. Ember does this. See https://github.com/balderdashy/sails.io.js/pull/5)
+        var isSafeToDereference = ({}).hasOwnProperty.call(queue, i);
+        if (isSafeToDereference) {
+          // Emit the request.
+          _emitFrom(socket, queue[i]);
+        }
+      }
+
+      // Now empty the queue to remove it as a source of additional complexity.
+      queue = null;
+    }
+
+
+
+    /**
+     * Send a JSONP request.
+     * 
+     * @param  {Object}   opts [optional]
+     * @param  {Function} cb
+     * @return {XMLHttpRequest}
+     */
+
+    function jsonp(opts, cb) {
+      opts = opts || {};
+
+      if (typeof window === &#x27;undefined&#x27;) {
+        // TODO: refactor node usage to live in here
+        return cb();
+      }
+
+      var scriptEl = document.createElement(&#x27;script&#x27;);
+      window._sailsIoJSConnect = function(response) {
+        scriptEl.parentNode.removeChild(scriptEl);
+        
+        cb(response);
+      };
+      scriptEl.src = opts.url;
+      document.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(scriptEl);
+
+    }
+
+
+
+    /**
+     * The JWR (JSON WebSocket Response) received from a Sails server.
+     *
+     * @api public
+     * @param  {Object}  responseCtx
+     *         =&gt; :body
+     *         =&gt; :statusCode
+     *         =&gt; :headers
+     * 
+     * @constructor
+     */
+
+    function JWR(responseCtx) {
+      this.body = responseCtx.body || {};
+      this.headers = responseCtx.headers || {};
+      this.statusCode = responseCtx.statusCode || 200;
+      if (this.statusCode &lt; 200 || this.statusCode &gt;= 400) {
+        this.error = this.body || this.statusCode;
+      }
+    }
+    JWR.prototype.toString = function() {
+      return &#x27;[ResponseFromSails]&#x27; + &#x27;  -- &#x27; +
+        &#x27;Status: &#x27; + this.statusCode + &#x27;  -- &#x27; +
+        &#x27;Headers: &#x27; + this.headers + &#x27;  -- &#x27; +
+        &#x27;Body: &#x27; + this.body;
+    };
+    JWR.prototype.toPOJO = function() {
+      return {
+        body: this.body,
+        headers: this.headers,
+        statusCode: this.statusCode
+      };
+    };
+    JWR.prototype.pipe = function() {
+      // TODO: look at substack&#x27;s stuff
+      return new Error(&#x27;Client-side streaming support not implemented yet.&#x27;);
+    };
+
+
+    /**
+     * @api private
+     * @param  {SailsSocket} socket  [description]
+     * @param  {Object} requestCtx [description]
+     */
+
+    function _emitFrom(socket, requestCtx) {
+
+      if (!socket._raw) {
+        throw new Error(&#x27;Failed to emit from socket- raw SIO socket is missing.&#x27;);
+      }
+
+      // Since callback is embedded in requestCtx,
+      // retrieve it and delete the key before continuing.
+      var cb = requestCtx.cb;
+      delete requestCtx.cb;
+
+      // Name of the appropriate socket.io listener on the server
+      // ( === the request method or &quot;verb&quot;, e.g. &#x27;get&#x27;, &#x27;post&#x27;, &#x27;put&#x27;, etc. )
+      var sailsEndpoint = requestCtx.method;
+
+      socket._raw.emit(sailsEndpoint, requestCtx, function serverResponded(responseCtx) {
+
+        // Send back (emulatedHTTPBody, jsonWebSocketResponse)
+        if (cb) {
+          cb(responseCtx.body, new JWR(responseCtx));
+        }
+      });
+    }
+
+    //////////////////////////////////////////////////////////////
+    ///// &lt;/PRIVATE METHODS/CONSTRUCTORS&gt; ////////////////////////
+    //////////////////////////////////////////////////////////////
+
+
+
+    // Version note:
+    // 
+    // &#x60;io.SocketNamespace.prototype&#x60; doesn&#x27;t exist in sio 1.0.
+    // 
+    // Rather than adding methods to the prototype for the Socket instance that is returned
+    // when the browser connects with &#x60;io.connect()&#x60;, we create our own constructor, &#x60;SailsSocket&#x60;.
+    // This makes our solution more future-proof and helps us work better w/ the Socket.io team
+    // when changes are rolled out in the future.  To get a &#x60;SailsSocket&#x60;, you can run:
+    // &#x60;&#x60;&#x60;
+    // io.sails.connect();
+    // &#x60;&#x60;&#x60;
+
+
+
+    /**
+     * SailsSocket
+     * 
+     * A wrapper for an underlying Socket instance that communicates directly
+     * to the Socket.io server running inside of Sails.
+     *
+     * If no &#x60;socket&#x60; option is provied, SailsSocket will function as a mock. It will queue socket
+     * requests and event handler bindings, replaying them when the raw underlying socket actually
+     * connects. This is handy when we don&#x27;t necessarily have the valid configuration to know
+     * WHICH SERVER to talk to yet, etc.  It is also used by &#x60;io.socket&#x60; for your convenience.
+     * 
+     * @constructor
+     */
+    
+    function SailsSocket (opts){
+      var self = this;
+      opts = opts||{};
+
+      // Absorb opts
+      self.useCORSRouteToGetCookie = opts.useCORSRouteToGetCookie;
+      self.url = opts.url;
+      self.multiplex = opts.multiplex;
+      self.transports = opts.transports;
+
+      // Set up &quot;eventQueue&quot; to hold event handlers which have not been set on the actual raw socket yet.
+      self.eventQueue = {};
+
+      // Listen for special &#x60;parseError&#x60; event sent from sockets hook on the backend
+      // if an error occurs but a valid callback was not received from the client
+      // (i.e. so the server had no other way to send back the error information)
+      self.on(&#x27;sails:parseError&#x27;, function (err){
+        consolog(&#x27;Sails encountered an error parsing a socket message sent from this client, and did not have access to a callback function to respond with.&#x27;);
+        consolog(&#x27;Error details:&#x27;,err);
+      });
+
+      // TODO:
+      // Listen for a special private message on any connected that allows the server
+      // to set the environment (giving us 100% certainty that we guessed right)
+      // However, note that the &#x60;console.log&#x60;s called before and after connection
+      // are still forced to rely on our existing heuristics (to disable, tack #production
+      // onto the URL used to fetch this file.)
+    }
+
+
+    /**
+     * Start connecting this socket.
+     * 
+     * @api private
+     */
+    SailsSocket.prototype._connect = function (){
+      var self = this;
+
+      // Apply &#x60;io.sails&#x60; config as defaults
+      // (now that at least one tick has elapsed)
+      self.useCORSRouteToGetCookie = self.useCORSRouteToGetCookie||io.sails.useCORSRouteToGetCookie;
+      self.url = self.url||io.sails.url;
+      self.transports = self.transports || io.sails.transports;
+
+      // Ensure URL has no trailing slash
+      self.url = self.url ? self.url.replace(/(\/)$/, &#x27;&#x27;) : undefined;
+
+      // Mix the current SDK version into the query string in
+      // the connection request to the server:
+      if (typeof self.query !== &#x27;string&#x27;) self.query = SDK_INFO.versionString;
+      else self.query += &#x27;&amp;&#x27; + SDK_INFO.versionString;
+
+      // Determine whether this is a cross-origin socket by examining the
+      // hostname and port on the &#x60;window.location&#x60; object.
+      var isXOrigin = (function (){
+
+        // If &#x60;window&#x60; doesn&#x27;t exist (i.e. being used from node.js), then it&#x27;s
+        // always &quot;cross-domain&quot;.
+        if (typeof window === &#x27;undefined&#x27; || typeof window.location === &#x27;undefined&#x27;) {
+          return false;
+        }
+
+        // If &#x60;self.url&#x60; (aka &quot;target&quot;) is falsy, then we don&#x27;t need to worry about it.
+        if (typeof self.url !== &#x27;string&#x27;) { return false; }
+        
+        // Get information about the &quot;target&quot; (&#x60;self.url&#x60;)
+        var targetProtocol = (function (){
+          try {
+            targetProtocol = self.url.match(/^([a-z]+:\/\/)/i)[1].toLowerCase();
+          }
+          catch (e) {}
+          targetProtocol = targetProtocol || &#x27;http://&#x27;;
+          return targetProtocol;
+        })();
+        var isTargetSSL = !!self.url.match(&#x27;^https&#x27;);
+        var targetPort = (function (){
+          try {
+            return self.url.match(/^[a-z]+:\/\/[^:]*:([0-9]*)/i)[1];
+          }
+          catch (e){}
+          return isTargetSSL ? &#x27;443&#x27; : &#x27;80&#x27;;
+        })();
+        var targetAfterProtocol = self.url.replace(/^([a-z]+:\/\/)/i, &#x27;&#x27;);
+
+
+        // If target protocol is different than the actual protocol,
+        // then we&#x27;ll consider this cross-origin.
+        if (targetProtocol.replace(/[:\/]/g, &#x27;&#x27;) !== window.location.protocol.replace(/[:\/]/g,&#x27;&#x27;)) {
+          return true;
+        }
+
+
+        // If target hostname is different than actual hostname, we&#x27;ll consider this cross-origin.
+        var hasSameHostname = targetAfterProtocol.search(window.location.hostname) !== 0;
+        if (!hasSameHostname) {
+          return true;
+        }
+
+        // If no actual port is explicitly set on the &#x60;window.location&#x60; object,
+        // we&#x27;ll assume either 80 or 443.
+        var isLocationSSL = window.location.protocol.match(/https/i);
+        var locationPort = (window.location.port+&#x27;&#x27;) || (isLocationSSL ? &#x27;443&#x27; : &#x27;80&#x27;);
+
+        // Finally, if ports don&#x27;t match, we&#x27;ll consider this cross-origin.
+        if (targetPort !== locationPort) {
+          return true;
+        }
+
+        // Otherwise, it&#x27;s the same origin.
+        return false;
+
+      })();
+
+
+      // Prepare to start connecting the socket
+      (function selfInvoking (cb){
+
+        // If this is an attempt at a cross-origin or cross-port
+        // socket connection, send a JSONP request first to ensure
+        // that a valid cookie is available.  This can be disabled
+        // by setting &#x60;io.sails.useCORSRouteToGetCookie&#x60; to false.
+        // 
+        // Otherwise, skip the stuff below.
+        if (!(self.useCORSRouteToGetCookie &amp;&amp; isXOrigin)) {
+          return cb();
+        }
+
+        // Figure out the x-origin CORS route
+        // (Sails provides a default)
+        var xOriginCookieURL = self.url;
+        if (typeof self.useCORSRouteToGetCookie === &#x27;string&#x27;) {
+          xOriginCookieURL += self.useCORSRouteToGetCookie;
+        }
+        else {
+          xOriginCookieURL += &#x27;/__getcookie&#x27;;
+        }
+
+
+        // Make the AJAX request (CORS)
+        if (typeof window !== &#x27;undefined&#x27;) {
+          jsonp({
+            url: xOriginCookieURL,
+            method: &#x27;GET&#x27;
+          }, cb);
+          return;
+        }
+
+        // If there&#x27;s no &#x60;window&#x60; object, we must be running in Node.js
+        // so just require the request module and send the HTTP request that
+        // way.
+        var mikealsReq = require(&#x27;request&#x27;);
+        mikealsReq.get(xOriginCookieURL, function(err, httpResponse, body) {
+          if (err) {
+            consolog(
+              &#x27;Failed to connect socket (failed to get cookie)&#x27;,
+              &#x27;Error:&#x27;, err
+            );
+            return;
+          }
+          cb();
+        });
+
+      })(function goAheadAndActuallyConnect() {
+
+        // Now that we&#x27;re ready to connect, create a raw underlying Socket
+        // using Socket.io and save it as &#x60;_raw&#x60; (this will start it connecting)
+        self._raw = io(self.url, self);
+
+        // Replay event bindings from the eager socket
+        self.replay();
+
+
+        /**
+         * &#x27;connect&#x27; event is triggered when the socket establishes a connection
+         *  successfully.
+         */
+        self.on(&#x27;connect&#x27;, function socketConnected() {
+
+          consolog.noPrefix(
+            &#x27;\n&#x27; +
+            &#x27;\n&#x27; +
+            // &#x27;    |&gt;    &#x27; + &#x27;\n&#x27; +
+            // &#x27;  \\___/  &#x27;+️
+            // &#x27;\n&#x27;+
+             &#x27;  |&gt;    Now connected to Sails.&#x27; + &#x27;\n&#x27; +
+            &#x27;\\___/   For help, see: http://bit.ly/1DmTvgK&#x27; + &#x27;\n&#x27; +
+             &#x27;        (using &#x27;+io.sails.sdk.platform+&#x27; SDK @v&#x27;+io.sails.sdk.version+&#x27;)&#x27;+ &#x27;\n&#x27; +
+            &#x27;\n&#x27;+
+            &#x27;\n&#x27;+
+            // &#x27;\n&#x27;+
+            &#x27;&#x27;
+            // &#x27; ⚓︎ (development mode)&#x27;
+            // &#x27;e.g. to send a GET request to Sails via WebSockets, run:&#x27;+ &#x27;\n&#x27; +
+            // &#x27;&#x60;io.socket.get(&quot;/foo&quot;, function serverRespondedWith (body, jwr) { console.log(body); })&#x60;&#x27;+ &#x27;\n&#x27; +
+          );
+        });
+        
+        self.on(&#x27;disconnect&#x27;, function() {
+          self.connectionLostTimestamp = (new Date()).getTime();
+          consolog(&#x27;====================================&#x27;);
+          consolog(&#x27;Socket was disconnected from Sails.&#x27;);
+          consolog(&#x27;Usually, this is due to one of the following reasons:&#x27; + &#x27;\n&#x27; +
+            &#x27; -&gt; the server &#x27; + (self.url ? self.url + &#x27; &#x27; : &#x27;&#x27;) + &#x27;was taken down&#x27; + &#x27;\n&#x27; +
+            &#x27; -&gt; your browser lost internet connectivity&#x27;);
+          consolog(&#x27;====================================&#x27;);
+        });
+
+        self.on(&#x27;reconnecting&#x27;, function(numAttempts) {
+          consolog(
+            &#x27;\n&#x27;+
+            &#x27;        Socket is trying to reconnect to Sails...\n&#x27;+
+            &#x27;_-|&gt;_-  (attempt #&#x27; + numAttempts + &#x27;)&#x27;+&#x27;\n&#x27;+
+            &#x27;\n&#x27;
+          );
+        });
+      
+        self.on(&#x27;reconnect&#x27;, function(transport, numAttempts) {
+          var msSinceConnectionLost = ((new Date()).getTime() - self.connectionLostTimestamp);
+          var numSecsOffline = (msSinceConnectionLost / 1000);
+          consolog(
+            &#x27;\n&#x27;+
+             &#x27;  |&gt;    Socket reconnected successfully after&#x27;+&#x27;\n&#x27;+
+            &#x27;\\___/   being offline for ~&#x27; + numSecsOffline + &#x27; seconds.&#x27;+&#x27;\n&#x27;+
+            &#x27;\n&#x27;
+          );
+        });
+      
+        // &#x27;error&#x27; event is triggered if connection can not be established.
+        // (usually because of a failed authorization, which is in turn
+        // usually due to a missing or invalid cookie)
+        self.on(&#x27;error&#x27;, function failedToConnect(err) {
+
+          // TODO:
+          // handle failed connections due to failed authorization
+          // in a smarter way (probably can listen for a different event)
+
+          // A bug in Socket.io 0.9.x causes &#x60;connect_failed&#x60;
+          // and &#x60;reconnect_failed&#x60; not to fire.
+          // Check out the discussion in github issues for details:
+          // https://github.com/LearnBoost/socket.io/issues/652
+          // io.socket.on(&#x27;connect_failed&#x27;, function () {
+          //  consolog(&#x27;io.socket emitted &#x60;connect_failed&#x60;&#x27;);
+          // });
+          // io.socket.on(&#x27;reconnect_failed&#x27;, function () {
+          //  consolog(&#x27;io.socket emitted &#x60;reconnect_failed&#x60;&#x27;);
+          // });
+
+          consolog(
+            &#x27;Failed to connect socket (probably due to failed authorization on server)&#x27;,
+            &#x27;Error:&#x27;, err
+          );
+        });
+      });
+
+    };
+
+
+    /**
+     * Disconnect the underlying socket.
+     *
+     * @api public
+     */
+    SailsSocket.prototype.disconnect = function (){
+      if (!this._raw) {
+        throw new Error(&#x27;Cannot disconnect- socket is already disconnected&#x27;);
+      }
+      return this._raw.disconnect();
+    };
+
+
+
+    /**
+     * isConnected
+     *
+     * @api private
+     * @return {Boolean} whether the socket is connected and able to
+     *                           communicate w/ the server.
+     */
+
+    SailsSocket.prototype.isConnected = function () {
+      if (!this._raw) {
+        return false;
+      }
+
+      return !!this._raw.connected;
+    };
+
+
+
+    /**
+     * [replay description]
+     * @return {[type]} [description]
+     */
+    SailsSocket.prototype.replay = function (){
+      var self = this;
+
+      // Pass events and a reference to the request queue
+      // off to the self._raw for consumption
+      for (var evName in self.eventQueue) {
+        for (var i in self.eventQueue[evName]) {
+          self._raw.on(evName, self.eventQueue[evName][i]);
+        }
+      }
+
+      // Bind a one-time function to run the request queue
+      // when the self._raw connects.
+      if ( !self.isConnected() ) {
+        var alreadyRanRequestQueue = false;
+        self._raw.on(&#x27;connect&#x27;, function whenRawSocketConnects() {
+          if (alreadyRanRequestQueue) return;
+          runRequestQueue(self);
+          alreadyRanRequestQueue = true;
+        });
+      }
+      // Or run it immediately if self._raw is already connected
+      else {
+        runRequestQueue(self);
+      }
+
+      return self;
+    };
+
+
+    /**
+     * Chainable method to bind an event to the socket.
+     * 
+     * @param  {String}   evName [event name]
+     * @param  {Function} fn     [event handler function]
+     * @return {SailsSocket}
+     */
+    SailsSocket.prototype.on = function (evName, fn){
+
+      // Bind the event to the raw underlying socket if possible.
+      if (this._raw) {
+        this._raw.on(evName, fn);
+        return this;
+      }
+
+      // Otherwise queue the event binding.
+      if (!this.eventQueue[evName]) {
+        this.eventQueue[evName] = [fn];
+      }
+      else {
+        this.eventQueue[evName].push(fn);
+      }
+
+      return this;
+    };
+
+    /**
+     * Chainable method to unbind an event from the socket.
+     * 
+     * @param  {String}   evName [event name]
+     * @param  {Function} fn     [event handler function]
+     * @return {SailsSocket}
+     */
+    SailsSocket.prototype.off = function (evName, fn){
+
+      // Bind the event to the raw underlying socket if possible.
+      if (this._raw) {
+        this._raw.off(evName, fn);
+        return this;
+      }
+
+      // Otherwise queue the event binding.
+      if (this.eventQueue[evName] &amp;&amp; this.eventQueue[evName].indexOf(fn) &gt; -1) {
+        this.eventQueue[evName].splice(this.eventQueue[evName].indexOf(fn), 1);
+      }
+
+      return this;
+    };
+
+
+    /**
+     * Chainable method to unbind all events from the socket.
+     * 
+     * @return {SailsSocket}
+     */
+    SailsSocket.prototype.removeAllListeners = function (){
+
+      // Bind the event to the raw underlying socket if possible.
+      if (this._raw) {
+        this._raw.removeAllListeners();
+        return this;
+      }
+
+      // Otherwise queue the event binding.
+      this.eventQueue = {};
+      
+      return this;
+    };
+
+    /**
+     * Simulate a GET request to sails
+     * e.g.
+     *    &#x60;socket.get(&#x27;/user/3&#x27;, Stats.populate)&#x60;
+     *
+     * @api public
+     * @param {String} url    ::    destination URL
+     * @param {Object} params ::    parameters to send with the request [optional]
+     * @param {Function} cb   ::    callback function to call when finished [optional]
+     */
+
+    SailsSocket.prototype.get = function(url, data, cb) {
+
+      // &#x60;data&#x60; is optional
+      if (typeof data === &#x27;function&#x27;) {
+        cb = data;
+        data = {};
+      }
+
+      return this.request({
+        method: &#x27;get&#x27;,
+        params: data,
+        url: url
+      }, cb);
+    };
+
+
+
+    /**
+     * Simulate a POST request to sails
+     * e.g.
+     *    &#x60;socket.post(&#x27;/event&#x27;, newMeeting, $spinner.hide)&#x60;
+     *
+     * @api public
+     * @param {String} url    ::    destination URL
+     * @param {Object} params ::    parameters to send with the request [optional]
+     * @param {Function} cb   ::    callback function to call when finished [optional]
+     */
+
+    SailsSocket.prototype.post = function(url, data, cb) {
+
+      // &#x60;data&#x60; is optional
+      if (typeof data === &#x27;function&#x27;) {
+        cb = data;
+        data = {};
+      }
+
+      return this.request({
+        method: &#x27;post&#x27;,
+        data: data,
+        url: url
+      }, cb);
+    };
+
+
+
+    /**
+     * Simulate a PUT request to sails
+     * e.g.
+     *    &#x60;socket.post(&#x27;/event/3&#x27;, changedFields, $spinner.hide)&#x60;
+     *
+     * @api public
+     * @param {String} url    ::    destination URL
+     * @param {Object} params ::    parameters to send with the request [optional]
+     * @param {Function} cb   ::    callback function to call when finished [optional]
+     */
+
+    SailsSocket.prototype.put = function(url, data, cb) {
+
+      // &#x60;data&#x60; is optional
+      if (typeof data === &#x27;function&#x27;) {
+        cb = data;
+        data = {};
+      }
+
+      return this.request({
+        method: &#x27;put&#x27;,
+        params: data,
+        url: url
+      }, cb);
+    };
+
+
+
+    /**
+     * Simulate a DELETE request to sails
+     * e.g.
+     *    &#x60;socket.delete(&#x27;/event&#x27;, $spinner.hide)&#x60;
+     *
+     * @api public
+     * @param {String} url    ::    destination URL
+     * @param {Object} params ::    parameters to send with the request [optional]
+     * @param {Function} cb   ::    callback function to call when finished [optional]
+     */
+
+    SailsSocket.prototype[&#x27;delete&#x27;] = function(url, data, cb) {
+
+      // &#x60;data&#x60; is optional
+      if (typeof data === &#x27;function&#x27;) {
+        cb = data;
+        data = {};
+      }
+
+      return this.request({
+        method: &#x27;delete&#x27;,
+        params: data,
+        url: url
+      }, cb);
+    };
+
+
+
+    /**
+     * Simulate an HTTP request to sails
+     * e.g.
+     * &#x60;&#x60;&#x60;
+     * socket.request({
+     *   url:&#x27;/user&#x27;,
+     *   params: {},
+     *   method: &#x27;POST&#x27;,
+     *   headers: {}
+     * }, function (responseBody, JWR) {
+     *   // ...
+     * });
+     * &#x60;&#x60;&#x60;
+     *
+     * @api public
+     * @option {String} url    ::    destination URL
+     * @option {Object} params ::    parameters to send with the request [optional]
+     * @option {Object} headers::    headers to send with the request [optional]
+     * @option {Function} cb   ::    callback function to call when finished [optional]
+     * @option {String} method ::    HTTP request method [optional]
+     */
+
+    SailsSocket.prototype.request = function(options, cb) {
+
+      var usage =
+      &#x27;Usage:\n&#x27;+
+      &#x27;socket.request( options, [fnToCallWhenComplete] )\n\n&#x27;+
+      &#x27;options.url :: e.g. &quot;/foo/bar&quot;&#x27;+&#x27;\n&#x27;+
+      &#x27;options.method :: e.g. &quot;get&quot;, &quot;post&quot;, &quot;put&quot;, or &quot;delete&quot;, etc.&#x27;+&#x27;\n&#x27;+
+      &#x27;options.params :: e.g. { emailAddress: &quot;mike@sailsjs.org&quot; }&#x27;+&#x27;\n&#x27;+
+      &#x27;options.headers :: e.g. { &quot;x-my-custom-header&quot;: &quot;some string&quot; }&#x27;;
+      // Old usage:
+      // var usage = &#x27;Usage:\n socket.&#x27;+(options.method||&#x27;request&#x27;)+&#x27;(&#x27;+
+      //   &#x27; destinationURL, [dataToSend], [fnToCallWhenComplete] )&#x27;;
+
+
+      // Validate options and callback
+      if (typeof options !== &#x27;object&#x27; || typeof options.url !== &#x27;string&#x27;) {
+        throw new Error(&#x27;Invalid or missing URL!\n&#x27; + usage);
+      }
+      if (options.method &amp;&amp; typeof options.method !== &#x27;string&#x27;) {
+        throw new Error(&#x27;Invalid &#x60;method&#x60; provided (should be a string like &quot;post&quot; or &quot;put&quot;)\n&#x27; + usage);
+      }
+      if (options.headers &amp;&amp; typeof options.headers !== &#x27;object&#x27;) {
+        throw new Error(&#x27;Invalid &#x60;headers&#x60; provided (should be an object with string values)\n&#x27; + usage);
+      }
+      if (options.params &amp;&amp; typeof options.params !== &#x27;object&#x27;) {
+        throw new Error(&#x27;Invalid &#x60;params&#x60; provided (should be an object with string values)\n&#x27; + usage);
+      }
+      if (cb &amp;&amp; typeof cb !== &#x27;function&#x27;) {
+        throw new Error(&#x27;Invalid callback function!\n&#x27; + usage);
+      }
+      
+
+      // Build a simulated request object
+      // (and sanitize/marshal options along the way)
+      var requestCtx = {
+
+        method: options.method.toLowerCase() || &#x27;get&#x27;,
+
+        headers: options.headers || {},
+
+        data: options.params || options.data || {},
+
+        // Remove trailing slashes and spaces to make packets smaller.
+        url: options.url.replace(/^(.+)\/*\s*$/, &#x27;$1&#x27;),
+
+        cb: cb
+      };
+
+      // If this socket is not connected yet, queue up this request
+      // instead of sending it.
+      // (so it can be replayed when the socket comes online.)
+      if ( ! this.isConnected() ) {
+
+        // If no queue array exists for this socket yet, create it.
+        this.requestQueue = this.requestQueue || [];
+        this.requestQueue.push(requestCtx);
+        return;
+      }
+
+
+      // Otherwise, our socket is ok!
+      // Send the request.
+      _emitFrom(this, requestCtx);
+    };
+
+
+
+    /**
+     * Socket.prototype._request
+     *
+     * Simulate HTTP over Socket.io.
+     *
+     * @api private
+     * @param  {[type]}   options [description]
+     * @param  {Function} cb      [description]
+     */
+    SailsSocket.prototype._request = function(options, cb) {
+      throw new Error(&#x27;&#x60;_request()&#x60; was a private API deprecated as of v0.11 of the sails.io.js client. Use &#x60;.request()&#x60; instead.&#x27;);
+    };
+
+
+
+    // Set a &#x60;sails&#x60; object that may be used for configuration before the
+    // first socket connects (i.e. to prevent auto-connect)
+    io.sails = {
+
+      // Whether to automatically connect a socket and save it as &#x60;io.socket&#x60;.
+      autoConnect: true,
+
+      // The route (path) to hit to get a x-origin (CORS) cookie
+      // (or true to use the default: &#x27;/__getcookie&#x27;)
+      useCORSRouteToGetCookie: true,
+
+      // The environment we&#x27;re running in.
+      // (logs are not displayed when this is set to &#x27;production&#x27;)
+      // 
+      // Defaults to development unless this script was fetched from a URL
+      // that ends in &#x60;*.min.js&#x60; or &#x27;#production&#x27; (may also be manually overridden.)
+      // 
+      environment: urlThisScriptWasFetchedFrom.match(/(\#production|\.min\.js)/g) ? &#x27;production&#x27; : &#x27;development&#x27;,
+
+      // The version of this sails.io.js client SDK
+      sdk: SDK_INFO,
+
+      // Transports to use when communicating with the server, in the order they will be tried
+      transports: [&#x27;polling&#x27;, &#x27;websocket&#x27;]
+    };
+
+
+
+    /**
+     * Add &#x60;io.sails.connect&#x60; function as a wrapper for the built-in &#x60;io()&#x60; aka &#x60;io.connect()&#x60;
+     * method, returning a SailsSocket. This special function respects the configured io.sails
+     * connection URL, as well as sending other identifying information (most importantly, the
+     * current version of this SDK).
+     *
+     * @param  {String} url  [optional]
+     * @param  {Object} opts [optional]
+     * @return {Socket}
+     */
+    io.sails.connect = function(url, opts) {
+      opts = opts || {};
+
+      // If explicit connection url is specified, save it to options
+      opts.url = url || opts.url || undefined;
+
+      // Instantiate and return a new SailsSocket- and try to connect immediately.
+      var socket = new SailsSocket(opts);
+      socket._connect();
+      return socket;
+    };
+
+
+
+    // io.socket
+    // 
+    // The eager instance of Socket which will automatically try to connect
+    // using the host that this js file was served from.
+    // 
+    // This can be disabled or configured by setting properties on &#x60;io.sails.*&#x60; within the
+    // first cycle of the event loop.
+    // 
+
+    
+    // Build &#x60;io.socket&#x60; so it exists
+    // (this does not start the connection process)
+    io.socket = new SailsSocket();
+
+    // In the mean time, this eager socket will be queue events bound by the user
+    // before the first cycle of the event loop (using &#x60;.on()&#x60;), which will later
+    // be rebound on the raw underlying socket.
+
+    // If configured to do so, start auto-connecting after the first cycle of the event loop
+    // has completed (to allow time for this behavior to be configured/disabled
+    // by specifying properties on &#x60;io.sails&#x60;)
+    setTimeout(function() {
+
+      // If autoConnect is disabled, delete the eager socket (io.socket) and bail out.
+      if (!io.sails.autoConnect) {
+        delete io.socket;
+        return;
+      }
+
+      // consolog(&#x27;Eagerly auto-connecting socket to Sails... (requests will be queued in the mean-time)&#x27;);
+      io.socket._connect();
+
+
+    }, 0); // &lt;/setTimeout&gt;
+
+
+    // Return the &#x60;io&#x60; object.
+    return io;
+  }
+
+
+  // Add CommonJS support to allow this client SDK to be used from Node.js.
+  if (typeof module === &#x27;object&#x27; &amp;&amp; typeof module.exports !== &#x27;undefined&#x27;) {
+    module.exports = SailsIOClient;
+    return SailsIOClient;
+  }
+
+  // Otherwise, try to instantiate the client:
+  // In case you&#x27;re wrapping the socket.io client to prevent pollution of the
+  // global namespace, you can replace the global &#x60;io&#x60; with your own &#x60;io&#x60; here:
+  return SailsIOClient();
+
+})();
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
