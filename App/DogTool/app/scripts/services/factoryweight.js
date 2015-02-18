@@ -4,10 +4,10 @@
  * looking at the code knows who to go to if they have questions
  * *********************************/
 /**
+ * @class FactoryWeight
  * @ngdoc service
+ * @author Stephen A. Wilson
  * @name dogToolApp.FactoryWeight
- * @description
- * # FactoryWeight
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
