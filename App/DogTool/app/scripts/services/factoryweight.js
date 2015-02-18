@@ -1,8 +1,4 @@
 'use strict';
-/******************************* TODO:
- * add @class with classname in top block quote, and an @author so someone
- * looking at the code knows who to go to if they have questions
- * *********************************/
 /**
  * @class FactoryWeight
  * @ngdoc service
