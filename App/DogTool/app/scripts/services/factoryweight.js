@@ -1,10 +1,10 @@
 'use strict';
 
 /**
+ * @class FactoryWeight
  * @ngdoc service
+ * @author Stephen A. Wilson
  * @name dogToolApp.FactoryWeight
- * @description
- * # FactoryWeight
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
