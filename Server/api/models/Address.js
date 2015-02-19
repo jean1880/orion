@@ -34,6 +34,9 @@ module.exports = {
             type: 'string',
             defaultsTo: 'CA'
         },
+        PostalCode: {
+            type: 'string'
+        },
         BusinessInfo: {
             model: 'business_info'
         },

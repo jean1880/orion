@@ -23,7 +23,7 @@ module.exports = {
         EmergencyContact: {
             model: 'people'
         },
-        weights: {
+        Weights: {
             collection: 'weight',
             via: 'dog'
         },
