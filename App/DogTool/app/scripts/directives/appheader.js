@@ -7,9 +7,9 @@
  * # navBar
  */
 angular.module('dogToolApp')
-  .directive('navBar', function () {
+  .directive('appHeader', function () {
     return {
       restrict: 'E',
-      templateUrl: '/views/directives/nav-bar.html'
+      templateUrl: '/views/directives/app-header.html'
     };
   });
