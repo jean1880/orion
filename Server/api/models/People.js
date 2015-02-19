@@ -19,7 +19,7 @@ module.exports = {
             via: 'Owner'
         },
         PeopleType: {
-            model: 'people_type'
+            type: 'string'
         },
         Referrals: {
             collection: 'referral',

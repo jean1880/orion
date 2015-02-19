@@ -27,7 +27,7 @@ module.exports = {
             via: 'Notes'
         },
         NoteType: {
-            model: 'note_type'
+            type: 'string'
         },
         Charges: {
             collection: 'charge',
