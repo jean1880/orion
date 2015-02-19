@@ -1,12 +1,12 @@
 /**
- * Homework.js
+ * homework.js
  *
- * The Sails (Waterline) model of the Homework table/collection. Route to model:
+ * the sails (waterline) model of the homework table/collection. route to model:
  * /server/homework/
  *
- * Refer to the ERD for more info:
- * https://editor.ponyorm.com/user/jean1880/DogTool
- * @class Homework
+ * refer to the erd for more info:
+ * https://editor.ponyorm.com/user/jean1880/dogtool
+ * @class homework
  */
 
 /*jslint node:true*/
@@ -14,16 +14,16 @@
 module.exports = {
 
     attributes: {
-        Start_Date: {
+        StartDate: {
             type: 'datetime',
             required: true
         },
-        End_Date: {
+        EndDate: {
             type: 'datetime'
         },
         Dogs: {
             collection: 'dog',
-            via: 'homeworks',
+            via: 'Homeworks',
             dominant: true
         },
         Description: {

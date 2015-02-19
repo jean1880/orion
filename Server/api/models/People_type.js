@@ -18,7 +18,7 @@ module.exports = {
             type: 'string',
             required: true
         },
-        peoples: {
+        Peoples: {
             collection: 'people',
             via: 'PeopleType'
         }

@@ -40,7 +40,7 @@ module.exports = {
         BusinessInfo: {
             model: 'business_info'
         },
-        peoples: {
+        Peoples: {
             model: 'people'
         }
     }

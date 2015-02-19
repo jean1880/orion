@@ -14,26 +14,18 @@
 module.exports = {
 
     attributes: {
-        DogsOwned: {
+        Dogs: {
             collection: 'dog',
             via: 'Owner'
-        },
-        DogsVet: {
-            collection: 'dog',
-            via: 'Vet'
-        },
-        DogsEmergencyContact: {
-            collection: 'dog',
-            via: 'EmergencyContact'
         },
         PeopleType: {
             model: 'people_type'
         },
-        referrals: {
+        Referrals: {
             collection: 'referral',
-            via: 'people'
+            via: 'People'
         },
-        address: {
+        Address: {
             model: 'address'
         },
         Name: {

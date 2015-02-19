@@ -1,12 +1,12 @@
 /**
- * Note_Type.js
+ * note_type.js
  *
- * The Sails (Waterline) model of the Note_Type table/collection. Route to model:
+ * the sails (waterline) model of the note_type table/collection. route to model:
  * /server/note_type/
  *
- * Refer to the ERD for more info:
- * https://editor.ponyorm.com/user/jean1880/DogTool
- * @class Note_Type
+ * refer to the erd for more info:
+ * https://editor.ponyorm.com/user/jean1880/dogtool
+ * @class note_type
  */
 
 /*jslint node:true*/
@@ -14,7 +14,7 @@
 module.exports = {
 
     attributes: {
-        notes: {
+        Notes: {
             collection: 'note',
             via: 'NoteType'
         },

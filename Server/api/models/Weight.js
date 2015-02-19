@@ -14,7 +14,7 @@
 module.exports = {
 
     attributes: {
-        dog: {
+        Dog: {
             model: 'dog'
         },
         DateTaken: {

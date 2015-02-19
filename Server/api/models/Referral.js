@@ -14,10 +14,10 @@
 module.exports = {
 
     attributes: {
-        dog: {
+        Dog: {
             model: 'dog'
         },
-        people: {
+        People: {
             model: 'people'
         },
         OtherSource: {
@@ -27,7 +27,7 @@ module.exports = {
             type: 'boolean',
             required: true
         },
-        cost: {
+        Cost: {
             model: 'cost'
         }
     }

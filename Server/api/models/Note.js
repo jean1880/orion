@@ -22,24 +22,24 @@ module.exports = {
             type: 'string',
             required: true
         },
-        dogs: {
+        Dogs: {
             collection: 'dog',
             via: 'Notes'
         },
         NoteType: {
             model: 'note_type'
         },
-        charges: {
+        Charges: {
             collection: 'charge',
-            via: 'note'
+            via: 'Note'
         },
-        consultations: {
+        Consultations: {
             collection: 'consultation',
-            via: 'note'
+            via: 'Note'
         },
-        daycares: {
+        Daycares: {
             collection: 'daycare',
-            via: 'note'
+            via: 'Note'
         }
     }
 };
