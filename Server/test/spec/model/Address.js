@@ -11,120 +11,162 @@ describe('Model: Address', function() {
     });
 
     describe('StreetName', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.StreetName;
+      });
+
       it('exists', function (done) {
-        attributes.should.have.property('StreetName');
+        should.exist(attribute);
         done();
       });
 
       it('is required', function (done) {
-        attributes.StreetName.should.have.property('required').equal(true);
+        attribute.should.have.property('required').equal(true);
         done();
       });
 
       it('is a string', function (done) {
-        attributes.StreetName.should.have.property('type').equal('string');
+        attribute.should.have.property('type').equal('string');
         done();
       });
     });
 
     describe('StreetNum', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.StreetNum;
+      });
+
       it('exists', function (done) {
-        attributes.should.have.property('StreetNum');
+        should.exist(attribute);
         done();
       });
 
       it('is required', function (done) {
-        attributes.StreetNum.should.have.property('required').equal(true);
+        attribute.should.have.property('required').equal(true);
         done();
       });
 
       it('is a string', function (done) {
-        attributes.StreetNum.should.have.property('type').equal('string');
+        attribute.should.have.property('type').equal('string');
         done();
       });
     });
 
     describe('City', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.City;
+      });
+
       it('exists', function (done) {
-        attributes.should.have.property('City');
+        should.exist(attribute);
         done();
       });
 
       it('is required', function (done) {
-        attributes.City.should.have.property('required').equal(true);
+        attribute.should.have.property('required').equal(true);
         done();
       });
 
       it('is a string', function (done) {
-        attributes.City.should.have.property('type').equal('string');
+        attribute.should.have.property('type').equal('string');
         done();
       });
     });
 
     describe('Province', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.Province;
+      });
+
       it('exists', function (done) {
-        attributes.should.have.property('Province');
+        should.exist(attribute);
         done();
       });
 
       it('is not required', function (done) {
-        attributes.Province.should.not.have.property('required');
+        attribute.should.not.have.property('required');
         done();
       });
 
       it('is a string', function (done) {
-        attributes.Province.should.have.property('type').equal('string');
+        attribute.should.have.property('type').equal('string');
         done();
       });
 
       it('is defaulted to "ON"', function (done) {
-        attributes.Province.should.have.property('defaultsTo').equal('ON');
+        attribute.should.have.property('defaultsTo').equal('ON');
         done();
       });
     });
 
     describe('Country', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.Country;
+      });
+
       it('exists', function (done) {
-        attributes.should.have.property('Country');
+        should.exist(attribute);
         done();
       });
 
       it('is not required', function (done) {
-        attributes.Country.should.not.have.property('required');
+        attribute.should.not.have.property('required');
         done();
       });
 
       it('is a string', function (done) {
-        attributes.Country.should.have.property('type').equal('string');
+        attribute.should.have.property('type').equal('string');
         done();
       });
 
       it('is defaulted to "CA"', function (done) {
-        attributes.Country.should.have.property('defaultsTo').equal('CA');
+        attribute.should.have.property('defaultsTo').equal('CA');
         done();
       });
     });
 
     describe('BusinessInfo', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.BusinessInfo;
+      });
+
       it('exists', function (done) {
-        attributes.should.have.property('BusinessInfo');
+        should.exist(attribute);
         done();
       });
 
       it('is joined to the business_info model', function (done) {
-        attributes.BusinessInfo.should.have.property('model').equal('business_info');
+        attribute.should.have.property('model').equal('business_info');
         done();
       });
     });
 
     describe('Peoples', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.Peoples;
+      });
+
       it('exists', function (done) {
-        attributes.should.have.property('Peoples');
+        should.exist(attribute);
         done();
       });
 
       it('is joined to the people model', function (done) {
-        attributes.Peoples.should.have.property('model').equal('people');
+        attribute.should.have.property('model').equal('people');
         done();
       });
     });
