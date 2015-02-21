@@ -4,6 +4,7 @@ describe('Directive: appFooter', function () {
 
   // load the directive's module
   beforeEach(module('dogToolApp'));
+  beforeEach(module('htmlFiles'));
 
   var element,
     scope;
