@@ -5,21 +5,18 @@ describe('Directive: dogCard', function () {
   // load the directive's module
   beforeEach(module('dogToolApp'));
 
-  //load html files for
+  //load html files
   beforeEach(module('htmlFiles'));
 
   var element,
-    $scope,
-    dog;
+    $scope;
 
   beforeEach(inject(function ($rootScope, $compile) {
     $scope = $rootScope.$new();
 
-    dog = {
+    $scope.dog = {
       Name: chance.first()
     };
-
-    $scope.dog = dog;
 
     element = angular.element('<dog-card dog="dog"></dog-card>');
     element = $compile(element)($scope);
@@ -28,6 +25,6 @@ describe('Directive: dogCard', function () {
   }));
 
   it('displays the dog\'s name', function () {
-    expect(element.text()).toContain(dog.Name);
+    expect(element.text()).toContain($scope.dog.Name);
   });
 });
