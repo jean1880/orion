@@ -19,6 +19,10 @@ describe('Directive: appFooter', function () {
   }));
 
   it('contains a copyright statement', function () {
-    expect(element.text()).toContain('© copyright');
+    expect(element.text()).toContain('© copyright 2015');
+  });
+
+  it('contains the company name', function () {
+    expect(element.text()).toContain('Not Just Kibble');
   });
 });

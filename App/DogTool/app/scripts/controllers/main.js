@@ -8,5 +8,6 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function ($scope, FactoryDog) {
+  	$scope.dogs = FactoryDog.getAll();
   });
