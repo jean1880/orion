@@ -17,12 +17,13 @@ describe('Service: FactoryDog', function () {
         angular.mock.inject(function ($injector) {
             //setup mocks
             $http = $injector.get('$http');
+            poller = $injector.get('poller');
 
             //get service
             FactoryDog = $injector.get('FactoryDog');
 
             //configure
-            route = '/Dog';
+            route = 'http://localhost:1337/Dog';
             dogID = 1;
 
             response = {
@@ -98,7 +99,7 @@ describe('Service: FactoryDog', function () {
 
     describe('post', function () {
         beforeEach(function () {
-            spyOn($sails, 'post').and.returnValue(response);
+            spyOn($http, 'post').and.returnValue(response);
 
             dog = {
                 id: 1,

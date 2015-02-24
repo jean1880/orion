@@ -5,7 +5,7 @@ describe('Service: FactoryWeight', function () {
     beforeEach(module('dogToolApp'));
 
     // instantiate service
-    var FactoryDog;
+    var FactoryWeight;
 
     //mocks
     var $http, poller;
@@ -19,13 +19,13 @@ describe('Service: FactoryWeight', function () {
         angular.mock.inject(function ($injector) {
             //setup mocks
             $http = $injector.get('$http');
-            poller = $injector.get('poller')
+            poller = $injector.get('poller');
 
             //get service
             FactoryWeight = $injector.get('FactoryWeight');
 
             //configure
-            route = '/Weight';
+            route = 'http://localhost:1337/Weight';
             weightID = 1;
 
             response = {
