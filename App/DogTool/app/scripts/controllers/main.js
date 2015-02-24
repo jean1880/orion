@@ -8,6 +8,5 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('MainCtrl', function ($scope) {
-
+  .controller('MainCtrl', function () {
   });

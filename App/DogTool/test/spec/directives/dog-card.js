@@ -1,3 +1,4 @@
+/* global chance */
 'use strict';
 
 describe('Directive: dogCard', function () {
