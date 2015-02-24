@@ -18,16 +18,16 @@ module.exports = {
             type: 'integer',
             required: true
         },
-        invoice: {
+        Invoice: {
             model: 'invoice'
         },
-        service: {
+        Service: {
             model: 'service'
         },
         ServiceCustom: {
             type: 'string'
         },
-        note: {
+        Note: {
             model: 'note'
         }
     }

@@ -23,9 +23,9 @@ module.exports = {
         EmergencyContact: {
             model: 'people'
         },
-        weights: {
+        Weights: {
             collection: 'weight',
-            via: 'dog'
+            via: 'Dog'
         },
         Name: {
             type: 'string',
@@ -39,20 +39,20 @@ module.exports = {
         },
         Notes: {
             collection: 'note',
-            via: 'dogs'
+            via: 'Dogs'
         },
-        consultations: {
+        Consultations: {
             collection: 'consultation',
-            via: 'dogs'
+            via: 'Dogs'
         },
-        daycares: {
+        Daycares: {
             collection: 'daycare',
-            via: 'dogs'
+            via: 'Dogs'
         },
-        referral: {
+        Referral: {
             model: 'referral'
         },
-        homeworks: {
+        Homeworks: {
             collection: 'homework',
             via: 'Dogs'
         },
