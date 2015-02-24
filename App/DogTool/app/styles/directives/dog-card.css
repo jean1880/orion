@@ -1,0 +1,7 @@
+.dog-card img {
+	display: block;
+	margin: auto;
+
+	max-width: 200px;
+	width: 100%;
+}

@@ -11,7 +11,7 @@ angular.module('dogToolApp')
     return {
       restrict: 'E',
       scope: {
-      	dogInfo: '=dog'
+      	dog: '='
       },
       templateUrl: 'views/directives/dog-card.html'
     };
