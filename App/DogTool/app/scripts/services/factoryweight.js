@@ -29,10 +29,9 @@ angular.module('dogToolApp')
             /**
              * One time fetch from server for full Weight dataset
              * @method listen
-             * @param callback
              */
-            listen: function (callback) {
-                return poller.get(route, callback);
+            listen: function () {
+                return poller.get(route);
             },
             /**
              * One time fetch from server for full Weight dataset
