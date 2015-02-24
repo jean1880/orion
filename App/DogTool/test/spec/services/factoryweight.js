@@ -35,7 +35,7 @@ describe('Service: FactoryWeight', function () {
       response = {
         status: 200,
         message: 'success'
-      }
+      };
 
       returned = null;
     });
@@ -63,7 +63,7 @@ describe('Service: FactoryWeight', function () {
 
   describe('get all', function() {
     beforeEach(function () {
-      spyOn($sails, 'get').and.returnValue(response);;
+      spyOn($sails, 'get').and.returnValue(response);
 
       returned = FactoryWeight.getAll();
     });
@@ -83,7 +83,7 @@ describe('Service: FactoryWeight', function () {
 
   describe('listen', function() {
     beforeEach(function() {
-      spyOn($sails, 'on').and.returnValue(response);;
+      spyOn($sails, 'on').and.returnValue(response);
 
       callback = function () {};
 
@@ -105,7 +105,7 @@ describe('Service: FactoryWeight', function () {
 
   describe('post', function() {
     beforeEach(function() {
-      spyOn($sails, 'post').and.returnValue(response);;
+      spyOn($sails, 'post').and.returnValue(response);
 
       weight = {
         id: 1,
@@ -134,11 +134,11 @@ describe('Service: FactoryWeight', function () {
 
   describe('find', function() {
     beforeEach(function() {
-      spyOn($sails, 'post').and.returnValue(response);;
+      spyOn($sails, 'post').and.returnValue(response);
 
       searchObject = {
         name: 'billy'
-      }
+      };
 
       returned = FactoryWeight.find(searchObject);
     });
