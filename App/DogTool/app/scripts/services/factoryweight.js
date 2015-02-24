@@ -1,13 +1,14 @@
 'use strict';
 /**
- * @class FactoryDog
+ * @class FactoryWeight
  * @ngdoc service
- * @name dogToolApp.FactoryDo
+ * @author Stephen A. Wilson
+ * @name dogToolApp.FactoryWeight
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryDog', function ($http, ServerAddress) {
-         var route = ServerAddress + '/Dog';
+    .factory('FactoryWeight', function ($http, ServerAddress, poller) {
+        var route = ServerAddress + '/Weight';
 
         return {
             /**

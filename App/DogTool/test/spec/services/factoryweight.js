@@ -1,20 +1,20 @@
 'use strict';
 
-describe('Service: FactoryDog', function () {
+describe('Service: FactoryWeight', function () {
   // load the service's module
   beforeEach(module('dogToolApp'));
 
   // instantiate service
-  var FactoryDog;
+  var FactoryWeight;
 
   //mocks
   var $sails;
 
   //variables
   var route;
-  var dogID;
+  var weightID;
   var callback;
-  var dog;
+  var weight;
   var searchObject;
   var response;
 
@@ -26,11 +26,11 @@ describe('Service: FactoryDog', function () {
       $sails = $injector.get('$sails');
 
       //get service
-      FactoryDog = $injector.get('FactoryDog');
+      FactoryWeight = $injector.get('FactoryWeight');
 
       //configure
-      route = '/Dog';
-      dogID = 1;
+      route = '/Weight';
+      weightID = 1;
 
       response = {
         status: 200,
@@ -45,7 +45,7 @@ describe('Service: FactoryDog', function () {
      beforeEach(function () {
       spyOn($sails, 'get').and.returnValue(response);
 
-      returned = FactoryDog.get(dogID);
+      returned = FactoryWeight.get(weightID);
     });
 
     it('makes a call to sails get', function () {
@@ -53,7 +53,7 @@ describe('Service: FactoryDog', function () {
     });
 
     it('makes a call to the correct route', function () {
-      expect($sails.get).toHaveBeenCalledWith(route + '/' + dogID);
+      expect($sails.get).toHaveBeenCalledWith(route + '/' + weightID);
     });
 
     it('returns the response from sails', function(){
@@ -65,7 +65,7 @@ describe('Service: FactoryDog', function () {
     beforeEach(function () {
       spyOn($sails, 'get').and.returnValue(response);
 
-      returned = FactoryDog.getAll();
+      returned = FactoryWeight.getAll();
     });
 
     it('makes a call to sails get', function() {
@@ -87,7 +87,7 @@ describe('Service: FactoryDog', function () {
 
       callback = function () {};
 
-      FactoryDog.listen(callback);
+      FactoryWeight.listen(callback);
     });
 
     it('starts to sails on', function() {
@@ -107,12 +107,12 @@ describe('Service: FactoryDog', function () {
     beforeEach(function() {
       spyOn($sails, 'post').and.returnValue(response);
 
-      dog = {
+      weight = {
         id: 1,
         name: 'billy'
       };
 
-      returned = FactoryDog.post(dog);
+      returned = FactoryWeight.post(weight);
     });
 
     it('makes a call to sails post', function() {
@@ -123,8 +123,8 @@ describe('Service: FactoryDog', function () {
       expect($sails.post).toHaveBeenCalledWith(route, jasmine.any(Object));
     });
 
-    it('passes the correct dog to sails', function() {
-      expect($sails.post).toHaveBeenCalledWith(jasmine.any(String), dog);
+    it('passes the correct weight to sails', function() {
+      expect($sails.post).toHaveBeenCalledWith(jasmine.any(String), weight);
     });
 
     it('returns the response from sails', function(){
@@ -140,7 +140,7 @@ describe('Service: FactoryDog', function () {
         name: 'billy'
       };
 
-      returned = FactoryDog.find(searchObject);
+      returned = FactoryWeight.find(searchObject);
     });
 
     it('makes a call to sails post', function() {
@@ -151,7 +151,7 @@ describe('Service: FactoryDog', function () {
       expect($sails.post).toHaveBeenCalledWith(route + '/find', jasmine.any(Object));
     });
 
-    it('passes the correct dog to sails', function() {
+    it('passes the correct weight to sails', function() {
       expect($sails.post).toHaveBeenCalledWith(jasmine.any(String), searchObject);
     });
 

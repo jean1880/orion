@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name dogToolApp.controller:AboutCtrl
+ * @name dogToolApp.controller:AboutctrlCtrl
  * @description
- * # AboutCtrl
+ * # AboutctrlCtrl
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('AboutctrlCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
