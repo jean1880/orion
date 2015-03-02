@@ -12,7 +12,6 @@
 /*jslint node:true*/
 
 module.exports = {
-
     attributes: {
         BusinessName: {
             type: 'string',
@@ -28,7 +27,7 @@ module.exports = {
         BNNumber: {
             type: 'string'
         },
-        address: {
+        Address: {
             model: 'address'
         }
     }

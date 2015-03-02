@@ -29,11 +29,13 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/sails.io.js/dist/sails.io.js',
-      'bower_components/angular-sails/dist/angular-sails.js',
+      'bower_components/angular-poller/angular-poller.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/chance/chance.js',
       // endbower
+      'app/views/**/*.html',
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
+      'test/factories/**/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -59,9 +61,18 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
     ],
 
+    preprocessors: {
+      'app/views/**/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/',
+      moduleName: 'htmlFiles'
+    },
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false,
