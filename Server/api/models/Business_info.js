@@ -28,7 +28,7 @@ module.exports = {
             type: 'string'
         },
         Address: {
-            model: 'address'
+            model: 'Address'
         }
     }
 };
