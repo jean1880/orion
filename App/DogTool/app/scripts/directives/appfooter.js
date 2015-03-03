@@ -10,6 +10,6 @@ angular.module('dogToolApp')
   .directive('appFooter', function () {
     return {
       restrict: 'E',
-      templateUrl: '/views/directives/app-footer.html'
+      templateUrl: 'views/directives/app-footer.html'
     };
   });

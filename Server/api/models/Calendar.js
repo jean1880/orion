@@ -22,14 +22,14 @@ module.exports = {
             type: 'datetime',
             required: true
         },
-        consultations: {
+        Consultations: {
             collection: 'consultation',
-            via: 'calendars',
+            via: 'Calendars',
             dominant: true
         },
-        daycares: {
+        Daycares: {
             collection: 'daycare',
-            via: 'calendars',
+            via: 'Calendars',
             dominant: true
         }
     }

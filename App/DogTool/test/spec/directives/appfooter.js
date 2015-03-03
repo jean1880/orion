@@ -4,17 +4,25 @@ describe('Directive: appFooter', function () {
 
   // load the directive's module
   beforeEach(module('dogToolApp'));
+  beforeEach(module('htmlFiles'));
 
   var element,
-    scope;
+    $scope;
 
-  beforeEach(inject(function ($rootScope) {
-    scope = $rootScope.$new();
-  }));
+  beforeEach(inject(function ($rootScope, $compile) {
+    $scope = $rootScope.$new();
 
-  it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<app-footer></app-footer>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the appFooter directive');
+    element = $compile(element)($scope);
+
+    $scope.$digest();
   }));
+
+  it('contains a copyright statement', function () {
+    expect(element.text()).toContain('© copyright 2015');
+  });
+
+  it('contains the company name', function () {
+    expect(element.text()).toContain('Not Just Kibble');
+  });
 });

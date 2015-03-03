@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @class FactoryDog
  * @ngdoc service
@@ -7,52 +6,47 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryDog', function ($sails) {
-        // Service logic
-        // ...
+    .factory('FactoryDog', function ($http, ServerAddress, poller) {
+        var route = ServerAddress + '/Dog';
 
-        var route = '/Dog';
-
-        // Public API here
         return {
             /**
-             * One time fetch from server for single Dog dataset
+             * One time fetch from server for single Weight dataset
              * @method get
              * @param id
              */
             get: function (id) {
-                return $sails.get(route + '/' + id);
+                return $http.get(route + '/' + id);
             },
             /**
-             * One time fetch from server for full Dog dataset
+             * One time fetch from server for full Weight dataset
              * @method getAll
              */
             getAll: function () {
-                return $sails.get(route);
+                return $http.get(route);
             },
             /**
-             * One time fetch from server for full Dog dataset
+             * One time fetch from server for full Weight dataset
              * @method listen
-             * @param callback
              */
-            listen: function (callback) {
-                $sails.on(route, callback);
+            listen: function () {
+                return poller.get(route);
             },
             /**
-             * One time fetch from server for full Dog dataset
+             * One time fetch from server for full Weight dataset
              * @method post
-             * @param dog
+             * @param weight
              */
-            post: function (dog) {
-                return $sails.post(route, dog);
+            post: function (weight) {
+                return $http.post(route, weight);
             },
             /**
-             * One time fetch from server for full Dog dataset
+             * One time fetch from server for full Weight dataset
              * @method find
              * @param searchObject
              */
             find: function (searchObject) {
-                return $sails.post(route + '/find', searchObject);
+                return $http.post(route + '/find', searchObject);
             }
         };
     });

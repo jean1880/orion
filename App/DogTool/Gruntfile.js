@@ -53,8 +53,8 @@ module.exports = function (grunt) {
       karmaTests: {
         files: [
           '<%= yeoman.app %>/**/*.html',
-          '<%= yeoman.app %>/scripts/{,*/}*.js',
-          'test/spec/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/**/*.js',
+          'test/**/*.js'
         ],
         tasks: [ 'karma' ]
       },
