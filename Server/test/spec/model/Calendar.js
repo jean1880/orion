@@ -68,12 +68,12 @@ describe('Model: Calendar', function() {
       });
 
       it('is a collection of consultations', function (done) {
-        expect(attribute.collection).toBe('consultation');
+        expect(attribute.collection).toBe('Consultation');
         done();
       });
 
       it('is joined via calendars', function (done) {
-        expect(attribute.via).toBe('calendars');
+        expect(attribute.via).toBe('Calendars');
         done();
       });
 
@@ -101,7 +101,7 @@ describe('Model: Calendar', function() {
       });
 
       it('is joined via calendars', function (done) {
-        expect(attribute.via).toBe('calendars');
+        expect(attribute.via).toBe('Calendars');
         done();
       });
 
