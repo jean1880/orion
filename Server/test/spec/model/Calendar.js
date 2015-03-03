@@ -1,12 +1,12 @@
 var
-  Calendar = require("../../../api/models/Calendar");
+  Model = require("../../../api/models/Calendar");
 
 describe('Model: Calendar', function() {
   describe('attribute', function() {
     var attributes;
 
     beforeEach(function() {
-      attributes = Calendar.attributes;
+      attributes = Model.attributes;
     });
 
     describe('StartDate', function() {

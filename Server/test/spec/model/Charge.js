@@ -1,7 +1,7 @@
 var
-  Model = require("../../../api/models/Business_info");
+  Model = require("../../../api/models/Charge");
 
-describe('Model: BusinessInfo', function() {
+describe('Model: Charge', function() {
   describe('attribute', function() {
     var attributes;
 
@@ -9,15 +9,15 @@ describe('Model: BusinessInfo', function() {
       attributes = Model.attributes;
     });
 
-    describe('BusinessName', function() {
+    describe('Quantity', function() {
       var attribute;
 
       beforeEach(function() {
-        attribute = attributes.BusinessName;
+        attribute = attributes.Quantity;
       });
 
       it('exists', function (done) {
-        expect(attribute).toExist;
+        expect(attribute).toExist();
         done();
       });
 
@@ -26,17 +26,17 @@ describe('Model: BusinessInfo', function() {
         done();
       });
 
-      it('is a string', function (done) {
-        expect(attribute.type).toBe('string');
+      it('is a integer', function (done) {
+        expect(attribute.type).toBe('integer');
         done();
       });
     });
 
-    describe('Owner', function() {
+    describe('Invoice', function() {
       var attribute;
 
       beforeEach(function() {
-        attribute = attributes.Owner;
+        attribute = attributes.Invoice;
       });
 
       it('exists', function (done) {
@@ -44,26 +44,39 @@ describe('Model: BusinessInfo', function() {
         done();
       });
 
-      it('is required', function (done) {
-        expect(attribute.required).toBe(true);
-        done();
-      });
-
-      it('is a string', function (done) {
-        expect(attribute.type).toBe('string');
+      it('is joined to the invoice model', function (done) {
+        expect(attribute.model).toBe('invoice');
         done();
       });
     });
 
-    describe('TaxNumber', function() {
+    describe('Service', function() {
       var attribute;
 
       beforeEach(function() {
-        attribute = attributes.TaxNumber;
+        attribute = attributes.Service;
       });
 
       it('exists', function (done) {
         expect(attribute).toExist;
+        done();
+      });
+
+      it('is joined to the service model', function (done) {
+        expect(attribute.model).toBe('service');
+        done();
+      });
+    });
+
+    describe('ServiceCustom', function() {
+      var attribute;
+
+      beforeEach(function() {
+        attribute = attributes.ServiceCustom;
+      });
+
+      it('exists', function (done) {
+        expect(attribute).toExist();
         done();
       });
 
@@ -78,11 +91,11 @@ describe('Model: BusinessInfo', function() {
       });
     });
 
-    describe('BNNumber', function() {
+    describe('Note', function() {
       var attribute;
 
       beforeEach(function() {
-        attribute = attributes.BNNumber;
+        attribute = attributes.Note;
       });
 
       it('exists', function (done) {
@@ -90,31 +103,8 @@ describe('Model: BusinessInfo', function() {
         done();
       });
 
-      it('is not required', function (done) {
-        expect(attribute.required).toNotExist();
-        done();
-      });
-
-      it('is a string', function (done) {
-        expect(attribute.type).toBe('string');
-        done();
-      });
-    });
-
-    describe('Address', function() {
-      var attribute;
-
-      beforeEach(function() {
-        attribute = attributes.Address;
-      });
-
-      it('exists', function (done) {
-        expect(attribute).toExist;
-        done();
-      });
-
-      it('is joined to the Address model', function (done) {
-        expect(attribute.model).toBe('Address');
+      it('is joined to the note model', function (done) {
+        expect(attribute.model).toBe('note');
         done();
       });
     });

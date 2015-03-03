@@ -1,12 +1,12 @@
 var
-  Address = require("../../../api/models/Address");
+  Model = require("../../../api/models/Address");
 
 describe('Model: Address', function() {
   describe('attribute', function() {
     var attributes;
 
     beforeEach(function() {
-      attributes = Address.attributes;
+      attributes = Model.attributes;
     });
 
     describe('StreetName', function() {
