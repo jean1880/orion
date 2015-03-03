@@ -15,23 +15,23 @@ module.exports = {
 
     attributes: {
         Dogs: {
-            collection: 'Dog',
+            collection: 'dog',
             via: 'Consultations',
             dominant: true
         },
         Calendars: {
-            collection: 'Calendar',
+            collection: 'calendar',
             via: 'Consultations'
         },
         Costs: {
             collection: 'cost',
-            via: 'Consultations'
+            via: 'Consultation'
         },
         Note: {
             model: 'note'
         },
         Invoice: {
-            model: 'Invoice'
+            model: 'invoice'
         }
     }
 };

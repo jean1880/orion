@@ -27,13 +27,13 @@ module.exports = {
             required: true
         },
         Consultation: {
-            model: 'Consultations'
+            model: 'consultation'
         },
         Daycare: {
-            model: 'Daycare'
+            model: 'daycare'
         },
         Referral: {
-            model: 'Referral'
+            model: 'referral'
         }
     }
 };

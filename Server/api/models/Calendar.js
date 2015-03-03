@@ -23,7 +23,7 @@ module.exports = {
             required: true
         },
         Consultations: {
-            collection: 'Consultation',
+            collection: 'consultation',
             via: 'Calendars',
             dominant: true
         },
