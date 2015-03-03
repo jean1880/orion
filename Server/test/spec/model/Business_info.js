@@ -1,6 +1,5 @@
 var
-  BusinessInfo = require("../../../api/models/Business_info"),
-  should = require('should');
+  BusinessInfo = require("../../../api/models/Business_info");
 
 describe('Model: BusinessInfo', function() {
   describe('attribute', function() {
@@ -18,17 +17,17 @@ describe('Model: BusinessInfo', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist;
         done();
       });
 
       it('is required', function (done) {
-        attribute.should.have.property('required').equal(true);
+        expect(attribute.required).toBe(true);
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
     });
@@ -41,17 +40,17 @@ describe('Model: BusinessInfo', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist;
         done();
       });
 
       it('is required', function (done) {
-        attribute.should.have.property('required').equal(true);
+        expect(attribute.required).toBe(true);
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
     });
@@ -64,17 +63,17 @@ describe('Model: BusinessInfo', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist;
         done();
       });
 
       it('is not required', function (done) {
-        attribute.should.not.have.property('required');
+        expect(attribute.required).toNotExist();
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
     });
@@ -87,17 +86,17 @@ describe('Model: BusinessInfo', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist;
         done();
       });
 
       it('is not required', function (done) {
-        attribute.should.not.have.property('required');
+        expect(attribute.required).toNotExist();
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
     });
@@ -110,12 +109,12 @@ describe('Model: BusinessInfo', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist;
         done();
       });
 
       it('is joined to the Address model', function (done) {
-        attribute.should.have.property('model').equal('Address');
+        expect(attribute.model).toBe('Address');
         done();
       });
     });

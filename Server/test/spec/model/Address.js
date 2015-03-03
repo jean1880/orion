@@ -1,6 +1,5 @@
 var
-  Address = require("../../../api/models/Address"),
-  should = require('should');
+  Address = require("../../../api/models/Address");
 
 describe('Model: Address', function() {
   describe('attribute', function() {
@@ -18,17 +17,17 @@ describe('Model: Address', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is required', function (done) {
-        attribute.should.have.property('required').equal(true);
+        expect(attribute.required).toBe(true);
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
     });
@@ -41,17 +40,17 @@ describe('Model: Address', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is required', function (done) {
-        attribute.should.have.property('required').equal(true);
+        expect(attribute.required).toBe(true);
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
     });
@@ -64,17 +63,17 @@ describe('Model: Address', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is required', function (done) {
-        attribute.should.have.property('required').equal(true);
+        expect(attribute.required).toBe(true);
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
     });
@@ -87,22 +86,22 @@ describe('Model: Address', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is not required', function (done) {
-        attribute.should.not.have.property('required');
+        expect(attribute.required).toNotExist();
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
 
       it('is defaulted to "ON"', function (done) {
-        attribute.should.have.property('defaultsTo').equal('ON');
+        expect(attribute.defaultsTo).toBe('ON');
         done();
       });
     });
@@ -115,22 +114,22 @@ describe('Model: Address', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is not required', function (done) {
-        attribute.should.not.have.property('required');
+        expect(attribute.required).toNotExist();
         done();
       });
 
       it('is a string', function (done) {
-        attribute.should.have.property('type').equal('string');
+        expect(attribute.type).toBe('string');
         done();
       });
 
       it('is defaulted to "CA"', function (done) {
-        attribute.should.have.property('defaultsTo').equal('CA');
+        expect(attribute.defaultsTo).toBe('CA');
         done();
       });
     });
@@ -143,12 +142,12 @@ describe('Model: Address', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is joined to the business_info model', function (done) {
-        attribute.should.have.property('model').equal('business_info');
+        expect(attribute.model).toBe('business_info');
         done();
       });
     });
@@ -161,12 +160,12 @@ describe('Model: Address', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is joined to the people model', function (done) {
-        attribute.should.have.property('model').equal('people');
+        expect(attribute.model).toBe('people');
         done();
       });
     });

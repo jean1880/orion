@@ -1,6 +1,5 @@
 var
-  Calendar = require("../../../api/models/Calendar"),
-  should = require('should');
+  Calendar = require("../../../api/models/Calendar");
 
 describe('Model: Calendar', function() {
   describe('attribute', function() {
@@ -18,17 +17,17 @@ describe('Model: Calendar', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is required', function (done) {
-        attribute.should.have.property('required').equal(true);
+        expect(attribute.required).toBe(true);
         done();
       });
 
       it('is a datetime', function (done) {
-        attribute.should.have.property('type').equal('datetime');
+        expect(attribute.type).toBe('datetime');
         done();
       });
     });
@@ -41,17 +40,17 @@ describe('Model: Calendar', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist;
         done();
       });
 
       it('is required', function (done) {
-        attribute.should.have.property('required').equal(true);
+        expect(attribute.required).toBe(true);
         done();
       });
 
       it('is a datetime', function (done) {
-        attribute.should.have.property('type').equal('datetime');
+        expect(attribute.type).toBe('datetime');
         done();
       });
     });
@@ -64,22 +63,22 @@ describe('Model: Calendar', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is a collection of consultations', function (done) {
-        attribute.should.have.property('collection').equal('consultation');
+        expect(attribute.collection).toBe('consultation');
         done();
       });
 
       it('is joined via calendars', function (done) {
-        attribute.should.have.property('via').equal('calendars');
+        expect(attribute.via).toBe('calendars');
         done();
       });
 
       it('is dominant', function (done) {
-        attribute.should.have.property('dominant').equal(true);
+        expect(attribute.dominant).toBe(true);
         done();
       });
     });
@@ -92,22 +91,22 @@ describe('Model: Calendar', function() {
       });
 
       it('exists', function (done) {
-        should.exist(attribute);
+        expect(attribute).toExist();
         done();
       });
 
       it('is a collection of daycares', function (done) {
-        attribute.should.have.property('collection').equal('daycare');
+        expect(attribute.collection).toBe('daycare');
         done();
       });
 
       it('is joined via calendars', function (done) {
-        attribute.should.have.property('via').equal('calendars');
+        expect(attribute.via).toBe('calendars');
         done();
       });
 
       it('is dominant', function (done) {
-        attribute.should.have.property('dominant').equal(true);
+        expect(attribute.dominant).toBe(true);
         done();
       });
     });

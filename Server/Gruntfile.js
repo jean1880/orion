@@ -92,7 +92,10 @@ module.exports = function(grunt) {
 	    mochaTest: {
 		    test: {
 		        options: {
-		            reporter: 'spec'
+		            reporter: 'dot',
+		            require: [
+		            	function(){ expect = require('expect'); }
+		            ]
 		        },
 		        src: ['test/spec/**/*.js']
 		    }
