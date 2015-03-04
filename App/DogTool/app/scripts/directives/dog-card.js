@@ -11,8 +11,13 @@ angular.module('dogToolApp')
     return {
       restrict: 'E',
       scope: {
-      	dog: '='
+        dog: '='
       },
-      templateUrl: 'views/directives/dog-card.html'
+      templateUrl: 'views/directives/dog-card.html',
+      controller: function ($scope, $location) {
+        $scope.onClick = function() {
+          $location.path("/dog/" + $scope.dog.id);
+        }
+      }
     };
   });

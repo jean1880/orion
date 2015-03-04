@@ -1,0 +1,25 @@
+<form class="dog-edit" novalidate>
+  <div class="row">
+    <div class="col-xs-12 col-sm-2 col-sm-push-10">
+      <button class="btn btn-primary pull-right save-btn" ng-click="saveBtn()">Save Changes</button>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-sm-pull-2">
+      <div class="form-group" show-errors>
+        <input type="text" class="form-control" name="name" ng-model="dog.Name" ng-required/>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group"  show-errors>
+        <label for="breed">Breed</label>
+        <input type="text" class="form-control" name="breed" ng-model="dog.Breed" />
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <label for="age">Birthdate</label>
+        <input type="text" class="form-control" name="age" ng-model="dog.Age" />
+      </div>
+    </div>
+  </div>
+</form>

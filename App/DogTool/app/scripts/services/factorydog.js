@@ -47,6 +47,10 @@ angular.module('dogToolApp')
              */
             find: function (searchObject) {
                 return $http.post(route + '/find', searchObject);
+            },
+
+            update: function (dog) {
+                return $http.post(route + "/" + dog.id, dog);
             }
         };
     });
