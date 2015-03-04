@@ -16,13 +16,23 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'emguo.poller'
+    'emguo.poller',
+    'ui.bootstrap',
+    'ui.bootstrap.showErrors'
   ])
     .config(function ($routeProvider, pollerConfig) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
+            })
+            .when('/dog/:id', {
+              templateUrl: 'views/dog/view.html',
+              controller: 'DogCtrl'
+            })
+            .when('/dog/:id/edit', {
+              templateUrl: 'views/dog/edit.html',
+              controller: 'DogCtrl'
             })
             .otherwise({
                 redirectTo: '/'

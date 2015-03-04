@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>
+      {{dog.Name}}
+      <button class="btn btn-primary pull-right" ng-click="editBtn()">Edit</button>
+    </h1>
+  </div>
+
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="row">
+          <div class="col-xs-3">
+            <strong>Breed</strong>
+          </div>
+          <div class="col-xs-9">
+            {{dog.Breed}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="row">
+          <div class="col-xs-3">
+            <strong>Birthdate</strong>
+          </div>
+          <div class="col-xs-9">
+            {{dog.Birthdate | date : 'longDate'}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-3">
+            <strong>Age</strong>
+          </div>
+          <div class="col-xs-9">
+            {{dog.Age}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
