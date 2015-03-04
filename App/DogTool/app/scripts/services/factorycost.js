@@ -1,8 +1,8 @@
 'use strict';
 /**
- * @class FactoryDog
+ * @class FactoryCost
  * @ngdoc service
- * @name dogToolApp.FactoryDo
+ * @name dogToolApp.FactoryCost
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
