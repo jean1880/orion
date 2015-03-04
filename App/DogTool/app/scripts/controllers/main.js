@@ -11,14 +11,8 @@ angular.module('dogToolApp')
     .controller('MainCtrl', function ($scope, FactoryDog) {
         $scope.dogs = null;
 
-        var init = function () {
-            FactoryDog.getAll().then(function (data, status) {
-                if (status === 200) {
-                    $scope.dogs = data;
-                }
-                console.log($scope.dogs);
+        FactoryDog.getAll()
+            .success(function (response) {
+                $scope.dogs = response;
             });
-        };
-
-        init();
     });
