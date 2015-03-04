@@ -16,21 +16,28 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngSails'
+    'emguo.poller',
+    'ui.bootstrap',
+    'ui.bootstrap.showErrors'
   ])
-    .config(function ($routeProvider, $sailsProvider) {
+    .config(function ($routeProvider, pollerConfig) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
-            .when('/about', {
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl'
+            .when('/dog/:id', {
+              templateUrl: 'views/dog/view.html',
+              controller: 'DogCtrl'
+            })
+            .when('/dog/:id/edit', {
+              templateUrl: 'views/dog/edit.html',
+              controller: 'DogCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
         // set sails server url
-        $sailsProvider.url = 'http://localhost:1337';
+    pollerConfig.stopOnStateChange = true; // If you use $stateProvider from ui-router.
+    pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
     });

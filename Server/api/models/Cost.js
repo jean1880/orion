@@ -26,13 +26,13 @@ module.exports = {
             type: 'float',
             required: true
         },
-        consultation: {
+        Consultation: {
             model: 'consultation'
         },
-        daycare: {
+        Daycare: {
             model: 'daycare'
         },
-        referral: {
+        Referral: {
             model: 'referral'
         }
     }

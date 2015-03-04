@@ -18,17 +18,17 @@ module.exports = {
             type: 'datetime',
             required: true
         },
-        charges: {
+        Charges: {
             collection: 'charge',
-            via: 'invoice'
+            via: 'Invoice'
         },
-        consultations: {
+        Consultations: {
             collection: 'consultation',
-            via: 'invoice'
+            via: 'Invoice'
         },
-        daycares: {
+        Daycares: {
             collection: 'daycare',
-            via: 'invoice'
+            via: 'Invoice'
         }
     }
 };

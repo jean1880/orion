@@ -22,9 +22,9 @@ module.exports = {
             type: 'float',
             required: true
         },
-        charges: {
+        Charges: {
             collection: 'charge',
-            via: 'service'
+            via: 'Service'
         }
     }
 };
