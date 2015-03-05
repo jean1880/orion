@@ -91,11 +91,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(route, jasmine.any(Function));
-        });
-
-        it('passes the correct callback to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(jasmine.any(String), callback);
+            expect(poller.get).toHaveBeenCalledWith(route);
         });
     });
 
