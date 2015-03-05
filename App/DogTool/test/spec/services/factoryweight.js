@@ -13,8 +13,6 @@ describe('Service: FactoryWeight', function () {
     //variables
     var route, weightID, callback, weight, searchObject, response, returned;
 
-    var returned;
-
     beforeEach(function () {
         angular.mock.inject(function ($injector) {
             //setup mocks

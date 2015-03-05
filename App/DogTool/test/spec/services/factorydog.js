@@ -13,27 +13,25 @@ describe('Service: FactoryDog', function () {
     //variables
     var route, dogID, callback, dog, searchObject, response, returned;
 
-    beforeEach(function () {
-        angular.mock.inject(function ($injector) {
-            //setup mocks
-            $http = $injector.get('$http');
-            poller = $injector.get('poller');
+    beforeEach(inject(function (_poller_, _$http_, _FactoryDog_, ServerAddress) {
+        //setup mocks
+        $http = _$http_;
+        poller = _poller_;
 
-            //get service
-            FactoryDog = $injector.get('FactoryDog');
+        //get service
+        FactoryDog = _FactoryDog_;
 
-            //configure
-            route = 'http://localhost:1337/Dog';
-            dogID = 1;
+        //configure
+        route = ServerAddress + '/Dog';
+        dogID = 1;
 
-            response = {
-                status: 200,
-                message: 'success'
-            };
+        response = {
+            status: 200,
+            message: 'success'
+        };
 
-            returned = null;
-        });
-    });
+        returned = null;
+    }));
 
     describe('get one', function () {
         beforeEach(function () {

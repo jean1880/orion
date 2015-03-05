@@ -50,7 +50,7 @@ angular.module('dogToolApp')
             },
 
             update: function (dog) {
-                return $http.post(route + "/" + dog.id, dog);
+                return $http.post(route + '/' + dog.id, dog);
             }
         };
     });
