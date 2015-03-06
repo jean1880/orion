@@ -5,24 +5,24 @@ describe('Service: FactoryDog', function () {
     beforeEach(module('dogToolApp'));
 
     // instantiate service
-    var FactoryDog;
+    var FactoryDog, SailsRoute;
 
     //mocks
     var $http, poller;
 
     //variables
-    var route, dogID, callback, dog, searchObject, response, returned;
+    var dogID, callback, dog, searchObject, response, returned;
 
-    beforeEach(inject(function (_poller_, _$http_, _FactoryDog_, ServerAddress) {
+    beforeEach(inject(function (_poller_, _$http_, _FactoryDog_, _SailsRoute_) {
         //setup mocks
         $http = _$http_;
         poller = _poller_;
+        SailsRoute = _SailsRoute_;
 
         //get service
         FactoryDog = _FactoryDog_;
 
         //configure
-        route = ServerAddress + '/Dog';
         dogID = 1;
 
         response = {
@@ -45,7 +45,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('makes a call to the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route + '/' + dogID);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Dog.get(dogID));
         });
 
         it('returns the response from sails', function () {
@@ -65,7 +65,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Dog.route);
         });
 
         it('returns the response from sails', function () {
@@ -87,7 +87,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(route);
+            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Dog.route);
         });
     });
 
@@ -108,7 +108,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route, jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.route, jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {
@@ -136,7 +136,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route + '/find', jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.find, jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {

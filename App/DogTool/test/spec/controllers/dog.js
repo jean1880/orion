@@ -12,7 +12,7 @@ describe('Controller: DogCtrl', function () {
     scope,
     FactoryDog,
     $httpBackend,
-    ServerAddress,
+    SailsRoute,
     $location;
 
   //test properties
@@ -30,11 +30,11 @@ describe('Controller: DogCtrl', function () {
   });
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($rootScope, _$httpBackend_, _ServerAddress_, _$location_, _FactoryDog_) {
+  beforeEach(inject(function ($rootScope, _$httpBackend_, _SailsRoute_, _$location_, _FactoryDog_) {
     scope         = $rootScope.$new();
     $httpBackend  = _$httpBackend_;
     $location     = _$location_;
-    ServerAddress = _ServerAddress_;
+    SailsRoute    = _SailsRoute_;
     FactoryDog    = _FactoryDog_;
 
     dog = mockDog();
@@ -42,7 +42,7 @@ describe('Controller: DogCtrl', function () {
   }));
 
   it('gets a dog from factoryDogs', function () {
-    $httpBackend.whenGET(ServerAddress + '/Dog/' + dog.id).respond(200, dog);
+    $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
     spyOn(FactoryDog, 'get').and.callThrough();
 
     DogCtrl = runController();
@@ -52,7 +52,7 @@ describe('Controller: DogCtrl', function () {
 
   describe('when getting a dog is successful', function () {
     beforeEach(function () {
-      $httpBackend.whenGET(ServerAddress + '/Dog/' + dog.id).respond(200, dog);
+      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
     });
 
     it('populates $scope.dog', function () {
@@ -67,7 +67,7 @@ describe('Controller: DogCtrl', function () {
 
   describe('when getting a dog returns a 404', function () {
     beforeEach(function () {
-      $httpBackend.whenGET(ServerAddress + '/Dog/' + dog.id).respond(404, {message: 'not found'});
+      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(404, {message: 'not found'});
     });
 
     it('redirects to homepage', function () {
@@ -81,7 +81,7 @@ describe('Controller: DogCtrl', function () {
 
   describe('editBtn', function () {
     beforeEach(function () {
-      $httpBackend.whenGET(ServerAddress + '/Dog/' + dog.id).respond(dog);
+      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(dog);
       DogCtrl = runController();
     });
 
@@ -96,13 +96,13 @@ describe('Controller: DogCtrl', function () {
 
   describe('saveBtn', function () {
     beforeEach(function () {
-      $httpBackend.whenGET(ServerAddress + '/Dog/' + dog.id).respond(dog);
+      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(dog);
       DogCtrl = runController();
     });
 
     describe('update success', function() {
       beforeEach(function () {
-        $httpBackend.whenPOST(ServerAddress + '/Dog/' + dog.id).respond(200, dog);
+        $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(200, dog);
       });
 
       it('changes the page location to the view page', function () {
@@ -121,7 +121,7 @@ describe('Controller: DogCtrl', function () {
       };
 
       beforeEach(function () {
-        $httpBackend.whenPOST(ServerAddress + '/Dog/' + dog.id).respond(400, response);
+        $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(400, response);
       });
 
       it('does not changes the page location', function () {
