@@ -14,10 +14,6 @@ angular.module('dogToolApp')
         dog: '='
       },
       templateUrl: 'views/directives/dog-card.html',
-      controller: function ($scope, $location) {
-        $scope.onClick = function() {
-          $location.path('/dog/' + $scope.dog.id);
-        };
-      }
+      controller: 'DogCardCtrl'
     };
   });

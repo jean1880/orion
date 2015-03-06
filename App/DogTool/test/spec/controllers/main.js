@@ -8,8 +8,7 @@ describe('Controller: MainCtrl', function () {
   // load the controller's module
   beforeEach(module('dogToolApp'));
 
-  var MainCtrl,
-    scope,
+  var scope,
     FactoryDog,
     $httpBackend,
     SailsRoute,
