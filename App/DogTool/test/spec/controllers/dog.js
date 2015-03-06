@@ -38,14 +38,13 @@ describe('Controller: DogCtrl', function () {
     FactoryDog    = _FactoryDog_;
 
     dog = mockDog();
-
   }));
 
   it('gets a dog from factoryDogs', function () {
     $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
     spyOn(FactoryDog, 'get').and.callThrough();
 
-    DogCtrl = runController();
+    runController();
 
     expect(FactoryDog.get).toHaveBeenCalledWith(dog.id);
   });
@@ -58,7 +57,7 @@ describe('Controller: DogCtrl', function () {
     it('populates $scope.dog', function () {
       spyOn($location, 'path');
 
-      DogCtrl = runController();
+      runController();
 
       expect(scope.dog).toBeDefined();
       expect(scope.dog.id).toBe(dog.id);
@@ -73,7 +72,7 @@ describe('Controller: DogCtrl', function () {
     it('redirects to homepage', function () {
       spyOn($location, 'path');
 
-      DogCtrl = runController();
+      runController();
 
       expect($location.path).toHaveBeenCalledWith('/');
     });
