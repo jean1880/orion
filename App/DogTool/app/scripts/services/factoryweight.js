@@ -7,9 +7,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryWeight', function ($http, ServerAddress, poller) {
-        var route = ServerAddress + '/Weight';
-
+    .factory('FactoryWeight', function ($http, SailsRoute, poller) {
         return {
             /**
              * One time fetch from server for single Weight dataset
@@ -17,21 +15,21 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(route + '/' + id);
+                return $http.get(SailsRoute.Weight.get(id));
             },
             /**
              * One time fetch from server for full Weight dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(route);
+                return $http.get(SailsRoute.Weight.route);
             },
             /**
              * One time fetch from server for full Weight dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(route);
+                return poller.get(SailsRoute.Weight.route);
             },
             /**
              * One time fetch from server for full Weight dataset
@@ -39,7 +37,7 @@ angular.module('dogToolApp')
              * @param weight
              */
             post: function (weight) {
-                return $http.post(route, weight);
+                return $http.post(SailsRoute.Weight.route, weight);
             },
             /**
              * One time fetch from server for full Weight dataset
@@ -47,7 +45,7 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(route + '/find', searchObject);
+                return $http.post(SailsRoute.Weight.find, searchObject);
             }
         };
     });
