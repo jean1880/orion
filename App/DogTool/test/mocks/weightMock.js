@@ -1,21 +1,17 @@
 'use strict';
 
 /* global chance */
-/* exported mockPerson */
+/* exported mockWeight */
 
-function mockPerson(attributes, recurse) {
+function mockWeight(attributes, recurse) {
     attributes = typeof attributes !== 'undefined' ? attributes : {};
     recurse    = typeof recurse    !== 'undefined' ? recurse    : true;
 
-    var person = {
+    var weight = {
     	id: chance.natural(),
-    	Dogs: [],
-    	PeopleType: '',
-    	Referrals: [],
-    	Address: null,
-    	Name: chance.name(),
-    	Email: '',
-    	Phone: ''
+    	Dog: null,
+        DateTaken: chance.date(),
+        Weight: chance.floating({min: 10, max: 25})
     };
 
     if (recurse) {
@@ -23,9 +19,9 @@ function mockPerson(attributes, recurse) {
     }
 
     for (var attribute in attributes) {
-        person[attribute] = attributes[attribute];
+        weight[attribute] = attributes[attribute];
     }
 
 
-    return person;
+    return weight;
 }

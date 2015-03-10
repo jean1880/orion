@@ -46,6 +46,15 @@ angular.module('dogToolApp')
              */
             find: function (searchObject) {
                 return $http.post(SailsRoute.Weight.find, searchObject);
+            },
+
+            /**
+             * Updates a weight
+             * @method update
+             * @param weight
+             */
+            update: function (weight) {
+                return $http.post(SailsRoute.Weight.get(weight.id), weight);
             }
         };
     });

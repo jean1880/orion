@@ -1,5 +1,8 @@
 'use strict';
 
+/* global mockWeight */
+/* global chance */
+
 describe('Service: FactoryWeight', function () {
     // load the service's module
     beforeEach(module('dogToolApp'));
@@ -11,7 +14,7 @@ describe('Service: FactoryWeight', function () {
     var $http, poller;
 
     //variables
-    var weightID, weight, searchObject, response, returned;
+    var response, returned;
 
     beforeEach(inject(function (_FactoryWeight_, _SailsRoute_, _poller_, _$http_) {
         //Set services used by the factory
@@ -22,22 +25,18 @@ describe('Service: FactoryWeight', function () {
         // load factory
         FactoryWeight = _FactoryWeight_;
 
-        //configure
-        weightID = 1;
-
-        response = {
-            status: 200,
-            message: 'success'
-        };
-
         returned = null;
     }));
 
     describe('get one', function () {
-        beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
+        var weight;
 
-            returned = FactoryWeight.get(weightID);
+        beforeEach(function () {
+            weight = mockWeight();
+
+            spyOn($http, 'get').and.returnValue(weight);
+
+            returned = FactoryWeight.get(weight.id);
         });
 
         it('makes a call to sails get', function () {
@@ -45,17 +44,25 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('makes a call to the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.get(weightID));
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.get(weight.id));
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(weight);
         });
     });
 
     describe('get all', function () {
+        var weights;
+
         beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
+            weights = [];
+
+            for (var i = chance.natural({min: 5, max: 10}); i >= 0; i--) {
+                weights.push(mockWeight());
+            }
+
+            spyOn($http, 'get').and.returnValue(weights);
 
             returned = FactoryWeight.getAll();
         });
@@ -69,7 +76,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(weights);
         });
     });
 
@@ -89,13 +96,12 @@ describe('Service: FactoryWeight', function () {
     });
 
     describe('post', function () {
-        beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
+        var weight;
 
-            weight = {
-                id: 1,
-                name: 'billy'
-            };
+        beforeEach(function () {
+            weight = mockWeight();
+
+            spyOn($http, 'post').and.returnValue(weight);
 
             returned = FactoryWeight.post(weight);
         });
@@ -113,16 +119,20 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(weight);
         });
     });
 
     describe('find', function () {
+        var weight, searchObject;
+
         beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
+            weight = mockWeight();
+
+            spyOn($http, 'post').and.returnValue(weight);
 
             searchObject = {
-                name: 'billy'
+                DateTaken: weight.DateTaken
             };
 
             returned = FactoryWeight.find(searchObject);
@@ -141,7 +151,35 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(weight);
+        });
+    });
+
+    describe('update', function () {
+        var weight;
+
+        beforeEach(function () {
+            weight = mockWeight();
+
+            spyOn($http, 'post').and.returnValue(weight);
+
+            returned = FactoryWeight.update(weight);
+        });
+
+        it('makes a call to sails post', function () {
+            expect($http.post).toHaveBeenCalled();
+        });
+
+        it('passes the correct route to sails', function () {
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.get(weight.id), jasmine.any(Object));
+        });
+
+        it('passes the correct weight to sails', function () {
+            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), weight);
+        });
+
+        it('returns the response from sails', function () {
+            expect(returned).toBe(weight);
         });
     });
 });
