@@ -15,7 +15,6 @@ describe('Controller: DogCtrl', function () {
     SailsRoute,
     $location;
 
-
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($rootScope, _$httpBackend_, _SailsRoute_, _$location_, _FactoryDog_) {
     scope         = $rootScope.$new();
@@ -30,8 +29,8 @@ describe('Controller: DogCtrl', function () {
 
     var runController = inject(function ($controller) {
       var ctrl = $controller('DogCtrl', {
-        $scope: scope,
-      });
+        $scope: scope
+      })
 
       $httpBackend.flush();
 
@@ -46,25 +45,25 @@ describe('Controller: DogCtrl', function () {
       }
     }));
 
-    it('gets all factoryDogs from factoryDogs', function () {
-      $httpBackend.whenGET(SailsRoute.Dog.route).respond(200, dogs);
-      spyOn(FactoryDog, 'getAll').and.callThrough();
+    describe('when the controller is loaded', function () {
+      beforeEach(function () {
+        $httpBackend.whenGET(SailsRoute.Dog.route).respond(200, dogs);
+        spyOn(FactoryDog, 'getAll').and.callThrough();
+        runController();
+      });
 
-      runController();
-
-      expect(FactoryDog.getAll).toHaveBeenCalled();
+      it('gets all dogs from factoryDogs', function () {
+        expect(FactoryDog.getAll).toHaveBeenCalled();
+      });
     });
 
     describe('when getting all dogs is successful', function () {
       beforeEach(function () {
         $httpBackend.whenGET(SailsRoute.Dog.route).respond(200, dogs);
+        runController();
       });
 
       it('populates $scope.dogs', function () {
-        spyOn($location, 'path');
-
-        runController();
-
         expect(scope.dogs).toBeDefined();
         expect(scope.dogs.length).toBe(dogs.length);
       });
@@ -73,35 +72,38 @@ describe('Controller: DogCtrl', function () {
     describe('when getting a dog returns a 404', function () {
       beforeEach(function () {
         $httpBackend.whenGET(SailsRoute.Dog.route).respond(404, {message: 'not found'});
+        runController();
+      });
+
+      it('does stuff', function () {
+
       });
     });
 
     describe('$scope.editBtn', function () {
       beforeEach(function () {
+        spyOn($location, 'path');
         $httpBackend.whenGET(SailsRoute.Dog.route).respond(200, dogs);
+
         runController();
+        scope.editBtn();
       });
 
       it('doesn\'t change the page location', function () {
-        spyOn($location, 'path');
-
-        scope.editBtn();
-
         expect($location.path).not.toHaveBeenCalled();
       });
     });
 
     describe('$scope.saveBtn', function () {
       beforeEach(function () {
+        spyOn(FactoryDog, 'update');
         $httpBackend.whenGET(SailsRoute.Dog.route).respond(200, dogs);
+
         runController();
+        scope.saveBtn();
       });
 
       it('doesn\'t attempt to update the dog', function () {
-        spyOn(FactoryDog, 'update');
-
-        scope.saveBtn();
-
         expect(FactoryDog.update).not.toHaveBeenCalled();
       });
     });
@@ -125,26 +127,26 @@ describe('Controller: DogCtrl', function () {
       dog = mockDog();
     }));
 
+    describe('when the controller is loaded', function() {
+      beforeEach(function () {
+        $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
+        spyOn(FactoryDog, 'get').and.callThrough();
+        runController();
+      });
 
-    it('gets a dog from factoryDogs', function () {
-      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
-      spyOn(FactoryDog, 'get').and.callThrough();
-
-      runController();
-
-      expect(FactoryDog.get).toHaveBeenCalledWith(dog.id);
+      it('gets a dog from factoryDogs', function () {
+        expect(FactoryDog.get).toHaveBeenCalledWith(dog.id);
+      });
     });
 
     describe('when getting a dog is successful', function () {
       beforeEach(function () {
+        spyOn($location, 'path');
         $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
+        runController();
       });
 
       it('populates $scope.dog', function () {
-        spyOn($location, 'path');
-
-        runController();
-
         expect(scope.dog).toBeDefined();
         expect(scope.dog.id).toBe(dog.id);
       });
@@ -152,29 +154,26 @@ describe('Controller: DogCtrl', function () {
 
     describe('when getting a dog returns a 404', function () {
       beforeEach(function () {
+        spyOn($location, 'path');
         $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(404, {message: 'not found'});
+
+        runController();
       });
 
       it('redirects to homepage', function () {
-        spyOn($location, 'path');
-
-        runController();
-
         expect($location.path).toHaveBeenCalledWith('/');
       });
     });
 
     describe('$scope.editBtn', function () {
       beforeEach(function () {
+        spyOn($location, 'path');
         $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(dog);
         runController();
+        scope.editBtn();
       });
 
       it('changes the page location to the edit page', function () {
-        spyOn($location, 'path');
-
-        scope.editBtn();
-
         expect($location.path).toHaveBeenCalledWith('/dog/' + dog.id + '/edit');
       });
     });
@@ -185,27 +184,16 @@ describe('Controller: DogCtrl', function () {
         runController();
       });
 
-      it('attempts to update the dog', function () {
-        $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(200, dog);
-        spyOn(FactoryDog, 'update').and.callThrough();
-
-        scope.saveBtn();
-        $httpBackend.flush();
-
-        expect(FactoryDog.update).toHaveBeenCalled();
-      });
-
       describe('update success', function() {
         beforeEach(function () {
-          $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(200, dog);
-        });
-
-        it('changes the page location to the view page', function () {
           spyOn($location, 'path');
+          $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(200, dog);
 
           scope.saveBtn();
           $httpBackend.flush();
+        });
 
+        it('changes the page location to the view page', function () {
           expect($location.path).toHaveBeenCalledWith('/dog/' + dog.id);
         });
       });
