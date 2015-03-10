@@ -32,7 +32,7 @@ describe('Controller: DogCardCtrl', function () {
       scope.onClick();
     });
 
-    it('changes the location to the dog view page', function ($location) {
+    it('changes the location to the dog view page', function () {
       expect($location.path).toHaveBeenCalledWith('/dog/' + dog.id);
     });
   });

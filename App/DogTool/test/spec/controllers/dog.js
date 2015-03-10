@@ -30,7 +30,7 @@ describe('Controller: DogCtrl', function () {
     var runController = inject(function ($controller) {
       var ctrl = $controller('DogCtrl', {
         $scope: scope
-      })
+      });
 
       $httpBackend.flush();
 

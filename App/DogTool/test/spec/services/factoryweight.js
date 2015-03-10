@@ -11,29 +11,27 @@ describe('Service: FactoryWeight', function () {
     var $http, poller;
 
     //variables
-    var weightID, callback, weight, searchObject, response, returned;
+    var weightID, weight, searchObject, response, returned;
 
-    beforeEach(function () {
-        angular.mock.inject(function ($injector) {
-            //setup mocks
-            $http = $injector.get('$http');
-            poller = $injector.get('poller');
+    beforeEach(inject(function (_FactoryWeight_, _SailsRoute_, _poller_, _$http_) {
+        //Set services used by the factory
+        $http = _$http_;
+        poller = _poller_;
+        SailsRoute = _SailsRoute_;
 
-            //get service
-            FactoryWeight = $injector.get('FactoryWeight');
-            SailsRoute = $injector.get('SailsRoute');
+        // load factory
+        FactoryWeight = _FactoryWeight_;
 
-            //configure
-            weightID = 1;
+        //configure
+        weightID = 1;
 
-            response = {
-                status: 200,
-                message: 'success'
-            };
+        response = {
+            status: 200,
+            message: 'success'
+        };
 
-            returned = null;
-        });
-    });
+        returned = null;
+    }));
 
     describe('get one', function () {
         beforeEach(function () {
@@ -78,13 +76,10 @@ describe('Service: FactoryWeight', function () {
     describe('listen', function () {
         beforeEach(function () {
             spyOn(poller, 'get').and.returnValue(response);
-
-            callback = function () {};
-
-            FactoryWeight.listen(callback);
+            FactoryWeight.listen();
         });
 
-        it('starts to sails on', function () {
+        it('starts listening for changes', function () {
             expect(poller.get).toHaveBeenCalled();
         });
 
