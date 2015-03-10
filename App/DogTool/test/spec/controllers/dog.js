@@ -1,6 +1,6 @@
 'use strict';
 
-/* global mockDog */
+/* global Mockery */
 /* global chance */
 
 describe('Controller: DogCtrl', function () {
@@ -41,7 +41,7 @@ describe('Controller: DogCtrl', function () {
       dogs = [];
 
       for (var i = chance.natural({min: 5, max: 10}); i >= 0; i--) {
-        dogs.push(mockDog());
+        dogs.push(Mockery.mockDog());
       }
     }));
 
@@ -124,7 +124,7 @@ describe('Controller: DogCtrl', function () {
     });
 
     beforeEach(inject(function () {
-      dog = mockDog();
+      dog = Mockery.mockDog();
     }));
 
     describe('when the controller is loaded', function() {

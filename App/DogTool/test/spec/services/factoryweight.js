@@ -1,6 +1,6 @@
 'use strict';
 
-/* global mockWeight */
+/* global Mockery */
 /* global chance */
 
 describe('Service: FactoryWeight', function () {
@@ -32,7 +32,7 @@ describe('Service: FactoryWeight', function () {
         var weight;
 
         beforeEach(function () {
-            weight = mockWeight();
+            weight = Mockery.mockWeight();
 
             spyOn($http, 'get').and.returnValue(weight);
 
@@ -59,7 +59,7 @@ describe('Service: FactoryWeight', function () {
             weights = [];
 
             for (var i = chance.natural({min: 5, max: 10}); i >= 0; i--) {
-                weights.push(mockWeight());
+                weights.push(Mockery.mockWeight());
             }
 
             spyOn($http, 'get').and.returnValue(weights);
@@ -99,7 +99,7 @@ describe('Service: FactoryWeight', function () {
         var weight;
 
         beforeEach(function () {
-            weight = mockWeight();
+            weight = Mockery.mockWeight();
 
             spyOn($http, 'post').and.returnValue(weight);
 
@@ -127,7 +127,7 @@ describe('Service: FactoryWeight', function () {
         var weight, searchObject;
 
         beforeEach(function () {
-            weight = mockWeight();
+            weight = Mockery.mockWeight();
 
             spyOn($http, 'post').and.returnValue(weight);
 
@@ -159,7 +159,7 @@ describe('Service: FactoryWeight', function () {
         var weight;
 
         beforeEach(function () {
-            weight = mockWeight();
+            weight = Mockery.mockWeight();
 
             spyOn($http, 'post').and.returnValue(weight);
 

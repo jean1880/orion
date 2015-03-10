@@ -1,9 +1,10 @@
 'use strict';
 
 /* global chance */
+/* global Mockery */
 /* exported mockPerson */
 
-function mockPerson(attributes, recurse) {
+Mockery.mockPerson = function (attributes, recurse) {
     attributes = typeof attributes !== 'undefined' ? attributes : {};
     recurse    = typeof recurse    !== 'undefined' ? recurse    : true;
 

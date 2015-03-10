@@ -1,6 +1,6 @@
 'use strict';
 
-/* global mockDog */
+/* global Mockery */
 /* global chance */
 
 describe('Service: FactoryDog', function () {
@@ -32,7 +32,7 @@ describe('Service: FactoryDog', function () {
         var dog;
 
         beforeEach(function () {
-            dog = mockDog();
+            dog = Mockery.mockDog();
 
             spyOn($http, 'get').and.returnValue(dog);
 
@@ -59,7 +59,7 @@ describe('Service: FactoryDog', function () {
             dogs = [];
 
             for (var i = chance.natural({min: 5, max: 10}); i >= 0; i--) {
-                dogs.push(mockDog());
+                dogs.push(Mockery.mockDog());
             }
 
             spyOn($http, 'get').and.returnValue(dogs);
@@ -82,7 +82,7 @@ describe('Service: FactoryDog', function () {
 
     describe('listen', function () {
         beforeEach(function () {
-            spyOn(poller, 'get').and.returnValue(response);
+            spyOn(poller, 'get');
             FactoryDog.listen();
         });
 
@@ -101,7 +101,7 @@ describe('Service: FactoryDog', function () {
         beforeEach(function () {
             spyOn($http, 'post').and.returnValue(response);
 
-            dog = mockDog();
+            dog = Mockery.mockDog();
 
             returned = FactoryDog.post(dog);
         });
@@ -127,7 +127,7 @@ describe('Service: FactoryDog', function () {
         var dog;
 
         beforeEach(function () {
-            dog = mockDog();
+            dog = Mockery.mockDog();
 
             spyOn($http, 'post').and.returnValue(dog);
 
@@ -159,7 +159,7 @@ describe('Service: FactoryDog', function () {
         var dog;
 
         beforeEach(function () {
-            dog = mockDog();
+            dog = Mockery.mockDog();
 
             spyOn($http, 'post').and.returnValue(dog);
 

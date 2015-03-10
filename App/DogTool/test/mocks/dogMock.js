@@ -1,9 +1,10 @@
 'use strict';
 
+/* global Mockery */
 /* global chance */
 /* exported mockDog */
 
-function mockDog(attributes, recurse) {
+Mockery.mockDog = function (attributes, recurse) {
     attributes = typeof attributes !== 'undefined' ? attributes : {};
     recurse    = typeof recurse    !== 'undefined' ? recurse    : true;
 
@@ -25,7 +26,8 @@ function mockDog(attributes, recurse) {
     };
 
     if (recurse) {
-
+        var weight = this.mockWeight({ Dog: dog.id }, false);
+        dog.Weights.push(weight);
     }
 
     for (var attribute in attributes) {

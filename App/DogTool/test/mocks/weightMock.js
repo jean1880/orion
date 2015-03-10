@@ -1,9 +1,10 @@
 'use strict';
 
+/* global Mockery */
 /* global chance */
 /* exported mockWeight */
 
-function mockWeight(attributes, recurse) {
+Mockery.mockWeight = function (attributes, recurse) {
     attributes = typeof attributes !== 'undefined' ? attributes : {};
     recurse    = typeof recurse    !== 'undefined' ? recurse    : true;
 
