@@ -18,25 +18,32 @@ angular
     'ngTouch',
     'emguo.poller',
     'ui.bootstrap',
-    'ui.bootstrap.showErrors'
+    'ui.bootstrap.showErrors',
+    'angular-flash.service',
+    'angular-flash.flash-alert-directive'
   ])
-  .config(function ($routeProvider, pollerConfig) {
+  .config(function ($routeProvider, pollerConfig, flashProvider) {
+    flashProvider.successClassnames.push('alert-success');
+    flashProvider.infoClassnames.push('alert-info');
+    flashProvider.warnClassnames.push('alert-warning');
+    flashProvider.errorClassnames.push('alert-danger');
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/dog/list.html',
-        controller: 'DogCtrl'
+        controller: 'DogListCtrl'
       })
       .when('/dog', {
         templateUrl: 'views/dog/list.html',
-        controller: 'DogCtrl'
+        controller: 'DogListCtrl'
       })
       .when('/dog/:id', {
         templateUrl: 'views/dog/view.html',
-        controller: 'DogCtrl'
+        controller: 'DogViewCtrl'
       })
       .when('/dog/:id/edit', {
         templateUrl: 'views/dog/edit.html',
-        controller: 'DogCtrl'
+        controller: 'DogEditCtrl'
       })
       .otherwise({
         redirectTo: '/'

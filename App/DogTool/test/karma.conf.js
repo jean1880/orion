@@ -34,11 +34,13 @@ module.exports = function(config) {
       'bower_components/angular-bootstrap-show-errors/src/showErrors.js',
       'bower_components/moment/moment.js',
       'bower_components/angular-moment/angular-moment.js',
+      'bower_components/angular-flash/dist/angular-flash.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/chance/chance.js',
       // endbower
       'app/views/**/*.html',
       'app/scripts/**/*.js',
+      'test/mocks/Mockery.js',
       'test/mocks/**/*.js',
       'test/factories/**/*.js',
       'test/spec/**/*.js'

@@ -13,8 +13,8 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/views/dog/edit.css">
     <link rel="stylesheet" href="styles/directives/dog-card.css">
     <!-- endbuild -->
@@ -56,6 +56,14 @@
         </div>
     </div>
 
+    <div class="container flash-container">
+        <div class="col-xs-12">
+            <div flash-alert active-class="in alert" class="fade" duration="3000">
+                <span class="alert-message">{{flash.message}}</span>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div ng-view=""></div>
     </div>
@@ -83,22 +91,22 @@
     <script src="bower_components/angular-bootstrap-show-errors/src/showErrors.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/angular-flash/dist/angular-flash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
     <script src="scripts/services/factorydog.js"></script>
     <script src="scripts/services/factoryweight.js"></script>
+    <script src="scripts/services/serveraddress.js"></script>
+    <script src="scripts/services/sailsroute.js"></script>
+    <script src="scripts/controllers/dog-list.js"></script>
+    <script src="scripts/controllers/dog-view.js"></script>
+    <script src="scripts/controllers/dog-edit.js"></script>
+    <script src="scripts/controllers/dog-card.js"></script>
     <script src="scripts/directives/appheader.js"></script>
     <script src="scripts/directives/appfooter.js"></script>
     <script src="scripts/directives/dog-card.js"></script>
-    <script src="scripts/services/serveraddress.js"></script>
-    <script src="scripts/controllers/dog-list-filters.js"></script>
-    <script src="scripts/controllers/dog.js"></script>
-    <script src="scripts/services/sailsroute.js"></script>
-    <script src="scripts/controllers/dog-card.js"></script>
     <!-- endbuild -->
 </body>
 

@@ -1,6 +1,6 @@
 'use strict';
 
-/* global mockDog */
+/* global Mockery */
 
 describe('Directive: dogCard', function () {
 
@@ -20,7 +20,7 @@ describe('Directive: dogCard', function () {
     $scope = $rootScope.$new();
     $location = _$location_;
 
-    dog = mockDog();
+    dog = Mockery.mockDog();
 
     $scope.dog = dog;
 
