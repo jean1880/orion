@@ -1,19 +1,19 @@
 'use strict';
 
-describe('Service: factorydaycare', function () {
+describe('Service: FactoryDaycare', function () {
 
   // load the service's module
   beforeEach(module('dogToolApp'));
 
   // instantiate service
-  var factorydaycare;
-      $http;
+  var factorydaycare,
+      $http,
 	  SailsRoute;
   
   beforeEach(inject(function($injector) {
-    factorydaycare = $injector.get('factorydaycare');
-	$http = injector.get('$http');
-	SailsRoute = $injector.get('SailsRoute');
+    factorydaycare = $injector.get('FactoryDaycare');
+	$http          = $injector.get('$http');
+	SailsRoute     = $injector.get('SailsRoute');
   }));
   
 	
@@ -35,7 +35,7 @@ describe('Service: factorydaycare', function () {
     });
 	
 	it('will get the correct daycare from sails', function () {
-		expect($http.get).toHaveBeenCalledWith(SailsRoute.daycare.get(daycareID));
+		expect($http.get).toHaveBeenCalledWith(SailsRoute.Daycare.get(daycareID));
 	});
 	
 	it('will return the response from sails', function () {
@@ -50,7 +50,7 @@ describe('Service: factorydaycare', function () {
 	beforeEach(function () {
 	  daycare = Mockery.mockDaycare();
 	  
-	  spyOn(%http, 'post').and.returnValue(daycare);
+	  spyOn($http, 'post').and.returnValue(daycare);
 	
 	  returned = factorydaycare.post(daycare);
 	});

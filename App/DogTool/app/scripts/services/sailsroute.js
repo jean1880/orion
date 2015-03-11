@@ -22,7 +22,8 @@ angular.module('dogToolApp')
     };
 
     return {
-      Dog: buildRoutes('dog'),
+      Daycare: buildRoutes('daycare'),
+	  Dog: buildRoutes('dog'),
       Weight: buildRoutes('weight')
     };
   });

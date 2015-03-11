@@ -6,8 +6,8 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryDaycare', function ($http, ServerAddress, poller) {
-        var route = ServerAddress + '/Daycare';
+    .factory('FactoryDaycare', function ($http, SailsRoute, poller) {
+        
 
         return {
             /**
@@ -16,21 +16,21 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(route + '/' + id);
+                return $http.get(SailsRoute.Daycare.get(id));
             },
             /**
              * One time fetch from server for full Daycare dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(route);
+                return $http.get(SailsRoute.Daycare.route);
             },
             /**
              * One time fetch from server for full Daycare dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(route);
+                return poller.get(SailsRoute.Daycare.route);
             },
             /**
              * One time fetch from server for full Daycare dataset
@@ -38,7 +38,7 @@ angular.module('dogToolApp')
              * @param daycare
              */
             post: function (daycare) {
-                return $http.post(route, daycare);
+                return $http.post(SailsRoute.Daycare.route, daycare);
             },
             /**
              * One time fetch from server for full Daycare dataset
@@ -46,11 +46,11 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(route + '/find', searchObject);
+                return $http.post(SailsRoute.Daycare.find, searchObject);
             },
 
             update: function (object) {
-                return $http.post(route + "/" + object.id, object);
+                return $http.post(SailsRoute.Daycare.get(object.id), object);
             }
         };
     });
