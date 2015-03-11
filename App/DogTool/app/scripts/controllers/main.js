@@ -12,7 +12,7 @@ angular.module('dogToolApp')
         $scope.dogs = null;
 
         var init = function () {
-            FactoryDog.getAll().then(function (data, status) {
+            FactoryHomework.getAll().then(function (data, status) {
                 if (status === 200) {
                     $scope.dogs = data;
                 }
