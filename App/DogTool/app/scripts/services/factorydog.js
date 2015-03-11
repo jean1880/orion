@@ -6,9 +6,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryDog', function ($http, ServerAddress, poller) {
-        var route = ServerAddress + '/Dog';
-
+    .factory('FactoryDog', function ($http, SailsRoute, poller) {
         return {
             /**
              * One time fetch from server for single Weight dataset
@@ -16,29 +14,29 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(route + '/' + id);
+                return $http.get(SailsRoute.Dog.get(id));
             },
             /**
              * One time fetch from server for full Weight dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(route);
+                return $http.get(SailsRoute.Dog.route);
             },
             /**
              * One time fetch from server for full Weight dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(route);
+                return poller.get(SailsRoute.Dog.route);
             },
             /**
              * One time fetch from server for full Weight dataset
              * @method post
              * @param weight
              */
-            post: function (weight) {
-                return $http.post(route, weight);
+            post: function (dog) {
+                return $http.post(SailsRoute.Dog.route, dog);
             },
             /**
              * One time fetch from server for full Weight dataset
@@ -46,11 +44,11 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(route + '/find', searchObject);
+                return $http.post(SailsRoute.Dog.find, searchObject);
             },
 
             update: function (dog) {
-                return $http.post(route + "/" + dog.id, dog);
+                return $http.post(SailsRoute.Dog.get(dog.id), dog);
             }
         };
     });
