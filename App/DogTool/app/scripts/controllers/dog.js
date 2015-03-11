@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogCtrl', function ($scope, $routeParams, $location, FactoryDog) {
+  .controller('DogCtrl', function ($scope, $routeParams, $location, FactoryDog, flash) {
     var init = function() {
       if($routeParams.id) {
         loadDog($routeParams.id);
@@ -37,7 +37,10 @@ angular.module('dogToolApp')
 
       FactoryDog.getAll()
         .success(function (response) {
-            $scope.dogs = response;
+          $scope.dogs = response;
+        })
+        .error(function (response) {
+          flash.error = 'A error occured while loading dogs.';
         });
     };
 

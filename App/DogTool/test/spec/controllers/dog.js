@@ -13,15 +13,17 @@ describe('Controller: DogCtrl', function () {
     FactoryDog,
     $httpBackend,
     SailsRoute,
-    $location;
+    $location,
+    flash;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($rootScope, _$httpBackend_, _SailsRoute_, _$location_, _FactoryDog_) {
+  beforeEach(inject(function ($injector, $rootScope) {
     scope         = $rootScope.$new();
-    $httpBackend  = _$httpBackend_;
-    $location     = _$location_;
-    SailsRoute    = _SailsRoute_;
-    FactoryDog    = _FactoryDog_;
+    $httpBackend  = $injector.get('$httpBackend');
+    $location     = $injector.get('$location');
+    SailsRoute    = $injector.get('SailsRoute');
+    FactoryDog    = $injector.get('FactoryDog');
+    flash         = $injector.get('flash');
   }));
 
   describe('with no routeParams,', function() {
@@ -75,8 +77,8 @@ describe('Controller: DogCtrl', function () {
         runController();
       });
 
-      it('does stuff', function () {
-
+      it('prints a flash message', function () {
+        expect(flash.error).not.toBeUndefined();
       });
     });
 
