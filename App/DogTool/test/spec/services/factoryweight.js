@@ -5,15 +5,13 @@ describe('Service: FactoryWeight', function () {
     beforeEach(module('dogToolApp'));
 
     // instantiate service
-    var FactoryWeight;
+    var FactoryWeight, SailsRoute;
 
     //mocks
     var $http, poller;
 
     //variables
-    var route, weightID, callback, weight, searchObject, response, returned;
-
-    var returned;
+    var weightID, callback, weight, searchObject, response, returned;
 
     beforeEach(function () {
         angular.mock.inject(function ($injector) {
@@ -23,9 +21,9 @@ describe('Service: FactoryWeight', function () {
 
             //get service
             FactoryWeight = $injector.get('FactoryWeight');
+            SailsRoute = $injector.get('SailsRoute');
 
             //configure
-            route = 'http://localhost:1337/Weight';
             weightID = 1;
 
             response = {
@@ -49,7 +47,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('makes a call to the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route + '/' + weightID);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.get(weightID));
         });
 
         it('returns the response from sails', function () {
@@ -69,7 +67,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.route);
         });
 
         it('returns the response from sails', function () {
@@ -91,7 +89,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(route);
+            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Weight.route);
         });
     });
 
@@ -112,7 +110,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route, jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.route, jasmine.any(Object));
         });
 
         it('passes the correct weight to sails', function () {
@@ -140,7 +138,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route + '/find', jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.find, jasmine.any(Object));
         });
 
         it('passes the correct weight to sails', function () {

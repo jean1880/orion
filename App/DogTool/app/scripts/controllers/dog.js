@@ -9,33 +9,54 @@
  */
 angular.module('dogToolApp')
   .controller('DogCtrl', function ($scope, $routeParams, $location, FactoryDog) {
-    var dogID = $routeParams.id;
-    FactoryDog.get(dogID)
-      .success(function(response) {
-        var dog = response;
+    var init = function() {
+      if($routeParams.id) {
+        loadDog($routeParams.id);
+      }
+      else {
+        loadAllDogs();
+      }
+    };
+    
+    var loadDog = function (id) {
+      FactoryDog.get(id)
+        .success(function (response) {
+          var dog = response;
 
-        dog.Birthdate = dog.Age;
+          dog.AgeYears = new Date().getYear() - new Date(dog.Age).getYear();
 
-        dog.Age = new Date().getYear() - new Date(dog.Birthdate).getYear();
+          $scope.dog = dog;
+        })
+        .error(function () {
+          $location.path('/');
+        });
+    };
 
-        $scope.dog = dog;
-      })
-      .error(function(response) {
-        $scope.errorMsg = "An error occured. :(";
-      });
+    var loadAllDogs = function () {
+      $scope.dogs = null;
+
+      FactoryDog.getAll()
+        .success(function (response) {
+            $scope.dogs = response;
+        });
+    };
 
     $scope.editBtn = function() {
-      $location.path("/dog/" + dogID + "/edit");
-    }
+      if($scope.dog){
+        $location.path('/dog/' + $scope.dog.id + '/edit');
+      }
+    };
 
     $scope.saveBtn = function() {
-      FactoryDog.update($scope.dog)
-        .success(function (response) {
-          $location.path("/dog/" + dogID);
-        })
-        .error(function (response) {
-          console.log(response);
-          $scope.errorMsg = "An error occured. :(";
-        });
-    }
+      if($scope.dog){
+        FactoryDog.update($scope.dog)
+          .success(function () {
+            $location.path('/dog/' + $scope.dog.id);
+          })
+          .error(function () {
+          });
+      }
+    };
+
+    init();
   });
