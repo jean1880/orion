@@ -198,6 +198,10 @@ describe('Controller: DogCtrl', function () {
         it('changes the page location to the view page', function () {
           expect($location.path).toHaveBeenCalledWith('/dog/' + dog.id);
         });
+
+        it('sends a success flash', function () {
+          expect(flash.success).not.toBeUndefined();
+        });
       });
 
       describe('with invalid data', function() {
@@ -207,15 +211,19 @@ describe('Controller: DogCtrl', function () {
 
         beforeEach(function () {
           $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(400, response);
-        });
 
-        it('does not changes the page location', function () {
           spyOn($location, 'path');
 
           scope.saveBtn();
           $httpBackend.flush();
+        });
 
+        it('does not changes the page location', function () {
           expect($location.path).not.toHaveBeenCalled();
+        });
+
+        it('sends a error flash', function () {
+          expect(flash.error).not.toBeUndefined();
         });
       });
     });

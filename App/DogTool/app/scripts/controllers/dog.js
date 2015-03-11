@@ -39,7 +39,7 @@ angular.module('dogToolApp')
         .success(function (response) {
           $scope.dogs = response;
         })
-        .error(function (response) {
+        .error(function () {
           flash.error = 'A error occured while loading dogs.';
         });
     };
@@ -54,9 +54,11 @@ angular.module('dogToolApp')
       if($scope.dog){
         FactoryDog.update($scope.dog)
           .success(function () {
+            flash.success = 'Changes saved';
             $location.path('/dog/' + $scope.dog.id);
           })
           .error(function () {
+            flash.error = 'Error saving dog';
           });
       }
     };
