@@ -11,6 +11,8 @@ angular.module('dogToolApp')
   .controller('DogEditCtrl', function ($scope, $routeParams, $location, FactoryDog, flash) {
     var init = function() {
       loadDog($routeParams.id);
+
+      $scope.saveBtnText = 'Save Changes';
     };
 
     var loadDog = function (id) {

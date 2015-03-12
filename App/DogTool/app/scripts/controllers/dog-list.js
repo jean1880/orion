@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogListCtrl', function ($scope, $routeParams, $location, FactoryDog, flash) {
+  .controller('DogListCtrl', function ($scope, $location, FactoryDog, flash) {
     var init = function() {
       loadAllDogs();
     };
@@ -23,6 +23,10 @@ angular.module('dogToolApp')
         .error(function () {
           flash.error = 'A error occured while loading dogs.';
         });
+    };
+
+    $scope.addBtnClick = function () {
+      $location.path('/dog/new');
     };
 
     init();
