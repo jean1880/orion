@@ -1,10 +1,11 @@
 <form class="dog-edit" novalidate>
   <div class="row">
     <div class="col-xs-12 col-sm-2 col-sm-push-10">
-      <button class="btn btn-primary pull-right save-btn" ng-click="saveBtn()">Save Changes</button>
+      <button class="btn btn-primary pull-right save-btn" ng-click="saveBtn()">{{saveBtnText}}</button>
     </div>
     <div class="col-xs-12 col-sm-10 col-sm-pull-2">
       <div class="form-group" show-errors>
+        <label for="name">Name</label>
         <input type="text" class="form-control" name="name" ng-model="dog.Name" ng-required/>
       </div>
     </div>
