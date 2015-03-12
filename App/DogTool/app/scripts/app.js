@@ -49,6 +49,5 @@ angular
         redirectTo: '/'
       });
     // set sails server url
-    pollerConfig.stopOnStateChange = true; // If you use $stateProvider from ui-router.
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
   });
