@@ -8,13 +8,11 @@
  * Service in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .service('SailsRoute', function () {
-    var server = 'http://localhost:1337';
-
+  .service('SailsRoute', function (ServerAddress) {
     var buildRoutes = function (objectName) {
       return {
-        route: server + '/' + objectName,
-        find: server + '/' + objectName + '/find',
+        route: ServerAddress + '/' + objectName,
+        find: ServerAddress + '/' + objectName + '/find',
         get: function(id) {
           return this.route + '/' + id;
         }
