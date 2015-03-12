@@ -8,11 +8,10 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogListCtrl', function ($scope, $routeParams, $location, FactoryDog, flash) {
+  .controller('DogListCtrl', function ($scope, FactoryDog, flash) {
     var init = function() {
       loadAllDogs();
     };
-
     var loadAllDogs = function () {
       $scope.dogs = null;
 
