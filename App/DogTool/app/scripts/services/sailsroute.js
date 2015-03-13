@@ -23,6 +23,7 @@ angular.module('dogToolApp')
 
     return {
       Dog: buildRoutes('dog'),
-      Weight: buildRoutes('weight')
+      Weight: buildRoutes('weight'),
+      Note: buildRoutes('note')
     };
   });
