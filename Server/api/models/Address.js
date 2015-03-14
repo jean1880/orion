@@ -14,11 +14,7 @@
 module.exports = {
 
     attributes: {
-        StreetName: {
-            type: 'string',
-            required: true
-        },
-        StreetNum: {
+        Street: {
             type: 'string',
             required: true
         },
