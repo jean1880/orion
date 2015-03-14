@@ -32,7 +32,7 @@ describe('Service: FactoryNote', function () {
         var note;
 
         beforeEach(function () {
-            dog = Mockery.mockNote();
+            note = Mockery.mockNote();
 
             spyOn($http, 'get').and.returnValue(note);
 
@@ -83,7 +83,7 @@ describe('Service: FactoryNote', function () {
     describe('listen', function () {
         beforeEach(function () {
             spyOn(poller, 'get');
-            FactoryDog.listen();
+            FactoryNote.listen();
         });
 
         it('starts to sails on', function () {
@@ -135,7 +135,7 @@ describe('Service: FactoryNote', function () {
                 name: note.name
             };
 
-            returned = Factorynote.find(searchObject);
+            returned = FactoryNote.find(searchObject);
         });
 
         it('makes a call to sails post', function () {
