@@ -28,7 +28,6 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/sails.io.js/dist/sails.io.js',
       'bower_components/angular-poller/angular-poller.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-bootstrap-show-errors/src/showErrors.js',

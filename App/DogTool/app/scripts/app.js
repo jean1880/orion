@@ -37,6 +37,10 @@ angular
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl'
       })
+      .when('/dog/new', {
+        templateUrl: 'views/dog/edit.html',
+        controller: 'DogNewCtrl'
+      })
       .when('/dog/:id', {
         templateUrl: 'views/dog/view.html',
         controller: 'DogViewCtrl'
@@ -49,6 +53,5 @@ angular
         redirectTo: '/'
       });
     // set sails server url
-    pollerConfig.stopOnStateChange = true; // If you use $stateProvider from ui-router.
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
   });
