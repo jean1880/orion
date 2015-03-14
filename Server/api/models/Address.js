@@ -36,7 +36,7 @@ module.exports = {
         BusinessInfo: {
             model: 'business_info'
         },
-        Peoples: {
+        People: {
             model: 'people'
         }
     }
