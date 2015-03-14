@@ -22,7 +22,8 @@ describe('Service: FactoryDaycare', function () {
 	returned 	   = null
   }));
   
-	
+
+  //Testing get() function
   describe('get()', function () {
 	var daycareID;
 	var response;
@@ -49,6 +50,7 @@ describe('Service: FactoryDaycare', function () {
     });
   });
   
+  //testing getAll() function
   describe('getAll()', function () {
         var daycares;
 
@@ -77,6 +79,7 @@ describe('Service: FactoryDaycare', function () {
         });
     });
   
+  //Testing listen() function
   describe('listen()', function () {
 	
 	beforeEach(function () {
@@ -94,6 +97,7 @@ describe('Service: FactoryDaycare', function () {
 	
   });
 
+  //Testing post() function
   describe('post()', function () {
 	var daycare;
 	beforeEach(function () {
@@ -119,6 +123,7 @@ describe('Service: FactoryDaycare', function () {
 	});
  });
 
+  //Testing find() function
   describe('find()', function () {
 	var daycare;
 	
@@ -150,6 +155,7 @@ describe('Service: FactoryDaycare', function () {
 	});
   });
 
+  //Testing update() function
   describe('update()', function () {
 	var daycare;
 

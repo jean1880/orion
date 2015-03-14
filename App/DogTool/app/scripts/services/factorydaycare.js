@@ -26,14 +26,14 @@ angular.module('dogToolApp')
                 return $http.get(SailsRoute.Daycare.route);
             },
             /**
-             * One time fetch from server for full Daycare dataset
+             * Listen for updates to Daycare dataset
              * @method listen
              */
             listen: function () {
                 return poller.get(SailsRoute.Daycare.route);
             },
             /**
-             * One time fetch from server for full Daycare dataset
+             * Post new daycare to Daycare Dataset
              * @method post
              * @param daycare
              */
@@ -41,7 +41,7 @@ angular.module('dogToolApp')
                 return $http.post(SailsRoute.Daycare.route, daycare);
             },
             /**
-             * One time fetch from server for full Daycare dataset
+             * Find specific daycare from Daycare Dataset
              * @method find
              * @param searchObject
              */
@@ -49,6 +49,11 @@ angular.module('dogToolApp')
                 return $http.post(SailsRoute.Daycare.find, searchObject);
             },
 
+			/**
+             * Update specific daycare from Daycare Dataset
+             * @method update
+             * @param object
+             */
             update: function (object) {
                 return $http.post(SailsRoute.Daycare.get(object.id), object);
             }
