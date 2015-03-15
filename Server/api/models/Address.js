@@ -32,12 +32,6 @@ module.exports = {
         },
         PostalCode: {
             type: 'string'
-        },
-        BusinessInfo: {
-            model: 'business_info'
-        },
-        Peoples: {
-            model: 'people'
         }
     }
 };

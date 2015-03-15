@@ -11,7 +11,6 @@ angular.module('dogToolApp')
     .controller('DogNewCtrl', function ($scope, FactoryDog, flash, $location) {
         var init = function () {
             $scope.saveBtnText = 'Create';
-
             $scope.dog = {};
         };
 

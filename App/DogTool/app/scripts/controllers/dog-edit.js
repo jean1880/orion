@@ -20,7 +20,7 @@ angular.module('dogToolApp')
         .success(function (response) {
           var dog = response;
 
-          dog.AgeYears = new Date().getYear() - new Date(dog.Age).getYear();
+          dog.Birthdate = new Date(dog.Birthdate);
 
           $scope.dog = dog;
         })
