@@ -1,7 +1,6 @@
 'use strict';
 
 /* global Mockery */
-/* global chance */
 
 describe('Controller: DogEditCtrl', function () {
 
@@ -66,6 +65,10 @@ describe('Controller: DogEditCtrl', function () {
       expect(scope.dog).toBeDefined();
       expect(scope.dog.id).toBe(dog.id);
     });
+
+    it('coverts the dog.Birthdate to a date object', function () {
+      expect(scope.dog.Birthdate).toBeDate();
+    });
   });
 
   describe('when getting a dog returns a 404', function () {
@@ -81,7 +84,7 @@ describe('Controller: DogEditCtrl', function () {
     });
   });
 
-  describe('$scope.saveBtn', function () {
+  describe('$scope.saveBtn()', function () {
     beforeEach(function () {
       $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
       runController();

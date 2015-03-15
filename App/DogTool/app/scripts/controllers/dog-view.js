@@ -1,5 +1,7 @@
 'use strict';
 
+/* global moment */
+
 /**
  * @ngdoc function
  * @name dogToolApp.controller:DogCtrl
@@ -18,7 +20,7 @@ angular.module('dogToolApp')
         .success(function (response) {
           var dog = response;
 
-          dog.AgeYears = new Date().getYear() - new Date(dog.Age).getYear();
+          dog.Age = moment(dog.Birthdate).fromNow(true);
 
           $scope.dog = dog;
         })

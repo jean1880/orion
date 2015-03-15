@@ -14,7 +14,10 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: [
+      'jasmine',
+      'jasmine-matchers'
+    ],
 
     // list of files / patterns to load in the browser
     files: [
@@ -41,7 +44,6 @@ module.exports = function(config) {
       'app/scripts/**/*.js',
       'test/mocks/Mockery.js',
       'test/mocks/**/*.js',
-      'test/factories/**/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -69,7 +71,9 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-jasmine-matchers',
+      'karma-nested-reporter'
     ],
 
     preprocessors: {
@@ -94,7 +98,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     reporters: [
-      'progress',
+      'nested',
       'coverage'
     ],
 
