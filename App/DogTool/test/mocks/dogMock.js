@@ -16,7 +16,7 @@ Mockery.mockDog = function (attributes, recurse) {
         Weights: [],
         Name: chance.first(),
         Breed: '',
-        Age: '',
+        Birthdate: moment(chance.birthday()).format(),
         Notes: [],
         Consultations: [],
         Daycares: [],

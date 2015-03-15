@@ -1,7 +1,6 @@
 'use strict';
 
 /* global Mockery */
-/* global chance */
 
 describe('Controller: DogViewCtrl', function () {
 
