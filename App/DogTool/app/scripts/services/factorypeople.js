@@ -55,7 +55,7 @@ angular.module('dogToolApp')
              * @param person  object
              */
             update: function (person) {
-                return $http.post(SailsRoute.People.update, person);
+                return $http.post(SailsRoute.People.update(person.id), person);
             }
         };
     });

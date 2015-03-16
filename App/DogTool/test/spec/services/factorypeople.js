@@ -150,4 +150,33 @@ beforeEach(function () {
             expect(returned).toBe(response);
         });
     });
+
+    describe('update', function () {
+        beforeEach(function () {
+            spyOn($http, 'post').and.returnValue(response);
+
+            person = {
+                id: 1,
+                name: 'stephen'
+            };
+
+            returned = FactoryPeople.update(person);
+        });
+
+        it('makes a call to sails post', function () {
+            expect($http.post).toHaveBeenCalled();
+        });
+
+        it('passes the correct route to sails', function () {
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.People.update(person.id), jasmine.any(Object));
+        });
+
+        it('passes the correct dog to sails', function () {
+            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), person);
+        });
+
+        it('returns the response from sails', function () {
+            expect(returned).toBe(response);
+        });
+    });
 });
