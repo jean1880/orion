@@ -8,9 +8,9 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryHomework', function ($http, ServerAddress, poller) {
-     var route = ServerAddress + '/Homework';
-     return {
+    .factory('FactoryHomework', function ($http, ServerAddress, poller) {
+        var route = ServerAddress + '/Homework';
+        return {
             /**
              * One time fetch from server for single Homework dataset
              * @method get
@@ -53,5 +53,5 @@ angular.module('dogToolApp')
             update: function (object) {
                 return $http.post(route + "/" + dog.id, dog);
             }
-    };
-  });
+        };
+    });
