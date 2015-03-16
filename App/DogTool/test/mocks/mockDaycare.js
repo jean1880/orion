@@ -30,7 +30,7 @@ Mockery.mockDaycare = function (attributes, recurse) {
 
         mock.Costs     = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Costs.push(Mockery.mockCost({}, false));
+            mock.Costs.push(Mockery.mockCost({Daycare: mock.id}, false));
         }
     }
 

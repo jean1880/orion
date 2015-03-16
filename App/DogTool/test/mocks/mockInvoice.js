@@ -16,12 +16,12 @@ Mockery.mockInvoice = function (attributes, recurse) {
 
         mock.Consultations = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Consultations.push(Mockery.mockConsultation({}, false));
+            mock.Consultations.push(Mockery.mockConsultation({Invoice: mock.id}, false));
         }
 
         mock.Daycares = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Daycares.push(Mockery.mockDaycare({}, false));
+            mock.Daycares.push(Mockery.mockDaycare({Invoice: mock.id}, false));
         }
     }
 

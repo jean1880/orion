@@ -19,12 +19,12 @@ Mockery.mockPerson = function (attributes, recurse) {
 
         mock.Dogs       = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Dogs.push(Mockery.mockDog({}, false));
+            mock.Dogs.push(Mockery.mockDog({Owner: mock.id}, false));
         }
 
         mock.Referrals  = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Referrals.push(Mockery.mockReferral({}, false));
+            mock.Referrals.push(Mockery.mockReferral({People: mock.id}, false));
         }
     }
 

@@ -16,7 +16,7 @@ Mockery.mockReferral = function (attributes, recurse) {
 
         mock.Charges = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Charges.push(Mockery.mockCharge({}, false));
+            mock.Charges.push(Mockery.mockCharge({Serivce: mock.id}, false));
         }
     }
 

@@ -23,17 +23,17 @@ Mockery.mockNote = function (attributes, recurse) {
 
         mock.Charges = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Charges.push(Mockery.mockCharge({}, false));
+            mock.Charges.push(Mockery.mockCharge({Note: mock.id}, false));
         }
 
         mock.Consultations = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Consultations.push(Mockery.mockConsultation({}, false));
+            mock.Consultations.push(Mockery.mockConsultation({Note: mock.id}, false));
         }
 
         mock.Daycares = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Daycares.push(Mockery.mockDaycare({}, false));
+            mock.Daycares.push(Mockery.mockDaycare({Note: mock.id}, false));
         }
     }
 

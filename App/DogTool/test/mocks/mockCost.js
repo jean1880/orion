@@ -21,7 +21,7 @@ Mockery.mockCost = function (attributes, recurse) {
     if(recurse) {
         mock.Consultation = Mockery.mockConsultation({}, false);
         mock.Daycare      = Mockery.mockDaycare({}, false);
-        mock.Referral     = Mockery.mockReferral({}, false);
+        mock.Referral     = Mockery.mockReferral({Cost: mock.id}, false);
     }
 
     for (var attribute in attributes) {

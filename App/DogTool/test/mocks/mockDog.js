@@ -27,7 +27,7 @@ Mockery.mockDog = function (attributes, recurse) {
         var i;
         mock.Weights          = [];
         for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Weights.push(Mockery.mockWeight({}, false));
+            mock.Weights.push(Mockery.mockWeight({Dog: mock.id}, false));
         }
 
         mock.Notes            = [];

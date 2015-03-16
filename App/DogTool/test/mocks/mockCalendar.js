@@ -10,8 +10,8 @@ Mockery.mockCalendar = function (attributes, recurse) {
     //build properties
     var mock = {};
     mock.id            = chance.hash();
-    mock.StartDate     = moment(chance.date().format());
-    mock.EndDate       = moment(chance.date().format());
+    mock.StartDate     = moment(chance.date()).format();
+    mock.EndDate       = moment(chance.date()).format();
 
     // generate deeper layers if needed
     if(recurse) {

@@ -11,7 +11,7 @@ Mockery.mockWeight = function (attributes, recurse) {
     mock.id        = chance.hash();
     mock.Dog       = chance.hash();
     mock.DateTaken = moment(chance.date()).format();
-    mock.Weight = chance.floating({min: 10, max: 25, fixed: 2});
+    mock.Weight    = chance.floating({min: 10, max: 25, fixed: 2});
 
     if (recurse) {
         mock.Dog = Mockery.mockDog({}, false);
@@ -23,4 +23,4 @@ Mockery.mockWeight = function (attributes, recurse) {
 
 
     return mock;
-}
+};

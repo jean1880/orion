@@ -16,9 +16,9 @@ Mockery.mockReferral = function (attributes, recurse) {
     mock.Cost         = chance.hash();
 
     if (recurse) {
-        mock.Dog    = Mockery.mockDog({}, false);
+        mock.Dog    = Mockery.mockDog({Referral: mock.id}, false);
         mock.People = Mockery.mockPerson({}, false);
-        mock.Cost   = Mockery.mockCost({}, false);
+        mock.Cost   = Mockery.mockCost({Referral: mock.id}, false);
     }
 
 

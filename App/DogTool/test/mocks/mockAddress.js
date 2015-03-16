@@ -8,7 +8,7 @@ Mockery.mockAddress = function (attributes, recurse) {
     recurse = typeof recurse !== 'undefined' ? recurse : true;
 
     var mock = {};
-    mock.id         = chance.natural();
+    mock.id         = chance.hash();
     mock.Street     = chance.address();
     mock.City       = chance.city();
     mock.Province   = chance.province({full: true});

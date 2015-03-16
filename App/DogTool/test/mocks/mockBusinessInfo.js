@@ -8,12 +8,12 @@ Mockery.mockBusinessInfo = function (attributes, recurse) {
     recurse = typeof recurse !== 'undefined' ? recurse : true;
 
     var mock = {};
-    mock.id           = chance.natural();
-    mock.Owner        = chance.natural();
+    mock.id           = chance.hash();
+    mock.Owner        = chance.hash();
     mock.BusinessName = chance.sentence({words: 5});
     mock.TaxNumber    = chance.string({length: 16});
     mock.BBNNumber    = chance.string({length: 16});
-    mock.Address      = chance.natural();
+    mock.Address      = chance.hash();
 
     // generate deeper layers if needed
     if(recurse) {
