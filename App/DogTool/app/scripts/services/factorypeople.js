@@ -9,9 +9,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryPeople', function () {
-    var route = ServerAddress + '/People';
-
+  .factory('FactoryPeople', function (SailsRoute, $http, poller) {
         return {
             /**
              * One time fetch from server for single People dataset
@@ -19,21 +17,21 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(route + '/' + id);
+                return $http.get(SailsRoute.People.get(id));
             },
             /**
              * One time fetch from server for full People dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(route);
+                return $http.get(SailsRoute.People.getAll);
             },
             /**
              * One time fetch from server for full People dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(route);
+                return poller.get(SailsRoute.People.listen);
             },
             /**
              * One time fetch from server for full People dataset
@@ -41,7 +39,7 @@ angular.module('dogToolApp')
              * @param people
              */
             post: function (people) {
-                return $http.post(route, people);
+                return $http.post(SailsRoute.People.post, people);
             },
             /**
              * One time fetch from server for full People dataset
@@ -49,7 +47,7 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(route + '/find', searchObject);
+                return $http.post(SailsRoute.People.find, searchObject);
             },
 			/**
              * One time update for the Person dataset
@@ -57,7 +55,7 @@ angular.module('dogToolApp')
              * @param person  object
              */
             update: function (person) {
-                return $http.post(route + "/" + person.id, person);
+                return $http.post(SailsRoute.People.update, person);
             }
         };
     });

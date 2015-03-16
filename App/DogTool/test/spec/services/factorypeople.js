@@ -9,7 +9,7 @@ describe('Service: FactoryPeople', function () {
   var FactoryPeople;
 
   //mocks
-  var $http, poller;
+  var $http, poller, SailsRoute;
 
   //variables
   var route, peopleID, callback, person, searchObject, response, returned;
@@ -19,13 +19,13 @@ beforeEach(function () {
             //setup mocks
             $http = $injector.get('$http');
             poller = $injector.get('poller');
+            SailsRoute = $injector.get('SailsRoute');
 
             //get service
-            FactoryDog = $injector.get('FactoryPeople');
+            FactoryPeople = $injector.get('FactoryPeople');
 
             //configure
-            route = 'http://localhost:1337/People';
-            dogID = 1;
+            peopleID = 1;
 
             response = {
                 status: 200,
@@ -40,7 +40,7 @@ beforeEach(function () {
         beforeEach(function () {
             spyOn($http, 'get').and.returnValue(response);
 
-            returned = FactoryPeople.get(dogID);
+            returned = FactoryPeople.get(peopleID);
         });
 
         it('makes a call to sails get', function () {
@@ -48,7 +48,7 @@ beforeEach(function () {
         });
 
         it('makes a call to the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route + '/' + dogID);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.People.get(peopleID));
         });
 
         it('returns the response from sails', function () {
@@ -68,7 +68,7 @@ beforeEach(function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.People.getAll);
         });
 
         it('returns the response from sails', function () {
@@ -90,11 +90,7 @@ beforeEach(function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(route, jasmine.any(Function));
-        });
-
-        it('passes the correct callback to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(jasmine.any(String), callback);
+            expect(poller.get).toHaveBeenCalledWith(SailsRoute.People.listen);
         });
     });
 
@@ -107,7 +103,7 @@ beforeEach(function () {
                 name: 'stephen'
             };
 
-            returned = FactoryDog.post(dog);
+            returned = FactoryPeople.post(person);
         });
 
         it('makes a call to sails post', function () {
@@ -115,11 +111,11 @@ beforeEach(function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route, jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.People.post, jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), dog);
+            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), person);
         });
 
         it('returns the response from sails', function () {
@@ -143,7 +139,7 @@ beforeEach(function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route + '/find', jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.People.find, jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {
