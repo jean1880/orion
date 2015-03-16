@@ -34,7 +34,7 @@ module.exports = {
         Breed: {
             type: 'string'
         },
-        Age: {
+        Birthdate: {
             type: 'date'
         },
         Notes: {
