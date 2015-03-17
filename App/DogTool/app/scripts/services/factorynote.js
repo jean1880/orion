@@ -24,14 +24,14 @@ angular.module('dogToolApp')
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Note.route);
+                return $http.get(SailsRoute.Note.getAll);
             },
             /**
              * One time fetch from server for full Note dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(SailsRoute.Note.route);
+                return poller.get(SailsRoute.Note.listen);
             },
             /**
              * One time fetch from server for full Note dataset
@@ -40,7 +40,7 @@ angular.module('dogToolApp')
              * @param note
              */
             post: function (note) {
-                return $http.post(SailsRoute.Note.route, note);
+                return $http.post(SailsRoute.Note.post, note);
             },
             /**
              * One time fetch from server for full Note dataset
@@ -52,7 +52,7 @@ angular.module('dogToolApp')
             },
 
             update: function (note) {
-                return $http.post(SailsRoute.Note.get(note.id), note);
+                return $http.post(SailsRoute.Note.update(note.id), note);
             }
     };
   });

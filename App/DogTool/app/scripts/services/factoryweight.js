@@ -22,14 +22,14 @@ angular.module('dogToolApp')
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Weight.route);
+                return $http.get(SailsRoute.Weight.getAll);
             },
             /**
              * One time fetch from server for full Weight dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(SailsRoute.Weight.route);
+                return poller.get(SailsRoute.Weight.listen);
             },
             /**
              * One time fetch from server for full Weight dataset
@@ -37,7 +37,7 @@ angular.module('dogToolApp')
              * @param weight
              */
             post: function (weight) {
-                return $http.post(SailsRoute.Weight.route, weight);
+                return $http.post(SailsRoute.Weight.post, weight);
             },
             /**
              * One time fetch from server for full Weight dataset
@@ -54,7 +54,7 @@ angular.module('dogToolApp')
              * @param weight
              */
             update: function (weight) {
-                return $http.post(SailsRoute.Weight.get(weight.id), weight);
+                return $http.post(SailsRoute.Weight.update(weight.id), weight);
             }
         };
     });

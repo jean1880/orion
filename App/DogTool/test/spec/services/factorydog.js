@@ -72,7 +72,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.Dog.route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Dog.getAll);
         });
 
         it('returns the response from sails', function () {
@@ -91,7 +91,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Dog.route);
+            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Dog.listen);
         });
     });
 
@@ -111,7 +111,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.route, jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.post, jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {
@@ -172,7 +172,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.get(dog.id), jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.update(dog.id), jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {
