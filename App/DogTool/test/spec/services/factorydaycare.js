@@ -74,7 +74,7 @@ describe('Service: FactoryDaycare', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.Daycare.route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Daycare.getAll);
         });
 
         it('returns the response from sails', function () {
@@ -96,7 +96,7 @@ describe('Service: FactoryDaycare', function () {
 	});
 
 	it('passes the correct route to sails', function () {
-	  expect(poller.get).toHaveBeenCalledWith(SailsRoute.Daycare.route);
+	  expect(poller.get).toHaveBeenCalledWith(SailsRoute.Daycare.listen);
 	});
 
   });
@@ -118,7 +118,7 @@ describe('Service: FactoryDaycare', function () {
 	});
 
 	it('passes the correct route to sails', function () {
-	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.route, jasmine.any(Object));
+	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.post, jasmine.any(Object));
 	});
 
 	it('passes the correct dog to sails', function () {
@@ -179,7 +179,7 @@ describe('Service: FactoryDaycare', function () {
 	});
 
 	it('passes the correct route to sails', function () {
-	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.get(daycare.id), jasmine.any(Object));
+	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.update(daycare.id), jasmine.any(Object));
 	});
 
 	it('passes the correct dog to sails', function () {

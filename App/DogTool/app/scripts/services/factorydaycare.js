@@ -7,7 +7,7 @@
  */
 angular.module('dogToolApp')
     .factory('FactoryDaycare', function ($http, SailsRoute, poller) {
-        
+
 
         return {
             /**
@@ -23,14 +23,14 @@ angular.module('dogToolApp')
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Daycare.route);
+                return $http.get(SailsRoute.Daycare.getAll);
             },
             /**
              * Listen for updates to Daycare dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(SailsRoute.Daycare.route);
+                return poller.get(SailsRoute.Daycare.listen);
             },
             /**
              * Post new daycare to Daycare Dataset
@@ -38,7 +38,7 @@ angular.module('dogToolApp')
              * @param daycare
              */
             post: function (daycare) {
-                return $http.post(SailsRoute.Daycare.route, daycare);
+                return $http.post(SailsRoute.Daycare.post, daycare);
             },
             /**
              * Find specific daycare from Daycare Dataset
@@ -55,7 +55,7 @@ angular.module('dogToolApp')
              * @param object
              */
             update: function (object) {
-                return $http.post(SailsRoute.Daycare.get(object.id), object);
+                return $http.post(SailsRoute.Daycare.update(object.id), object);
             }
         };
     });

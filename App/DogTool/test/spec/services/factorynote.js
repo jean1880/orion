@@ -72,7 +72,7 @@ describe('Service: FactoryNote', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.Note.route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Note.getAll);
         });
 
         it('returns the response from sails', function () {
@@ -91,7 +91,7 @@ describe('Service: FactoryNote', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Note.route);
+            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Note.listen);
         });
     });
 
@@ -111,7 +111,7 @@ describe('Service: FactoryNote', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Note.route, jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Note.post, jasmine.any(Object));
         });
 
         it('passes the correct note to sails', function () {
@@ -172,7 +172,7 @@ describe('Service: FactoryNote', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Note.get(note.id), jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Note.update(note.id), jasmine.any(Object));
         });
 
         it('passes the correct note to sails', function () {
