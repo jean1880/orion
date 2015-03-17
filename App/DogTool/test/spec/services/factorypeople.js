@@ -1,20 +1,23 @@
 'use strict';
 
+/* global Mockery */
+/* global chance */
+
 describe('Service: FactoryPeople', function () {
 
-  // load the service's module
-  beforeEach(module('dogToolApp'));
+    // load the service's module
+    beforeEach(module('dogToolApp'));
 
-  // instantiate service
-  var FactoryPeople;
+    // instantiate service
+    var FactoryPeople;
 
-  //mocks
-  var $http, poller, SailsRoute;
+    //mocks
+    var $http, poller, SailsRoute;
 
-  //variables
-  var route, peopleID, callback, person, searchObject, response, returned;
+    //variables
+    var returned;
 
-beforeEach(function () {
+    beforeEach(function () {
         angular.mock.inject(function ($injector) {
             //setup mocks
             $http = $injector.get('$http');
@@ -24,23 +27,19 @@ beforeEach(function () {
             //get service
             FactoryPeople = $injector.get('FactoryPeople');
 
-            //configure
-            peopleID = 1;
-
-            response = {
-                status: 200,
-                message: 'success'
-            };
-
             returned = null;
         });
     });
 
     describe('get one', function () {
-        beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
+        var person;
 
-            returned = FactoryPeople.get(peopleID);
+        beforeEach(function () {
+            person = Mockery.mockPerson();
+
+            spyOn($http, 'get').and.returnValue(person);
+
+            returned = FactoryPeople.get(person.id);
         });
 
         it('makes a call to sails get', function () {
@@ -48,17 +47,24 @@ beforeEach(function () {
         });
 
         it('makes a call to the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.People.get(peopleID));
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.People.get(person.id));
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(person);
         });
     });
 
     describe('get all', function () {
+        var people;
+
         beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
+            people = [];
+            for(var i = chance.natural({min: 3, max: 5}); i > 0; i--) {
+                people.push(Mockery.mockPerson({}, false));
+            }
+
+            spyOn($http, 'get').and.returnValue(people);
 
             returned = FactoryPeople.getAll();
         });
@@ -72,17 +78,22 @@ beforeEach(function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(people);
         });
     });
 
     describe('listen', function () {
+        var response;
+
         beforeEach(function () {
+            response = {
+                status: 200,
+                message: 'success'
+            };
+
             spyOn(poller, 'get').and.returnValue(response);
 
-            callback = function () {};
-
-            FactoryPeople.listen(callback);
+            FactoryPeople.listen();
         });
 
         it('starts to sails on', function () {
@@ -95,13 +106,12 @@ beforeEach(function () {
     });
 
     describe('post', function () {
-        beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
+        var person;
 
-            person = {
-                id: 1,
-                name: 'stephen'
-            };
+        beforeEach(function () {
+            person = Mockery.mockPerson();
+
+            spyOn($http, 'post').and.returnValue(person);
 
             returned = FactoryPeople.post(person);
         });
@@ -119,16 +129,21 @@ beforeEach(function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(person);
         });
     });
 
     describe('find', function () {
+        var person,
+            searchObject;
+
         beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
+            person = Mockery.mockPerson();
+
+            spyOn($http, 'post').and.returnValue(person);
 
             searchObject = {
-                name: 'stephen'
+                name: person.Name
             };
 
             returned = FactoryPeople.find(searchObject);
@@ -147,18 +162,17 @@ beforeEach(function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(person);
         });
     });
 
     describe('update', function () {
-        beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
+        var person;
 
-            person = {
-                id: 1,
-                name: 'stephen'
-            };
+        beforeEach(function () {
+            person = Mockery.mockPerson();
+
+            spyOn($http, 'post').and.returnValue(person);
 
             returned = FactoryPeople.update(person);
         });
@@ -176,7 +190,7 @@ beforeEach(function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(person);
         });
     });
 });
