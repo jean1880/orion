@@ -72,7 +72,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.getAll);
         });
 
         it('returns the response from sails', function () {
@@ -91,7 +91,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Weight.route);
+            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Weight.listen);
         });
     });
 
@@ -111,7 +111,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.route, jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.post, jasmine.any(Object));
         });
 
         it('passes the correct weight to sails', function () {
@@ -171,7 +171,7 @@ describe('Service: FactoryWeight', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.get(weight.id), jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.update(weight.id), jasmine.any(Object));
         });
 
         it('passes the correct weight to sails', function () {

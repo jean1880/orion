@@ -14,7 +14,7 @@ describe('Service: FactoryDog', function () {
     var $http, poller;
 
     //variables
-    var searchObject, response, returned;
+    var returned;
 
     beforeEach(inject(function (_poller_, _$http_, _FactoryDog_, _SailsRoute_) {
         //setup mocks
@@ -72,7 +72,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.Dog.route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Dog.getAll);
         });
 
         it('returns the response from sails', function () {
@@ -91,7 +91,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Dog.route);
+            expect(poller.get).toHaveBeenCalledWith(SailsRoute.Dog.listen);
         });
     });
 
@@ -99,9 +99,9 @@ describe('Service: FactoryDog', function () {
         var dog;
 
         beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
-
             dog = Mockery.mockDog();
+
+            spyOn($http, 'post').and.returnValue(dog);
 
             returned = FactoryDog.post(dog);
         });
@@ -111,7 +111,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.route, jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.post, jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {
@@ -119,12 +119,13 @@ describe('Service: FactoryDog', function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(dog);
         });
     });
 
     describe('find', function () {
-        var dog;
+        var dog,
+            searchObject;
 
         beforeEach(function () {
             dog = Mockery.mockDog();
@@ -171,7 +172,7 @@ describe('Service: FactoryDog', function () {
         });
 
         it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.get(dog.id), jasmine.any(Object));
+            expect($http.post).toHaveBeenCalledWith(SailsRoute.Dog.update(dog.id), jasmine.any(Object));
         });
 
         it('passes the correct dog to sails', function () {

@@ -1,5 +1,8 @@
 'use strict';
 
+/* global chance */
+/* global Mockery */
+
 describe('Service: FactoryDaycare', function () {
 
   // load the service's module
@@ -13,43 +16,43 @@ describe('Service: FactoryDaycare', function () {
 	  searchObject,
 	  response,
 	  returned;
-  
+
   beforeEach(inject(function($injector) {
     factorydaycare = $injector.get('FactoryDaycare');
 	$http          = $injector.get('$http');
 	SailsRoute     = $injector.get('SailsRoute');
 	poller 		   = $injector.get('poller');
-	returned 	   = null
   }));
-  
+
 
   //Testing get() function
   describe('get()', function () {
-	var daycareID;
-	var response;
-	var callValue
+	var daycare,
+		response,
+		callValue;
+
 	beforeEach(function () {
 	  callValue = {msg: 'hi' };
 	  spyOn($http, 'get').and.returnValue(callValue);
-	  
-	  daycareID = chance.natural();
-	  
-	  response = factorydaycare.get(daycareID);
+
+	  daycare = Mockery.mockDaycare();
+
+	  response = factorydaycare.get(daycare.id);
 	});
-	
+
     it('will make a get call to sails', function () {
       expect($http.get).toHaveBeenCalled();
     });
-	
+
 	it('will get the correct daycare from sails', function () {
-		expect($http.get).toHaveBeenCalledWith(SailsRoute.Daycare.get(daycareID));
+		expect($http.get).toHaveBeenCalledWith(SailsRoute.Daycare.get(daycare.id));
 	});
-	
+
 	it('will return the response from sails', function () {
       expect(response).toBe(callValue);
     });
   });
-  
+
   //testing getAll() function
   describe('getAll()', function () {
         var daycares;
@@ -71,47 +74,51 @@ describe('Service: FactoryDaycare', function () {
         });
 
         it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(SailsRoute.Daycare.route);
+            expect($http.get).toHaveBeenCalledWith(SailsRoute.Daycare.getAll);
         });
 
         it('returns the response from sails', function () {
             expect(returned).toBe(daycares);
         });
     });
-  
+
   //Testing listen() function
   describe('listen()', function () {
-	
+
 	beforeEach(function () {
 	 spyOn(poller, 'get');
+
 	 factorydaycare.listen();
 	});
-	
+
 	it('starts to sails on', function () {
 	  expect(poller.get).toHaveBeenCalled();
 	});
-	
+
 	it('passes the correct route to sails', function () {
-	  expect(poller.get).toHaveBeenCalledWith(SailsRoute.Daycare.route);
+	  expect(poller.get).toHaveBeenCalledWith(SailsRoute.Daycare.listen);
 	});
-	
+
   });
 
   //Testing post() function
   describe('post()', function () {
 	var daycare;
+
 	beforeEach(function () {
 	  spyOn($http, 'post').and.returnValue(response);
+
 	  daycare = Mockery.mockDaycare();
+
 	  returned = factorydaycare.post(daycare);
 	});
 
 	it('makes a call to sails post', function () {
 	  expect($http.post).toHaveBeenCalled();
 	});
-	
+
 	it('passes the correct route to sails', function () {
-	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.route, jasmine.any(Object));
+	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.post, jasmine.any(Object));
 	});
 
 	it('passes the correct dog to sails', function () {
@@ -126,13 +133,13 @@ describe('Service: FactoryDaycare', function () {
   //Testing find() function
   describe('find()', function () {
 	var daycare;
-	
+
 	beforeEach(function () {
 	  daycare = Mockery.mockDaycare();
 	  spyOn($http, 'post').and.returnValue(daycare);
-	  
+
 	  searchObject = {
-	  name: daycare.name
+	  	name: daycare.name
 	  };
 
 	  returned = factorydaycare.find(searchObject);
@@ -161,7 +168,9 @@ describe('Service: FactoryDaycare', function () {
 
 	beforeEach(function () {
 	  daycare = Mockery.mockDaycare();
+
 	  spyOn($http, 'post').and.returnValue(daycare);
+
 	  returned = factorydaycare.update(daycare);
 	});
 
@@ -170,7 +179,7 @@ describe('Service: FactoryDaycare', function () {
 	});
 
 	it('passes the correct route to sails', function () {
-	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.get(daycare.id), jasmine.any(Object));
+	  expect($http.post).toHaveBeenCalledWith(SailsRoute.Daycare.update(daycare.id), jasmine.any(Object));
 	});
 
 	it('passes the correct dog to sails', function () {

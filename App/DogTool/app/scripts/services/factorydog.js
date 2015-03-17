@@ -21,14 +21,14 @@ angular.module('dogToolApp')
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Dog.route);
+                return $http.get(SailsRoute.Dog.getAll);
             },
             /**
              * Listen to server for changes to full Dog dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(SailsRoute.Dog.route);
+                return poller.get(SailsRoute.Dog.listen);
             },
             /**
              * Pushes a new dog into the database
@@ -36,7 +36,7 @@ angular.module('dogToolApp')
              * @param Dog
              */
             post: function (dog) {
-                return $http.post(SailsRoute.Dog.route, dog);
+                return $http.post(SailsRoute.Dog.post, dog);
             },
             /**
              * Searches for specific Dog dataset based  on search object
@@ -46,14 +46,14 @@ angular.module('dogToolApp')
             find: function (searchObject) {
                 return $http.post(SailsRoute.Dog.find, searchObject);
             },
-            
+
             /**
              * Updates a dog,basd on the dog id
              * @method find
              * @param searchObject
              */
             update: function (dog) {
-                return $http.post(SailsRoute.Dog.get(dog.id), dog);
+                return $http.post(SailsRoute.Dog.update(dog.id), dog);
             }
         };
     });
