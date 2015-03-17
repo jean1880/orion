@@ -14,7 +14,7 @@ describe('Service: FactoryNote', function () {
     var $http, poller;
 
     //variables
-    var searchObject, response, returned;
+    var returned;
 
     beforeEach(inject(function (_poller_, _$http_, _FactoryNote_, _SailsRoute_) {
         //setup mocks
@@ -99,9 +99,9 @@ describe('Service: FactoryNote', function () {
         var note;
 
         beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
-
             note = Mockery.mockNote();
+
+            spyOn($http, 'post').and.returnValue(note);
 
             returned = FactoryNote.post(note);
         });
@@ -119,12 +119,13 @@ describe('Service: FactoryNote', function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(response);
+            expect(returned).toBe(note);
         });
     });
 
     describe('find', function () {
-        var note;
+        var note,
+            searchObject;
 
         beforeEach(function () {
             note = Mockery.mockNote();
