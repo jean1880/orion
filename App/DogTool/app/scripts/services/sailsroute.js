@@ -28,10 +28,10 @@ angular.module('dogToolApp')
     };
 
     return {
-      Dog: buildRoutes('dog'),
-      Weight: buildRoutes('weight'),
+      Dog:     buildRoutes('dog'),
+      Weight:  buildRoutes('weight'),
       Daycare: buildRoutes('daycare'),
-      Note: buildRoutes('note'),
-      People: buildRoutes('people')
+      Note:    buildRoutes('note'),
+      People:  buildRoutes('people')
     };
   });
