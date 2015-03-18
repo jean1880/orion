@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-    .controller('MainCtrl', function ($scope, FactoryDog) {
+    .controller('MainCtrl', function ($scope, FactoryHomework) {
         $scope.dogs = null;
 
         var init = function () {

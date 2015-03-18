@@ -8,8 +8,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryHomework', function ($http, ServerAddress, poller) {
-        var route = ServerAddress + '/Homework';
+    .factory('FactoryHomework', function ($http, SailsRoute, poller) {
         return {
             /**
              * One time fetch from server for single Homework dataset
@@ -17,29 +16,29 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(route + '/' + id);
+                return $http.get(SailsRoute.Homework.get(id));
             },
             /**
              * One time fetch from server for full Homework dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(route);
+                return $http.get(SailsRoute.Homework.getAll);
             },
             /**
-             * One time fetch from server for full Weight dataset
+             * One time fetch from server for full Homework dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(route);
+                return poller.get(SailsRoute.Homework.listen);
             },
             /**
              * One time fetch from server for full Homework dataset
              * @method post
              * @param weight
              */
-            post: function (Homework) {
-                return $http.post(route, Homework);
+            post: function (homework) {
+                return $http.post(SailsRoute.Homework.post, homework);
             },
             /**
              * One time fetch from server for full Homework dataset
@@ -47,11 +46,11 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(route + '/find', searchObject);
+                return $http.post(SailsRoute.Homework.find, searchObject);
             },
 
-            update: function (object) {
-                return $http.post(route + "/" + dog.id, dog);
+            update: function (homework) {
+                return $http.post(SailsRoute.Homework.update(homework.id), homework);
             }
         };
     });

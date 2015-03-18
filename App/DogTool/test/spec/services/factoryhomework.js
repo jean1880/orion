@@ -16,18 +16,19 @@ describe('Service: FactoryHomework', function () {
     var $http, poller;
     
     //variables
-    var searchObject, respones, returned;
+    var searchObject, response, returned;
     
-    beforeEach(inject(function (_FactoryHomework_) {
+    beforeEach(inject(function () {
+        angular.mock.inject(function ($injector){
   
       //get service
-        FactoryHomework = _FactoryHomework_;
+        FactoryHomework = $injector.get('FactoryHomework');
         returned = null;
       //set mocks
-        $http = _$http_;
-        poller = _poller_;
-        SailsRoute = _SailsRoute_;
-      
+        $http = $injector.get('$http');
+        poller = $injector.get('poller');
+        SailsRoute = $injector.get('SailsRoute');
+        });
     
       
     }));
@@ -79,7 +80,7 @@ describe('Service: FactoryHomework', function () {
         });
 
         it('returns the response from sails', function () {
-            expect(returned).toBe(Homework);
+            expect(returned).toBe(homework);
         });
     });
 
