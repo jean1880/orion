@@ -5,39 +5,39 @@
 /* exported mockDaycare */
 
 Mockery.mockDaycare = function (attributes, recurse) {
-    recurse    = typeof recurse    !== 'undefined' ? recurse    : true;
+  recurse    = typeof recurse    !== 'undefined' ? recurse    : true;
 
-    var mock = {};
-    mock.id        = chance.hash();
-    mock.Note      = chance.hash();
-    mock.Invoice   = chance.hash();
+  var mock = {};
+  mock.id        = chance.hash();
+  mock.Note      = chance.hash();
+  mock.Invoice   = chance.hash();
 
-    if (recurse) {
-        mock.Note    = Mockery.mockNote({}, false);
-        mock.Invoice = Mockery.mockInvoice({}, false);
+  if (recurse) {
+    mock.Note    = Mockery.mockNote({}, false);
+    mock.Invoice = Mockery.mockInvoice({}, false);
 
-        var i;
+    var i;
 
-        mock.Dogs      = [];
-        for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Dogs.push(Mockery.mockDog({}, false));
-        }
-
-        mock.Calendars = [];
-        for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Calendars.push(Mockery.mockCalendar({}, false));
-        }
-
-        mock.Costs     = [];
-        for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
-            mock.Costs.push(Mockery.mockCost({Daycare: mock.id}, false));
-        }
+    mock.Dogs      = [];
+    for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
+      mock.Dogs.push(Mockery.mockDog({}, false));
     }
 
-    for (var attribute in attributes) {
-        mock[attribute] = attributes[attribute];
+    mock.Calendars = [];
+    for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
+      mock.Calendars.push(Mockery.mockCalendar({}, false));
     }
 
+    mock.Costs     = [];
+    for(i = chance.natural({min: 3, max: 5}); i > 0; i--) {
+      mock.Costs.push(Mockery.mockCost({Daycare: mock.id}, false));
+    }
+  }
 
-    return mock;
+  for (var attribute in attributes) {
+    mock[attribute] = attributes[attribute];
+  }
+
+
+  return mock;
 };
