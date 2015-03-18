@@ -6,56 +6,58 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryDaycare', function ($http, SailsRoute, poller) {
+  .factory('FactoryDaycare', function ($http, SailsRoute, poller) {
+    return {
+      /**
+       * One time fetch from server for single Daycare dataset
+       * @method get
+       * @param id
+       */
+      get: function (id) {
+        return $http.get(SailsRoute.Daycare.get(id));
+      },
 
+      /**
+       * One time fetch from server for full Daycare dataset
+       * @method getAll
+       */
+      getAll: function () {
+        return $http.get(SailsRoute.Daycare.getAll);
+      },
 
-        return {
-            /**
-             * One time fetch from server for single Daycare dataset
-             * @method get
-             * @param id
-             */
-            get: function (id) {
-                return $http.get(SailsRoute.Daycare.get(id));
-            },
-            /**
-             * One time fetch from server for full Daycare dataset
-             * @method getAll
-             */
-            getAll: function () {
-                return $http.get(SailsRoute.Daycare.getAll);
-            },
-            /**
-             * Listen for updates to Daycare dataset
-             * @method listen
-             */
-            listen: function () {
-                return poller.get(SailsRoute.Daycare.listen);
-            },
-            /**
-             * Post new daycare to Daycare Dataset
-             * @method post
-             * @param daycare
-             */
-            post: function (daycare) {
-                return $http.post(SailsRoute.Daycare.post, daycare);
-            },
-            /**
-             * Find specific daycare from Daycare Dataset
-             * @method find
-             * @param searchObject
-             */
-            find: function (searchObject) {
-                return $http.post(SailsRoute.Daycare.find, searchObject);
-            },
+      /**
+       * Listen for updates to Daycare dataset
+       * @method listen
+       */
+      listen: function () {
+        return poller.get(SailsRoute.Daycare.listen);
+      },
 
-			/**
-             * Update specific daycare from Daycare Dataset
-             * @method update
-             * @param object
-             */
-            update: function (object) {
-                return $http.post(SailsRoute.Daycare.update(object.id), object);
-            }
-        };
-    });
+      /**
+       * Post new daycare to Daycare Dataset
+       * @method post
+       * @param daycare
+       */
+      post: function (daycare) {
+        return $http.post(SailsRoute.Daycare.post, daycare);
+      },
+
+      /**
+       * Find specific daycare from Daycare Dataset
+       * @method find
+       * @param searchObject
+       */
+      find: function (searchObject) {
+        return $http.post(SailsRoute.Daycare.find, searchObject);
+      },
+
+      /**
+       * Update specific daycare from Daycare Dataset
+       * @method update
+       * @param object
+       */
+      update: function (object) {
+        return $http.post(SailsRoute.Daycare.update(object.id), object);
+      }
+    };
+  });
