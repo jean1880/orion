@@ -10,13 +10,17 @@
 						<input type="number" class="form-control" ng-disabled="processing" placeholder="weight" ng-model="newWeight.Weight">
 						<span class="input-group-addon">lb</span>
 						<span class="input-group-btn">
-							<button class="btn btn-primary" ng-disabled="processing" type="button" ng-click="addBtnClick()">Add</button>
+							<button class="btn btn-primary" ng-disabled="processing" type="submit" ng-click="addBtnClick()">Add</button>
 						</span>
 					</div>
 				</div>
 			</form>
 		</div>
-		<div class="list-group-item" ng-repeat="weight in dog.Weights | orderBy : convertDateTakenToDate : true | limitTo : 5">
+		<div class="list-group-item"
+				ng-repeat="weight in dog.Weights
+				| orderBy : convertDateTakenToDate : true
+				| limitTo : page * countPerPage
+				| limitTo : countPerPage * -1">
 			<div class="row">
 				<div class="col-xs-12">
 					<strong>Date Taken:</strong>
@@ -28,11 +32,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="list-group-item paging-btns">
-			<ul class="pager">
-			    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-			    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
-			</ul>
+		<div class="list-group-item paging-btns" ng-hide="dog.Weights.length <= countPerPage">
+	    	<pagination total-items="dog.Weights.length" ng-model="page" items-per-page="countPerPage" class="pagination-sm" previous-text="newer" next-text="older"></pagination>
 		</div>
 	</div>
 </div>
