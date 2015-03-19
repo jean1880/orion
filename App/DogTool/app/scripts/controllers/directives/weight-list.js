@@ -10,37 +10,75 @@
 angular.module('dogToolApp')
   .controller('WeightListCtrl', function ($scope, FactoryWeight) {
     var init = function () {
+      $scope.weightFormSubmitted = weightFormSubmitted;
+      $scope.convertDateTakenToDate = convertDateTakenToDate;
+
       $scope.countPerPage = 5;
       $scope.page = 1;
 
       reset();
     };
 
-    $scope.addBtnClick = function () {
-      $scope.processing = true;
+    var weightFormSubmitted = function () {
+      if($scope.weightForm.$valid) {
+        $scope.processing = true;
 
-      $scope.newWeight.DateTaken = new Date();
-      $scope.newWeight.Dog = $scope.dog.id;
+        prepareNewWeight($scope.newWeight);
 
-      FactoryWeight.post($scope.newWeight)
-        .success(function (response) {
-          $scope.dog.Weights.push(response);
-          reset();
-        })
-        .error(function (response) {
-          console.log(response);
-        })
-        .finally(function () {
-          $scope.processing = false;
-        });
+        FactoryWeight.post($scope.newWeight)
+          .success(processValidPost)
+          .error(processInvalidPost)
+          .finally(postComplete);
+      }
     };
 
-    $scope.convertDateTakenToDate = function(item) {
-      return new Date(item.DateTaken);
+    var prepareNewWeight = function (weight) {
+      weight.DateTaken = new Date();
+      weight.Dog = $scope.dog.id;
+    }
+
+    var convertDateTakenToDate = function(weight) {
+      return new Date(weight.DateTaken);
+    };
+
+    var processValidPost = function (response) {
+      $scope.dog.Weights.push(response);
+      reset();
+    };
+
+    var processInvalidPost = function (response) {
+      $scope.weightForm.$invalid = true;
+      $scope.weightForm.$dirty = true;
+      $scope.weightForm.$submitted = true;
+
+      if(response.invalidAttributes.Weight) {
+        $scope.weightForm.weight.$invalid = true;
+
+        var errors = response.invalidAttributes.Weight.map(function (obj) {
+          return obj.rule;
+        });
+
+        if(errors.indexOf("required") != -1) {
+          $scope.weightForm.weight.$error.required = true;
+        }
+        else if(errors.indexOf("required") != -1) {
+          $scope.weightForm.weight.$error.number = true;
+        }
+      }
+    };
+
+    var postComplete = function () {
+      $scope.processing = false;
     };
 
     var reset = function () {
       $scope.processing = false;
+
+      if($scope.weightForm) {
+        $scope.weightForm.$submitted = false;
+        $scope.weightForm.$dirty = false;
+      }
+
       $scope.newWeight = {
         Weight: null,
         DateTaken: null,
