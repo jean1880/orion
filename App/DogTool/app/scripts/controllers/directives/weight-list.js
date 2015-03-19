@@ -32,11 +32,6 @@ angular.module('dogToolApp')
       }
     };
 
-    var prepareNewWeight = function (weight) {
-      weight.DateTaken = new Date();
-      weight.Dog = $scope.dog.id;
-    }
-
     var convertDateTakenToDate = function(weight) {
       return new Date(weight.DateTaken);
     };
@@ -45,6 +40,11 @@ angular.module('dogToolApp')
       $scope.dog.Weights.push(response);
       reset();
     };
+
+    var prepareNewWeight = function (weight) {
+      weight.DateTaken = new Date();
+      weight.Dog = $scope.dog.id;
+    }
 
     var processInvalidPost = function (response) {
       $scope.weightForm.$invalid = true;
