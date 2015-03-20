@@ -44,25 +44,41 @@ angular.module('dogToolApp')
     var prepareNewWeight = function (weight) {
       weight.DateTaken = new Date();
       weight.Dog = $scope.dog.id;
-    }
+    };
 
     var processInvalidPost = function (response) {
-      $scope.weightForm.$invalid = true;
-      $scope.weightForm.$dirty = true;
-      $scope.weightForm.$submitted = true;
+      var form = $scope.weightForm;
 
-      if(response.invalidAttributes.Weight) {
-        $scope.weightForm.weight.$invalid = true;
+      form.$invalid = true;
+      form.$dirty = true;
+      form.$submitted = true;
 
-        var errors = response.invalidAttributes.Weight.map(function (obj) {
-          return obj.rule;
-        });
+      if(response.invalidAttributes) {
+        console.log(response);
 
-        if(errors.indexOf("required") != -1) {
-          $scope.weightForm.weight.$error.required = true;
-        }
-        else if(errors.indexOf("required") != -1) {
-          $scope.weightForm.weight.$error.number = true;
+        for(var attribute in response.invalidAttributes) {
+          console.log(form[attribute]);
+
+          if(!form[attribute]) {
+            form[attribute] = {};
+          }
+
+          form[attribute].$invalid = true;
+
+          var errors = response.invalidAttributes[attribute].map(function (obj) {
+            return obj.rule;
+          });
+
+          if(!form[attribute].$error) {
+            form[attribute].$error = {};
+          }
+
+          if(errors.indexOf('required') !== -1) {
+            form[attribute].$error.required = true;
+          }
+          else if(errors.indexOf('float') !== -1) {
+            form[attribute].$error.number = true;
+          }
         }
       }
     };

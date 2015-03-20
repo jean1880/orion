@@ -6,16 +6,16 @@
 		<div class="list-group-item">
 			<form name="weightForm" novalidate ng-submit="weightFormSubmitted()">
 				<div class="form-group">
-					<div class="input-group" ng-class="{'has-error': weightForm.$dirty && weightForm.weight.$invalid}">
-						<input type="number" class="form-control" ng-disabled="processing" placeholder="weight" ng-model="newWeight.Weight" name="weight" required/>
+					<div class="input-group" ng-class="{'has-error': weightForm.$dirty && weightForm.Weight.$invalid}">
+						<input type="number" class="form-control" ng-disabled="processing" placeholder="weight" ng-model="newWeight.Weight" name="Weight"/>
 						<span class="input-group-addon">lb</span>
 						<span class="input-group-btn">
 							<button class="btn btn-primary" ng-disabled="processing" type="submit">Add</button>
 						</span>
 					</div>
 					<div ng-show="weightForm.$submitted || weightForm.$dirty">
-				        <div ng-show="weightForm.weight.$error.required">Weight is required</div>
-				        <div ng-show="weightForm.weight.$error.number">Weight must be a number</div>
+				        <div ng-show="weightForm.Weight.$error.required">Weight is required</div>
+				        <div ng-show="weightForm.Weight.$error.number">Weight must be a number</div>
 				    </div>
 				</div>
 			</form>

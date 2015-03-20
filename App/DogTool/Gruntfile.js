@@ -50,17 +50,17 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      // karmaTests: {
-      //   files: [
-      //     '<%= yeoman.app %>/**/*.html',
-      //     '<%= yeoman.app %>/scripts/**/*.js',
-      //     'test/**/*.js'
-      //   ],
-      //   tasks: [ 'karma' ],
-      //   options: {
-      //     preprocessor: false
-      //   }
-      // },
+      karmaTests: {
+        files: [
+          '<%= yeoman.app %>/**/*.html',
+          '<%= yeoman.app %>/scripts/**/*.js',
+          'test/**/*.js'
+        ],
+        tasks: [ 'karma' ],
+        options: {
+          preprocessor: false
+        }
+      },
       jsTest: {
         files: ['test/spec/**/*.js'],
         tasks: ['newer:jshint:test']
