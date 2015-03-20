@@ -15,8 +15,6 @@ angular.module('dogToolApp')
 
       $scope.countPerPage = 5;
       $scope.page = 1;
-
-      reset();
     };
 
     var weightFormSubmitted = function () {
@@ -54,24 +52,12 @@ angular.module('dogToolApp')
       form.$submitted = true;
 
       if(response.invalidAttributes) {
-        console.log(response);
-
         for(var attribute in response.invalidAttributes) {
-          console.log(form[attribute]);
-
-          if(!form[attribute]) {
-            form[attribute] = {};
-          }
-
           form[attribute].$invalid = true;
 
           var errors = response.invalidAttributes[attribute].map(function (obj) {
             return obj.rule;
           });
-
-          if(!form[attribute].$error) {
-            form[attribute].$error = {};
-          }
 
           if(errors.indexOf('required') !== -1) {
             form[attribute].$error.required = true;
@@ -90,10 +76,8 @@ angular.module('dogToolApp')
     var reset = function () {
       $scope.processing = false;
 
-      if($scope.weightForm) {
-        $scope.weightForm.$submitted = false;
-        $scope.weightForm.$dirty = false;
-      }
+      $scope.weightForm.$submitted = false;
+      $scope.weightForm.$dirty = false;
 
       $scope.newWeight = {
         Weight: null,

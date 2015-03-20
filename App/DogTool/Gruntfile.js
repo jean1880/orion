@@ -52,7 +52,6 @@ module.exports = function (grunt) {
       },
       karmaTests: {
         files: [
-          '<%= yeoman.app %>/**/*.html',
           '<%= yeoman.app %>/scripts/**/*.js',
           'test/**/*.js'
         ],
@@ -60,10 +59,6 @@ module.exports = function (grunt) {
         options: {
           preprocessor: false
         }
-      },
-      jsTest: {
-        files: ['test/spec/**/*.js'],
-        tasks: ['newer:jshint:test']
       },
       css: {
         files: ['<%= yeoman.app %>/styles/**/*.css'],

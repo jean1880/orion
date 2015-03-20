@@ -34,7 +34,11 @@ describe('Controller: WeightListCtrl', function () {
     $httpBackend  = $injector.get('$httpBackend');
     SailsRoute    = $injector.get('SailsRoute');
 
-    scope.weightForm = {};
+    scope.weightForm = {
+      Weight: {
+        $error: {}
+      }
+    };
 
     WeightListCtrl = $controller('WeightListCtrl', {
       $scope: scope
@@ -66,20 +70,6 @@ describe('Controller: WeightListCtrl', function () {
     it('sets the current page to the first', function () {
       expect(scope.page).toBe(1);
     });
-
-    describe('the blank newWeight', function () {
-      it('has no weight set', function () {
-        expect(scope.newWeight.Weight).toBe(null);
-      });
-
-      it('has no DateTaken set', function () {
-        expect(scope.newWeight.DateTaken).toBe(null);
-      });
-
-      it('has no Dog set', function () {
-        expect(scope.newWeight.Dog).toBe(null);
-      });
-    });
   });
 
   describe('$scope.weightFormSubmitted()', function () {
@@ -97,7 +87,6 @@ describe('Controller: WeightListCtrl', function () {
     describe('when the form is valid', function () {
       beforeEach(function () {
         scope.weightForm.$valid = true;
-
         scope.newWeight = newWeight;
       });
 
@@ -174,30 +163,62 @@ describe('Controller: WeightListCtrl', function () {
           });
         });
       });
-    });
 
-    describe('when the post data is invalid', function () {
-      var response;
+      describe('when the post data is invalid', function () {
+        var response;
 
-      beforeEach(function () {
-        response = Mockery.mockError();
-        weightPostHandler.respond(400, response);
-      });
-
-      describe('with missing required attributes', function () {
         beforeEach(function () {
-          response.addInvalidAttribute('Weight', 'required', 'Weight is required');
+          response = Mockery.mockError();
+          weightPostHandler.respond(400, response);
+        });
 
-          scope.newWeight = {
-            Weight: chance.natural({min: 20, max: 100}),
-            DateTaken: chance.date(),
-            Dog: chance.hash()
-          };
+        describe('with missing Weight attribute', function () {
+          beforeEach(function () {
+            response.addInvalidAttribute('Weight', 'required', 'Weight is required');
+            scope.weightFormSubmitted();
+            $httpBackend.flush();
+          });
 
-          scope.weightForm.$valid = true;
+          it('sets the required error flag on the form', function () {
+            expect(scope.weightForm.Weight.$error.required).toBe(true);
+          });
+        });
 
-          scope.weightFormSubmitted();
-          $httpBackend.flush();
+        describe('with Weight not as a float', function () {
+          beforeEach(function () {
+            response.addInvalidAttribute('Weight', 'float', 'Weight must be a float');
+            scope.weightFormSubmitted();
+            $httpBackend.flush();
+          });
+
+          it('sets the number error flag on the form', function () {
+            expect(scope.weightForm.Weight.$error.number).toBe(true);
+          });
+        });
+
+        describe('with Weight having an unexpected reason', function () {
+          beforeEach(function () {
+            response.addInvalidAttribute('Weight', 'floop', 'floop for you life!');
+            scope.weightFormSubmitted();
+            $httpBackend.flush();
+          });
+
+          it('will do something', function () {
+            //later
+          });
+        });
+
+        describe('with no invalid attributes', function () {
+          beforeEach(function () {
+            response.invalidAttributes = undefined;
+
+            scope.weightFormSubmitted();
+            $httpBackend.flush();
+          });
+
+          it('will do something', function () {
+            //later
+          });
         });
       });
     });
