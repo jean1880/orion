@@ -7,13 +7,18 @@ describe('Controller: DogNewCtrl', function () {
   // load the controller's module
   beforeEach(module('dogToolApp'));
 
+  var DogNewCtrl;
+
   //services
   var scope,
     FactoryDog,
     $httpBackend,
     SailsRoute,
     $location,
-    flash;
+    flash,
+    dogPostHandler;
+
+  var dog;
 
   // Initialize the controller and services
   beforeEach(inject(function ($injector, $rootScope) {
@@ -23,14 +28,19 @@ describe('Controller: DogNewCtrl', function () {
     SailsRoute    = $injector.get('SailsRoute');
     FactoryDog    = $injector.get('FactoryDog');
     flash         = $injector.get('flash');
+
+    dog = Mockery.mockDog();
+
+    dogPostHandler = $httpBackend.whenPOST(SailsRoute.Dog.post).respond(200, dog);
+    spyOn(FactoryDog, 'post').and.callThrough();
+
+    spyOn($location, 'path');
   }));
 
   var runController = inject(function ($controller) {
-    var ctrl = $controller('DogNewCtrl', {
+    DogNewCtrl = $controller('DogNewCtrl', {
       $scope: scope
     });
-
-    return ctrl;
   });
 
   describe('when the controller is loaded', function () {
@@ -54,9 +64,6 @@ describe('Controller: DogNewCtrl', function () {
 
     describe('when called', function () {
       beforeEach(function () {
-        spyOn(FactoryDog, 'post').and.callThrough();
-        $httpBackend.whenPOST(SailsRoute.Dog.route).respond(200, scope.dog);
-
         scope.saveBtn();
         $httpBackend.flush();
       });
@@ -67,14 +74,8 @@ describe('Controller: DogNewCtrl', function () {
     });
 
     describe('with valid data', function() {
-      var dog;
 
       beforeEach(function () {
-        dog = Mockery.mockDog();
-
-        spyOn($location, 'path');
-        $httpBackend.whenPOST(SailsRoute.Dog.route).respond(200, dog);
-
         scope.saveBtn();
         $httpBackend.flush();
       });
@@ -89,14 +90,10 @@ describe('Controller: DogNewCtrl', function () {
     });
 
     describe('with invalid data', function() {
-      var response = {
-
-      };
+      var response = {};
 
       beforeEach(function () {
-        $httpBackend.whenPOST(SailsRoute.Dog.route).respond(400, response);
-
-        spyOn($location, 'path');
+        dogPostHandler.respond(400, response);
 
         scope.saveBtn();
         $httpBackend.flush();
@@ -110,5 +107,10 @@ describe('Controller: DogNewCtrl', function () {
         expect(flash.error).not.toBeUndefined();
       });
     });
+  });
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
   });
 });
