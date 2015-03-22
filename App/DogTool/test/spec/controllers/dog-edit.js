@@ -7,6 +7,8 @@ describe('Controller: DogEditCtrl', function () {
   // load the controller's module
   beforeEach(module('dogToolApp'));
 
+  var DogEditCtrl;
+
   //services
   var scope,
     FactoryDog,
@@ -14,6 +16,10 @@ describe('Controller: DogEditCtrl', function () {
     SailsRoute,
     $location,
     flash;
+
+  var dogGetHandler,
+    dogUpdateHandler,
+    dog;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($injector, $rootScope) {
@@ -23,30 +29,28 @@ describe('Controller: DogEditCtrl', function () {
     SailsRoute    = $injector.get('SailsRoute');
     FactoryDog    = $injector.get('FactoryDog');
     flash         = $injector.get('flash');
+
+    dog = Mockery.mockDog();
+
+    dogGetHandler = $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
+    dogUpdateHandler = $httpBackend.whenPOST(SailsRoute.Dog.update(dog.id)).respond(200, dog);
+
+    spyOn($location, 'path');
+    spyOn(FactoryDog, 'get').and.callThrough();
   }));
 
-  var dog;
-
   var runController = inject(function ($controller) {
-    var ctrl = $controller('DogEditCtrl', {
+    DogEditCtrl = $controller('DogEditCtrl', {
       $scope: scope,
       $routeParams: {id: dog.id}
     });
-
-    $httpBackend.flush();
-
-    return ctrl;
-  });
-
-  beforeEach(function () {
-    dog = Mockery.mockDog();
   });
 
   describe('when the controller is loaded', function() {
     beforeEach(function () {
-      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
-      spyOn(FactoryDog, 'get').and.callThrough();
+      dogGetHandler.respond(200, dog);
       runController();
+      $httpBackend.flush();
     });
 
     it('gets a dog from factoryDogs', function () {
@@ -56,9 +60,9 @@ describe('Controller: DogEditCtrl', function () {
 
   describe('when getting a dog is successful', function () {
     beforeEach(function () {
-      spyOn($location, 'path');
-      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
+      dogGetHandler.respond(200, dog);
       runController();
+      $httpBackend.flush();
     });
 
     it('populates $scope.dog', function () {
@@ -73,10 +77,9 @@ describe('Controller: DogEditCtrl', function () {
 
   describe('when getting a dog returns a 404', function () {
     beforeEach(function () {
-      spyOn($location, 'path');
-      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(404, {message: 'not found'});
-
+      dogGetHandler.respond(404, {message: 'not found'});
       runController();
+      $httpBackend.flush();
     });
 
     it('redirects to homepage', function () {
@@ -86,16 +89,16 @@ describe('Controller: DogEditCtrl', function () {
 
   describe('$scope.saveBtn()', function () {
     beforeEach(function () {
-      $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
       runController();
+      $httpBackend.flush();
     });
 
     describe('update success', function() {
       beforeEach(function () {
-        spyOn($location, 'path');
-        $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(200, dog);
+        dogUpdateHandler.respond(200, dog);
 
         scope.saveBtn();
+
         $httpBackend.flush();
       });
 
@@ -109,16 +112,14 @@ describe('Controller: DogEditCtrl', function () {
     });
 
     describe('with invalid data', function() {
-      var response = {
-
-      };
+      var response;
 
       beforeEach(function () {
-        $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(400, response);
-
-        spyOn($location, 'path');
+        response = {};
+        dogUpdateHandler.respond(400, response);
 
         scope.saveBtn();
+
         $httpBackend.flush();
       });
 
@@ -130,5 +131,10 @@ describe('Controller: DogEditCtrl', function () {
         expect(flash.error).not.toBeUndefined();
       });
     });
+  });
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
   });
 });
