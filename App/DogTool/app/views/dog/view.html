@@ -25,7 +25,7 @@
             <strong>Birthdate</strong>
           </div>
           <div class="col-xs-9">
-            {{dog.Birthdate | date : "longDate"}}
+            {{dog.Birthdate | date : 'medium'}}
           </div>
         </div>
 
@@ -37,6 +37,11 @@
             {{dog.Age}}
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <weight-list dog="dog"></weight-list>
       </div>
     </div>
   </div>

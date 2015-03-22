@@ -78,31 +78,4 @@ module.exports = function(grunt) {
 	invokeConfigFn(taskConfigurations);
 	invokeConfigFn(registerDefinitions);
 
-
-	grunt.initConfig({
-		watch: {
-			tests: {
-				files: [
-					'api/**/*.js',
-					'test/spec/**/*.js'
-				],
-				tasks: ['test']
-			}
-		},
-	    mochaTest: {
-		    test: {
-		        options: {
-		            reporter: 'dot',
-		            require: [
-		            	function(){ expect = require('expect'); }
-		            ]
-		        },
-		        src: ['test/spec/**/*.js']
-		    }
-		}
-	});
-
-	grunt.loadNpmTasks('grunt-mocha-test');
-
-	grunt.registerTask('test', ['mochaTest']);
 };
