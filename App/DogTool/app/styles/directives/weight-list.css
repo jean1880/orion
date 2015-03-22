@@ -1,0 +1,9 @@
+.weight-list .paging-btns {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.weight-list .paging-btns .pager {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
