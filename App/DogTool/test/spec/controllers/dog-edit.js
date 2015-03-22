@@ -32,7 +32,7 @@ describe('Controller: DogEditCtrl', function () {
 
     dog = Mockery.mockDog();
 
-    dogGetHandler = $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
+    dogGetHandler    = $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
     dogUpdateHandler = $httpBackend.whenPOST(SailsRoute.Dog.update(dog.id)).respond(200, dog);
 
     spyOn($location, 'path');
