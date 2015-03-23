@@ -49,6 +49,10 @@ angular
         templateUrl: 'views/dog/edit.html',
         controller: 'DogEditCtrl'
       })
+      .when('/Jobs', {
+        templateUrl: 'views/jobs.html',
+        controller: 'JobsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
