@@ -14,11 +14,7 @@
 module.exports = {
 
     attributes: {
-        StreetName: {
-            type: 'string',
-            required: true
-        },
-        StreetNum: {
+        Street: {
             type: 'string',
             required: true
         },
@@ -36,12 +32,6 @@ module.exports = {
         },
         PostalCode: {
             type: 'string'
-        },
-        BusinessInfo: {
-            model: 'business_info'
-        },
-        Peoples: {
-            model: 'people'
         }
     }
 };

@@ -1,1 +1,12 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.flash-container .fade {
+    display: none;
+    z-index: 10000;
+}
+
+.flash-container .fade.in {
+    position: relative;
+    margin-bottom: 0;
+    display: block;
+}

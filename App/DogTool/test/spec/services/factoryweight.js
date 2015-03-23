@@ -1,158 +1,185 @@
 'use strict';
 
+/* global Mockery */
+/* global chance */
+
 describe('Service: FactoryWeight', function () {
-    // load the service's module
-    beforeEach(module('dogToolApp'));
+  // load the service's module
+  beforeEach(module('dogToolApp'));
 
-    // instantiate service
-    var FactoryWeight;
+  // instantiate service
+  var FactoryWeight, SailsRoute;
 
-    //mocks
-    var $http, poller;
+  //mocks
+  var $http, poller;
 
-    //variables
-    var route, weightID, callback, weight, searchObject, response, returned;
+  //variables
+  var response, returned;
 
-    var returned;
+  beforeEach(inject(function (_FactoryWeight_, _SailsRoute_, _poller_, _$http_) {
+    //Set services used by the factory
+    $http = _$http_;
+    poller = _poller_;
+    SailsRoute = _SailsRoute_;
+
+    // load factory
+    FactoryWeight = _FactoryWeight_;
+
+    returned = null;
+  }));
+
+  describe('get one', function () {
+    var weight;
 
     beforeEach(function () {
-        angular.mock.inject(function ($injector) {
-            //setup mocks
-            $http = $injector.get('$http');
-            poller = $injector.get('poller');
+      weight = Mockery.mockWeight();
 
-            //get service
-            FactoryWeight = $injector.get('FactoryWeight');
+      spyOn($http, 'get').and.returnValue(weight);
 
-            //configure
-            route = 'http://localhost:1337/Weight';
-            weightID = 1;
-
-            response = {
-                status: 200,
-                message: 'success'
-            };
-
-            returned = null;
-        });
+      returned = FactoryWeight.get(weight.id);
     });
 
-    describe('get one', function () {
-        beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
-
-            returned = FactoryWeight.get(weightID);
-        });
-
-        it('makes a call to sails get', function () {
-            expect($http.get).toHaveBeenCalled();
-        });
-
-        it('makes a call to the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route + '/' + weightID);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to sails get', function () {
+      expect($http.get).toHaveBeenCalled();
     });
 
-    describe('get all', function () {
-        beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
-
-            returned = FactoryWeight.getAll();
-        });
-
-        it('makes a call to sails get', function () {
-            expect($http.get).toHaveBeenCalled();
-        });
-
-        it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to the correct route', function () {
+      expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.get(weight.id));
     });
 
-    describe('listen', function () {
-        beforeEach(function () {
-            spyOn(poller, 'get').and.returnValue(response);
+    it('returns the response from sails', function () {
+      expect(returned).toBe(weight);
+    });
+  });
 
-            callback = function () {};
+  describe('get all', function () {
+    var weights;
 
-            FactoryWeight.listen(callback);
-        });
+    beforeEach(function () {
+      weights = [];
 
-        it('starts to sails on', function () {
-            expect(poller.get).toHaveBeenCalled();
-        });
+      for (var i = chance.natural({min: 5, max: 10}); i >= 0; i--) {
+        weights.push(Mockery.mockWeight());
+      }
 
-        it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(route, jasmine.any(Function));
-        });
+      spyOn($http, 'get').and.returnValue(weights);
 
-        it('passes the correct callback to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(jasmine.any(String), callback);
-        });
+      returned = FactoryWeight.getAll();
     });
 
-    describe('post', function () {
-        beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
-
-            weight = {
-                id: 1,
-                name: 'billy'
-            };
-
-            returned = FactoryWeight.post(weight);
-        });
-
-        it('makes a call to sails post', function () {
-            expect($http.post).toHaveBeenCalled();
-        });
-
-        it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route, jasmine.any(Object));
-        });
-
-        it('passes the correct weight to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), weight);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to sails get', function () {
+      expect($http.get).toHaveBeenCalled();
     });
 
-    describe('find', function () {
-        beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
-
-            searchObject = {
-                name: 'billy'
-            };
-
-            returned = FactoryWeight.find(searchObject);
-        });
-
-        it('makes a call to sails post', function () {
-            expect($http.post).toHaveBeenCalled();
-        });
-
-        it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route + '/find', jasmine.any(Object));
-        });
-
-        it('passes the correct weight to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), searchObject);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to sails with the correct route', function () {
+      expect($http.get).toHaveBeenCalledWith(SailsRoute.Weight.getAll);
     });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(weights);
+    });
+  });
+
+  describe('listen', function () {
+    beforeEach(function () {
+      spyOn(poller, 'get').and.returnValue(response);
+      FactoryWeight.listen();
+    });
+
+    it('starts listening for changes', function () {
+      expect(poller.get).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect(poller.get).toHaveBeenCalledWith(SailsRoute.Weight.listen);
+    });
+  });
+
+  describe('post', function () {
+    var weight;
+
+    beforeEach(function () {
+      weight = Mockery.mockWeight();
+
+      spyOn($http, 'post').and.returnValue(weight);
+
+      returned = FactoryWeight.post(weight);
+    });
+
+    it('makes a call to sails post', function () {
+      expect($http.post).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.post, jasmine.any(Object));
+    });
+
+    it('passes the correct weight to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(jasmine.any(String), weight);
+    });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(weight);
+    });
+  });
+
+  describe('find', function () {
+    var weight, searchObject;
+
+    beforeEach(function () {
+      weight = Mockery.mockWeight();
+
+      spyOn($http, 'post').and.returnValue(weight);
+
+      searchObject = {
+        DateTaken: weight.DateTaken
+      };
+
+      returned = FactoryWeight.find(searchObject);
+    });
+
+    it('makes a call to sails post', function () {
+      expect($http.post).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.find, jasmine.any(Object));
+    });
+
+    it('passes the correct weight to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(jasmine.any(String), searchObject);
+    });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(weight);
+    });
+  });
+
+  describe('update', function () {
+    var weight;
+
+    beforeEach(function () {
+      weight = Mockery.mockWeight();
+
+      spyOn($http, 'post').and.returnValue(weight);
+
+      returned = FactoryWeight.update(weight);
+    });
+
+    it('makes a call to sails post', function () {
+      expect($http.post).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(SailsRoute.Weight.update(weight.id), jasmine.any(Object));
+    });
+
+    it('passes the correct weight to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(jasmine.any(String), weight);
+    });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(weight);
+    });
+  });
 });

@@ -13,10 +13,11 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/views/dog/edit.css">
     <link rel="stylesheet" href="styles/directives/dog-card.css">
+    <link rel="stylesheet" href="styles/directives/weight-list.css">
     <!-- endbuild -->
 </head>
 
@@ -27,7 +28,41 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-        <app-header></app-header>
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#/">Not Just Kibble</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="#/">Dogs</a>
+                        </li>
+                        <li><a ng-href="#/about">Appointments</a>
+                        </li>
+                        <li><a ng-href="#/">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container flash-container">
+        <div class="col-xs-12">
+            <div flash-alert active-class="in alert" class="fade" duration="3000">
+                <span class="alert-message">{{flash.message}}</span>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -35,7 +70,9 @@
     </div>
 
     <div class="footer">
-       <app-footer></app-footer>
+        <div class="container">
+            <small>&copy; copyright 2015 Not Just Kibble</small>
+        </div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -49,30 +86,37 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/sails.io.js/dist/sails.io.js"></script>
     <script src="bower_components/angular-poller/angular-poller.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-bootstrap-show-errors/src/showErrors.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/angular-flash/dist/angular-flash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <script type="text/javascript">
-        io.sails.autoConnect = false;
-    </script>
-
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
+
     <script src="scripts/services/factorydog.js"></script>
     <script src="scripts/services/factoryweight.js"></script>
-    <script src="scripts/directives/appheader.js"></script>
-    <script src="scripts/directives/appfooter.js"></script>
-    <script src="scripts/directives/dog-card.js"></script>
     <script src="scripts/services/serveraddress.js"></script>
+    <script src="scripts/services/sailsroute.js"></script>
+    <script src="scripts/services/serveraddress.js"></script>
+    <script src="scripts/services/factorynote.js"></script>
+    <script src="scripts/services/factorypeople.js"></script>
+
+    <script src="scripts/controllers/dog-view.js"></script>
+    <script src="scripts/controllers/dog-edit.js"></script>
+    <script src="scripts/controllers/dog-new.js"></script>
     <script src="scripts/controllers/dog-list-filters.js"></script>
     <script src="scripts/controllers/dog-card.js"></script>
     <script src="scripts/controllers/dog.js"></script>
     <script src="scripts/services/factorycost.js"></script>
+    <script src="scripts/controllers/dog-list.js"></script>
+    <script src="scripts/controllers/directives/dog-card.js"></script>
+    <script src="scripts/controllers/directives/weight-list.js"></script>
+    <script src="scripts/directives/dog-card.js"></script>
+    <script src="scripts/directives/weight-list.js"></script>
     <!-- endbuild -->
 </body>
 
