@@ -19,36 +19,41 @@ angular.module('dogToolApp')
                 return $http.get(SailsRoute.Cost.get(id));
             },
             /**
-             * One time fetch from server for full Cost dataset
+             * Fetch all entries in the dataset
              * @method getAll
              */
             getAll: function () {
                 return $http.get(SailsRoute.Cost.getAll);
             },
             /**
-             * One time fetch from server for full Cost dataset
+             * Wait for changes from the server
              * @method listen
              */
             listen: function () {
                 return poller.get(SailsRoute.Cost.listen);
             },
             /**
-             * One time fetch from server for full Cost dataset
+             * Add a new item with the value of cost
              * @method post
-             * @param weight
+             * @param cost
              */
             post: function (cost) {
                 return $http.post(SailsRoute.Cost.post, cost);
             },
             /**
-             * One time fetch from server for full Cost dataset
+             * Find an item that matches the searchObject value
              * @method find
              * @param searchObject
              */
             find: function (searchObject) {
                 return $http.post(SailsRoute.Cost.find, searchObject);
             },
-
+            
+            /**
+            * Update the value of an item, with the new value
+            * @method update
+            * @param cost
+            */
             update: function (cost) {
                 return $http.post(SailsRoute.Cost.update(cost.id), cost);
             }
