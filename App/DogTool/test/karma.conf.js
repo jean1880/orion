@@ -14,7 +14,10 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: [
+      'jasmine',
+      'jasmine-matchers'
+    ],
 
     // list of files / patterns to load in the browser
     files: [
@@ -28,16 +31,20 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/sails.io.js/dist/sails.io.js',
       'bower_components/angular-poller/angular-poller.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-bootstrap-show-errors/src/showErrors.js',
+      'bower_components/moment/moment.js',
+      'bower_components/angular-moment/angular-moment.js',
+      'bower_components/angular-flash/dist/angular-flash.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/chance/chance.js',
       // endbower
       'app/views/**/*.html',
       'app/scripts/**/*.js',
-      'test/factories/**/*.js',
+      'test/config.js',
+      'test/mocks/Mockery.js',
+      'test/mocks/**/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -65,7 +72,9 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-jasmine-matchers',
+      'karma-nested-reporter'
     ],
 
     preprocessors: {
@@ -90,7 +99,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     reporters: [
-      'progress',
+      'nested',
       'coverage'
     ],
 

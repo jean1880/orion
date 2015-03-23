@@ -1,5 +1,6 @@
-/* global chance */
 'use strict';
+
+/* global Mockery */
 
 describe('Directive: dogCard', function () {
 
@@ -10,14 +11,18 @@ describe('Directive: dogCard', function () {
   beforeEach(module('htmlFiles'));
 
   var element,
-    $scope;
+    $scope,
+    $location;
 
-  beforeEach(inject(function ($rootScope, $compile) {
+  var dog;
+
+  beforeEach(inject(function ($rootScope, $compile, _$location_) {
     $scope = $rootScope.$new();
+    $location = _$location_;
 
-    $scope.dog = {
-      Name: chance.first()
-    };
+    dog = Mockery.mockDog();
+
+    $scope.dog = dog;
 
     element = angular.element('<dog-card dog="dog"></dog-card>');
     element = $compile(element)($scope);

@@ -8,14 +8,20 @@
  * Service in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .service('SailsRoute', function () {
-    var server = 'http://localhost:1337';
+  .service('SailsRoute', function (ServerAddress) {
+    //TODO: move ServerAddress into this file
 
     var buildRoutes = function (objectName) {
       return {
-        route: server + '/' + objectName,
-        find: server + '/' + objectName + '/find',
-        get: function(id) {
+        route: ServerAddress + '/' + objectName,
+        getAll: ServerAddress + '/' + objectName,
+        listen: ServerAddress + '/' + objectName,
+        post: ServerAddress + '/' + objectName,
+        find: ServerAddress + '/' + objectName + '/find',
+        get: function (id) {
+          return this.route + '/' + id;
+        },
+        update: function (id) {
           return this.route + '/' + id;
         }
       };
@@ -23,6 +29,10 @@ angular.module('dogToolApp')
 
     return {
       Dog: buildRoutes('dog'),
-      Weight: buildRoutes('weight')
+      Weight: buildRoutes('weight'),
+      Daycare: buildRoutes('daycare'),
+      Note: buildRoutes('note'),
+      People: buildRoutes('people'),
+      Homework: buildRoutes('homework')
     };
   });
