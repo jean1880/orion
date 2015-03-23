@@ -1,156 +1,185 @@
 'use strict';
 
+/* global Mockery */
+/* global chance */
+
 describe('Service: FactoryCost', function () {
-    // load the service's module
-    beforeEach(module('dogToolApp'));
+  // load the service's module
+  beforeEach(module('dogToolApp'));
 
-    // instantiate service
-    var FactoryCost;
+  // instantiate service
+  var FactoryCost, SailsRoute;
 
-    //mocks
-    var $http, poller;
+  //mocks
+  var $http, poller;
 
-    //variables
-    var route, costID, callback, cost, searchObject, response, returned;
+  //variables
+  var response, returned;
+
+  beforeEach(inject(function (_FactoryCost_, _SailsRoute_, _poller_, _$http_) {
+    //Set services used by the factory
+    $http = _$http_;
+    poller = _poller_;
+    SailsRoute = _SailsRoute_;
+
+    // load factory
+    FactoryCost = _FactoryCost_;
+
+    returned = null;
+  }));
+
+  describe('get one', function () {
+    var cost;
 
     beforeEach(function () {
-        angular.mock.inject(function ($injector) {
-            //setup mocks
-            $http = $injector.get('$http');
-            poller = $injector.get('poller');
+      cost = Mockery.mockCost();
 
-            //get service
-            FactoryCost = $injector.get('FactoryCost');
+      spyOn($http, 'get').and.returnValue(cost);
 
-            //configure
-            route = 'http://localhost:1337/Cost';
-            costID = 1;
-
-            response = {
-                status: 200,
-                message: 'success'
-            };
-
-            returned = null;
-        });
+      returned = FactoryCost.get(cost.id);
     });
 
-    describe('get one', function () {
-        beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
-
-            returned = FactoryCost.get(costID);
-        });
-
-        it('makes a call to sails get', function () {
-            expect($http.get).toHaveBeenCalled();
-        });
-
-        it('makes a call to the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route + '/' + costID);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to sails get', function () {
+      expect($http.get).toHaveBeenCalled();
     });
 
-    describe('get all', function () {
-        beforeEach(function () {
-            spyOn($http, 'get').and.returnValue(response);
-
-            returned = FactoryCost.getAll();
-        });
-
-        it('makes a call to sails get', function () {
-            expect($http.get).toHaveBeenCalled();
-        });
-
-        it('makes a call to sails with the correct route', function () {
-            expect($http.get).toHaveBeenCalledWith(route);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to the correct route', function () {
+      expect($http.get).toHaveBeenCalledWith(SailsRoute.Cost.get(cost.id));
     });
 
-    describe('listen', function () {
-        beforeEach(function () {
-            spyOn(poller, 'get').and.returnValue(response);
+    it('returns the response from sails', function () {
+      expect(returned).toBe(cost);
+    });
+  });
 
-            callback = function () {};
+  describe('get all', function () {
+    var costs;
 
-            FactoryCost.listen(callback);
-        });
+    beforeEach(function () {
+      costs = [];
 
-        it('starts to sails on', function () {
-            expect(poller.get).toHaveBeenCalled();
-        });
+      for (var i = chance.natural({min: 5, max: 10}); i >= 0; i--) {
+        costs.push(Mockery.mockCost());
+      }
 
-        it('passes the correct route to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(route, jasmine.any(Function));
-        });
+      spyOn($http, 'get').and.returnValue(costs);
 
-        it('passes the correct callback to sails', function () {
-            expect(poller.get).toHaveBeenCalledWith(jasmine.any(String), callback);
-        });
+      returned = FactoryCost.getAll();
     });
 
-    describe('post', function () {
-        beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
-
-            cost = {
-                id: 1,
-                name: 'billy'
-            };
-
-            returned = FactoryCost.post(cost);
-        });
-
-        it('makes a call to sails post', function () {
-            expect($http.post).toHaveBeenCalled();
-        });
-
-        it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route, jasmine.any(Object));
-        });
-
-        it('passes the correct cost to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), cost);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to sails get', function () {
+      expect($http.get).toHaveBeenCalled();
     });
 
-    describe('find', function () {
-        beforeEach(function () {
-            spyOn($http, 'post').and.returnValue(response);
-
-            searchObject = {
-                name: 'billy'
-            };
-
-            returned = FactoryCost.find(searchObject);
-        });
-
-        it('makes a call to sails post', function () {
-            expect($http.post).toHaveBeenCalled();
-        });
-
-        it('passes the correct route to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(route + '/find', jasmine.any(Object));
-        });
-
-        it('passes the correct cost to sails', function () {
-            expect($http.post).toHaveBeenCalledWith(jasmine.any(String), searchObject);
-        });
-
-        it('returns the response from sails', function () {
-            expect(returned).toBe(response);
-        });
+    it('makes a call to sails with the correct route', function () {
+      expect($http.get).toHaveBeenCalledWith(SailsRoute.Cost.getAll);
     });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(costs);
+    });
+  });
+
+  describe('listen', function () {
+    beforeEach(function () {
+      spyOn(poller, 'get').and.returnValue(response);
+      FactoryCost.listen();
+    });
+
+    it('starts listening for changes', function () {
+      expect(poller.get).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect(poller.get).toHaveBeenCalledWith(SailsRoute.Cost.listen);
+    });
+  });
+
+  describe('post', function () {
+    var cost;
+
+    beforeEach(function () {
+      cost = Mockery.mockCost();
+
+      spyOn($http, 'post').and.returnValue(cost);
+
+      returned = FactoryCost.post(cost);
+    });
+
+    it('makes a call to sails post', function () {
+      expect($http.post).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(SailsRoute.Cost.post, jasmine.any(Object));
+    });
+
+    it('passes the correct cost to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(jasmine.any(String), cost);
+    });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(cost);
+    });
+  });
+
+  describe('find', function () {
+    var cost, searchObject;
+
+    beforeEach(function () {
+      cost = Mockery.mockCost();
+
+      spyOn($http, 'post').and.returnValue(cost);
+
+      searchObject = {
+        DateTaken: cost.DateTaken
+      };
+
+      returned = FactoryCost.find(searchObject);
+    });
+
+    it('makes a call to sails post', function () {
+      expect($http.post).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(SailsRoute.Cost.find, jasmine.any(Object));
+    });
+
+    it('passes the correct cost to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(jasmine.any(String), searchObject);
+    });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(cost);
+    });
+  });
+
+  describe('update', function () {
+    var cost;
+
+    beforeEach(function () {
+      cost = Mockery.mockCost();
+
+      spyOn($http, 'post').and.returnValue(cost);
+
+      returned = FactoryCost.update(cost);
+    });
+
+    it('makes a call to sails post', function () {
+      expect($http.post).toHaveBeenCalled();
+    });
+
+    it('passes the correct route to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(SailsRoute.Cost.update(cost.id), jasmine.any(Object));
+    });
+
+    it('passes the correct cost to sails', function () {
+      expect($http.post).toHaveBeenCalledWith(jasmine.any(String), cost);
+    });
+
+    it('returns the response from sails', function () {
+      expect(returned).toBe(cost);
+    });
+  });
 });

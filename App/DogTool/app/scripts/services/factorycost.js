@@ -6,8 +6,8 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryCost', function ($http, ServerAddress, poller) {
-        var route = ServerAddress + '/Cost';
+    .factory('FactoryCost', function ($http, SailsRoute, poller) {
+        
 
         return {
             /**
@@ -16,21 +16,21 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(route + '/' + id);
+                return $http.get(SailsRoute.Cost.get(id));
             },
             /**
              * One time fetch from server for full Cost dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(route);
+                return $http.get(SailsRoute.Cost.getAll);
             },
             /**
              * One time fetch from server for full Cost dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(route);
+                return poller.get(SailsRoute.Cost.listen);
             },
             /**
              * One time fetch from server for full Cost dataset
@@ -38,7 +38,7 @@ angular.module('dogToolApp')
              * @param weight
              */
             post: function (cost) {
-                return $http.post(route, cost);
+                return $http.post(SailsRoute.Cost.post, cost);
             },
             /**
              * One time fetch from server for full Cost dataset
@@ -46,11 +46,11 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(route + '/find', searchObject);
+                return $http.post(SailsRoute.Cost.find, searchObject);
             },
 
             update: function (cost) {
-                return $http.post(route + "/" + cost.id, cost);
+                return $http.post(SailsRoute.Cost.update(cost.id), cost);
             }
         };
     });
