@@ -5,10 +5,14 @@
       <button class="btn btn-primary pull-right" ng-click="editBtn()">Edit</button>
     </h1>
   </div>
-
-  <div class="col-xs-12">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Info
+      </div>
+      <div class="panel-body">
         <div class="row">
           <div class="col-xs-3">
             <strong>Breed</strong>
@@ -17,9 +21,7 @@
             {{dog.Breed}}
           </div>
         </div>
-      </div>
 
-      <div class="col-xs-12 col-sm-6">
         <div class="row">
           <div class="col-xs-3">
             <strong>Birthdate</strong>
@@ -39,11 +41,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <weight-list dog="dog"></weight-list>
-      </div>
-    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <weight-list dog="dog"></weight-list>
   </div>
 </div>
 
