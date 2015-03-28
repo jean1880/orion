@@ -13,6 +13,8 @@ angular.module('dogToolApp')
   .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog) {
     var init = function() {
       loadDog($routeParams.id);
+
+      $scope.editingInfo = false;
     };
 
     var loadDog = function (id) {
@@ -20,7 +22,7 @@ angular.module('dogToolApp')
         .success(function (response) {
           var dog = response;
 
-          dog.Age = moment(dog.Birthdate).fromNow(true);
+          processDog(dog);
 
           $scope.dog = dog;
         })
@@ -29,8 +31,35 @@ angular.module('dogToolApp')
         });
     };
 
-    $scope.editBtn = function() {
-      $location.path('/dog/' + $scope.dog.id + '/edit');
+    $scope.editInfoBtn = function() {
+      $scope.editingInfo = true;
+      $scope.editedDog = angular.copy($scope.dog);
+      $scope.infoForm.$setDirty(false);
+    };
+
+    $scope.saveInfoBtn = function() {
+      if($scope.infoForm.$dirty) {
+        FactoryDog.update($scope.editedDog)
+          .success(function (response) {
+            processDog(response);
+            $scope.dog = response;
+            $scope.editingInfo = false;
+            $scope.infoForm.$setDirty(false);
+          })
+          .error(function () {});
+      }
+      else {
+        $scope.editingInfo = false;
+      }
+    };
+
+    $scope.cancelInfoBtn = function() {
+      $scope.editingInfo = false;
+    };
+
+    var processDog = function (dog) {
+      dog.Birthdate = new Date(dog.Birthdate);
+      dog.Age = moment(dog.Birthdate).fromNow(true);
     };
 
     init();
