@@ -23,6 +23,10 @@ describe('Controller: DogNewCtrl', function () {
     SailsRoute    = $injector.get('SailsRoute');
     FactoryDog    = $injector.get('FactoryDog');
     flash         = $injector.get('flash');
+
+    scope.dogEditForm = {
+      $valid: true
+    };
   }));
 
   var runController = inject(function ($controller) {

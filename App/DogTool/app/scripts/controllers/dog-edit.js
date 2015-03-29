@@ -30,14 +30,16 @@ angular.module('dogToolApp')
     };
 
     $scope.saveBtn = function() {
-      FactoryDog.update($scope.dog)
-        .success(function () {
-          flash.success = 'Changes saved';
-          $location.path('/dog/' + $scope.dog.id);
-        })
-        .error(function () {
-          flash.error = 'Error saving dog';
-        });
+      if($scope.dogEditForm.$valid) {
+        FactoryDog.update($scope.dog)
+          .success(function (response) {
+            flash.success = 'Changes Saved';
+            $location.path('/dog/' + response.id);
+          })
+          .error(function () {
+            flash.error = 'Error saving dog';
+          });
+      }
     };
 
     init();

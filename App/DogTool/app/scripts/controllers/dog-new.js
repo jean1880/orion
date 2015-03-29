@@ -15,14 +15,16 @@ angular.module('dogToolApp')
     };
 
     $scope.saveBtn = function() {
-      FactoryDog.post($scope.dog)
-        .success(function (response) {
-          flash.success = 'Dog Created';
-          $location.path('/dog/' + response.id);
-        })
-        .error(function () {
-          flash.error = 'Error saving dog';
-        });
+      if($scope.dogEditForm.$valid) {
+        FactoryDog.post($scope.dog)
+          .success(function (response) {
+            flash.success = 'Dog Created';
+            $location.path('/dog/' + response.id);
+          })
+          .error(function () {
+            flash.error = 'Error saving dog';
+          });
+      }
     };
 
     init();
