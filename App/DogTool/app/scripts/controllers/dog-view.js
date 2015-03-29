@@ -4,7 +4,7 @@
 
 /**
  * @ngdoc function
- * @name dogToolApp.controller:DogCtrl
+ * @name dogToolApp.controller:DogViewCtrl
  * @description
  * # DogCtrl
  * Controller of the dogToolApp
