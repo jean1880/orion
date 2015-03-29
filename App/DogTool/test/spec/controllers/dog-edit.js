@@ -142,6 +142,20 @@ describe('Controller: DogEditCtrl', function () {
       beforeEach(function () {
         scope.dogEditForm.$valid = false;
       });
+
+      describe('when called', function () {
+        beforeEach(function () {
+          scope.saveBtn();
+        });
+
+        it('does not try to update the dog', function () {
+          expect(FactoryDog.update).not.toHaveBeenCalled();
+        });
+
+        it('does not change the path', function () {
+          expect($location.path).not.toHaveBeenCalled();
+        });
+      });
     });
   });
 });
