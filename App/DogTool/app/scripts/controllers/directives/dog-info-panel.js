@@ -1,5 +1,7 @@
 'use strict';
 
+/* global moment */
+
 /**
  * @ngdoc function
  * @name dogToolApp.controller:DogInfoPanelCtrl
@@ -16,18 +18,13 @@ angular.module('dogToolApp')
     };
 
     $scope.saveInfoBtn = function() {
-      if($scope.infoForm.$dirty) {
-        FactoryDog.update($scope.editedDog)
-          .success(function (response) {
-            processDog(response);
-            $scope.dog = response;
-            $scope.editingInfo = false;
-            $scope.infoForm.$setDirty(false);
-          })
-          .error(function () {});
-      }
-      else {
-        $scope.editingInfo = false;
+      if($scope.infoForm.$valid) {
+        if($scope.infoForm.$dirty) {
+          updateDog($scope.editedDog);
+        }
+        else {
+          $scope.editingInfo = false;
+        }
       }
     };
 
@@ -39,4 +36,26 @@ angular.module('dogToolApp')
       dog.Birthdate = new Date(dog.Birthdate);
       dog.Age = moment(dog.Birthdate).fromNow(true);
     };
-  });
+
+    var updateDog = function (dog) {
+      FactoryDog.update(dog)
+        .success(function (response) {
+          processSuccess(response);
+        })
+        .error(function (response) {
+          processError(response);
+        });
+    };
+
+    var processSuccess = function (response) {
+        processDog(response);
+
+        $scope.dog = response;
+        $scope.editingInfo = false;
+        $scope.infoForm.$setDirty(false);
+    };
+
+    var processError = function (response) {
+        console.log('Error occured: ' + response);
+    };
+});

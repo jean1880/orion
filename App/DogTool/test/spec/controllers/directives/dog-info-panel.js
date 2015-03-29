@@ -34,7 +34,8 @@ describe('Controller: DogInfoPanelCtrl', function () {
       $setDirty: function (value) {
         this.$dirty = value;
       },
-      $dirty: false
+      $dirty: false,
+      $valid: true
     };
     scope.dog = dog;
 
@@ -96,9 +97,26 @@ describe('Controller: DogInfoPanelCtrl', function () {
         });
       });
 
-      describe('when form is dirty', function () {
+      describe('when form is invalid', function () {
+        beforeEach(function () {
+          scope.infoForm.$valid = false;
+        });
+
+        describe('when called', function () {
+          beforeEach(function () {
+            scope.saveInfoBtn();
+          });
+
+          it('does not attempt to update the dog', function () {
+            expect(FactoryDog.update).not.toHaveBeenCalled();
+          });
+        });
+      });
+
+      describe('when form is dirty and valid', function () {
         beforeEach(function () {
           scope.infoForm.$dirty = true;
+          scope.infoForm.$valid = true;
           scope.dog.Breed = chance.word({length: 2});
         });
 

@@ -11,7 +11,8 @@ angular.module('dogToolApp')
     return {
       restrict: 'E',
       scope: {
-      	dog: '='
+      	dog: '=',
+        createMode: '='
       },
       templateUrl: 'views/directives/dog-info-panel.html',
       controller: 'DogInfoPanelCtrl'
