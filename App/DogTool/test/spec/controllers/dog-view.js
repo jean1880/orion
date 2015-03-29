@@ -32,13 +32,6 @@ describe('Controller: DogViewCtrl', function () {
 
     dog = Mockery.mockDog({}, false);
 
-    scope.infoForm = {
-      $setDirty: function (value) {
-        this.$dirty = value;
-      },
-      $dirty: false
-    };
-
     dogGetHandler  = $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
   }));
 

@@ -25,11 +25,19 @@ describe('Controller: DogInfoPanelCtrl', function () {
     FactoryDog    = $injector.get('FactoryDog');
 
     dog = Mockery.mockDog();
-    scope.dog = dog;
 
     dogPostHandler = $httpBackend.whenPOST(SailsRoute.Dog.get(dog.id)).respond(200, dog);
 
     spyOn(FactoryDog, 'update').and.callThrough();
+
+    scope.infoForm = {
+      $setDirty: function (value) {
+        this.$dirty = value;
+      },
+      $dirty: false
+    };
+    scope.dog = dog;
+
 
     DogInfoPanelCtrl = $controller('DogInfoPanelCtrl', {
       $scope: scope
