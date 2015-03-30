@@ -25,9 +25,5 @@ angular.module('dogToolApp')
         });
     };
 
-    $scope.addBtnClick = function () {
-      $location.path('/dog/new');
-    };
-
     init();
   });
