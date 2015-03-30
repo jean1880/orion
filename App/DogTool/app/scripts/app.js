@@ -53,13 +53,13 @@ angular
         templateUrl: 'views/people/list.html',
         controller: 'PeopleListCtrl'
       })
-      .when('/person/:id', {
-        templateUrl: 'views/people/view.html',
-        controller: 'PeopleViewCtrl'
-      })
       .when('/person/new', {
         templateUrl: 'views/people/new.html',
         controller: 'PeopleNewCtrl'
+      })
+      .when('/person/:id', {
+        templateUrl: 'views/people/view.html',
+        controller: 'PeopleViewCtrl'
       })
       .otherwise({
         redirectTo: '/'

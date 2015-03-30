@@ -1,1 +1,72 @@
-<p>This is the people/new view.</p>
+<form name="newPersonForm" ng-submit="submitForm()" novalidate>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.name.$touched || newPersonForm.$submitted) && newPersonForm.name.$invalid}">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" ng-model="person.Name" required/>
+        <div ng-show="newPersonForm.$submitted || newPersonForm.name.$touched">
+          <div ng-show="newPersonForm.name.$error.required">Name is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.email.$touched || newPersonForm.$submitted) && newPersonForm.email.$invalid}">
+        <label for="phone">email</label>
+        <input type="email" class="form-control" name="email" ng-model="person.Email" required/>
+        <div ng-show="newPersonForm.$submitted || newPersonForm.email.$touched">
+          <div ng-show="newPersonForm.email.$error.required">Email is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.phone.$touched || newPersonForm.$submitted) && newPersonForm.phone.$invalid}">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" name="phone" ng-model="person.Phone" required/>
+        <div ng-show="newPersonForm.$submitted || newPersonForm.phone.$touched">
+          <div ng-show="newPersonForm.phone.$error.required">Phone is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.street.$touched || newPersonForm.$submitted) && newPersonForm.street.$invalid}">
+        <label class="control-label" for="street">Address</label>
+        <input type="text" class="form-control" name="street" ng-model="person.Address.Street" required/>
+        <div ng-show="newPersonForm.$submitted || newPerson.street.$touched">
+          <div ng-show="newPersonForm.street.$error.required">Address is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.City.$touched || newPersonForm.$submitted) && newPersonForm.City.$invalid}">
+        <label class="control-label" for="City">City</label>
+        <input type="text" class="form-control" name="City" ng-model="person.Address.City" required/>
+        <div ng-show="newPersonForm.$submitted || newPerson.City.$touched">
+          <div ng-show="newPersonForm.City.$error.required">City is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.Province.$touched || newPersonForm.$submitted) && newPersonForm.Province.$invalid}">
+        <label class="control-label" for="Province">Province</label>
+        <input type="text" class="form-control" name="Province" ng-model="person.Address.Provice" required/>
+        <div ng-show="newPersonForm.$submitted || newPerson.Province.$touched">
+          <div ng-show="newPersonForm.Province.$error.required">Province is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.Country.$touched || newPersonForm.$submitted) && newPersonForm.Country.$invalid}">
+        <label class="control-label" for="Country">Country</label>
+        <input type="text" class="form-control" name="Country" ng-model="person.Address.Country" required/>
+        <div ng-show="newPersonForm.$submitted || newPerson.Country.$touched">
+          <div ng-show="newPersonForm.Country.$error.required">Country is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (newPersonForm.PostalCode.$touched || newPersonForm.$submitted) && newPersonForm.PostalCode.$invalid}">
+        <label class="control-label" for="PostalCode">Postal Code</label>
+        <input type="text" class="form-control" name="PostalCode" ng-model="person.Address.PostalCode" required/>
+        <div ng-show="newPersonForm.$submitted || newPerson.PostalCode.$touched">
+          <div ng-show="newPersonForm.PostalCode.$error.required">Postal Code is required</div>
+        </div>
+      </div>
+
+       <input type="submit" class="btn btn-primary" value="Save" />
+    </div>
+  </div>
+</form>
+
