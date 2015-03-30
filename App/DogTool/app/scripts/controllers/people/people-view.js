@@ -2,10 +2,11 @@
 
 /**
  * @ngdoc function
- * @name dogToolApp.controller:PeopleIdCtrl
+ * @name dogToolApp.controller:PeopleViewCtrl
  * @description
- * # PeopleIdCtrl
- * Controller of the dogToolApp
+ * # PeopleViewCtrl
+ *
+ * Controller for the person view route
  */
 angular.module('dogToolApp')
   .controller('PeopleViewCtrl', function ($scope, FactoryPeople, $location, $routeParams) {
