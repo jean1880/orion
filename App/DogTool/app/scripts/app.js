@@ -49,9 +49,17 @@ angular
         templateUrl: 'views/dog/edit.html',
         controller: 'DogEditCtrl'
       })
-      .when('/gridTest', {
-        templateUrl: 'views/gridtest.html',
-        controller: 'GridtestCtrl'
+      .when('/people', {
+        templateUrl: 'views/people.html',
+        controller: 'PeopleListCtrl'
+      })
+      .when('/people/:id', {
+        templateUrl: 'views/people/view.html',
+        controller: 'PeopleViewCtrl'
+      })
+      .when('/people/new', {
+        templateUrl: 'views/people/new.html',
+        controller: 'PeopleNewCtrl'
       })
       .otherwise({
         redirectTo: '/'
