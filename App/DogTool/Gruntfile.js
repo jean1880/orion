@@ -72,14 +72,14 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 3000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
         livereload: 35729
       },
-      livereload: {
+      browserSync: {
         options: {
-          open: true,
+          open: false,
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
@@ -392,8 +392,22 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    browserSync: {
+      dev: {
+        bsFiles: {
+        },
+        options: {
+          watchTask: true,
+          port: 9000,
+          proxy: 'localhost:3000'
+        }
+      }
     }
   });
+
+  grunt.loadNpmTasks('grunt-browser-sync');
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
@@ -406,7 +420,8 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
-      'connect:livereload',
+      'connect:browserSync',
+      'browserSync',
       'watch'
     ]);
   });
