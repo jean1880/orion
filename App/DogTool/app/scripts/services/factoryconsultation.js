@@ -22,14 +22,14 @@ angular.module('dogToolApp')
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Consultation.route);
+                return $http.get(SailsRoute.Consultation.getAll);
             },
             /**
              * One time fetch from server for full Consultation dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(SailsRoute.Consultation.route);
+                return poller.get(SailsRoute.Consultation.listen);
             },
             /**
              * One time fetch from server for full Consultation dataset
@@ -37,7 +37,7 @@ angular.module('dogToolApp')
              * @param consultation
              */
             post: function (consultation) {
-                return $http.post(SailsRoute.Consultation.route, consultation);
+                return $http.post(SailsRoute.Consultation.post, consultation);
             },
             /**
              * One time fetch from server for full Consultation dataset
@@ -46,6 +46,14 @@ angular.module('dogToolApp')
              */
             find: function (searchObject) {
                 return $http.post(SailsRoute.Consultation.find, searchObject);
+            }
+			/**
+             * One time fetch from server for full Consultation dataset
+             * @method update
+             * @param searchObject
+             */
+            update: function (searchObject) {
+                return $http.post(SailsRoute.Consultation.update, searchObject);
             }
         };
   });

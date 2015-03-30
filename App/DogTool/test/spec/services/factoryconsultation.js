@@ -32,7 +32,7 @@ describe('Service: FactoryConsultation', function () {
         var consultation;
 
         beforeEach(function () {
-            consultation = Mockery.mockPerson();
+            consultation = Mockery.mockConsultation();
 
             spyOn($http, 'get').and.returnValue(consultation);
 
