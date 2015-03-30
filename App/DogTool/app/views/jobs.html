@@ -1,4 +1,20 @@
-<div ng-app>
-  <h1>Job: {{Job.titleOf}}</h1>
-  <p>This is the Jobs view.</p>
+<div>
+ 
+  <!--  The Job list display, Hide if specific job is seleected-->
+  <div ng-hide="{{!Job.hasJobId}}" class ="" id="JobListPanel"> 
+    <h1>Job List</h1>
+    <ul>
+      <!--  Add job list dynamically here  -->
+      <li class="">
+        <img src="http://placedog.com/400/300" alt=""/>
+        <p></p>
+      </li>
+    </ul>
+  </div>
+  
+  <!--  THe Job Details panel-->
+  <div ng-hide="{{Job.hasJobId}}" class="" id="JobDetailPanel">
+      <h1>Job: {{Job.titleOf}}</h1>
+  </div>
+  
 </div>

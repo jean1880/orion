@@ -14,5 +14,6 @@ angular.module('dogToolApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.Job= {titleOf:"test option"};
+    //Add test connection to the page when loaded
+    $scope.Job= {titleOf:"Job Title Place Holder",hasJobId:true};
   });
