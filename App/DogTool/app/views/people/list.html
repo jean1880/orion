@@ -1,1 +1,48 @@
-<p>This is the people view.</p>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>
+      People
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+    <button class="btn btn-primary btn-block" ng-click="addBtnClick()">Add Person</button>
+    <hr />
+    <form>
+      <label>Filter People:</label>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Name..." />
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+
+      <label>Type:</label>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Owner
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Vet
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Emergancy Contact
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="col-xs-12 col-sm-9 col-md-9">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-lg-3" ng-repeat="person in people">
+        {{person.Name}}
+      </div>
+    </div>
+  </div>
+</div>

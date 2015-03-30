@@ -50,7 +50,7 @@ angular
         controller: 'DogEditCtrl'
       })
       .when('/people', {
-        templateUrl: 'views/people.html',
+        templateUrl: 'views/people/list.html',
         controller: 'PeopleListCtrl'
       })
       .when('/people/:id', {
