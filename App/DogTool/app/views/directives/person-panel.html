@@ -1,1 +1,53 @@
-<p>This is the directives/person-panel view.</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div ng-hide="panelTitle">
+      {{person.Name}}
+    </div>
+    <div ng-show="panelTitle">
+      {{panelTitle}}
+    </div>
+  </div>
+  <div class="panel-body">
+    <div ng-hide="editingInfo">
+      <div class="row">
+        <div class="col-xs-4">
+          <strong>Name</strong>
+        </div>
+        <div class="col-xs-8">
+          {{person.Name}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <strong>Email</strong>
+        </div>
+        <div class="col-xs-8">
+          {{person.Email}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <strong>Phone</strong>
+        </div>
+        <div class="col-xs-8">
+          {{person.Phone}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <strong>Address</strong>
+        </div>
+        <div class="col-xs-8">
+          {{person.Address.Street}}<br />
+          {{person.Address.City}}<br />
+          {{person.Address.Province}}<br />
+          {{person.Address.Country}}<br />
+          {{person.Address.PostalCode}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
