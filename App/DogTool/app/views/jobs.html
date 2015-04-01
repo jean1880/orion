@@ -2,7 +2,7 @@
  
   
   <!--  The Job list display, Hide if specific job is seleected-->
-  <div ng-hide="{{Job.hasJobId}}" class ="" id="JobListPanel"> 
+  <div ng-if="!Job.hasJobId" class ="" id="JobListPanel"> 
     <div>
     <form action="jobFilterCtr" method="post" >
       <input type="text" name="jobFilter"/>
@@ -15,6 +15,7 @@
         <img src="http://loremflickr.com/300/300/dog" alt=""/>
         <h3>Address: 123 Fake Location</h3>
         <h3>Date/Time: Apr.16/15 : 10:00am</h3>
+        <h3>Job Type: Day Care</h3>
         <a href=""><img src="http://loremflickr.com/200/200/map" alt=""/></a>
         <button>Go To Calander</button>
         <button>Create/View Invoice</button>
@@ -23,6 +24,7 @@
         <img src="http://loremflickr.com/300/300/dog" alt=""/>
         <h3>Address: 123 Fake Location</h3>
         <h3>Date/Time: Apr.5/15 : 5:00pm</h3>
+        <h3>Job Type: Day Care</h3>
         <a href=""><img src="http://loremflickr.com/200/200/map" alt=""/></a>
         <button>Go To Calander</button>
         <button>Create/View Invoice</button>
@@ -31,6 +33,7 @@
         <img src="http://loremflickr.com/300/300/dog" alt=""/>
         <h3>Address: 123 Fake Location</h3>
         <h3>Date/Time: Apr.2/15 : 2:00pm</h3>
+        <h3>Job Type: Consultation</h3>
         <a href=""><img src="http://loremflickr.com/200/200/map" alt=""/></a>
         <button>Go To Calander</button>
         <button>Create/View Invoice</button>
@@ -38,10 +41,11 @@
   </div>
   
   <!--  THe Job Details panel-->
-  <div ng-hide="{{!Job.hasJobId}}" class="" id="JobDetailPanel">
+  <div ng-if="Job.hasJobId" class="" id="JobDetailPanel">
     <h1>Job: {{Job.titleOf}}</h1>
     <img src="http://loremflickr.com/300/300/dog" alt=""/>
     <h2>Job Details</h2>
+    <h2>Job Type: Day Care</h2>
     <div>
       <!--   Job Notes go here, Need to hook up controller.    -->
       
