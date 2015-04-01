@@ -54,50 +54,48 @@
   <div class="col-sm-4 col-lg-3">
     <div class="row">
       <div class="col-xs-12">
-        <div ng-hide="dog.Owner">
-          <a href class="btn btn-info btn-block">Add Owner</a>
-          <hr />
-        </div>
-        <div ng-show="dog.Owner">
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              Owner
-            </div>
-            <div class="panel-body">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Owner
+          </div>
+          <div class="panel-body">
+            <div ng-show="!editOwner && dog.Owner">
               <person-info person="dog.Owner"></person-info>
             </div>
+            <div ng-show="editOwner || !dog.Owner">
+              Edit or create
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-xs-12">
-        <div ng-hide="dog.Vet">
-          <a href class="btn btn-info btn-block">Add Vet</a>
-          <hr />
-        </div>
-        <div ng-show="dog.Vet">
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              Vet
-            </div>
-            <div class="panel-body">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Vet
+          </div>
+          <div class="panel-body">
+            <div ng-show="!editVet && dog.Vet">
               <person-info person="dog.Vet"></person-info>
             </div>
+            <div ng-show="editVet || !dog.Vet">
+              Edit or create
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-xs-12">
-        <div ng-hide="dog.EmergencyContact">
-          <a href class="btn btn-danger btn-block">Add Emergancy Contact</a>
-        </div>
-        <div ng-show="dog.EmergencyContact">
-          <div class="panel panel-danger">
-            <div class="panel-heading">
-              Emergency Contact
-            </div>
-            <div class="panel-body">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            Emergency Contact
+          </div>
+          <div class="panel-body">
+            <div ng-show="!editEmgContact && dog.EmergencyContact">
               <person-info person="dog.EmergencyContact"></person-info>
+            </div>
+            <div ng-show="editEmgContact || !dog.EmergencyContact">
+              Edit or create
             </div>
           </div>
         </div>
