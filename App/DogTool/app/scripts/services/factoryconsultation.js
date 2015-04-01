@@ -46,14 +46,14 @@ angular.module('dogToolApp')
              */
             find: function (searchObject) {
                 return $http.post(SailsRoute.Consultation.find, searchObject);
-            }
+            },
 			/**
              * One time fetch from server for full Consultation dataset
              * @method update
              * @param searchObject
              */
-            update: function (searchObject) {
-                return $http.post(SailsRoute.Consultation.update, searchObject);
+            update: function (consultation) {
+                return $http.post(SailsRoute.Consultation.update(consultation.id), consultation);
             }
         };
   });

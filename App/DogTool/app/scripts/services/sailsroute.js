@@ -33,6 +33,7 @@ angular.module('dogToolApp')
       Daycare: buildRoutes('daycare'),
       Note: buildRoutes('note'),
       People: buildRoutes('people'),
-      Homework: buildRoutes('homework')
+      Homework: buildRoutes('homework'),
+	  Consultation: buildRoutes('consultation')
     };
   });
