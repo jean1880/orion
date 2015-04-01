@@ -7,15 +7,13 @@
  * # personPanel
  */
 angular.module('dogToolApp')
-  .directive('personPanel', function () {
+  .directive('personInfo', function () {
     return {
       restrict: 'E',
       scope: {
-        person: '=',
-        panelTitle: '@',
-        panelType: '@'
+        person: '='
       },
-      templateUrl: 'views/directives/person-panel.html',
-      controller: 'PersonPanelCtrl'
+      templateUrl: 'views/directives/person-info.html',
+      controller: 'PersonInfoCtrl'
     };
   });

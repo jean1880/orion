@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('PersonPanelCtrl', function ($scope, FactoryAddress) {
+  .controller('PersonInfoCtrl', function ($scope, FactoryAddress) {
     /**
      * Initalizes the controller for use
      *

@@ -59,7 +59,14 @@
           <hr />
         </div>
         <div ng-show="dog.Owner">
-          <person-panel person="dog.Owner" panel-title="Owner" panel-type="info"></person-panel>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              Owner
+            </div>
+            <div class="panel-body">
+              <person-info person="dog.Owner"></person-info>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -69,7 +76,14 @@
           <hr />
         </div>
         <div ng-show="dog.Vet">
-          <person-panel person="dog.Vet" panel-title="Vet" panel-type="info"></person-panel>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              Vet
+            </div>
+            <div class="panel-body">
+              <person-info person="dog.Vet"></person-info>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -78,7 +92,14 @@
           <a href class="btn btn-danger btn-block">Add Emergancy Contact</a>
         </div>
         <div ng-show="dog.EmergencyContact">
-          <person-panel person="dog.EmergencyContact" panel-title="Emergency Contact" panel-type="danger"></person-panel>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              Emergency Contact
+            </div>
+            <div class="panel-body">
+              <person-info person="dog.EmergencyContact"></person-info>
+            </div>
+          </div>
         </div>
       </div>
     </div>
