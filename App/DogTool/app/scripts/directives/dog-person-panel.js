@@ -9,10 +9,13 @@
 angular.module('dogToolApp')
   .directive('dogPersonPanel', function () {
     return {
-      template: '<div></div>',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the dogPersonPanel directive');
-      }
+      scope: {
+        panelTitle: '@',
+        panelType: '@',
+        person: '='
+      },
+      templateUrl: 'views/directives/dog-person-panel.html',
+      controller: 'DogPersonPanelCtrl'
     };
   });

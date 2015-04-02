@@ -9,9 +9,17 @@
  */
 angular.module('dogToolApp')
   .controller('DogPersonPanelCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    var init = function () {
+      $scope.editMode = false;
+    }
+
+    $scope.enableEditMode = function () {
+      $scope.editMode = true;
+   	};
+
+   	$scope.disableEditMode = function () {
+      $scope.editMode = false;
+   	};
+
+    init();
   });
