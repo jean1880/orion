@@ -13,15 +13,15 @@ angular.module('dogToolApp')
 
     var buildRoutes = function (objectName) {
       return {
-        route:  ServerAddress + '/' + objectName,
+        route: ServerAddress + '/' + objectName,
         getAll: ServerAddress + '/' + objectName,
         listen: ServerAddress + '/' + objectName,
-        post:   ServerAddress + '/' + objectName,
-        find:   ServerAddress + '/' + objectName + '/find',
-        get: function(id) {
+        post: ServerAddress + '/' + objectName,
+        find: ServerAddress + '/' + objectName + '/find',
+        get: function (id) {
           return this.route + '/' + id;
         },
-        update: function(id) {
+        update: function (id) {
           return this.route + '/' + id;
         }
       };
@@ -29,9 +29,11 @@ angular.module('dogToolApp')
 
     return {
       Dog: buildRoutes('dog'),
+      Cost: buildRoutes('cost'),
       Weight: buildRoutes('weight'),
       Daycare: buildRoutes('daycare'),
       Note: buildRoutes('note'),
-      People: buildRoutes('people')
+      People: buildRoutes('people'),
+      Homework: buildRoutes('homework')
     };
   });
