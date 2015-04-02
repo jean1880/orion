@@ -9,9 +9,16 @@
  */
 angular.module('dogToolApp')
   .controller('PersonSelectCreateCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    var init = function () {
+      reset();
+
+      //when edit mode on parent controller ends, reset
+      $scope.$on('editMode.disabled', reset);
+    };
+
+    var reset = function () {
+      $scope.mode = '';
+    };
+
+    init();
   });

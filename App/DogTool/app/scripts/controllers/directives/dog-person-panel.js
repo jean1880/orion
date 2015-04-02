@@ -11,7 +11,7 @@ angular.module('dogToolApp')
   .controller('DogPersonPanelCtrl', function ($scope) {
     var init = function () {
       $scope.editMode = false;
-    }
+    };
 
     $scope.enableEditMode = function () {
       $scope.editMode = true;
@@ -19,6 +19,9 @@ angular.module('dogToolApp')
 
    	$scope.disableEditMode = function () {
       $scope.editMode = false;
+
+      //communicate to the person-select-create directive to tell it to reset
+      $scope.$broadcast('editMode.disabled');
    	};
 
     init();
