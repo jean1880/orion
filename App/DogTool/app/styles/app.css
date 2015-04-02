@@ -10,3 +10,7 @@
     margin-bottom: 0;
     display: block;
 }
+
+.panel.panel-danger .panel-heading a {
+    color: white;
+}
