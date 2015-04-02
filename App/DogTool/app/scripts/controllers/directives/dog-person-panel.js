@@ -24,5 +24,9 @@ angular.module('dogToolApp')
       $scope.$broadcast('editMode.disabled');
    	};
 
+    $scope.onNewPersonId = function (newId) {
+      console.log('DogPersonPanel: ' + newId);
+    };
+
     init();
   });

@@ -6,12 +6,12 @@
 <div ng-show="mode == 'select'">
   <hr />
   <form name="selectForm" ng-submit="selectFormSubmit()" novalidate>
-    <div class="form-group" ng-class="{'has-error': (selectForm.personID.$touched || selectForm.$submitted) && selectForm.personID.$invalid}">
-      <select class="form-control" name="personID" ng-model="selectedID" required>
+    <div class="form-group" ng-class="{'has-error': (selectForm.personId.$touched || selectForm.$submitted) && selectForm.personId.$invalid}">
+      <select class="form-control" name="personId" ng-model="selectedId" required>
         <option value="{{existingPerson.id}}" ng-repeat="existingPerson in people">{{existingPerson.Name}}</option>
       </select>
-      <div ng-show="selectForm.$submitted || selectForm.personID.$touched">
-        <div ng-show="selectForm.personID.$error.required">Person is required</div>
+      <div ng-show="selectForm.$submitted || selectForm.personId.$touched">
+        <div ng-show="selectForm.personId.$error.required">Person is required</div>
       </div>
     </div>
 

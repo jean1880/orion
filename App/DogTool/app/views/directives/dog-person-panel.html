@@ -13,7 +13,7 @@
       <person-info person="person"></person-info>
     </div>
     <div ng-show="editMode || !person">
-      <person-select-create></person-select-create>
+      <person-select-create selected-id="person.id" name="{{panelTitle}}" on-new-person-id="onNewPersonId"></person-select-create>
     </div>
   </div>
 </div>
