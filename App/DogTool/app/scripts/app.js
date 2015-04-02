@@ -52,6 +52,7 @@ angular
       .when('/Tester', {
         templateUrl: 'views/tester.html',
         controller: 'TesterCtrl'
+	  })
       .when('/gridTest', {
         templateUrl: 'views/gridtest.html',
         controller: 'GridtestCtrl'

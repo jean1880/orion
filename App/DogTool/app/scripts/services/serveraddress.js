@@ -8,4 +8,5 @@
  * Constant in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .constant('ServerAddress', 'http://localhost:1337');
+  .constant('ServerAddress', 'http://sails.spymaster356.ngrok.com');
+  //.constant('ServerAddress', 'http://localhost:1337');

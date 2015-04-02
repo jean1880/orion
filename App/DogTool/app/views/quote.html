@@ -1,5 +1,5 @@
 <div>
-	<div style="color: red"*NOTE* Preliminary design. Final product subject to change *NOTE*</div>
+	<div style="color: red">*NOTE* Preliminary design. Final product subject to change *NOTE*</div>
 	<form class="quote">
 		
 		<div class="row">
@@ -10,19 +10,23 @@
 					<input type="text" class="form-control" name="quoteFor"/>
 				</div>
 			</div>
+		</div>
 			
+		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
 					<label for="serviceType">Service Type</label>
 					<select name="serviceType" class="form-control">
 						<!-- Possibly generated from list of services? -->
-						<option value="Daycare">Daycare</option>
-						<option value="Consultation">Consultation</option>
-						<option value="Training">Training</option>
+						<option value="daycare">Daycare</option>
+						<option value="consultation">Consultation</option>
+						<option value="training">Training</option>
 					</select>
 				</div>
 			</div>
+		</div>
 			
+		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
 					<div class="row">
@@ -39,78 +43,62 @@
 					</div>
 				</div>
 			</div>
-			
+		</div>
+		
+		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
 					<label for="dogNum">Number of Dogs</label>
 					<input type="text" class="form-control" name="dogNum"/>
 				</div>
 			</div>
-			
+		</div>
+		
+		<div class="row">
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
-					<label for="location">Where is this service being done?</label>
-					<input type="radio" class="form-control" name="location" value="onSite"/>On-Site<br />
-					<input type="radio" class="form-control" name="location" value="clientHome"/>Client's Home Address<br />
-					<input type="radio" class="form-control" name="location" value="other"/>Elsewhere
+					<div class="btn-group btn-group-justified">
+						<label class="btn btn-default" ng-model="location" btn-radio="'onSite'">On-Site</label>
+						<label class="btn btn-default" ng-model="location" btn-radio="'other'">Other Address</label>
+					</div>
 				</div>
 			</div>
-			
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group">
-					<label for "address">Address</label>
-					<input type="text" class="form-control" name="address" value=""/>
-				</div>
+		</div>
+		
+		<div class="row">
+			<div class="form-group">
+				<button class="btn btn-primary save-btn" ng-click="generateQuote()">Generate Quote</button>
 			</div>
-			
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group">
-					<label for="distance">Distance from Location(if at your house, set to "My Home")</label>
-					<select name="distance" class="form-control">
-						<!-- Possibly generated from list of services? -->
-						<option value="0">My Home</option>
-						<option value="under5">Under 5km away</option>
-						<option value="5to10">5 to 10km away</option>
-						<option value="10to25">10 to 25km away</option>
-						<option value="25to50">25 to 50km away</option>
-						<option value="50to100">50 to 100km away</option>
-						<option value="over100">Over 100km away</option>
-					</select>
-				</div>
-			</div>
-			
-			<button class="btn btn-primary save-btn" ng-click="generateQuote()">Generate Quote</button>
-			
 		</div>
 	
 	<!-- PLACEHOLDER, will generate from generateQuote -->
 	<div style="color: red">*NOTE* PLACEHOLDER, WILL GENERATE FROM ENTERED INFO *NOTE*</div>
-	EXAMPLE 1
-	Quote For: 			Alison McFakeName
-	Service Type: 		Daycare
-	From: 				25/04/2015
-	To: 				30/04/2015
-	Number of Dogs:		2
-	Location: 			On-Site
-	Price: 				$300.00
-	
-	EXAMPLE 2
-	Quote For: 			Mark Notreal
-	Service Type: 		Consultation
-	From: 				25/04/2015
-	To: 				25/04/2015
-	Number of Dogs:		1
-	Location: 			Client Home Address - 123 Fake Street, Barrie
-	Price:				$15.00
-	
+	<div style="font-size: 2em">EXAMPLE 1<br />
+	Quote For: 			Alison McFakeName<br />
+	Service Type: 		Daycare<br />
+	From: 				25/04/2015<br />
+	To: 				30/04/2015<br />
+	Number of Dogs:		2<br />
+	Location: 			On-Site<br />
+	Price: 				$300.00<br />
+	<br />
+	EXAMPLE 2<br />
+	Quote For: 			Mark Notreal<br />
+	Service Type: 		Consultation<br />
+	From: 				25/04/2015<br />
+	To: 				25/04/2015<br />
+	Number of Dogs:		1<br />
+	Location: 			Client Home Address - 123 Fake Street, Barrie<br />
+	Price:				$15.00<br />
+	<br />
 	EXAMPLE 3
-	Quote For: 			Jennifer Funnyname
-	Service Type: 		Training
-	From: 				26/04/2015
-	To: 				16/05/2015
-	Number of Dogs:		3
-	Location: 			On-Site
-	Price:				$1500.00
-	
+	Quote For: 			Jennifer Funnyname<br />
+	Service Type: 		Training<br />
+	From: 				26/04/2015<br />
+	To: 				16/05/2015<br />
+	Number of Dogs:		3<br />
+	Location: 			On-Site<br />
+	Price:				$1500.00<br />
+	</div>
 	</form>
 </div>
