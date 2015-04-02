@@ -12,8 +12,8 @@ angular.module('dogToolApp')
       restrict: 'E',
       scope: {
         name: '@',
-        selectedId: '=',
-        onNewPersonId: '='
+        selectedId: '@',
+        personIdChanged: '='
       },
       templateUrl: 'views/directives/person-select-create.html',
       controller: 'PersonSelectCreateCtrl'

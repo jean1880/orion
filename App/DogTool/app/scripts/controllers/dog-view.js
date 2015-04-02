@@ -10,7 +10,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog) {
+  .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog, flash) {
     var init = function() {
       loadDog($routeParams.id);
 
@@ -29,6 +29,7 @@ angular.module('dogToolApp')
           $scope.dog = dog;
         })
         .error(function () {
+          flash.error = 'Dog not found';
           $location.path('/');
         });
     };
@@ -37,14 +38,30 @@ angular.module('dogToolApp')
       $location.path('/dog/' + $scope.dog.id + '/edit');
     };
 
-    $scope.editOwnerBtn   = function () { $scope.editOwner = true;  };
-    $scope.cancelOwnerBtn = function () { $scope.editOwner = false; };
+    $scope.ownerUpdated = function (newId) {
+      updatePerson('Owner', newId);
+    };
 
-    $scope.editVetBtn   = function () { $scope.editVet = true;  };
-    $scope.cancelVetBtn = function () { $scope.editVet = false; };
+    $scope.vetUpdated = function (newId) {
+      updatePerson('Vet', newId);
+    };
 
-    $scope.editEmgContactBtn   = function () { $scope.editEmgContact = true;  };
-    $scope.cancelEmgContactBtn = function () { $scope.editEmgContact = false; };
+    $scope.emgContactUpdated = function (newId) {
+      updatePerson('EmergencyContact', newId);
+    };
+
+    var updatePerson = function (relation, newId) {
+      var payload = {};
+      payload.id = $scope.dog.id;
+
+      //dynamically prepare the payload
+      payload[relation] = newId;
+
+      FactoryDog.update(payload)
+        .error(function () {
+          flash.error = 'Error updating person';
+        });
+    };
 
 
     init();

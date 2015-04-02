@@ -13,7 +13,8 @@ angular.module('dogToolApp')
       scope: {
         panelTitle: '@',
         panelType: '@',
-        person: '='
+        person: '=',
+        personUpdated: '='
       },
       templateUrl: 'views/directives/dog-person-panel.html',
       controller: 'DogPersonPanelCtrl'
