@@ -42,10 +42,8 @@
     </form>
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-lg-3" ng-repeat="dog in dogs">
-        <dog-card dog="dog"></dog-card>
-      </div>
+    <div class="list-group">
+      <a href="#/dog/{{dog.id}}" class="list-group-item" ng-repeat="dog in dogs">{{dog.Name}}</a>
     </div>
   </div>
 </div>
