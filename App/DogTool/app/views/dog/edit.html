@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-8">
-    <form class="dog-edit" name="dogEditForm" ng-submit="saveBtn()" novalidate>
+  <div class="col-xs-12">
+    <form class="dog-edit" name="dogEditForm" novalidate>
       <div class="form-group" ng-class="{'has-error': (dogEditForm.name.$touched || dogEditForm.$submitted) && dogEditForm.name.$invalid}">
         <label for="name">Name</label>
         <input type="text" class="form-control" name="name" ng-model="dog.Name" required/>
@@ -36,22 +36,26 @@
           <div ng-show="dogEditForm.gender.$error.required">Gender is required</div>
         </div>
       </div>
-
-      <input type="submit" class="btn btn-primary" value="Save" />
     </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <person-panel person="dog.Owner" panel-title="'Owner*'" panel-type="OwnerPanelType"></person-panel>
   </div>
 
   <div class="col-xs-12 col-sm-4">
-    <div>
-      <person-panel person="dog.Owner" panel-title="'Owner*'" panel-type="OwnerPanelType"></person-panel>
-    </div>
+    <person-panel person="dog.Vet" panel-title="'Vet*'" panel-type="VetPanelType"></person-panel>
+  </div>
 
-    <div>
-      <person-panel person="dog.Vet" panel-title="'Vet*'" panel-type="VetPanelType"></person-panel>
-    </div>
+  <div class="col-xs-12 col-sm-4">
+    <person-panel person="dog.EmergancyContact" panel-title="'Emergancy Contact'" panel-type="EmgContactPanelType"></person-panel>
+  </div>
+</div>
 
-    <div>
-      <person-panel person="dog.EmergancyContact" panel-title="'Emergancy Contact'" panel-type="EmgContactPanelType"></person-panel>
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <a href class="btn btn-primary" ng-click="saveBtn()">Save</a>
   </div>
 </div>
