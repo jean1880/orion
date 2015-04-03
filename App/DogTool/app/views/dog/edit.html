@@ -42,15 +42,21 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-4">
-    <person-panel person="dog.Owner" panel-title="'Owner*'" panel-type="OwnerPanelType" unlinkable="false"></person-panel>
+    <div ng-show="dogEditForm.$submitted && !dog.Owner">
+      Owner is Required
+    </div>
+    <person-panel person="dog.Owner" panel-title="Owner*" panel-type="{{(dogEditForm.$submitted && !dog.Owner) ? 'danger' : 'default'}}" unlinkable="false"></person-panel>
   </div>
 
   <div class="col-xs-12 col-sm-4">
-    <person-panel person="dog.Vet" panel-title="'Vet*'" panel-type="VetPanelType" unlinkable="false"></person-panel>
+    <div ng-show="dogEditForm.$submitted && !dog.Vet">
+      Vet is Required
+    </div>
+    <person-panel person="dog.Vet" panel-title="Vet*" panel-type="{{(dogEditForm.$submitted && !dog.Vet) ? 'danger' : 'default'}}" unlinkable="false"></person-panel>
   </div>
 
   <div class="col-xs-12 col-sm-4">
-    <person-panel person="dog.EmergancyContact" panel-title="'Emergancy Contact'" panel-type="EmgContactPanelType"></person-panel>
+    <person-panel person="dog.EmergancyContact" panel-title="Emergancy Contact" panel-type="default"></person-panel>
   </div>
 </div>
 

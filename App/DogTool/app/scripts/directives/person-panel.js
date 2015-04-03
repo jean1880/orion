@@ -11,10 +11,10 @@ angular.module('dogToolApp')
     return {
       restrict: 'E',
       scope: {
-        panelTitle: '=',
-        panelType: '=',
+        panelTitle: '@',
+        panelType: '@',
         person: '=',
-        personUpdated: '=',
+        personUpdated: '=?',
         unlinkable: '=?'
       },
       link: function ($scope) {
