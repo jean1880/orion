@@ -1,6 +1,6 @@
 <div class="panel panel-{{panelType || 'default'}}">
   <div class="panel-heading">
-    <a href tooltip="Unlink" tooltip-placement="right" ng-show="unlinkable && person" ng-click="unlinkPerson()">
+    <a href tooltip="Unlink" tooltip-placement="right" ng-show="editMode && unlinkable && person" ng-click="unlinkPerson()">
       <i class="fa fa-chain-broken"></i>
     </a>
     {{panelTitle || 'Person'}}

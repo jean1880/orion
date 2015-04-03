@@ -48,6 +48,16 @@ angular.module('dogToolApp')
 
     var reset = function () {
       $scope.mode = '';
+
+      if($scope.selectForm) {
+        $scope.selectForm.$setPristine(true);
+        $scope.selectForm.$setUntouched(true);
+      }
+
+      if($scope.selectForm) {
+        $scope.createForm.$setPristine(true);
+        $scope.createForm.$setUntouched(true);
+      }
     };
 
     var loadAllPeople = function () {
