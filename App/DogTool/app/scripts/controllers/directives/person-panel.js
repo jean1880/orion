@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogPersonPanelCtrl', function ($scope, FactoryPeople) {
+  .controller('PersonPanelCtrl', function ($scope, FactoryPeople) {
     var init = function () {
       $scope.editMode = false;
     };

@@ -28,7 +28,8 @@ angular.module('dogToolApp')
 
           $scope.dog = dog;
         })
-        .error(function () {
+        .error(function (response) {
+          console.log(response);
           flash.error = 'Dog not found';
           $location.path('/');
         });

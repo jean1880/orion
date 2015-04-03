@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: DirectivesPersonPanelCtrl', function () {
+describe('Controller: PersonPanelCtrl', function () {
 
   // load the controller's module
   beforeEach(module('dogToolApp'));
 
-  var DirectivesPersonPanelCtrl,
+  var PersonPanelCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    DirectivesPersonPanelCtrl = $controller('PersonPanelCtrl', {
+    PersonPanelCtrl = $controller('PersonPanelCtrl', {
       $scope: scope
     });
   }));

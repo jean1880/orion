@@ -13,7 +13,7 @@ describe('Directive: personPanel', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<person-panel></person-panel>');
+    element = angular.element('<dog-person-panel></dog-person-panel>');
     element = $compile(element)(scope);
     expect(element.text()).toBe('this is the personPanel directive');
   }));

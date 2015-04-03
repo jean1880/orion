@@ -7,7 +7,7 @@
  * # dogPersonPanel
  */
 angular.module('dogToolApp')
-  .directive('dogPersonPanel', function () {
+  .directive('personPanel', function () {
     return {
       restrict: 'E',
       scope: {
@@ -16,7 +16,7 @@ angular.module('dogToolApp')
         person: '=',
         personUpdated: '='
       },
-      templateUrl: 'views/directives/dog-person-panel.html',
-      controller: 'DogPersonPanelCtrl'
+      templateUrl: 'views/directives/person-panel.html',
+      controller: 'PersonPanelCtrl'
     };
   });
