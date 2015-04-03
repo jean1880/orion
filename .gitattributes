@@ -1,5 +1,7 @@
-* text=lf
+*	text eol=lf
 
-*.gif binary
-*.png binary
-*.jpg binary
+*.bat	text eol=crlf
+
+*.gif	binary
+*.png	binary
+*.jpg	binary
