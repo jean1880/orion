@@ -59,6 +59,9 @@ angular.module('dogToolApp')
       payload[relation] = newId;
 
       FactoryDog.update(payload)
+        .success(function () {
+          flash.success = 'Person updated';
+        })
         .error(function () {
           flash.error = 'Error updating person';
         });

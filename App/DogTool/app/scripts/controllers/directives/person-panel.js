@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('PersonPanelCtrl', function ($scope, FactoryPeople, flash) {
+  .controller('PersonPanelCtrl', function ($scope, FactoryPeople) {
     var init = function () {
       $scope.editMode = false;
     };
@@ -25,10 +25,10 @@ angular.module('dogToolApp')
    	};
 
     $scope.unlinkPerson = function () {
-      $scope.person = null;
-      personUpdatedCallback(null);
-
-      flash.success = 'Person unlinked';
+      if($scope.unlinkable) {
+        $scope.person = null;
+        personUpdatedCallback(null);
+      }
     };
 
     $scope.personIdChanged = function (newId) {
