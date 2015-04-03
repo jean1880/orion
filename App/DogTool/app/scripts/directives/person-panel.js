@@ -14,7 +14,11 @@ angular.module('dogToolApp')
         panelTitle: '=',
         panelType: '=',
         person: '=',
-        personUpdated: '='
+        personUpdated: '=',
+        unlinkable: '=?'
+      },
+      link: function ($scope) {
+        $scope.unlinkable = angular.isDefined($scope.unlinkable) ? $scope.unlinkable : true;
       },
       templateUrl: 'views/directives/person-panel.html',
       controller: 'PersonPanelCtrl'
