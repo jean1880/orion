@@ -49,9 +49,21 @@ angular
         templateUrl: 'views/dog/edit.html',
         controller: 'DogEditCtrl'
       })
+      .when('/Tester', {
+        templateUrl: 'views/tester.html',
+        controller: 'TesterCtrl'
+	  })
       .when('/gridTest', {
         templateUrl: 'views/gridtest.html',
         controller: 'GridtestCtrl'
+      })
+      .when('/calendar', {
+        templateUrl: 'views/calendar.html',
+        controller: 'CalendarCtrl'
+      })
+      .when('/quote', {
+        templateUrl: 'views/quote.html',
+        controller: 'QuoteCtrl'
       })
       .otherwise({
         redirectTo: '/'

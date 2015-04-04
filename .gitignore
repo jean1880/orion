@@ -1,0 +1,9 @@
+npm-debug.log
+.brackets.json
+
+# Ignore merge tool files
+*.orig
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
