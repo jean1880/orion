@@ -53,13 +53,13 @@ angular
         templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
       })
+      .when('/Jobs/new', {
+        templateUrl: 'views/newJob.html',
+        controller: 'NewjobsCtrl'
+      })
       .when('/Jobs/:id', {
         templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
-      })
-      .when('/newJobs', {
-        templateUrl: 'views/newJob.html',
-        controller: 'NewjobsCtrl'
       })
       .when('/Tester', {
         templateUrl: 'views/tester.html',
