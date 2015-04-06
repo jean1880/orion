@@ -49,15 +49,15 @@ angular
         templateUrl: 'views/dog/edit.html',
         controller: 'DogEditCtrl'
       })
-      .when('/Jobs', {
+      .when('/jobs', {
         templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
       })
-      .when('/Jobs/new', {
-        templateUrl: 'views/newJob.html',
-        controller: 'NewjobsCtrl'
+      .when('/jobs/new', {
+        templateUrl: 'views/job-new.html',
+        controller: 'NewJobsCtrl'
       })
-      .when('/Jobs/:id', {
+      .when('/jobs/:id', {
         templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
       })
@@ -65,7 +65,6 @@ angular
         templateUrl: 'views/tester.html',
         controller: 'TesterCtrl'
 	  })
-
       .when('/gridTest', {
         templateUrl: 'views/gridtest.html',
         controller: 'GridtestCtrl'
