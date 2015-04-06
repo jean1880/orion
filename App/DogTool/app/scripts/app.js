@@ -54,7 +54,7 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/jobs.html',
+        templateUrl: 'views/job-list.html',
         controller: 'JobsCtrl'
       })
       .when('/Tester', {

@@ -15,10 +15,5 @@ angular.module('dogToolApp')
       'Karma'
     ];
     //Add test connection to the page when loaded
-  if($routeParams.id){
     $scope.Job= {titleOf:"Job Title Place Holder",hasJobId:true};
-  }
-  else{
-    $scope.Job= {titleOf:"Job Title Place Holder",hasJobId:false};
-  }
   });
