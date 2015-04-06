@@ -1,0 +1,107 @@
+<div>
+<!-- Add new job button-->
+  <a href="#/jobs/new">
+    <button name="newJob">New Job</button>
+  </a>
+  <!--  The Job list display, Hide if specific job is seleected-->
+  <div ng-if="!Job.hasJobId" class ="" id="JobListPanel"> 
+    <div>
+    <form action="jobFilterCtr" method="post" >
+     <div class="input-group">
+          <input type="text" class="form-control" placeholder="Job Title..." />
+          <button type=submit class="input-group-addon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </div>
+    </form>
+    </div>
+    <h1>Job List</h1>
+      <!--  Add job list dynamically here, replace below content with loop  -->
+    <div class="col-xs-12 col-lg-4">     
+<!--      consider adding carusel like here for images -->
+        <img src="http://loremflickr.com/150/150/dog?random=1" alt=""/>
+        <img src="http://loremflickr.com/150/150/dog?random=2" alt=""/>
+        <h3>Address: 123 Fake Location</h3>
+        <h3>Date/Time Start: Apr.16/15 : 10:00am</h3>
+        <h3>Date/Time End: Apr.16/15 : 1:00pm</h3>
+        <h3>Job Type: Day Care</h3>
+        <a href=""><img src="http://loremflickr.com/200/200/map?random=1" alt=""/></a>
+        <button>Go To Calander</button>
+        <button>Create/View Invoice</button>
+    </div>
+    <div class="col-xs-12 col-lg-4">
+        <img src="http://loremflickr.com/300/300/dog?random=2" alt=""/>
+        <h3>Address: 123 Fake Location</h3>
+        <h3>Date/Time Start: Apr.5/15 : 5:00pm</h3>
+        <h3>Date/Time End: Apr.6/15 : 1:00pm</h3>
+        <h3>Job Type: Day Care</h3>
+        <a href=""><img src="http://loremflickr.com/200/200/map?random=2" alt=""/></a>
+        <button>Go To Calander</button>
+        <button>Create/View Invoice</button>
+    </div>
+    <div class="col-xs-12 col-lg-4">
+        <img src="http://loremflickr.com/300/300/dog?random=3" alt=""/>
+        <h3>Address: 123 Fake Location</h3>
+        <h3>Date/Time Start: Apr.2/15 : 2:00pm</h3>
+        <h3>Date/Time End: Apr.2/15 : 4:00pm</h3>
+        <h3>Job Type: Consultation</h3>
+        <a href=""><img src="http://loremflickr.com/200/200/map?random=3" alt=""/></a>
+        <button>Go To Calander</button>
+        <button>Create/View Invoice</button>
+    </div>
+  </div>
+  
+  <!--  THe Job Details panel-->
+  <div ng-if="Job.hasJobId" class="" id="JobDetailPanel">
+    <h1>Job: {{Job.titleOf}}</h1>
+    <div id="dogImgArea" class="col-xs-12 col-lg-6">
+      <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dog?random=1" alt=""/></a>
+      <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dog?random=2" alt=""/></a>
+    </div>
+    <div id="jobSummary" class="col-xs-12 col-lg-6">
+      <h2>Job Details</h2>
+      <h3>Date/Time Start: Apr.2/15 : 2:00pm</h3>
+      <h3>Date/Time End: Apr.2/15 : 4:00pm</h3>
+      <h3>Job Type: Day Care</h3>
+      <h3>Address :123 Fake Street</h3>
+      <h3>Job Price: $560 </h3>
+    </div>
+<!--    Map Image and link -->
+    <div id="mapImage" class="col-xs-12 col-lg-6">
+      <a href=""><img src="http://loremflickr.com/300/300/map?random=3" alt=""/></a>
+    </div>
+    <div>
+      <!--   Job Notes go here, Need to hook up controller.    -->
+      
+      <!--   TODO: when hooked up to controler check if Dog Care notes exist. if so create and add as many paragraphs as necessary.     -->
+      <div id="DogCareNotesSection" class="col-xs-12 col-lg-6">
+        <h3>Dog Care Notes</h2>
+        <p>There are always two ways of spreading light: to be the candle or the mirror that reflects it. Never bend your head, always hold it high. Look the world straight in the face. And if you gaze for long into an abyss, the abyss gazes also into you. Our awesome responsibility to ourselves, to our children, and to the future is to create ourselves in the image of goodness, because the future depends on the nobility of our imaginings. The method of the enterprising is to plan with audacity, and execute with vigor, to sketch out a map of possibilities and then to treat them as probabilities. O Krishna, the mind is restless, turbulent, strong and unyielding I consider it as difficult to subdue as the wind. Inspiration is the impact of a fact on a prepared mind. Carpe diem quam minimum credula postero. (Seize the day and put as little trust as you can in the morrow.)<button>Edit</button><button>Delete</button>
+        </p>
+        
+        <!--        Add note function needs to be added here-->
+        
+        <form name="dogCareNoteForm" action="/newDogCareNote" method="post">
+          <textarea name="newDogCareNote"></textarea>
+          <button type="submit" name="submitNewDogCareNote">Add Note</button>
+        </form>
+      </div>
+      
+       <!--   TODO: when hooked up to controler check if Job notes exist. if so create and add as many paragraphs as necessary.     -->
+      <div id="JobNoteSection" class="col-xs-12 col-lg-6">       
+        <h3>Job Notes</h2>
+        <p>Never bend your head, always hold it high. Look the world straight in the face. Can you imagine what I would do if I could do all I can? Listen to the silence as it echoes around you. Ancient spirits dance to it. Do noble things, do not dream them all day long. Trust that still, small voice that says This might work and I will try it. Carpe diem quam minimum credula postero. (Seize the day and put as little trust as you can in the morrow.) What would it be like if you lived each day, each breath, as a work of art in progress? Imagine that you are a Masterpiece unfolding, every second of every day a work of art taking form with every breath. <button>Edit</button><button>Delete</button>
+        </p>
+        <p>No man who continues to add something to the material, intellectual and moral wellbeing of the place in which he lives is left long without proper reward. Be the change that you wish to see in the world. Whatever you can do, or dream you can, begin it. Boldness has genius, power and magic in it. Begin it now. Our awesome responsibility to ourselves, to our children, and to the future is to create ourselves in the image of goodness, because the future depends on the nobility of our imaginings. There is no such thing as a problem without a gift for you in its hands. You seek problems because you need their gifts. With my freckles and messy hair, bruised knee and chapped lips this morning I am splendidly imperfect and alive!<button>Edit</button><button>Delete</button></p>
+        
+<!--        Add note function needs to be added here-->
+        <form name="jobNoteForm" action="/newJobNote" method="post">
+          <textarea name="newJobNote"></textarea>
+          <button type="submit" name="submitNewJobNote">Add Note</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>

@@ -45,10 +45,26 @@ angular
         templateUrl: 'views/dog/view.html',
         controller: 'DogViewCtrl'
       })
+      .when('/jobs', {
+        templateUrl: 'views/jobs.html',
+        controller: 'JobsCtrl'
+      })
+      .when('/dog/:id/edit', {
+        templateUrl: 'views/dog/edit.html',
+        controller: 'DogEditCtrl'
+      })
+      .when('/jobs/new', {
+        templateUrl: 'views/job-new.html',
+        controller: 'NewJobsCtrl'
+      })
+      .when('/jobs/:id', {
+        templateUrl: 'views/jobs.html',
+        controller: 'JobsCtrl'
+      })
       .when('/Tester', {
         templateUrl: 'views/tester.html',
         controller: 'TesterCtrl'
-	  })
+	    })
       .when('/gridTest', {
         templateUrl: 'views/gridtest.html',
         controller: 'GridtestCtrl'
@@ -64,6 +80,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
     // set sails server url
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
   });
