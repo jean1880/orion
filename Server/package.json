@@ -5,9 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "bson": "^0.2.18",
     "ejs": "~0.8.4",
-    "expect": "^1.6.0",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
@@ -36,12 +34,6 @@
     "type": "git",
     "url": "git://github.com/jdesroches/Server.git"
   },
-  "author": "anonymous node/sails user",
-  "license": "",
-  "devDependencies": {
-    "grunt-mocha-test": "^0.12.7",
-    "mocha": "^2.1.0",
-    "should": "^5.0.0",
-    "sinon": "^1.12.2"
-  }
+  "author": "jdesroches",
+  "license": ""
 }
