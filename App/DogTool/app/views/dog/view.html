@@ -9,39 +9,7 @@
   <div class="col-sm-4 col-lg-3">
     <div class="row">
       <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Info
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-xs-3">
-                <strong>Breed</strong>
-              </div>
-              <div class="col-xs-9">
-                {{dog.Breed}}
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-3">
-                <strong>Birthdate</strong>
-              </div>
-              <div class="col-xs-9">
-                {{dog.Birthdate | date : 'longDate'}}
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-3">
-                <strong>Age</strong>
-              </div>
-              <div class="col-xs-9">
-                {{dog.Age}}
-              </div>
-            </div>
-          </div>
-        </div>
+        <dog-info-panel dog="dog"></dog-info-panel>
       </div>
 
       <div class="col-xs-12">
@@ -49,8 +17,10 @@
       </div>
     </div>
   </div>
+
   <div class="col-sm-4 col-lg-6">
   </div>
+
   <div class="col-sm-4 col-lg-3">
     <div class="row">
       <div class="col-xs-12">
