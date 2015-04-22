@@ -29,24 +29,13 @@ angular.module('dogToolApp')
      * @private
      * @method loadAddressForPerson
      * @param {Person} person The person to load the address for.
-     * @param {function()} callback Function to call when the address is loaded
      */
-    var loadAddressForPerson = function (person, callback) {
+    var loadAddressForPerson = function (person) {
       if(typeof person.Address === 'string') {
         FactoryAddress.get(person.Address)
           .success(function (response) {
             person.Address = response;
-          })
-          .then(function () {
-            if (callback) {
-              callback();
-            }
           });
-      }
-      else {
-        if (callback) {
-          callback();
-        }
       }
     };
 
