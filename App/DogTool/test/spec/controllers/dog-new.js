@@ -28,8 +28,19 @@ describe('Controller: DogNewCtrl', function () {
     spyOn(FactoryDog, 'post').and.callThrough();
 
     scope.dogEditForm = {
-      $valid: true
+      $valid: true,
+      $invalid: false,
+      $submitted: false,
+      $setValidity: function (newValue) {
+        this.$valid = newValue;
+        this.$invalid = !newValue;
+      },
+      $setSubmitted: function (newValue) {
+        this.$submitted = newValue;
+      }
     };
+
+    scope.dog = Mockery.mockDog({Owner: null, Vet: null});
   }));
 
   var runController = inject(function ($controller) {
@@ -59,9 +70,11 @@ describe('Controller: DogNewCtrl', function () {
       runController();
     });
 
-    describe('when form is valid', function () {
+    describe('when entire form is valid', function () {
       beforeEach(function () {
-        scope.dogEditForm.$valid = true;
+        scope.dogEditForm.$setValidity(true);
+        scope.dog.Owner = Mockery.mockPerson({}, false);
+        scope.dog.Vet = Mockery.mockPerson({}, false);
       });
 
       describe('when called', function () {
@@ -77,7 +90,7 @@ describe('Controller: DogNewCtrl', function () {
         });
       });
 
-      describe('with valid data', function() {
+      describe('when saving is successful', function() {
         var dog;
 
         beforeEach(function () {
@@ -98,14 +111,13 @@ describe('Controller: DogNewCtrl', function () {
         });
       });
 
-      describe('with invalid data', function() {
+      describe('when saving is unsuccessful', function() {
         var response = {
 
         };
 
         beforeEach(function () {
           $httpBackend.whenPOST(SailsRoute.Dog.route).respond(400, response);
-
 
           scope.saveBtn();
           $httpBackend.flush();
@@ -123,7 +135,53 @@ describe('Controller: DogNewCtrl', function () {
 
     describe('when form is invalid', function () {
       beforeEach(function () {
-        scope.dogEditForm.$valid = false;
+        scope.dogEditForm.$setValidity(false);
+        scope.dog.Owner = Mockery.mockPerson({}, false);
+        scope.dog.Vet   = Mockery.mockPerson({}, false);
+      });
+
+      describe('when called', function () {
+        beforeEach(function () {
+          scope.saveBtn();
+        });
+
+        it('does not try to create the dog', function () {
+          expect(FactoryDog.post).not.toHaveBeenCalled();
+        });
+
+        it('does not change the path', function () {
+          expect($location.path).not.toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe('when Owner is missing', function () {
+      beforeEach(function () {
+        scope.dogEditForm.$setValidity(true);
+        scope.dog.Owner = null;
+        scope.dog.Vet   = Mockery.mockPerson({}, false);
+      });
+
+      describe('when called', function () {
+        beforeEach(function () {
+          scope.saveBtn();
+        });
+
+        it('does not try to create the dog', function () {
+          expect(FactoryDog.post).not.toHaveBeenCalled();
+        });
+
+        it('does not change the path', function () {
+          expect($location.path).not.toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe('when Vet is missing', function () {
+      beforeEach(function () {
+        scope.dogEditForm.$setValidity(true);
+        scope.dog.Owner = Mockery.mockPerson({}, false);
+        scope.dog.Vet   = null;
       });
 
       describe('when called', function () {

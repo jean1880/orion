@@ -15,6 +15,5 @@ describe('Directive: personSelectCreate', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<person-select-create></person-select-create>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the personSelectCreate directive');
   }));
 });
