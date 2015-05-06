@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('PersonSelectCreateCtrl', function ($scope, FactoryPeople) {
+  .controller('PersonSelectCreateCtrl', function ($scope, FactoryPeople, flash) {
     var init = function () {
       reset();
 
@@ -34,8 +34,8 @@ angular.module('dogToolApp')
 
             callPersonIdChanged();
           })
-          .error(function (response) {
-            console.log(response);
+          .error(function () {
+            flash.error = 'An error occured';
           });
       }
     };
@@ -54,7 +54,7 @@ angular.module('dogToolApp')
         $scope.selectForm.$setUntouched(true);
       }
 
-      if($scope.selectForm) {
+      if($scope.createForm) {
         $scope.createForm.$setPristine(true);
         $scope.createForm.$setUntouched(true);
       }
