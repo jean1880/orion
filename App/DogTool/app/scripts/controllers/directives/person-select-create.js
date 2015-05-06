@@ -103,6 +103,5 @@ angular.module('dogToolApp')
         });
     };
 
-
     init();
   });

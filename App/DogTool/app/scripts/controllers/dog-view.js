@@ -67,18 +67,43 @@ angular.module('dogToolApp')
       dog.Age = moment(dog.Birthdate).fromNow(true);
     };
 
+    /**
+     * Updates the database with a new Owner
+     *
+     * @method ownerUpdated
+     * @param  {ID} newId The ID of the new Owner
+     */
     $scope.ownerUpdated = function (newId) {
       updatePerson('Owner', newId);
     };
 
+    /**
+     * Updates the database with a new Vet
+     *
+     * @method vetUpdated
+     * @param  {ID} newId The ID of the new Vet
+     */
     $scope.vetUpdated = function (newId) {
       updatePerson('Vet', newId);
     };
 
+    /**
+     * Updates the database with a new Emergency Contact
+     *
+     * @method vetUpdated
+     * @param  {ID} newId The ID of the new Vet
+     */
     $scope.emgContactUpdated = function (newId) {
       updatePerson('EmergencyContact', newId);
     };
 
+    /**
+     * Updates the database with a new person for the given relation
+     *
+     * @method updatePerson
+     * @param  {string} relation The name of the field to update
+     * @param  {ID} newId The ID of the new Vet
+     */
     var updatePerson = function (relation, newId) {
       var payload = {};
       payload.id = $scope.dog.id;
@@ -94,7 +119,6 @@ angular.module('dogToolApp')
           flash.error = 'Error updating person';
         });
     };
-
 
     init();
   });
