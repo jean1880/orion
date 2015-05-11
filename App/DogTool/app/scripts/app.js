@@ -57,10 +57,18 @@ angular
         templateUrl: 'views/job-list.html',
         controller: 'JobsCtrl'
       })
+      .when('/people/new', {
+        templateUrl: 'views/people/new.html',
+        controller: 'PeopleNewCtrl'
+      })
+      .when('/people/:id', {
+        templateUrl: 'views/people/view.html',
+        controller: 'PeopleViewCtrl'
+      })
       .when('/Tester', {
         templateUrl: 'views/tester.html',
         controller: 'TesterCtrl'
-	  })
+      })
       .when('/gridTest', {
         templateUrl: 'views/gridtest.html',
         controller: 'GridtestCtrl'
