@@ -11,7 +11,7 @@
  * Controller for the viewing of a dog based on a id from routeParams
  */
 angular.module('dogToolApp')
-  .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog) {
+  .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog, flash) {
     /**
      * Prepares the controller for use
      *
@@ -21,7 +21,10 @@ angular.module('dogToolApp')
     var init = function() {
       loadDog($routeParams.id);
 
-      $scope.editingInfo = false;
+      $scope.editingInfo    = false;
+      $scope.editOwner      = false;
+      $scope.editVet        = false;
+      $scope.editEmgContact = false;
     };
 
     /**
@@ -42,7 +45,9 @@ angular.module('dogToolApp')
 
           $scope.dog = dog;
         })
-        .error(function () {
+        .error(function (response) {
+          console.log(response);
+          flash.error = 'Dog not found';
           $location.path('/');
         });
     };
@@ -60,6 +65,59 @@ angular.module('dogToolApp')
     var processDog = function (dog) {
       dog.Birthdate = new Date(dog.Birthdate);
       dog.Age = moment(dog.Birthdate).fromNow(true);
+    };
+
+    /**
+     * Updates the database with a new Owner
+     *
+     * @method ownerUpdated
+     * @param  {ID} newId The ID of the new Owner
+     */
+    $scope.ownerUpdated = function (newId) {
+      updatePerson('Owner', newId);
+    };
+
+    /**
+     * Updates the database with a new Vet
+     *
+     * @method vetUpdated
+     * @param  {ID} newId The ID of the new Vet
+     */
+    $scope.vetUpdated = function (newId) {
+      updatePerson('Vet', newId);
+    };
+
+    /**
+     * Updates the database with a new Emergency Contact
+     *
+     * @method vetUpdated
+     * @param  {ID} newId The ID of the new Vet
+     */
+    $scope.emgContactUpdated = function (newId) {
+      updatePerson('EmergencyContact', newId);
+    };
+
+    /**
+     * Updates the database with a new person for the given relation
+     *
+     * @method updatePerson
+     * @param  {string} relation The name of the field to update
+     * @param  {ID} newId The ID of the new Vet
+     */
+    var updatePerson = function (relation, newId) {
+      var payload = {};
+      payload.id = $scope.dog.id;
+
+      //dynamically prepare the payload
+      payload[relation] = newId;
+
+      FactoryDog.update(payload)
+        .success(function () {
+          flash.success = 'Person updated';
+        })
+        .error(function () {
+          flash.error = 'Error updating person';
+        });
     };
 
     init();

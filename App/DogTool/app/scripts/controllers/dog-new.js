@@ -29,7 +29,9 @@ angular.module('dogToolApp')
      * @method saveBtn
      **/
     $scope.saveBtn = function() {
-      if($scope.dogEditForm.$valid) {
+      $scope.dogEditForm.$setSubmitted(true);
+
+      if(formIsValid()) {
         FactoryDog.post($scope.dog)
           .success(function (response) {
             flash.success = 'Dog Created';
@@ -41,5 +43,21 @@ angular.module('dogToolApp')
       }
     };
 
+    var formIsValid = function () {
+      if($scope.dogEditForm.$invalid) { return false; }
+      if(!ownerIsValid())             { return false; }
+      if(!vetIsValid())               { return false; }
+      return true;
+    };
+
+    var ownerIsValid = function () {
+      return $scope.dog.Owner ? true : false;
+    };
+
+    var vetIsValid = function () {
+      return $scope.dog.Vet ? true : false;
+    };
+
     init();
   });
+
