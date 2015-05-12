@@ -111,5 +111,5 @@ angular.module('dogToolApp')
      */
     var processError = function (response) {
         console.log('Error occured: ' + JSON.stringify(response));
-    };
+};
 });

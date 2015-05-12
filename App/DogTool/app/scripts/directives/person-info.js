@@ -11,7 +11,8 @@ angular.module('dogToolApp')
     return {
       restrict: 'E',
       scope: {
-        person: '='
+        person: '=',
+        hideName: '@'
       },
       templateUrl: 'views/directives/person-info.html',
       controller: 'PersonInfoCtrl'

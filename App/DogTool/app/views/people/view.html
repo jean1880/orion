@@ -21,7 +21,7 @@
           </div>
           <div class="panel-body">
             <div ng-hide="editingInfo">
-              <person-info person="person"></person-info>
+              <person-info person="person" hide-name="true"></person-info>
             </div>
             <div ng-show="editingInfo">
               <person-edit-form person="editedPerson" form-submit="editInfoSubmit"></person-edit-form>
