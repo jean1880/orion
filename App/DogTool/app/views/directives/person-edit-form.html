@@ -44,7 +44,7 @@
 
       <div class="form-group" ng-class="{'has-error': (editForm.Province.$touched || editForm.$submitted) && editForm.Province.$invalid}">
         <label class="control-label" for="Province">Province</label>
-        <input type="text" class="form-control" name="Province" ng-model="person.Address.Provice" required/>
+        <input type="text" class="form-control" name="Province" ng-model="person.Address.Province" required/>
         <div ng-show="editForm.$submitted || editForm.Province.$touched">
           <div ng-show="editForm.Province.$error.required">Province is required</div>
         </div>
