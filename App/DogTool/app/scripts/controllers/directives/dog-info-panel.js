@@ -10,7 +10,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogInfoPanelCtrl', function ($scope, FactoryDog) {
+  .controller('DogInfoPanelCtrl', function ($scope, FactoryDog, flash) {
     /**
      * handler for the edit button
      *
@@ -109,7 +109,7 @@ angular.module('dogToolApp')
      * @param {Sails.response} response The response from the server containing
      *   the reason the request failed
      */
-    var processError = function (response) {
-        console.log('Error occured: ' + JSON.stringify(response));
-};
+    var processError = function () {
+        flash.error = 'An error occured';
+    };
 });

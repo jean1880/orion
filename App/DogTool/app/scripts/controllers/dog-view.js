@@ -46,8 +46,6 @@ angular.module('dogToolApp')
           $scope.dog = dog;
         })
         .error(function (response, status) {
-          console.log(response);
-
           switch(status) {
             case 404:
               flash.error = 'Dog not found';
