@@ -33,7 +33,7 @@ angular
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl'
       })
-      .when('/dog', {
+      .when('/dogs', {
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl'
       })
@@ -48,6 +48,18 @@ angular
       .when('/jobs', {
         templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
+      })
+      .when('/people', {
+        templateUrl: 'views/people/list.html',
+        controller: 'PeopleListCtrl'
+      })
+      .when('/person/new', {
+        templateUrl: 'views/people/new.html',
+        controller: 'PeopleNewCtrl'
+      })
+      .when('/person/:id', {
+        templateUrl: 'views/people/view.html',
+        controller: 'PeopleViewCtrl'
       })
       .when('/jobs/new', {
         templateUrl: 'views/job-new.html',

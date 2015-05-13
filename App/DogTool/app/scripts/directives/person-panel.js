@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc directive
- * @name dogToolApp.directive:dogPersonPanel
+ * @name dogToolApp.directive:personPanel
  * @description
- * # dogPersonPanel
+ * # personPanel
  */
 angular.module('dogToolApp')
   .directive('personPanel', function () {
