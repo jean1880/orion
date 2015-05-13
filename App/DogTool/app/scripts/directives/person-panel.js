@@ -9,10 +9,18 @@
 angular.module('dogToolApp')
   .directive('personPanel', function () {
     return {
-      template: '<div></div>',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the personPanel directive');
-      }
+      scope: {
+        panelTitle: '@',
+        panelType: '@',
+        person: '=',
+        personUpdated: '=?',
+        unlinkable: '=?'
+      },
+      link: function ($scope) {
+        $scope.unlinkable = angular.isDefined($scope.unlinkable) ? $scope.unlinkable : true;
+      },
+      templateUrl: 'views/directives/person-panel.html',
+      controller: 'PersonPanelCtrl'
     };
   });

@@ -1,53 +1,28 @@
-<div class="panel panel-default">
+<div class="panel panel-{{panelType || 'default'}}">
   <div class="panel-heading">
-    <div ng-hide="panelTitle">
-      {{person.Name}}
-    </div>
-    <div ng-show="panelTitle">
-      {{panelTitle}}
+    <a href tooltip="Unlink" tooltip-placement="right" ng-show="editMode && unlinkable && person" ng-click="unlinkPerson()">
+      <i class="fa fa-chain-broken"></i>
+    </a>
+    {{panelTitle || 'Person'}}
+    <div class="pull-right">
+      <div ng-hide="editMode || !person">
+        <a href ng-click="enableEditMode()"  tooltip="Change {{panelTitle || 'Person'}}" tooltip-placement="left">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        </a>
+      </div>
+      <div ng-show="editMode && person">
+        <a href ng-click="disableEditMode()" tooltip="Cancel" tooltip-placement="left">
+          <span class="fa fa-times" aria-hidden="true"></span>
+        </a>
+      </div>
     </div>
   </div>
   <div class="panel-body">
-    <div ng-hide="editingInfo">
-      <div class="row">
-        <div class="col-xs-4">
-          <strong>Name</strong>
-        </div>
-        <div class="col-xs-8">
-          {{person.Name}}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-4">
-          <strong>Email</strong>
-        </div>
-        <div class="col-xs-8">
-          {{person.Email}}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-4">
-          <strong>Phone</strong>
-        </div>
-        <div class="col-xs-8">
-          {{person.Phone}}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-4">
-          <strong>Address</strong>
-        </div>
-        <div class="col-xs-8">
-          {{person.Address.Street}}<br />
-          {{person.Address.City}}<br />
-          {{person.Address.Province}}<br />
-          {{person.Address.Country}}<br />
-          {{person.Address.PostalCode}}
-        </div>
-      </div>
+    <div ng-show="!editMode && person">
+      <person-info person="person"></person-info>
+    </div>
+    <div ng-show="editMode || !person">
+      <person-select-create selected-id="{{person.id}}" name="{{panelTitle}}" person-id-changed="personIdChanged"></person-select-create>
     </div>
   </div>
 </div>

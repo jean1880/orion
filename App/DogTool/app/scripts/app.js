@@ -38,16 +38,16 @@ angular
         controller: 'DogListCtrl'
       })
       .when('/dog/new', {
-        templateUrl: 'views/dog/edit.html',
+        templateUrl: 'views/dog/new.html',
         controller: 'DogNewCtrl'
       })
       .when('/dog/:id', {
         templateUrl: 'views/dog/view.html',
         controller: 'DogViewCtrl'
       })
-      .when('/dog/:id/edit', {
-        templateUrl: 'views/dog/edit.html',
-        controller: 'DogEditCtrl'
+      .when('/jobs', {
+        templateUrl: 'views/jobs.html',
+        controller: 'JobsCtrl'
       })
       .when('/people', {
         templateUrl: 'views/people/list.html',
@@ -60,6 +60,30 @@ angular
       .when('/person/:id', {
         templateUrl: 'views/people/view.html',
         controller: 'PeopleViewCtrl'
+      })
+      .when('/jobs/new', {
+        templateUrl: 'views/job-new.html',
+        controller: 'NewJobsCtrl'
+      })
+      .when('/jobs/:id', {
+        templateUrl: 'views/job-list.html',
+        controller: 'JobsCtrl'
+      })
+      .when('/Tester', {
+        templateUrl: 'views/tester.html',
+        controller: 'TesterCtrl'
+	    })
+      .when('/gridTest', {
+        templateUrl: 'views/gridtest.html',
+        controller: 'GridtestCtrl'
+      })
+      .when('/calendar', {
+        templateUrl: 'views/calendar.html',
+        controller: 'CalendarCtrl'
+      })
+      .when('/quote', {
+        templateUrl: 'views/quote.html',
+        controller: 'QuoteCtrl'
       })
       .otherwise({
         redirectTo: '/'
