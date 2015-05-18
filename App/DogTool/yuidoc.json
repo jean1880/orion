@@ -1,0 +1,11 @@
+{
+  "name": "Not Just Kibble - Dog Tool",
+  "version": "0.0.1",
+  "options": {
+    "paths": [
+      "app/scripts"
+    ],
+    "exclude": "bower_components, node_modules",
+    "outdir": "docs"
+  }
+}

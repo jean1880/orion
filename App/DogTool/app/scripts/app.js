@@ -38,16 +38,24 @@ angular
         controller: 'DogListCtrl'
       })
       .when('/dog/new', {
-        templateUrl: 'views/dog/edit.html',
+        templateUrl: 'views/dog/new.html',
         controller: 'DogNewCtrl'
       })
       .when('/dog/:id', {
         templateUrl: 'views/dog/view.html',
         controller: 'DogViewCtrl'
       })
-      .when('/dog/:id/edit', {
-        templateUrl: 'views/dog/edit.html',
-        controller: 'DogEditCtrl'
+      .when('/jobs', {
+        templateUrl: 'views/jobs.html',
+        controller: 'JobsCtrl'
+      })
+      .when('/jobs/new', {
+        templateUrl: 'views/job-new.html',
+        controller: 'NewJobsCtrl'
+      })
+      .when('/jobs/:id', {
+        templateUrl: 'views/job-list.html',
+        controller: 'JobsCtrl'
       })
       .when('/Tester', {
         templateUrl: 'views/tester.html',

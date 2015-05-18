@@ -10,3 +10,13 @@
     margin-bottom: 0;
     display: block;
 }
+
+.panel.panel-info .panel-heading a,
+.panel.panel-danger .panel-heading a {
+    color: white;
+}
+
+
+i.fa {
+  margin-right: 5px;
+}
