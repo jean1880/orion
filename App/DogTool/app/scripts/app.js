@@ -57,14 +57,6 @@ angular
         templateUrl: 'views/job-list.html',
         controller: 'JobsCtrl'
       })
-      .when('/Tester', {
-        templateUrl: 'views/tester.html',
-        controller: 'TesterCtrl'
-	  })
-      .when('/gridTest', {
-        templateUrl: 'views/gridtest.html',
-        controller: 'GridtestCtrl'
-      })
       .when('/calendar', {
         templateUrl: 'views/calendar.html',
         controller: 'CalendarCtrl'
@@ -76,6 +68,6 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-    // set sails server url
+
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
   });
