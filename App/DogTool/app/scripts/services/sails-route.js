@@ -9,8 +9,6 @@
  */
 angular.module('dogToolApp')
   .service('SailsRoute', function (ServerAddress) {
-    //TODO: move ServerAddress into this file
-
     var buildRoutes = function (objectName) {
       return {
         route: ServerAddress + '/' + objectName,
