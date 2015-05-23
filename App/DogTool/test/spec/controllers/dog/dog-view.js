@@ -83,6 +83,25 @@ describe('Controller: DogViewCtrl', function () {
     it('redirects to homepage', function () {
       expect($location.path).toHaveBeenCalledWith('/');
     });
+
+    it('sets an error flash', function () {
+      expect(flash.error).toBeDefined();
+    });
+  });
+
+  describe('when getting a dog returns a 500', function () {
+    beforeEach(function () {
+      dogGetHandler.respond(500, {message: 'not found'});
+      runController();
+    });
+
+    it('redirects to homepage', function () {
+      expect($location.path).toHaveBeenCalledWith('/');
+    });
+
+    it('sets an error flash', function () {
+      expect(flash.error).toBeDefined();
+    });
   });
 
   describe('$scope.ownerUpdated', function () {
