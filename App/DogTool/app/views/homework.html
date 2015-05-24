@@ -1,1 +1,56 @@
-<p>This is the homework view.</p>
+<h1>Homework: {{Homework.titleOf}}</h1>
+<div id="dogArea" class="col-lg-6 col-xs-12">
+  <div id="homeworkAttachedDogs">
+    <h3>Attached Dogs</h3>
+    <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dog?random=1" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
+    <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dog?random=2" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
+  </div>
+  <div id="homeworkAddDogs">
+    <h3>Add Dogs</h3>
+    <form>
+      <input type=text placeholder="Search For Dogs"><button><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></input>
+    </form>
+    <div id="addedDogToHomeworkResults">
+      <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dogs?random=3" alt=""/><button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a>
+    </div>
+  </div>
+</div>
+<div id="homeworkTextArea" class="col-lg-6 col-xs-12">
+  <div id="homeworkText">
+    <h3>Homework Title:</h3>
+    <input type="text" value={{Homework.titleOf}}/>
+    <h3>Homework Description</h3>
+    <textarea name="homeworkDescriptionTextArea">{{Homework.description}}</textarea>
+  </div>
+  <div id="homeworkTaskList">
+    <h3>Task List</h3>
+    <ul>
+      <li><a>Task 1 <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a></li>
+    </ul>
+    <h3>Add Tasks</h3>
+    <input type=text placeholder="Search For Tasks"><button><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></input>
+      <ul class ="bulletLess">
+        <li>Task 1 <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></li>
+        <li>Task 2 <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></li>
+      </ul>
+    <button ng-click="hideNewTask = !hideNewTask">New Task</button>
+    <div ng-show = "hideNewTask">
+      <h4>Create New Task</h4>
+      <div>
+        <label for="newTaskTitle" >New Task Title:</label>
+        <input type=text name ="newTaskTitle"/>
+      </div>
+      <div>
+        <label for="newTask" >New Task Instructions:</label>
+        <textarea name ="newTask"/>
+      </div>
+      <div>
+        <label for="isGlobalTask" >Make Global Task</label>
+        <input type="checkbox" name="isGlobalTask" value="true"/>
+      </div>
+    </div>
+  </div>
+<button>Update Homework</button>
+</div>
+
+
