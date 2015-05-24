@@ -5,7 +5,7 @@
  * @name dogToolApp.controller:HomeworkCtrl
  * @description
  * # HomeworkCtrl
- * Controller of the dogToolApp
+ * Controller of the dogToolApp, manages the homework.html, designed to gather data of specific homework via homework ids.
  */
 angular.module('dogToolApp')
   .controller('HomeworkCtrl', function ($scope) {
