@@ -10,7 +10,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogInfoPanelCtrl', function ($scope, FactoryDog) {
+  .controller('DogInfoPanelCtrl', function ($scope, FactoryDog, Upload) {
     /**
      * handler for the edit button
      *
@@ -53,7 +53,20 @@ angular.module('dogToolApp')
     $scope.cancelInfoBtn = function() {
       $scope.editingInfo = false;
     };
-
+	
+	$scope.upload = function (file) {
+		Upload.upload({
+			url: 'http://localhost:1337/#/Dog/uploadPhoto/' + $scope.dog.id,
+			file:file
+		}).progress(function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+			console.log ('progress: ' + progressPercentage + '% ' +
+						evt.config.file.name + '\n');
+		}).success(function (data, status, headers, config) {
+			console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n');
+		});
+	};
+	
     /**
      * Processes the raw dog that is returned by the server by making the
      * birthdate a date object, and sets the age of the dog
@@ -112,4 +125,6 @@ angular.module('dogToolApp')
     var processError = function (response) {
         console.log('Error occured: ' + JSON.stringify(response));
     };
+	
+	
 });
