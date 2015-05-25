@@ -21,8 +21,6 @@ angular.module('dogToolApp')
      * @method selectFormSubmit
      */
     $scope.editFormSubmit = function () {
-      flash.success = 'Person Created';
-
       FactoryPeople.post($scope.person)
         .success(function (response) {
           flash.success = 'Person created';
