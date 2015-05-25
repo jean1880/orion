@@ -1,9 +1,9 @@
-<h1>Homework: {{Homework.titleOf}}</h1>
+<h1>Homework: {{Homework.Title}}</h1>
 <div id="dogArea" class="col-lg-6 col-xs-12">
   <div id="homeworkAttachedDogs">
     <h3>Attached Dogs</h3>
-    <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dog?random=1" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
-    <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dog?random=2" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
+    <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=1" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
+    <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=2" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
   </div>
   <div id="homeworkAddDogs">
     <h3>Add Dogs</h3>
@@ -11,7 +11,7 @@
       <input type=text placeholder="Search For Dogs"><button><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></input>
     </form>
     <div id="addedDogToHomeworkResults">
-      <a href="#/dog:2"><img src="http://loremflickr.com/300/300/dogs?random=3" alt=""/><button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a>
+      <a href="#/dog/3"><img src="http://loremflickr.com/300/300/dogs?random=3" alt=""/><button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a>
     </div>
   </div>
 </div>
@@ -20,7 +20,7 @@
     <h3>Homework Title:</h3>
     <input type="text" value={{Homework.titleOf}}/>
     <h3>Homework Description</h3>
-    <textarea name="homeworkDescriptionTextArea">{{Homework.description}}</textarea>
+    <textarea name="homeworkDescriptionTextArea">{{Homework.Description}}</textarea>
   </div>
   <div id="homeworkTaskList">
     <h3>Task List</h3>

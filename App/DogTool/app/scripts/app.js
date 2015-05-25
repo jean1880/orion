@@ -73,7 +73,7 @@ angular
         templateUrl: 'views/quote.html',
         controller: 'QuoteCtrl'
       })
-      .when('/homework:id', {
+      .when('/homework/:id', {
         templateUrl: 'views/homework.html',
         controller: 'HomeworkCtrl'
       })
