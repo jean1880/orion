@@ -28,7 +28,7 @@ angular.module('dogToolApp')
               break;
           }
 
-          $location.path('/');
+          $location.path('/people');
         });
     };
 
