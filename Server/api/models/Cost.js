@@ -29,8 +29,9 @@ module.exports = {
         Consultation: {
             model: 'consultation'
         },
-        Daycare: {
-            model: 'daycare'
+        Jobs: {
+            collection: 'jobs',
+            via: 'Costs'
         },
         Referral: {
             model: 'referral'

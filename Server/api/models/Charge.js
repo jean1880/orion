@@ -28,7 +28,8 @@ module.exports = {
             type: 'string'
         },
         Note: {
-            model: 'note'
+            collection: 'note',
+            via 'Charge'
         }
     }
 };

@@ -37,6 +37,10 @@ module.exports = {
         },
         Phone: {
             type: 'string'
+        },
+        Note: {
+            collection: 'note',
+            via: 'People'
         }
     }
 };

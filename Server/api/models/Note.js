@@ -18,28 +18,14 @@ module.exports = {
             type: 'string',
             required: true
         },
-        Note: {
-            type: 'string',
-            required: true
-        },
-        Dogs: {
-            collection: 'dog',
-            via: 'Notes'
+        Content:  {
+            type: 'text',
+            required true
         },
         NoteType: {
-            type: 'string'
-        },
-        Charges: {
-            collection: 'charge',
-            via: 'Note'
-        },
-        Consultations: {
-            collection: 'consultation',
-            via: 'Note'
-        },
-        Daycares: {
-            collection: 'daycare',
-            via: 'Note'
+            type: 'string',
+            required true
         }
+        
     }
 };

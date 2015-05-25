@@ -31,6 +31,10 @@ module.exports = {
             collection: 'daycare',
             via: 'Calendars',
             dominant: true
+        },
+        Jobs: {
+            collection: 'job',
+            via: 'Calendars'
         }
     }
 };

@@ -28,6 +28,10 @@ module.exports = {
         },
         Description: {
             type: 'string'
+        },
+        Note: {
+            collection: 'note',
+            via 'Homework'
         }
     }
 };

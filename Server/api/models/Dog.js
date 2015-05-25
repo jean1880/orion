@@ -45,8 +45,8 @@ module.exports = {
             collection: 'consultation',
             via: 'Dogs'
         },
-        Daycares: {
-            collection: 'daycare',
+        Jobs: {
+            collection: 'jobs',
             via: 'Dogs'
         },
         Referral: {
