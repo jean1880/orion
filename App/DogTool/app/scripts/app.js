@@ -73,16 +73,16 @@ angular
         templateUrl: 'views/quote.html',
         controller: 'QuoteCtrl'
       })
-      .when('/homework/:id', {
-        templateUrl: 'views/homework.html',
-        controller: 'HomeworkCtrl'
+      .when('/homework', {
+        redirectTo: '/homework/new'
       })
       .when('/homework/new', {
         templateUrl: 'views/homework-new.html',
         controller: 'HomeworkNewCtrl'
       })
-      .when('/homework', {
-        redirectTo: '/homework/new'
+      .when('/homework/:id', {
+        templateUrl: 'views/homework.html',
+        controller: 'HomeworkCtrl'
       })
       .otherwise({
         redirectTo: '/'
