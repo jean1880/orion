@@ -18,7 +18,7 @@ angular.module('dogToolApp')
      *
      * @method editInfoBtn
      */
-    $scope.editInfoBtn = function() {
+    $scope.editInfoBtn = function () {
       $scope.editingInfo = true;
       $scope.editedDog = angular.copy($scope.dog);
       $scope.infoForm.$setDirty(false);
@@ -32,12 +32,11 @@ angular.module('dogToolApp')
      *
      * @method saveInfoBtn
      */
-    $scope.saveInfoBtn = function() {
-      if($scope.infoForm.$valid) {
-        if($scope.infoForm.$dirty) {
+    $scope.saveInfoBtn = function () {
+      if ($scope.infoForm.$valid) {
+        if ($scope.infoForm.$dirty) {
           updateDog($scope.editedDog);
-        }
-        else {
+        } else {
           $scope.editingInfo = false;
         }
       }
@@ -50,23 +49,27 @@ angular.module('dogToolApp')
      *
      * @method cancelInfoBtn
      */
-    $scope.cancelInfoBtn = function() {
+    $scope.cancelInfoBtn = function () {
       $scope.editingInfo = false;
     };
-	
-	$scope.upload = function (file) {
-		Upload.upload({
-			url: 'http://localhost:1337/#/Dog/uploadPhoto/' + $scope.dog.id,
-			file:file
-		}).progress(function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-			console.log ('progress: ' + progressPercentage + '% ' +
-						evt.config.file.name + '\n');
-		}).success(function (data, status, headers, config) {
-			console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n');
-		});
-	};
-	
+
+    $scope.upload = function (file) {
+      console.log(file);
+      if (file.length > 0) {
+        Upload.upload({
+          url: 'http://localhost:1337/Dog/uploadPhoto/' + $scope.dog.id,
+          file: file[0]
+        }).progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '% ' +
+            evt.config.file.name + '\n');
+        }).success(function (data, status, headers, config) {
+          console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n');
+        });
+
+      }
+    };
+
     /**
      * Processes the raw dog that is returned by the server by making the
      * birthdate a date object, and sets the age of the dog
@@ -107,11 +110,11 @@ angular.module('dogToolApp')
      *   the new dog data
      */
     var processSuccess = function (response) {
-        processDog(response);
+      processDog(response);
 
-        $scope.dog = response;
-        $scope.editingInfo = false;
-        $scope.infoForm.$setDirty(false);
+      $scope.dog = response;
+      $scope.editingInfo = false;
+      $scope.infoForm.$setDirty(false);
     };
 
     /**
@@ -123,8 +126,8 @@ angular.module('dogToolApp')
      *   the reason the request failed
      */
     var processError = function (response) {
-        console.log('Error occured: ' + JSON.stringify(response));
+      console.log('Error occured: ' + JSON.stringify(response));
     };
-	
-	
-});
+
+
+  });
