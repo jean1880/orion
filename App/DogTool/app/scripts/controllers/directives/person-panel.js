@@ -26,7 +26,7 @@ angular.module('dogToolApp')
      */
     $scope.enableEditMode = function () {
       $scope.editMode = true;
-   	};
+    };
 
     /**
      * switches the panel into reading mode
@@ -35,12 +35,12 @@ angular.module('dogToolApp')
      *
      * @method disableEditMode
      */
-   	$scope.disableEditMode = function () {
+    $scope.disableEditMode = function () {
       $scope.editMode = false;
 
       //communicate to the person-select-create directive to tell it to reset
       $scope.$broadcast('editMode.disabled');
-   	};
+    };
 
     /**
      * if the person can be unlinked, the person is unset

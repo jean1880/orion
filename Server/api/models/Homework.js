@@ -27,7 +27,11 @@ module.exports = {
             dominant: true
         },
         Description: {
-            type: 'string'
+            type: 'text'
+        },
+        Title:
+        {
+          type:'text'
         }
     }
 };

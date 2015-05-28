@@ -1,0 +1,71 @@
+<form name="editForm" ng-submit="editFormSubmit()" novalidate>
+    <div class="form-group" ng-class="{'has-error': (editForm.name.$touched || editForm.$submitted) && editForm.name.$invalid}">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" ng-model="person.Name" required/>
+      <div ng-show="editForm.$submitted || editForm.name.$touched">
+        <div ng-show="editForm.name.$error.required">Name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': (editForm.email.$touched || editForm.$submitted) && editForm.email.$invalid}">
+      <label for="phone">email</label>
+      <input type="email" class="form-control" name="email" ng-model="person.Email" required/>
+      <div ng-show="editForm.$submitted || editForm.email.$touched">
+        <div ng-show="editForm.email.$error.required">Email is required</div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': (editForm.phone.$touched || editForm.$submitted) && editForm.phone.$invalid}">
+      <label for="phone">Phone</label>
+      <input type="text" class="form-control" name="phone" ng-model="person.Phone" required/>
+      <div ng-show="editForm.$submitted || editForm.phone.$touched">
+        <div ng-show="editForm.phone.$error.required">Phone is required</div>
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>Address</legend>
+
+      <div class="form-group" ng-class="{'has-error': (editForm.street.$touched || editForm.$submitted) && editForm.street.$invalid}">
+        <label class="control-label" for="street">Address</label>
+        <input type="text" class="form-control" name="street" ng-model="person.Address.Street" required/>
+        <div ng-show="editForm.$submitted || editForm.street.$touched">
+          <div ng-show="editForm.street.$error.required">Address is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (editForm.City.$touched || editForm.$submitted) && editForm.City.$invalid}">
+        <label class="control-label" for="City">City</label>
+        <input type="text" class="form-control" name="City" ng-model="person.Address.City" required/>
+        <div ng-show="editForm.$submitted || editForm.City.$touched">
+          <div ng-show="editForm.City.$error.required">City is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (editForm.Province.$touched || editForm.$submitted) && editForm.Province.$invalid}">
+        <label class="control-label" for="Province">Province</label>
+        <input type="text" class="form-control" name="Province" ng-model="person.Address.Province" required/>
+        <div ng-show="editForm.$submitted || editForm.Province.$touched">
+          <div ng-show="editForm.Province.$error.required">Province is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (editForm.Country.$touched || editForm.$submitted) && editForm.Country.$invalid}">
+        <label class="control-label" for="Country">Country</label>
+        <input type="text" class="form-control" name="Country" ng-model="person.Address.Country" required/>
+        <div ng-show="editForm.$submitted || editForm.Country.$touched">
+          <div ng-show="editForm.Country.$error.required">Country is required</div>
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="{'has-error': (editForm.PostalCode.$touched || editForm.$submitted) && editForm.PostalCode.$invalid}">
+        <label class="control-label" for="PostalCode">Postal Code</label>
+        <input type="text" class="form-control" name="PostalCode" ng-model="person.Address.PostalCode" required/>
+        <div ng-show="editForm.$submitted || editForm.PostalCode.$touched">
+          <div ng-show="editForm.PostalCode.$error.required">Postal Code is required</div>
+        </div>
+      </div>
+    </fieldset>
+
+    <input type="submit" class="btn btn-primary btn-block" value="Save" />
+  </form>

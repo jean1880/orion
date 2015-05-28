@@ -7,14 +7,14 @@
  * # personPanel
  */
 angular.module('dogToolApp')
-  .directive('personInfo', function () {
+  .directive('personEditForm', function () {
     return {
       restrict: 'E',
       scope: {
         person: '=',
-        hideName: '@'
+        formSubmit: '='
       },
-      templateUrl: 'views/directives/person-info.html',
-      controller: 'PersonInfoCtrl'
+      templateUrl: 'views/directives/person-edit-form.html',
+      controller: 'PersonEditFormCtrl'
     };
   });
