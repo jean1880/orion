@@ -40,7 +40,6 @@ module.exports = {
     });
 
     Dog.findOne(req.param('id')).exec(function (err, dog) {
-      console.log(dog);
       if (err) return res.negotiate(err);
       if (!dog) return res.notFound();
 
