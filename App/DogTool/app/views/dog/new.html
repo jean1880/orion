@@ -1,62 +1,71 @@
 <div class="row">
-  <div class="col-xs-12">
-    <form class="dog-edit" name="dogEditForm" novalidate>
-      <div class="form-group" ng-class="{'has-error': (dogEditForm.name.$touched || dogEditForm.$submitted) && dogEditForm.name.$invalid}">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" ng-model="dog.Name" required/>
-        <div ng-show="dogEditForm.$submitted || dogEditForm.name.$touched">
-          <div ng-show="dogEditForm.name.$error.required">Name is required</div>
-        </div>
-      </div>
-
-      <div class="form-group" ng-class="{'has-error': (dogEditForm.breed.$touched || dogEditForm.$submitted) && dogEditForm.breed.$invalid}">
-        <label for="breed">Breed</label>
-        <input type="text" class="form-control" name="breed" ng-model="dog.Breed" required/>
-        <div ng-show="dogEditForm.$submitted || dogEditForm.breed.$touched">
-          <div ng-show="dogEditForm.breed.$error.required">Breed is required</div>
-        </div>
-      </div>
-
-      <div class="form-group" ng-class="{'has-error': (dogEditForm.birthdate.$touched || dogEditForm.$submitted) && dogEditForm.birthdate.$invalid}">
-        <label for="birthdate">Birthdate</label>
-        <small class="pull-right">(dd/mm/yyyy)</small>
-        <input type="date" class="form-control" name="birthdate" ng-model="dog.Birthdate" required/>
-        <div ng-show="dogEditForm.$submitted || dogEditForm.birthdate.$touched">
-          <div ng-show="dogEditForm.birthdate.$error.required">Birthdate is required</div>
-        </div>
-      </div>
-
-      <div class="form-group" ng-class="{'has-error': (dogEditForm.gender.$touched || dogEditForm.$submitted) && dogEditForm.gender.$invalid}">
-        <label for="gender">Gender</label>
-        <select class="form-control" name="gender" ng-model="dog.Gender" required>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-        <div ng-show="dogEditForm.$submitted || dogEditForm.gender.$touched">
-          <div ng-show="dogEditForm.gender.$error.required">Gender is required</div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="row">
   <div class="col-xs-12 col-sm-4">
-    <div ng-show="dogEditForm.$submitted && !dog.Owner">
-      Owner is Required
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Information
+      </div>
+      <div class="panel-body">
+        <form class="dog-edit" name="dogEditForm" novalidate>
+          <div class="form-group" ng-class="{'has-error': (dogEditForm.name.$touched || dogEditForm.$submitted) && dogEditForm.name.$invalid}">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" ng-model="dog.Name" required/>
+            <div ng-show="dogEditForm.$submitted || dogEditForm.name.$touched">
+              <div ng-show="dogEditForm.name.$error.required">Name is required</div>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{'has-error': (dogEditForm.breed.$touched || dogEditForm.$submitted) && dogEditForm.breed.$invalid}">
+            <label for="breed">Breed</label>
+            <input type="text" class="form-control" name="breed" ng-model="dog.Breed" required/>
+            <div ng-show="dogEditForm.$submitted || dogEditForm.breed.$touched">
+              <div ng-show="dogEditForm.breed.$error.required">Breed is required</div>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{'has-error': (dogEditForm.birthdate.$touched || dogEditForm.$submitted) && dogEditForm.birthdate.$invalid}">
+            <label for="birthdate">Birthdate</label>
+            <small class="pull-right">(dd/mm/yyyy)</small>
+            <input type="date" class="form-control" name="birthdate" ng-model="dog.Birthdate" required/>
+            <div ng-show="dogEditForm.$submitted || dogEditForm.birthdate.$touched">
+              <div ng-show="dogEditForm.birthdate.$error.required">Birthdate is required</div>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{'has-error': (dogEditForm.gender.$touched || dogEditForm.$submitted) && dogEditForm.gender.$invalid}">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender" ng-model="dog.Gender" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <div ng-show="dogEditForm.$submitted || dogEditForm.gender.$touched">
+              <div ng-show="dogEditForm.gender.$error.required">Gender is required</div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <person-panel person="dog.Owner" panel-title="Owner*" panel-type="{{(dogEditForm.$submitted && !dog.Owner) ? 'danger' : 'default'}}" unlinkable="false"></person-panel>
   </div>
 
-  <div class="col-xs-12 col-sm-4">
-    <div ng-show="dogEditForm.$submitted && !dog.Vet">
-      Vet is Required
+  <div class="col-xs-12 col-sm-8">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <person-panel person="dog.Owner" panel-title="Owner*" panel-type="{{(dogEditForm.$submitted && !dog.Owner) ? 'danger' : 'default'}}" unlinkable="false"></person-panel>
+        <div ng-show="dogEditForm.$submitted && !dog.Owner">
+          Owner is Required
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <person-panel person="dog.Vet" panel-title="Vet*" panel-type="{{(dogEditForm.$submitted && !dog.Vet) ? 'danger' : 'default'}}" unlinkable="false"></person-panel>
+        <div ng-show="dogEditForm.$submitted && !dog.Vet">
+          Vet is Required
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <person-panel person="dog.EmergancyContact" panel-title="Emergancy Contact" panel-type="default"></person-panel>
+      </div>
     </div>
-    <person-panel person="dog.Vet" panel-title="Vet*" panel-type="{{(dogEditForm.$submitted && !dog.Vet) ? 'danger' : 'default'}}" unlinkable="false"></person-panel>
-  </div>
-
-  <div class="col-xs-12 col-sm-4">
-    <person-panel person="dog.EmergancyContact" panel-title="Emergancy Contact" panel-type="default"></person-panel>
   </div>
 </div>
 

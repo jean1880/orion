@@ -80,20 +80,4 @@ describe('Controller: DogListCtrl', function () {
       expect(flash.error).not.toBeUndefined();
     });
   });
-
-  describe('$scope.addBtnClick()', function () {
-    beforeEach(function () {
-      $httpBackend.whenGET(SailsRoute.Dog.route).respond(200, dogs);
-
-      spyOn($location, 'path');
-
-      runController();
-
-      scope.addBtnClick();
-    });
-
-    it('changes the location to the new dog page', function () {
-      expect($location.path).toHaveBeenCalledWith('/dog/new');
-    });
-  });
 });

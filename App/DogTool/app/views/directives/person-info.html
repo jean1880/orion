@@ -1,9 +1,11 @@
-<div class="row">
+<div class="row" ng-hide="hideName">
   <div class="col-xs-4">
     <strong>Name</strong>
   </div>
   <div class="col-xs-8">
-    {{person.Name}}
+    <a href="#/people/{{ person.id }}">
+      {{person.Name}}
+    </a>
   </div>
 </div>
 
@@ -12,7 +14,9 @@
     <strong>Email</strong>
   </div>
   <div class="col-xs-8">
-    {{person.Email}}
+    <a href="mailto:{{ perosn.Email }}">
+      {{person.Email}}
+    </a>
   </div>
 </div>
 

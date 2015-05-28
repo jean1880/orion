@@ -43,19 +43,17 @@ angular.module('dogToolApp')
      * @method selectFormSubmit
      */
     $scope.createFormSubmit = function () {
-      if($scope.createForm.$valid) {
-        FactoryPeople.post($scope.newPerson)
-          .success(function (response) {
-            $scope.people.push(response);
-            $scope.selectedId = response.id;
-            $scope.newPerson = {};
+      FactoryPeople.post($scope.newPerson)
+        .success(function (response) {
+          $scope.people.push(response);
+          $scope.selectedId = response.id;
+          $scope.newPerson = {};
 
-            callPersonIdChanged();
-          })
-          .error(function () {
-            flash.error = 'An error occured';
-          });
-      }
+          callPersonIdChanged();
+        })
+        .error(function () {
+          flash.error = 'An error occured';
+        });
     };
 
     /**
