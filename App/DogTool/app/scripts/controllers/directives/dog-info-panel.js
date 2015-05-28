@@ -53,6 +53,11 @@ angular.module('dogToolApp')
       $scope.editingInfo = false;
     };
 
+    /**
+     * Uplaods a file to the server
+     * @method upload
+     * @param {array} Files array
+     */
     $scope.upload = function (file) {
       console.log(file);
       if (file.length > 0) {
