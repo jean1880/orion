@@ -29,7 +29,7 @@ module.exports = {
         },
         Note: {
             collection: 'note',
-            via 'Charge'
+            via: 'Charge'
         }
     }
 };

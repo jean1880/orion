@@ -30,8 +30,11 @@ module.exports = {
             type: 'string'
         },
         Note: {
-            collection: 'note',
-            via 'Homework'
+            model: 'note'
+        },
+        Title:
+        {
+          type:'text'
         }
     }
 };

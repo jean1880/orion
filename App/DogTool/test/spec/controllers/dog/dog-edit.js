@@ -2,7 +2,7 @@
 
 /* global Mockery */
 
-describe('Controller: DogNewCtrl', function () {
+describe('Controller: DogEditCtrl', function () {
 
   // load the controller's module
   beforeEach(module('dogToolApp'));
@@ -13,9 +13,24 @@ describe('Controller: DogNewCtrl', function () {
     $httpBackend,
     SailsRoute,
     $location,
-    flash;
+    flash,
+    dogGetHandler,
+    dogUpdateHandler;
 
-  // Initialize the controller and services
+  var dog;
+
+  var runController = inject(function ($controller) {
+    var ctrl = $controller('DogEditCtrl', {
+      $scope: scope,
+      $routeParams: {id: dog.id}
+    });
+
+    $httpBackend.flush();
+
+    return ctrl;
+  });
+
+  // Initialize the controller and a mock scope
   beforeEach(inject(function ($injector, $rootScope) {
     scope         = $rootScope.$new();
     $httpBackend  = $injector.get('$httpBackend');
@@ -24,37 +39,59 @@ describe('Controller: DogNewCtrl', function () {
     FactoryDog    = $injector.get('FactoryDog');
     flash         = $injector.get('flash');
 
-    spyOn($location, 'path');
-    spyOn(FactoryDog, 'post').and.callThrough();
-
     scope.dogEditForm = {
       $valid: true
     };
+
+    dog = Mockery.mockDog();
+
+    dogGetHandler    = $httpBackend.whenGET(SailsRoute.Dog.get(dog.id)).respond(200, dog);
+    dogUpdateHandler = $httpBackend.whenPOST(SailsRoute.Dog.update(dog.id)).respond(200, dog);
+
+    spyOn($location, 'path');
+    spyOn(FactoryDog, 'get').and.callThrough();
+    spyOn(FactoryDog, 'update').and.callThrough();
   }));
 
-  var runController = inject(function ($controller) {
-    var ctrl = $controller('DogNewCtrl', {
-      $scope: scope
-    });
-
-    return ctrl;
-  });
-
-  describe('when the controller is loaded', function () {
+  describe('when the controller is loaded', function() {
     beforeEach(function () {
       runController();
     });
 
-    it('adds an empty dog Object to the scope', function () {
-      expect(scope.dog).toBeDefined();
-    });
-
-    it('sets the text for the save button', function () {
-      expect(scope.saveBtnText).toBeDefined();
+    it('gets a dog from factoryDogs', function () {
+      expect(FactoryDog.get).toHaveBeenCalledWith(dog.id);
     });
   });
 
-  describe('$scope.saveBtn', function () {
+  describe('when getting a dog is successful', function () {
+    beforeEach(function () {
+      dogGetHandler.respond(200, dog);
+      runController();
+    });
+
+    it('populates $scope.dog', function () {
+      expect(scope.dog).toBeDefined();
+      expect(scope.dog.id).toBe(dog.id);
+    });
+
+    it('coverts the dog.Birthdate to a date object', function () {
+      expect(scope.dog.Birthdate).toBeDate();
+    });
+  });
+
+  describe('when getting a dog returns a 404', function () {
+    beforeEach(function () {
+      dogGetHandler.respond(404, {message: 'not found'});
+
+      runController();
+    });
+
+    it('redirects to homepage', function () {
+      expect($location.path).toHaveBeenCalledWith('/');
+    });
+  });
+
+  describe('$scope.saveBtn()', function () {
     beforeEach(function () {
       runController();
     });
@@ -64,27 +101,9 @@ describe('Controller: DogNewCtrl', function () {
         scope.dogEditForm.$valid = true;
       });
 
-      describe('when called', function () {
+      describe('update success', function() {
         beforeEach(function () {
-          $httpBackend.whenPOST(SailsRoute.Dog.route).respond(200, scope.dog);
-
-          scope.saveBtn();
-          $httpBackend.flush();
-        });
-
-        it('attempts to save the dog', function () {
-          expect(FactoryDog.post).toHaveBeenCalledWith(scope.dog);
-        });
-      });
-
-      describe('with valid data', function() {
-        var dog;
-
-        beforeEach(function () {
-          dog = Mockery.mockDog();
-
-          $httpBackend.whenPOST(SailsRoute.Dog.route).respond(200, dog);
-
+          dogUpdateHandler.respond(200, dog);
           scope.saveBtn();
           $httpBackend.flush();
         });
@@ -104,9 +123,7 @@ describe('Controller: DogNewCtrl', function () {
         };
 
         beforeEach(function () {
-          $httpBackend.whenPOST(SailsRoute.Dog.route).respond(400, response);
-
-
+          dogUpdateHandler.respond(400, response);
           scope.saveBtn();
           $httpBackend.flush();
         });
@@ -131,8 +148,8 @@ describe('Controller: DogNewCtrl', function () {
           scope.saveBtn();
         });
 
-        it('does not try to create the dog', function () {
-          expect(FactoryDog.post).not.toHaveBeenCalled();
+        it('does not try to update the dog', function () {
+          expect(FactoryDog.update).not.toHaveBeenCalled();
         });
 
         it('does not change the path', function () {

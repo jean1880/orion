@@ -26,12 +26,10 @@ module.exports = {
             type: 'float',
             required: true
         },
-        Consultation: {
-            model: 'consultation'
-        },
-        Jobs: {
-            collection: 'jobs',
-            via: 'Costs'
+        Job: {
+            collection: 'job',
+            via: 'Costs',
+            dominant: true
         },
         Referral: {
             model: 'referral'

@@ -10,14 +10,14 @@ module.exports = {
   attributes: {
       Name: {
           type: 'string',
-          required true
+          required: true
       },
       Description:  {
           type: 'string' 
       },
       Jobs: {
           collection: 'job',
-          via 'Jobtype'
+          via: 'Jobtype'
       }
   }
 };

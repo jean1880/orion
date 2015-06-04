@@ -20,11 +20,23 @@ module.exports = {
         },
         Content:  {
             type: 'text',
-            required true
+            required: true
         },
         NoteType: {
             type: 'string',
-            required true
+            required: true
+        },
+        Charge: {
+            model: 'charge'
+        },
+        Dogs:   {
+            model: 'dog'
+        },
+        Job:    {
+            model: 'job' 
+        },
+        People:   {
+            model: 'people'
         }
         
     }

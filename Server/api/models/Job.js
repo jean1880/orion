@@ -9,31 +9,31 @@ module.exports = {
 
   attributes: {
     Name: {
-        type: 'string',
+        type: 'text',
         required: true
     },
     Dogs: {
-        collection: 'dogs',
-        via 'Job'
+        collection: 'dog',
+        via: 'Job',
+        dominant: true
     },
     Costs:  {
-        collection: 'costs',
-        via 'Job'
+        collection: 'cost',
+        via: 'Job'
     },
     Notes:  {
-        collection: 'notes',
-        via 'Job'
+        collection: 'note',
+        via: 'Job'
     },
     Invoice:  {
         model: 'invoice'
     },
-    JobType:  {
+    Jobtype:  {
         model: 'jobtype',
-        required true
+        required: true
     },
-    Calender: {
-        model: 'calendar',
-        required true
+    Calendars: {
+        model: 'calendar'
     }
   }
 };

@@ -35,6 +35,7 @@ angular.module('dogToolApp')
       Note: buildRoutes('note'),
       People: buildRoutes('people'),
       Homework: buildRoutes('homework'),
-	  Consultation: buildRoutes('consultation')
+      Address: buildRoutes('address'),
+      Consultation: buildRoutes('consultation')
     };
   });

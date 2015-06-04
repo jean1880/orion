@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: GridtestCtrl', function () {
+describe('Controller: HomeworkCtrl', function () {
 
   // load the controller's module
   beforeEach(module('dogToolApp'));
 
-  var GridtestCtrl,
+  var HomeworkCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    GridtestCtrl = $controller('GridtestCtrl', {
+    HomeworkCtrl = $controller('HomeworkCtrl', {
       $scope: scope
     });
   }));
