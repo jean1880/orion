@@ -27,7 +27,10 @@ module.exports = {
             dominant: true
         },
         Description: {
-            type: 'text'
+            type: 'string'
+        },
+        Note: {
+            model: 'note'
         },
         Title:
         {

@@ -26,11 +26,10 @@ module.exports = {
             type: 'float',
             required: true
         },
-        Consultation: {
-            model: 'consultation'
-        },
-        Daycare: {
-            model: 'daycare'
+        Job: {
+            collection: 'job',
+            via: 'Costs',
+            dominant: true
         },
         Referral: {
             model: 'referral'
