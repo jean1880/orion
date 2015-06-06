@@ -33,7 +33,7 @@ angular
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl'
       })
-      .when('/dog', {
+      .when('/dogs', {
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl'
       })
@@ -49,6 +49,18 @@ angular
         templateUrl: 'views/job-list.html',
         controller: 'JobsCtrl'
       })
+      .when('/people', {
+        templateUrl: 'views/people/list.html',
+        controller: 'PeopleListCtrl'
+      })
+      .when('/person/new', {
+        templateUrl: 'views/people/new.html',
+        controller: 'PeopleNewCtrl'
+      })
+      .when('/person/:id', {
+        templateUrl: 'views/people/view.html',
+        controller: 'PeopleViewCtrl'
+      })
       .when('/jobs/new', {
         templateUrl: 'views/job-new.html',
         controller: 'NewJobsCtrl'
@@ -57,10 +69,18 @@ angular
         templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
       })
+      .when('/people/new', {
+        templateUrl: 'views/people/new.html',
+        controller: 'PeopleNewCtrl'
+      })
+      .when('/people/:id', {
+        templateUrl: 'views/people/view.html',
+        controller: 'PeopleViewCtrl'
+      })
       .when('/Tester', {
         templateUrl: 'views/tester.html',
         controller: 'TesterCtrl'
-	  })
+      })
       .when('/gridTest', {
         templateUrl: 'views/gridtest.html',
         controller: 'GridtestCtrl'

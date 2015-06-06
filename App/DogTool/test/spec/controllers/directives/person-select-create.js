@@ -177,108 +177,91 @@ describe('Controller: PersonSelectCreateCtrl', function () {
   });
 
   describe('$scope.createFormSubmit', function() {
+    var newPerson;
+
     beforeEach(function () {
       runController();
+
+      loadCreateForm();
+      scope.createForm.$valid = true;
+      newPerson = Mockery.mockPerson();
+
+      scope.newPerson = newPerson;
     });
 
-    describe('when the createFrom is valid', function () {
-      var newPerson;
+    it('tries to create a new person', function () {
+      scope.createFormSubmit();
 
+      $httpBackend.flush();
+
+      expect(FactoryPeople.post).toHaveBeenCalled();
+    });
+
+    it('tries to create a new person with the new data', function () {
+      scope.createFormSubmit();
+
+      $httpBackend.flush();
+
+      expect(FactoryPeople.post).toHaveBeenCalledWith(newPerson);
+    });
+
+    describe('when creating a person is successful', function() {
       beforeEach(function () {
-        loadCreateForm();
-        scope.createForm.$valid = true;
-        newPerson = Mockery.mockPerson();
-
-        scope.newPerson = newPerson;
+        peoplePostHandler.respond(200, newPerson);
       });
 
-      it('tries to create a new person', function () {
+      it('adds the person to scope.people', function () {
         scope.createFormSubmit();
 
         $httpBackend.flush();
 
-        expect(FactoryPeople.post).toHaveBeenCalled();
+        expect(scope.people).toContain(newPerson);
       });
 
-      it('tries to create a new person with the new data', function () {
+      it('updates the selectedId', function () {
         scope.createFormSubmit();
 
         $httpBackend.flush();
 
-        expect(FactoryPeople.post).toHaveBeenCalledWith(newPerson);
+        expect(scope.selectedId).toEqual(newPerson.id);
       });
 
-      describe('when creating a person is successful', function() {
-        beforeEach(function () {
-          peoplePostHandler.respond(200, newPerson);
-        });
+      it('resets scope.newPerson', function () {
+        scope.createFormSubmit();
 
-        it('adds the person to scope.people', function () {
-          scope.createFormSubmit();
+        $httpBackend.flush();
 
-          $httpBackend.flush();
-
-          expect(scope.people).toContain(newPerson);
-        });
-
-        it('updates the selectedId', function () {
-          scope.createFormSubmit();
-
-          $httpBackend.flush();
-
-          expect(scope.selectedId).toEqual(newPerson.id);
-        });
-
-        it('resets scope.newPerson', function () {
-          scope.createFormSubmit();
-
-          $httpBackend.flush();
-
-          expect(scope.newPerson).toEqual({});
-        });
-      });
-
-      describe('when creating a person is successful', function() {
-        beforeEach(function () {
-          peoplePostHandler.respond(400, {});
-        });
-
-        it('sets an error flash', function () {
-          scope.createFormSubmit();
-
-          $httpBackend.flush();
-
-          expect(flash.error).toBeDefined();
-        });
-
-        it('does not change the selectedId', function () {
-          scope.createFormSubmit();
-
-          $httpBackend.flush();
-
-          expect(scope.selectedId).not.toEqual(newPerson.id);
-        });
-
-        it('does not reset scope.newPerson', function () {
-          scope.createFormSubmit();
-
-          $httpBackend.flush();
-
-          expect(scope.newPerson).toEqual(newPerson);
-        });
+        expect(scope.newPerson).toEqual({});
       });
     });
 
-    describe('when the createFrom is invalid', function () {
+    describe('when creating a person is successful', function() {
       beforeEach(function () {
-        loadCreateForm();
-        scope.createForm.$valid = false;
+        peoplePostHandler.respond(400, {});
       });
 
-      it('does not try to create a new person', function () {
+      it('sets an error flash', function () {
         scope.createFormSubmit();
 
-        expect(FactoryPeople.post).not.toHaveBeenCalled();
+        $httpBackend.flush();
+
+        expect(flash.error).toBeDefined();
+      });
+
+      it('does not change the selectedId', function () {
+        scope.createFormSubmit();
+
+        $httpBackend.flush();
+
+        expect(scope.selectedId).not.toEqual(newPerson.id);
+      });
+
+      it('does not reset scope.newPerson', function () {
+        scope.createFormSubmit();
+
+        $httpBackend.flush();
+
+        expect(scope.newPerson).toEqual(newPerson);
       });
     });
   });
