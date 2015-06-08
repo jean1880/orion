@@ -8,9 +8,20 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('JobsCtrl', function ($scope,$routeParams, $location, FactoryDog, FactoryNote) {
+
+  .controller('JobsCtrl', function ($scope,$routeParams, $location, FactoryJob) {
     //Add test connection to the page when loaded
+  $scope.test='test';
+//    FactoryJob.getAll()
+//        .success(function (response) {
+//          $scope.JobListTest = response;
+//        })
+//        .error(function () {
+//          flash.error = 'A error occured while loading Jobs.';
+//        });
+   
     $scope.Job= {titleOf:"Job Title Place Holder",hasJobId:true};
+  
     $scope.JobList= [{
 "id":435436,
 "title":"test job",
