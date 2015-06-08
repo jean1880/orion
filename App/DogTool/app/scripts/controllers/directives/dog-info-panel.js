@@ -10,7 +10,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogInfoPanelCtrl', function ($scope, FactoryDog, flash, Upload) {
+  .controller('DogInfoPanelCtrl', function ($scope, FactoryDog, flash) {
     /**
      * handler for the edit button
      *
@@ -59,20 +59,9 @@ angular.module('dogToolApp')
      * @param {array} Files array
      */
     $scope.upload = function (file) {
-      console.log(file);
-      if (file.length > 0) {
-        Upload.upload({
-          url: 'http://localhost:1337/Dog/uploadPhoto/' + $scope.dog.id,
-          file: file[0]
-        }).progress(function (evt) {
-          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-          console.log('progress: ' + progressPercentage + '% ' +
-            evt.config.file.name + '\n');
-        }).success(function (data, status, headers, config) {
-          console.log('file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n');
-        });
-
-      }
+      FactoryDog.upload(file).success(function (data) {
+		console.log(data);
+	  });
     };
 
     /**

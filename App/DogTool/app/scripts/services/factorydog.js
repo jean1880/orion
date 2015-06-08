@@ -6,7 +6,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryDog', function ($http, SailsRoute, poller) {
+  .factory('FactoryDog', function ($http, SailsRoute, poller, Upload) {
     return {
       /**
        * One time fetch from server for single Dog dataset based on id
@@ -58,6 +58,15 @@ angular.module('dogToolApp')
        */
       update: function (dog) {
         return $http.post(SailsRoute.Dog.update(dog.id), dog);
+      },
+	  
+	  upload: function (file) {
+      if (file.length > 0) {
+        return Upload.upload({
+          url: 'http://localhost:1337/Dog/uploadPhoto/' + $scope.dog.id,
+          file: file[0]
+        });
       }
+    }
     };
   });
