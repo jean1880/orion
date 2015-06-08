@@ -3,30 +3,31 @@
     <div>
     <form action="jobFilterCtr" method="post" >
      <div class="input-group">
-       <input type="text" class="form-control" placeholder="Job Title..."> <button type=submit class="input-group-addon">
+          <input type="text" class="form-control" placeholder="Job name..." />
+          <div class="input-group-addon">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-          </button></input>
-         {{JobListTest}}
+          </div>
         </div>
     </form>
     </div>
     <h1>Job List</h1>
       <!--  Add job list dynamically here, replace below content with loop  -->
-    <div ng-repeat="job in JobList">
+    <div ng-repeat="job in JobListTest">
+  
       <div class="col-xs-12 col-lg-4 panel">     
-        <h3>Job Name: {{job.title}}</h3>
-<!--      consider adding carusel like here for images -->
-        <div ng-repeat="imgUrl in job.img">
-          <img src="{{imgUrl}}" alt=""/>
+        <h3>Job Name: {{job.Name}}</h3>
+        {{job}}
+        <div ng-repeat="dog in job.Dogs">
+          <img src="{{dog.PhotoURL}}" alt=""/>
         </div>
         
-        <h3>Address: {{job.location}}</h3>
-        <h3>Date/Time Start:{{job.dateStart}} </h3>
-        <h3>Date/Time End: {{job.dateEnd}}</h3>
-        <h3>Job Type: {{job.type}}</h3>
+        <h3>Address: {{job.Location.Street}}, {{job.Location.City}}, {{job.Location.PostalCode}}</h3>
+        <h3>Date/Time Start:{{job.Calendars.StartDate}} </h3>
+        <h3>Date/Time End: {{job.Calendars.StartDate}}</h3>
+        <h3>Job Type: {{job.Jobtype.Name}}</h3>
         <a href=""><img src="http://loremflickr.com/200/200/map?random=1" alt=""/></a>
-        <button>Go To Calander</button>
-        <button>Create/View Invoice</button>
+        <button class="btn">Go To Calander</button>
+        <button class="btn">Create/View Invoice</button>
      </div>
     </div>
 <!--
