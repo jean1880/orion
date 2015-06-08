@@ -6,7 +6,7 @@
        <input type="text" class="form-control" placeholder="Job Title..."> <button type=submit class="input-group-addon">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </button></input>
-         {{job.dateStart}}
+         {{JobListTest}}
         </div>
     </form>
     </div>
@@ -14,11 +14,13 @@
       <!--  Add job list dynamically here, replace below content with loop  -->
     <div ng-repeat="job in JobList">
       <div class="col-xs-12 col-lg-4 panel">     
+        <h3>Job Name: {{job.title}}</h3>
 <!--      consider adding carusel like here for images -->
         <div ng-repeat="imgUrl in job.img">
           <img src="{{imgUrl}}" alt=""/>
         </div>
-        <h3>Address: {{job.title}}</h3>
+        
+        <h3>Address: {{job.location}}</h3>
         <h3>Date/Time Start:{{job.dateStart}} </h3>
         <h3>Date/Time End: {{job.dateEnd}}</h3>
         <h3>Job Type: {{job.type}}</h3>

@@ -11,14 +11,14 @@ angular.module('dogToolApp')
 
   .controller('JobsCtrl', function ($scope,$routeParams, $location, FactoryJob) {
     //Add test connection to the page when loaded
-  $scope.test='test';
-//    FactoryJob.getAll()
-//        .success(function (response) {
-//          $scope.JobListTest = response;
-//        })
-//        .error(function () {
-//          flash.error = 'A error occured while loading Jobs.';
-//        });
+  $scope.JobListTest='test';
+    FactoryJob.getAll()
+        .success(function (response) {
+          $scope.JobListTest = response;
+        })
+        .error(function () {
+          flash.error = 'A error occured while loading Jobs.';
+        });
    
     $scope.Job= {titleOf:"Job Title Place Holder",hasJobId:true};
   
