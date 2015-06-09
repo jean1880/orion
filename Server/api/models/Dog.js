@@ -41,12 +41,8 @@ module.exports = {
             collection: 'note',
             via: 'Dogs'
         },
-        Consultations: {
-            collection: 'consultation',
-            via: 'Dogs'
-        },
-        Daycares: {
-            collection: 'daycare',
+        Job: {
+            collection: 'job',
             via: 'Dogs'
         },
         Referral: {
