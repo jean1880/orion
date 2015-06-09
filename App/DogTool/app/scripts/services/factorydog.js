@@ -60,6 +60,12 @@ angular.module('dogToolApp')
         return $http.post(SailsRoute.Dog.update(dog.id), dog);
       },
 
+      /**
+       * Upoads a photo for the dog to the server
+       * @param {file} file
+       * @param {object} Dog
+       * @return {promise}
+       */
       upload: function (file, dog) {
         return Upload.upload({
           url: 'http://localhost:1337/Dog/uploadPhoto/' + dog.id,
