@@ -26,9 +26,9 @@ module.exports = {
 
           photoFd: uploadedFiles[0].fd
         })
-        .exec(function (err) {
+        .exec(function (err, data) {
           if (err) return res.negotiate(err);
-          return res.ok();
+          return res.ok(data[0]);
         });
     });
   },

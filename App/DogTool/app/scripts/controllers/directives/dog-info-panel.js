@@ -59,9 +59,13 @@ angular.module('dogToolApp')
      * @param {array} Files array
      */
     $scope.upload = function (file) {
-      FactoryDog.upload(file).success(function (data) {
-		console.log(data);
-	  });
+      if (file.length > 0) {
+        FactoryDog.upload(file, $scope.dog).progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        }).success(function (data) {
+          $scope.dog.photoURL = data.photoURL + '?' + Math.random(1000);
+        });
+      }
     };
 
     /**
@@ -85,12 +89,8 @@ angular.module('dogToolApp')
      */
     var updateDog = function (dog) {
       FactoryDog.update(dog)
-        .success(function (response) {
-          processSuccess(response);
-        })
-        .error(function (response) {
-          processError(response);
-        });
+        .success(processSuccess)
+        .error(processError);
     };
 
     /**

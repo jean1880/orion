@@ -59,14 +59,12 @@ angular.module('dogToolApp')
       update: function (dog) {
         return $http.post(SailsRoute.Dog.update(dog.id), dog);
       },
-	  
-	  upload: function (file) {
-      if (file.length > 0) {
+
+      upload: function (file, dog) {
         return Upload.upload({
-          url: 'http://localhost:1337/Dog/uploadPhoto/' + $scope.dog.id,
+          url: 'http://localhost:1337/Dog/uploadPhoto/' + dog.id,
           file: file[0]
         });
       }
-    }
     };
   });
