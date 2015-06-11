@@ -25,3 +25,10 @@ body {
   background-color: #999999;
   background-image: url("/styles/img/background.png");
 }
+
+#main-container {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  border: 1px solid #CDCDCD;
+  border-bottom-width: 4px;
+}
