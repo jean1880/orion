@@ -21,7 +21,8 @@ angular
     'ui.bootstrap.showErrors',
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
-	'ngFileUpload'
+    'ngFileUpload',
+    'sticky'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider) {
     flashProvider.successClassnames.push('alert-success');
@@ -104,6 +105,9 @@ angular
       .when('/homework/:id', {
         templateUrl: 'views/homework.html',
         controller: 'HomeworkCtrl'
+      })
+      .when('/calendar', {
+        templateUrl: 'views/calendar/view.html'
       })
       .otherwise({
         redirectTo: '/'

@@ -1,8 +1,10 @@
 <div class="panel panel-default dog-card" ng-click="onClick()">
-  <div class="panel-body">
-    <img ng-src="{{dog.photoURL}}" />
+  <div class="panel-heading">
     <div class="name text-center">
-      <strong>{{dog.Name}}</strong>
+      <strong>{{dog.Name || 'Dog Name'}}</strong>
     </div>
+  </div>
+  <div class="panel-body">
+    <img ng-src="{{dog.photoURL || 'http://placehold.it/200x200'}}" alt="{{dog.Name}}"/>
   </div>
 </div>

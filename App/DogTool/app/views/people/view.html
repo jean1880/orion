@@ -33,10 +33,6 @@
   </div>
 
   <div class="col-sm-8 col-lg-9">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-lg-3" ng-repeat="dog in person.Dogs">
-        <dog-card dog="dog"></dog-card>
-      </div>
-    </div>
+    <dog-card dog="dog" ng-repeat="dog in person.Dogs"></dog-card>
   </div>
 </div>
