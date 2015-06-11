@@ -20,3 +20,8 @@
 i.fa {
   margin-right: 5px;
 }
+
+body {
+  background-color: #999999;
+  background-image: url("/styles/img/background.png");
+}
