@@ -47,7 +47,7 @@ angular
         controller: 'DogViewCtrl'
       })
       .when('/jobs', {
-        templateUrl: 'views/jobs.html',
+        templateUrl: 'views/job-list.html',
         controller: 'JobsCtrl'
       })
       .when('/people', {
@@ -67,7 +67,7 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/job-list.html',
+        templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
       })
       .when('/people/new', {

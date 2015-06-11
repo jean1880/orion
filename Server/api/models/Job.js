@@ -34,6 +34,9 @@ module.exports = {
     },
     Calendars: {
         model: 'calendar'
+    },
+    Location: {
+        model: 'address'
     }
   }
 };
