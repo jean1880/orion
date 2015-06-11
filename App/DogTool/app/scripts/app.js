@@ -20,7 +20,8 @@ angular
     'ui.bootstrap',
     'ui.bootstrap.showErrors',
     'angular-flash.service',
-    'angular-flash.flash-alert-directive'
+    'angular-flash.flash-alert-directive',
+	'ngFileUpload'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider) {
     flashProvider.successClassnames.push('alert-success');
@@ -46,7 +47,7 @@ angular
         controller: 'DogViewCtrl'
       })
       .when('/jobs', {
-        templateUrl: 'views/jobs.html',
+        templateUrl: 'views/job-list.html',
         controller: 'JobsCtrl'
       })
       .when('/people', {
@@ -66,7 +67,7 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/job-list.html',
+        templateUrl: 'views/jobs.html',
         controller: 'JobsCtrl'
       })
       .when('/people/new', {

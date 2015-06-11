@@ -50,16 +50,6 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      karmaTests: {
-        files: [
-          '<%= yeoman.app %>/scripts/**/*.js',
-          'test/**/*.js'
-        ],
-        tasks: [ 'karma' ],
-        options: {
-          preprocessor: false
-        }
-      },
       css: {
         files: ['<%= yeoman.app %>/styles/**/*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']

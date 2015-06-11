@@ -22,12 +22,8 @@ module.exports = {
             collection: 'charge',
             via: 'Invoice'
         },
-        Consultations: {
-            collection: 'consultation',
-            via: 'Invoice'
-        },
-        Daycares: {
-            collection: 'daycare',
+        Job: {
+            collection: 'job',
             via: 'Invoice'
         }
     }

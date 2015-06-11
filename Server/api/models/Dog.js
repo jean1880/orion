@@ -41,12 +41,8 @@ module.exports = {
             collection: 'note',
             via: 'Dogs'
         },
-        Consultations: {
-            collection: 'consultation',
-            via: 'Dogs'
-        },
-        Daycares: {
-            collection: 'daycare',
+        Job: {
+            collection: 'job',
             via: 'Dogs'
         },
         Referral: {
@@ -56,8 +52,12 @@ module.exports = {
             collection: 'homework',
             via: 'Dogs'
         },
-        Photo: {
-            type: 'binary'
+        PhotoURL: {
+            type: 'text'
+        },
+        PhotoFd:
+        {
+            type: 'text'
         }
     }
 };
