@@ -26,6 +26,11 @@ body {
   background-image: url("/styles/img/background.png");
 }
 
+.cal-label {
+    position: relative;
+    top: -10px;
+}
+
 .footer {
   margin-top: 10px;
 }
