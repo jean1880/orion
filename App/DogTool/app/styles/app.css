@@ -20,3 +20,8 @@
 i.fa {
   margin-right: 5px;
 }
+
+.cal-label {
+    position: relative;
+    top: -10px;
+}

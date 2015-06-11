@@ -1,3 +1,9 @@
+.dog-card {
+  max-width: 150px;
+  display: inline-block;
+  margin: 5px;
+}
+
 .dog-card img {
 	display: block;
 	margin: auto;
