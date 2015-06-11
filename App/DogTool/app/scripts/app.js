@@ -20,7 +20,8 @@ angular
     'ui.bootstrap',
     'ui.bootstrap.showErrors',
     'angular-flash.service',
-    'angular-flash.flash-alert-directive'
+    'angular-flash.flash-alert-directive',
+	'ngFileUpload'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider) {
     flashProvider.successClassnames.push('alert-success');

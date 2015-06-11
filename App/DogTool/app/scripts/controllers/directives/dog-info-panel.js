@@ -18,7 +18,7 @@ angular.module('dogToolApp')
      *
      * @method editInfoBtn
      */
-    $scope.editInfoBtn = function() {
+    $scope.editInfoBtn = function () {
       $scope.editingInfo = true;
       $scope.editedDog = angular.copy($scope.dog);
       $scope.infoForm.$setDirty(false);
@@ -32,12 +32,11 @@ angular.module('dogToolApp')
      *
      * @method saveInfoBtn
      */
-    $scope.saveInfoBtn = function() {
-      if($scope.infoForm.$valid) {
-        if($scope.infoForm.$dirty) {
+    $scope.saveInfoBtn = function () {
+      if ($scope.infoForm.$valid) {
+        if ($scope.infoForm.$dirty) {
           updateDog($scope.editedDog);
-        }
-        else {
+        } else {
           $scope.editingInfo = false;
         }
       }
@@ -50,8 +49,23 @@ angular.module('dogToolApp')
      *
      * @method cancelInfoBtn
      */
-    $scope.cancelInfoBtn = function() {
+    $scope.cancelInfoBtn = function () {
       $scope.editingInfo = false;
+    };
+
+    /**
+     * Uplaods a file to the server
+     * @method upload
+     * @param {array} Files array
+     */
+    $scope.upload = function (file) {
+      if (file.length > 0) {
+        FactoryDog.upload(file, $scope.dog).progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        }).success(function (data) {
+          $scope.dog.photoURL = data.photoURL + '?' + Math.random(1000);
+        });
+      }
     };
 
     /**
@@ -75,12 +89,8 @@ angular.module('dogToolApp')
      */
     var updateDog = function (dog) {
       FactoryDog.update(dog)
-        .success(function (response) {
-          processSuccess(response);
-        })
-        .error(function (response) {
-          processError(response);
-        });
+        .success(processSuccess)
+        .error(processError);
     };
 
     /**
@@ -94,11 +104,11 @@ angular.module('dogToolApp')
      *   the new dog data
      */
     var processSuccess = function (response) {
-        processDog(response);
+      processDog(response);
 
-        $scope.dog = response;
-        $scope.editingInfo = false;
-        $scope.infoForm.$setDirty(false);
+      $scope.dog = response;
+      $scope.editingInfo = false;
+      $scope.infoForm.$setDirty(false);
     };
 
     /**
@@ -110,6 +120,8 @@ angular.module('dogToolApp')
      *   the reason the request failed
      */
     var processError = function () {
-        flash.error = 'An error occured';
+      flash.error = 'An error occured';
     };
-});
+
+
+  });
