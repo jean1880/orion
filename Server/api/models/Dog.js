@@ -52,8 +52,12 @@ module.exports = {
             collection: 'homework',
             via: 'Dogs'
         },
-        Photo: {
-            type: 'binary'
+        PhotoURL: {
+            type: 'text'
+        },
+        PhotoFd:
+        {
+            type: 'text'
         }
     }
 };
