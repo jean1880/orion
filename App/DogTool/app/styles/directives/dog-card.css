@@ -1,5 +1,5 @@
 .dog-card {
-  max-width: 150px;
+  width: 150px;
   display: inline-block;
   margin: 5px;
 }
@@ -8,6 +8,6 @@
 	display: block;
 	margin: auto;
 
-	max-width: 200px;
-	width: 100%;
+	max-height: 118px;
+	max-width: 100%;
 }
