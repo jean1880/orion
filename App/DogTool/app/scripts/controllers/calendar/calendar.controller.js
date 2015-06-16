@@ -15,13 +15,18 @@ angular.module('dogToolApp')
         editable: true,
         header:{
           left: 'title',
-          center: '',
-          right: 'today prev,next'
-        },
-        eventClick: $scope.alertOnEventClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize,
-        eventRender: $scope.eventRender
+          center: 'today prev,next',
+          right: 'month, agendaWeek, agendaDay'
+        }
       }
     };
+
+    var init = function(){
+    	$('.fc-toolbar').find('.fc-button-group').addClass('btn-group');
+		$('.fc-toolbar').find('.ui-button').addClass('btn btn-primary');
+		$('.fc-toolbar').find('.fc-prev-button').html($('<span />').attr('class', 'glyphicon glyphicon-chevron-left'));
+		$('.fc-toolbar').find('.fc-next-button').html($('<span />').attr('class', 'glyphicon glyphicon-chevron-right'));
+    };
+
+    init();
   });

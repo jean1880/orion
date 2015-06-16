@@ -89,7 +89,7 @@ angular
         controller: 'GridtestCtrl'
       })
       .when('/calendar', {
-        templateUrl: 'views/calendar.html',
+        templateUrl: 'views/calendar/view.html',
         controller: 'CalendarCtrl'
       })
       .when('/quote', {
@@ -106,9 +106,6 @@ angular
       .when('/homework/:id', {
         templateUrl: 'views/homework.html',
         controller: 'HomeworkCtrl'
-      })
-      .when('/calendar', {
-        templateUrl: 'views/calendar/view.html'
       })
       .otherwise({
         redirectTo: '/'
