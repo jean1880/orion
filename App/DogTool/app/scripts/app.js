@@ -48,8 +48,8 @@ angular
         controller: 'DogViewCtrl'
       })
       .when('/jobs', {
-        templateUrl: 'views/job-list.html',
-        controller: 'JobsCtrl'
+        templateUrl: 'views/job/job-list.html',
+        controller: ''
       })
       .when('/people', {
         templateUrl: 'views/people/list.html',
@@ -64,11 +64,11 @@ angular
         controller: 'PeopleViewCtrl'
       })
       .when('/jobs/new', {
-        templateUrl: 'views/job-new.html',
+        templateUrl: 'views/job/job-new.html',
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/jobs.html',
+        templateUrl: 'views/job/jobs.html',
         controller: 'JobsCtrl'
       })
       .when('/people/new', {
