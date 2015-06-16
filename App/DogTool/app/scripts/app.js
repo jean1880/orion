@@ -31,7 +31,8 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/dog/list.html',
-        controller: 'DogListCtrl'
+        controller: 'DogListCtrl',
+        title : 'Dog'
       })
       .when('/dogs', {
         templateUrl: 'views/dog/list.html',
