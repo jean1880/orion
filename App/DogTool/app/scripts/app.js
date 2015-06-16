@@ -19,6 +19,7 @@ angular
     'emguo.poller',
     'ui.bootstrap',
     'ui.bootstrap.showErrors',
+    'ui.calendar',
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'ngFileUpload',

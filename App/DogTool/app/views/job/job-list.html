@@ -1,67 +1,144 @@
-<!--  The Job list display, Hide if specific job is seleected-->
-<div class="" id="JobListPanel">
-  <div>
-    <form action="jobFilterCtr" method="post">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Job name..." />
-        <div class="input-group-addon">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+<div class="row">
+  <div class="col-md-2">
+    <div sticky>
+      <h1>June 2015</h1>
+      <a class="btn btn-block btn-primary">Today</a>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="col-sm-12">
+          <h2>10th <small>Wednesday</small></h2>
+        </div>
+        <div class="col-sm-12">
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
         </div>
       </div>
-    </form>
-  </div>
-  <h1>Job List</h1>
-  <!--  Add job list dynamically here, replace below content with loop  -->
-  <div ng-repeat="job in JobList">
-
-    <div class="col-xs-12 col-lg-4 panel">
-      <h3>Job Name: {{job.Name}}</h3>
-      <div ng-repeat="dog in job.Dogs">
-        <img src="{{dog.PhotoURL}}" alt="" />
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">All Day</div>
+          <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
       </div>
-
-      <h3>Address: {{job.Location.Street}}, {{job.Location.City}}, {{job.Location.PostalCode}}</h3>
-      <h3>Date/Time Start:{{job.Calendars.StartDate}} </h3>
-      <h3>Date/Time End: {{job.Calendars.StartDate}}</h3>
-      <h3>Job Type: {{job.Jobtype.Name}}</h3>
-      <a href=""><img src="http://loremflickr.com/200/200/map?random=1" alt="" />
-      </a>
-      <button class="btn">Go To Calander</button>
-      <button class="btn">Create/View Invoice</button>
     </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-10">
+        <div class="col-sm-12">
+          <h2>11th <small>Thursday</small></h2>
+          <span class="label label-danger cal-label">Today</span>
+        </div>
+        <div class="col-sm-12">
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">All Day</div>
+          <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-10">
+        <div class="col-sm-12">
+          <h2>12th <small>Friday</small></h2>
+        </div>
+        <div class="col-sm-12">
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">All Day</div>
+          <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-10">
+        <div class="col-sm-12">
+          <h2>13th <small>Saturday</small></h2>
+        </div>
+        <div class="col-sm-12">
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">All Day</div>
+          <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-10">
+        <div class="col-sm-12">
+          <h2>14th <small>Sunday</small></h2>
+        </div>
+        <div class="col-sm-12">
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+          <dog-card></dog-card>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">All Day</div>
+          <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
   </div>
-  <!--
-    <div class="col-xs-12 col-lg-4 panel">     
-      consider adding carusel like here for images 
-        <img src="http://loremflickr.com/300/300/dog?random=1" alt=""/>
-        <img src="http://loremflickr.com/300/300/dog?random=2" alt=""/>
-        <h3>Address: 123 Fake Location</h3>
-        <h3>Date/Time Start: Apr.16/15 : 10:00am</h3>
-        <h3>Date/Time End: Apr.16/15 : 1:00pm</h3>
-        <h3>Job Type: Day Care</h3>
-        <a href=""><img src="http://loremflickr.com/200/200/map?random=1" alt=""/></a>
-        <button class="btn">Go To Calander</button>
-        <button class="btn">Create/View Invoice</button>
-    </div>
-    <div class="col-xs-12 col-lg-4 panel">
-        <img src="http://loremflickr.com/300/300/dog?random=2" alt=""/>
-        <h3>Address: 123 Fake Location</h3>
-        <h3>Date/Time Start: Apr.5/15 : 5:00pm</h3>
-        <h3>Date/Time End: Apr.6/15 : 1:00pm</h3>
-        <h3>Job Type: Day Care</h3>
-        <a href=""><img src="http://loremflickr.com/200/200/map?random=2" alt=""/></a>
-        <button class="btn">Go To Calander</button>
-        <button class="btn">Create/View Invoice</button>
-    </div>
-    <div class="col-xs-12 col-lg-4 panel">
-        <img src="http://loremflickr.com/300/300/dog?random=3" alt=""/>
-        <h3>Address: 123 Fake Location</h3>
-        <h3>Date/Time Start: Apr.2/15 : 2:00pm</h3>
-        <h3>Date/Time End: Apr.2/15 : 4:00pm</h3>
-        <h3>Job Type: Consultation</h3>
-        <a href=""><img src="http://loremflickr.com/200/200/map?random=3" alt=""/></a>
-        <button class="btn">Go To Calander</button>
-        <button class="btn">Create/View Invoice</button>
-    </div>
--->
-</div>
