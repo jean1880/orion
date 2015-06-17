@@ -109,6 +109,10 @@ angular
       .when('/calendar', {
         templateUrl: 'views/calendar/view.html'
       })
+      .when('/business-info', {
+        templateUrl: 'views/business-info.html',
+        controller: 'BusinessInfoCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
