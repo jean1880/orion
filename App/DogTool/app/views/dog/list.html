@@ -3,10 +3,11 @@
     <h1>
       Dogs
     </h1>
+    <hr />
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+  <div class="col-xs-12 col-sm-3 col-md-3">
     <ul class="nav nav-pills nav-stacked">
       <li role="presentation" class="active"><a href="#/dogs">Dogs</a></li>
       <li role="presentation"><a href="#/people">People</a></li>
@@ -47,8 +48,6 @@
     </form>
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
-    <div class="list-group">
-      <a href="#/dog/{{dog.id}}" class="list-group-item" ng-repeat="dog in dogs">{{dog.Name}}</a>
-    </div>
+    <dog-card dog="dog" ng-repeat="dog in dogs | orderBy:'Name'"></dog-card>
   </div>
 </div>
