@@ -30,11 +30,12 @@
         </div>
       </div>
   <!--    Generate exising notes here -->
-      <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12" id="jobDogDropArea" style="
-      border: 1px solid black;">
-        </br>
-  <!--      Where to drag and drop the dog to add to -->
-        <p>Drag Dogs Here to Add to List</p>
+      <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
+        <h2>Dog List</h2>
+        <div ng-repeat="dogl in bookingDogs | orderBy:'Name'" class="col-xs-12 col-sm-6 col-md-4">
+        <dog-card dog="dogl" ></dog-card>
+        <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+      </div>
       </div>
   <!--    below hidden input houses the dragged dogs to send to server-->
       <input type="hidden" name="dogIdList"/> 
@@ -58,9 +59,10 @@
           </div>
         </div>
     </form>
-    <div class="col-xs-12 col-sm-9 col-md-9">
-      <div class="list-group">
-        <a href="#/dog/{{dog.id}}" class="list-group-item" ng-repeat="dog in dogs"><image src="{{dog.PhotoURL}}"></image>{{dog.Name}}</a>
+    <div class="list-group">
+      <div ng-repeat="dog in dogs | orderBy:'Name'" class="col-xs-12 col-sm-6 col-md-4">
+        <dog-card dog="dog" ></dog-card>
+        <button ng-click="bookDog(dog)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
       </div>
     </div>
   <!--  Generate a list of dogs that have images and names-->
