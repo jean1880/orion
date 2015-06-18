@@ -26,14 +26,14 @@ angular.module('dogToolApp')
                 return $http.get(SailsRoute.Job.getAll);
             },
             /**
-             * One time fetch from server for full job dataset
+             * Wait for changes from the server
              * @method listen
              */
             listen: function () {
                 return poller.get(SailsRoute.Job.listen);
             },
             /**
-             * One time fetch from server for full job dataset
+             * Add a new Booking with the value of cost
              * @method post
              * @param consultation
              */
