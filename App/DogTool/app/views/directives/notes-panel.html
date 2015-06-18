@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Notes
+  </div>
+  <div class="panel-body">
+    <tabset>
+      <tab ng-repeat="tab in tabs" heading="{{tab.name}}" active="tab.active" disable="tab.disabled">
+        <div ng-repeat="note in tab.notes" class="row">
+          <form>
+            <div class="form-group col-xs-12">
+              <input type="text" class="form-control" ng-model="note.Title"/>
+              <span class="input-group-btn">
+                <a ng-click="removeNote(note)" class="btn btn-link pull-right"><i class="fa fa-trash-o"></i></a>
+              </span>
+            </div>
+            <div class="form-group col-sm-12">
+              <textarea class="form-control" ng-model="note.Content" placeholder="content"/></textarea>
+            </div>
+          </form>
+        </div>
+        <a ng-click="addNote(tab)" class="btn btn-default">New</a>
+        <a ng-click="saveAllNotes()" class="btn btn-primary pull-right">Save</a>
+      </tab>
+    </tabset>
+  </div>
+</div>
