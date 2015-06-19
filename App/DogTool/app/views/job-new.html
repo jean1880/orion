@@ -1,15 +1,39 @@
 <div class="conatainer">
   <h1 class="col-lg-12 col-xs-12">New Booking</h1>
   <div id="newJobFormLocaiton" class="col-lg-6 col-xs-12 panel">
-    <form action="createJob" method="post" class="">
+     <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
+        <h2 ng-show="booking.Dogs.length>0">Dog List</h2>
+        <h2 ng-show="booking.Dogs.length==0">No Dogs Added</h2>   
+        <div ng-repeat="dogIn in booking.Dogs | orderBy:'Name' track by $index" class="col-xs-12 col-sm-6 col-md-4">
+          <dog-card dog="dogIn" ></dog-card>
+          <button ng-click="removeDog($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+        </div>
+      </div>
+    <form id="newBookingForm" name="newBookingForm"  ng-submit="createBooking()">
       <div class="form-group">
         <div class="input-group">
           <label for="jobTitle" class="control-label">Booking Title: </label>
-          <input id="jobTitle" name="jobTitle" class="form-control" type="text"/>
+          <input id="jobTitle" name="jobTitle" class="form-control" type="text" ng-model="booking.Name" required/>
         </div>
         <div class="input-group">
-          <label for ="jobAddress" class="control-label">Booking Address: </label>
-          <input id="jobAddress" name="jobAddress" class="form-control" type="text" required/>
+          <label for ="jobAddress" class="control-label">Street Address: </label>
+          <input id="jobAddress" name="jobAddress" class="form-control" type="text" ng-model="booking.Location.Street" required/>
+        </div>
+        <div class="input-group">
+          <label for ="bookingCity" class="control-label">City: </label>
+          <input id="bookingCity" name="bookingProvince" class="form-control" type="text"ng-model="booking.Location.City" required/>
+        </div>
+        <div class="input-group">
+          <label for ="bookingState" class="control-label">Province/State: </label>
+          <input id="bookingState" name="bookingState" class="form-control" type="text"  ng-model="booking.Location.Province" placeholder="ON"/>
+        </div>
+        <div class="input-group">
+          <label for ="bookingCountry" class="control-label">Country: </label>
+          <input id="bookingCountry" name="bookingCountry" class="form-control" type="text" ng-model="booking.Location.Country" placeholder="CA"/>
+        </div>
+        <div class="input-group">
+          <label for ="bookingPostalCode" class="control-label">Postal Code: </label>
+          <input id="bookingPostalCode" name="bookingPostalCode" class="form-control" type="text" ng-model="booking.Location.PostalCode" placeholder="CA"/>
         </div>
         <div class="input-group">
           <label for="jobType" class="control-label">Booking Type: </label>
@@ -18,28 +42,31 @@
             <option value="DayCare">Consultation</option>
             <option value="-">Other</option>
           </select>
-          <input type="text" id="otherJobType" name ="otherJobType" class="form-control"  placeholder="Other"/>
+          <input type="text" id="otherJobType" name ="otherJobType" class="form-control" ng-model="booking.JobType.Name"  placeholder="Other"/>
         </div>
         <div class="input-group">
-          <label for="jobStart">Booking Start</label>
-          <input name="jobStart" type="datetime-local" class="form-control"  required/>
+          <label for="jobStart">Booking Start Date:</label>
+          <input id="jobStart" type="datetime-local" autocomplete ="on" class="form-control" ng-model="booking.Calendars.StartDate" required/>
         </div>
         <div class="input-group">
-            <label for="jobEnd">Booking End</label>
-            <input name="jobEnd" type="datetime-local"  class="form-control" required/>
+            <label for="jobEnd">Booking End Date:</label>
+            <input id="jobEnd" type="datetime-local" autocomplete ="on" class="form-control" ng-model="booking.Calendars.EndDate" required/>
+        </div>
+        <h3>Fees</h3>
+        <p nf-if="booking.Costs.length==0">No Fees Added</p>
+        <div ng-repeat="fees in booking.Costs" class="col-lg-12 col-sm-12">
+          <p class="col-lg-6 col-md-6 col-sm-6">{{fees.Description}}</p><p class="col-lg-6 col-md-6 col-sm-6">{{fees.Cost}}</p>
+        </div>
+        <div class="input-group ">
+          <label for="bookingFeeDescription">Booking Fees Description:</label>
+          <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description"/>
+        </div>
+        <div class="input-group ">
+          <label for="bookingFee">Booking Fees:</label>
+          <input id="bookingFee" type="text" ng-model="feeAmount"  class="form-control" pattern="^\d*(\.\d{0,2}$)?"/>
+          <button type="button" class="btn btn-lg pull-right" ng-click="addFee()">Add Fee</button>
         </div>
       </div>
-  <!--    Generate exising notes here -->
-      <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
-        <h2>Dog List</h2>
-        <div ng-repeat="dogl in bookingDogs | orderBy:'Name'" class="col-xs-12 col-sm-6 col-md-4">
-        <dog-card dog="dogl" ></dog-card>
-        <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-      </div>
-      </div>
-  <!--    below hidden input houses the dragged dogs to send to server-->
-      <input type="hidden" name="dogIdList"/> 
-
       <label for="newJobNotes" >Add Booking Notes</label>
       <textarea name="newJobNotes" class="form-control" />
       </br>
@@ -48,21 +75,21 @@
   </div>
 
   <div id="dogListPanel" class="col-lg-6 col-xs-12 panel">
-    <form action ="searchDogs" method="post" name="dogSearchForm">
+    <form name="dogSearchForm">
       <label>Filter Dogs:</label>
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Dog name..." />
-            <div class="input-group-addon">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </div>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Dog name..." />
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </div>
         </div>
+      </div>
     </form>
     <div class="list-group">
-      <div ng-repeat="dog in dogs | orderBy:'Name'" class="col-xs-12 col-sm-6 col-md-4">
+      <div ng-repeat="dog in dogs | orderBy:'Name' track by $index" class="col-xs-12 col-sm-6 col-md-4">
         <dog-card dog="dog" ></dog-card>
-        <button ng-click="bookDog(dog)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <button ng-click="bookDog($index)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
       </div>
     </div>
   <!--  Generate a list of dogs that have images and names-->
