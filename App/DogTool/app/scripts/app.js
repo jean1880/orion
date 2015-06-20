@@ -23,7 +23,8 @@ angular
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'ngFileUpload',
-    'sticky'
+    'sticky',
+    'angularMoment'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider) {
     flashProvider.successClassnames.push('alert-success');
@@ -112,4 +113,6 @@ angular
       });
     // set sails server url
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
-  });
+  })
+.run(function(amMoment){
+});
