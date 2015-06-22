@@ -32,7 +32,7 @@ module.exports = {
         },
 		Phone: {
 			type: 'string'
-		}
+		},
 		Email: {
 			type: 'string'
 		}

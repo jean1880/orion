@@ -113,6 +113,10 @@ angular
         templateUrl: 'views/business-info.html',
         controller: 'BusinessInfoCtrl'
       })
+      .when('/businessInfo', {
+        templateUrl: 'views/businessinfo.html',
+        controller: 'BusinessinfoCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
