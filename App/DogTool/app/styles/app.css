@@ -43,3 +43,7 @@ body {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+.nav-tabs {
+  margin-bottom: 10px;
+}
