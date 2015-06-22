@@ -105,8 +105,14 @@ angular.module('dogToolApp')
     };
 
     $scope.updateNotes = function () {
-      console.log('Notes updated');
       console.log($scope.dog.Notes);
+      FactoryDog.update($scope.dog)
+        .success(function (res) {
+          console.log(res);
+        })
+        .error(function (res) {
+          console.log(res);
+        });
     };
 
     /**
