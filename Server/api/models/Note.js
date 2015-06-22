@@ -20,7 +20,7 @@ module.exports = {
         },
         Content:  {
             type: 'text',
-            required: true
+            defaultsTo: ''
         },
         NoteType: {
             type: 'string',
