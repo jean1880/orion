@@ -10,6 +10,9 @@
   <div class="panel-body">
     <tabset>
       <tab ng-repeat="tab in tabs" heading="{{tab.name}} ({{ tab.notes.length }})" active="tab.active" disable="tab.disabled">
+        <div ng-show="tab.notes.length <= 0">
+          <p>No Notes</p>
+        </div>
         <div ng-repeat="note in tab.notes" class="row">
           <form>
             <div class="form-group col-xs-12">
