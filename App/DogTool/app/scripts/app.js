@@ -36,6 +36,9 @@ angular
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl'
       })
+      .when('/working', {
+        template: '<h1>Working...</h1>'
+      })
       .when('/dogs', {
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl'
@@ -126,13 +129,19 @@ angular
     $httpProvider.interceptors.push('jwtInterceptor');
   })
   .run(function ($location, FactoryLogin) {
+    var url = $location.url();
+
+    $location.url('/working');
+
     FactoryLogin.validate()
       .success(function (res) {
         if (res.valid) {
+          $location.url(url);
         }
         else {
           FactoryLogin.login()
             .success(function () {
+              $location.url(url);
             });
         }
       });
