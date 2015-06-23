@@ -22,6 +22,7 @@ angular
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'ngFileUpload',
+    'angular-jwt',
     'sticky'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider) {
