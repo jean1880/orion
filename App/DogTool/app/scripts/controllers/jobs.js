@@ -9,11 +9,12 @@
  */
 angular.module('dogToolApp')
 
-.controller('JobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType, $routeParams, HelperService) {
+.controller('JobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType, $routeParams, HelperService,$sce) {
 
-  $scope.pageType = "Edit ";
+  $scope.pageType ='Edit ';
   $scope.selectedJobType;
   $scope.addedDogUI = [];
+  $scope.fullAddress=null;
 
   var now = new Date();
   $scope.booking = {
@@ -58,6 +59,7 @@ angular.module('dogToolApp')
         console.log($scope.addedDogUI);
         $scope.booking.Jobtype = $scope.booking.Jobtype.id;
       $scope.dogs = $scope.dogs.filter(removeDuplicate);
+      $scope.fullAddress =$sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?key=AIzaSyBVriHiqrpv6aGFnYnFl-pbxThfuPQB3G0&q="+ $scope.booking.Location.Street.split(' ').join('+') +'+'+ $scope.booking.Location.City.split(' ').join('+')+'+'+ $scope.booking.Location.Country.split(' ').join('+'));
       })
       .error(function () {
         flash.error = 'An error occured. Unable to load booking information';
