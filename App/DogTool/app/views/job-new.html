@@ -46,11 +46,17 @@
         </div>
         <div class="input-group">
           <label for="jobStart">Booking Start Date:</label>
-          <input id="jobStart" type="datetime-local" autocomplete ="on" class="form-control" ng-model="booking.Calendars.StartDate" required/>
+          <input id="jobStart" type="date" autocomplete ="on" class="form-control" ng-model="booking.Calendars.StartDate"  required/>
+          <datepicker ng-model="booking.Calendars.StartDate" show-weeks="true" class="well well-sm"></datepicker>
+           <timepicker ng-model="booking.Calendars.StartDate" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
         </div>
         <div class="input-group">
             <label for="jobEnd">Booking End Date:</label>
-            <input id="jobEnd" type="datetime-local" autocomplete ="on" class="form-control" ng-model="booking.Calendars.EndDate" required/>
+<!--
+            <input id="jobEnd" type="date" autocomplete ="on" class="form-control" ng-model="booking.Calendars.EndDate" required/>
+           <timepicker ng-model="booking.Calendars.EndDate" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+-->
+          <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.EndDate" show-meridian="true" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
         </div>
         <h3>Fees</h3>
         <p nf-if="booking.Costs.length==0">No Fees Added</p>
