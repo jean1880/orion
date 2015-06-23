@@ -22,7 +22,8 @@ angular
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'ngFileUpload',
-    'sticky'
+    'sticky',
+    'ui.bootstrap.datetimepicker'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider) {
     flashProvider.successClassnames.push('alert-success');
@@ -69,7 +70,7 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/jobs.html',
+        templateUrl: 'views/job-new.html',
         controller: 'JobsCtrl'
       })
       .when('/people/new', {

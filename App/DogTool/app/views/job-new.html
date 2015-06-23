@@ -1,6 +1,6 @@
 <div class="conatainer">
   <h1 class="col-lg-12 col-xs-12">New Booking</h1>
-  <div id="newJobFormLocaiton" class="col-lg-6 col-xs-12 panel">
+  <div id="newJobFormLocaiton" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12 panel">
      <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
         <h2 ng-show="booking.Dogs.length>0">Dog List</h2>
         <h2 ng-show="booking.Dogs.length==0">No Dogs Added</h2>   
@@ -45,18 +45,12 @@
           <input type="text" id="otherJobType" name ="otherJobType" class="form-control" ng-model="booking.JobType.Name"  placeholder="Other"/>
         </div>
         <div class="input-group">
-          <label for="jobStart">Booking Start Date:</label>
-          <input id="jobStart" type="date" autocomplete ="on" class="form-control" ng-model="booking.Calendars.StartDate"  required/>
-          <datepicker ng-model="booking.Calendars.StartDate" show-weeks="true" class="well well-sm"></datepicker>
-           <timepicker ng-model="booking.Calendars.StartDate" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
+          <label for="jobStart" class="control-label" >Booking Start Date:</label><br/>
+          <datetimepicker id= "jobStart"class="" show-weeks="true" hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.StartDate" show-meridian="true" date-format="dd-MMM-yyyy" date-options="dateOptions"  readonly-time="false"></datetimepicker>
         </div>
         <div class="input-group">
-            <label for="jobEnd">Booking End Date:</label>
-<!--
-            <input id="jobEnd" type="date" autocomplete ="on" class="form-control" ng-model="booking.Calendars.EndDate" required/>
-           <timepicker ng-model="booking.Calendars.EndDate" hour-step="hstep" minute-step="mstep" show-meridian="true"></timepicker>
--->
-          <datetimepicker min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.EndDate" show-meridian="true" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+            <label for="jobEnd" class="control-label">Booking End Date:</label> <br/>
+            <datetimepicker id="jobEnd" class="" show-weeks="true" hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.EndDate" show-meridian="true" date-format="dd-MMM-yyyy" date-options="dateOptions"  readonly-time="false"></datetimepicker>
         </div>
         <h3>Fees</h3>
         <p nf-if="booking.Costs.length==0">No Fees Added</p>
@@ -80,7 +74,7 @@
     </form>
   </div>
 
-  <div id="dogListPanel" class="col-lg-6 col-xs-12 panel">
+  <div id="dogListPanel" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12 panel">
     <form name="dogSearchForm">
       <label>Filter Dogs:</label>
       <div class="form-group">
