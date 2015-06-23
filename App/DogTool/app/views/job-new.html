@@ -1,10 +1,10 @@
 <div class="conatainer">
-  <h1 class="col-lg-12 col-xs-12">New Booking</h1>
+  <h1 class="col-lg-12 col-xs-12">{{pageType}}Booking</h1>
   <div id="newJobFormLocaiton" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12 panel">
      <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
-        <h2 ng-show="booking.Dogs.length>0">Dog List</h2>
-        <h2 ng-show="booking.Dogs.length==0">No Dogs Added</h2>   
-        <div ng-repeat="dogIn in booking.Dogs | orderBy:'Name' track by $index" class="col-xs-12 col-sm-6 col-md-4">
+        <h2 ng-show="addedDogUI.length>0">Dog List</h2>
+        <h2 ng-show="addedDogUI.length==0">No Dogs Added</h2>   
+        <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="col-xs-12 col-sm-6 col-md-4">
           <dog-card dog="dogIn" ></dog-card>
           <button ng-click="removeDog($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
         </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="input-group">
           <label for="jobType" class="control-label">Booking Type: </label>
-          <select id="jobType" name="jobType" ng-model="booking.Jobtype" ng-options="jobType as jobType.Name for jobType in jobTypes"  class="form-control">
+          <select id="jobType" name="jobType" ng-model="selectedJobType" ng-options="jobType as jobType.Name for jobType in jobTypes track by jobType.Name"  class="form-control" selected="booking.Jobtype">
           </select>
         </div>
         <div class="input-group">
