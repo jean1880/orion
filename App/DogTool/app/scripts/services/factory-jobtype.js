@@ -2,35 +2,35 @@
 
 /**
  * @ngdoc service
- * @name dogToolApp.factoryJob
+ * @name dogToolApp.factoryJobtype
  * @description
- * # factoryJob
+ * # factoryJobtype
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryJob', function ($http, SailsRoute, poller) {
+  .factory('FactoryJobType', function ($http, SailsRoute, poller) {
     return {
             /**
-             * One time fetch from server for single job dataset
+             * One time fetch from server for single job type dataset
              * @method get
              * @param id
              */
             get: function (id) {
-                return $http.get(SailsRoute.Job.get(id));
+                return $http.get(SailsRoute.JobType.get(id));
             },
             /**
-             * One time fetch from server for full job dataset
+             * One time fetch from server for full job type dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Job.getAll);
+                return $http.get(SailsRoute.JobType.getAll);
             },
             /**
              * Wait for changes from the server
              * @method listen
              */
             listen: function () {
-                return poller.get(SailsRoute.Job.listen);
+                return poller.get(SailsRoute.JobType.listen);
             },
             /**
              * Add a new Booking with the value of cost
@@ -38,23 +38,23 @@ angular.module('dogToolApp')
              * @param consultation
              */
             post: function (consultation) {
-                return $http.post(SailsRoute.Job.post, consultation);
+                return $http.post(SailsRoute.JobType.post, consultation);
             },
             /**
-             * One time fetch from server for full job dataset
+             * One time fetch from server for full job type dataset
              * @method find
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(SailsRoute.Job.find, searchObject);
+                return $http.post(SailsRoute.JobType.find, searchObject);
             },
 			/**
-             * One time fetch from server for full job dataset
+             * Update a job type dataset
              * @method update
              * @param searchObject
              */
             update: function (consultation) {
-                return $http.post(SailsRoute.Job.update(consultation.id), consultation);
+                return $http.post(SailsRoute.JobType.update(consultation.id), consultation);
             }
         };
   });

@@ -29,8 +29,8 @@ module.exports = {
         Description: {
             type: 'string'
         },
-        Note: {
-            model: 'note'
+        Notes: {
+            collection: 'note'
         },
         Title:
         {

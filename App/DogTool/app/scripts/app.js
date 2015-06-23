@@ -23,7 +23,8 @@ angular
     'angular-flash.flash-alert-directive',
     'ngFileUpload',
     'angular-jwt',
-    'sticky'
+    'sticky',
+    'ui.bootstrap.datetimepicker'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
     flashProvider.successClassnames.push('alert-success');
@@ -34,7 +35,8 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/dog/list.html',
-        controller: 'DogListCtrl'
+        controller: 'DogListCtrl',
+        title : 'Dog'
       })
       .when('/working', {
         template: '<h1>Working...</h1>'
@@ -72,7 +74,7 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/jobs.html',
+        templateUrl: 'views/job-new.html',
         controller: 'JobsCtrl'
       })
       .when('/people/new', {
