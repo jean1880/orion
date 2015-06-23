@@ -12,6 +12,25 @@ module.exports = {
   },
 
   validate: function (req, res) {
-    res.ok();
+    if(!req.body.token) {
+      return res.json({
+        valid: false,
+      });
+    }
+
+    var token = req.body.token;
+
+    AuthTokenService.verify(token, function (err) {
+      if(err) {
+        res.json({
+          valid: false,
+        });
+      }
+      else {
+        res.json({
+          valid: true,
+        });
+      }
+    });
   }
 };
