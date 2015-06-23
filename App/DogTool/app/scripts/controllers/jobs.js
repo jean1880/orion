@@ -9,7 +9,7 @@
  */
 angular.module('dogToolApp')
 
-.controller('JobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType, $routeParams) {
+.controller('JobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType, $routeParams, HelperService) {
 
   $scope.pageType = "Edit ";
   $scope.selectedJobType;
@@ -51,25 +51,25 @@ angular.module('dogToolApp')
         console.log("Booking Data");
         console.log(res);
         $scope.booking = res;
-        
+
         $scope.addedDogUI = res.Dogs;
-        
+
         $scope.selectedJobType = res.Jobtype;
         console.log("Dog ID setup");
         console.log($scope.addedDogUI);
         $scope.booking.Jobtype = $scope.booking.Jobtype.id;
-//        for (var dogId in $scope.addedDogUI) {
-//          console.log("Dog ID test");
-//          var dogFind = $scope.addedDogUI[dogId];
-//          console.log(dogFind);
-//          $scope.booking.Dogs.push(dogFind.id);
-//          console.log($scope.booking.Dogs);
-//          var indexRem = $scope.dogs.indexOf(dogFind);
-//          console.log("Index test");
-//          console.log($scope.dogs);
-//          console.log(indexRem);
-////          $scope.dogs.splice(indexRem,1);
-//        }
+        //        for (var dogId in $scope.addedDogUI) {
+        //          console.log("Dog ID test");
+        //          var dogFind = $scope.addedDogUI[dogId];
+        //          console.log(dogFind);
+        //          $scope.booking.Dogs.push(dogFind.id);
+        //          console.log($scope.booking.Dogs);
+        //          var indexRem = $scope.dogs.indexOf(dogFind);
+        //          console.log("Index test");
+        //          console.log($scope.dogs);
+        //          console.log(indexRem);
+        ////          $scope.dogs.splice(indexRem,1);
+        //        }
       })
       .error(function () {
         flash.error = 'An error occured. Unable to load booking information';
@@ -125,9 +125,14 @@ angular.module('dogToolApp')
    * @description creates the new booking through FactoryJob via post
    */
   $scope.createBooking = function () {
-    $scope.booking.Jobtype.id = $scope.selectedJobType.id;
+    console.log("Booking JobType:");
+    console.log($scope.selectedJobType.id);
+    
+    $scope.booking.Jobtype = $scope.selectedJobType.id;
     console.log("Booking Obj:");
     console.log($scope.booking);
+    $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
+    console.log($scope.booking.Dogs);
     FactoryJob.update($scope.booking).success(function (res) {
         flash.success = 'Job Created.';
 
