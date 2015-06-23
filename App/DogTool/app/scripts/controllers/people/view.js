@@ -55,6 +55,10 @@ angular.module('dogToolApp')
       $scope.editingInfo = false;
     };
 
+    $scope.updateNotes = function () {
+      FactoryPeople.update($scope.person);
+    };
+
     /**
      * handler for the save button
      *
