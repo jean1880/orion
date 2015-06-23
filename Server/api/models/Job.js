@@ -22,8 +22,7 @@ module.exports = {
         via: 'Job'
     },
     Notes:  {
-        collection: 'note',
-        via: 'Job'
+        collection: 'note'
     },
     Invoice:  {
         model: 'invoice'

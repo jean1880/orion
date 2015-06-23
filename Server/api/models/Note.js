@@ -25,19 +25,6 @@ module.exports = {
         NoteType: {
             type: 'string',
             required: true
-        },
-        Charge: {
-            model: 'charge'
-        },
-        Dogs:   {
-            model: 'dog'
-        },
-        Job:    {
-            model: 'job' 
-        },
-        People:   {
-            model: 'people'
         }
-        
     }
 };
