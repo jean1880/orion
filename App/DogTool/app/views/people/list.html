@@ -46,7 +46,7 @@
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
     <div class="list-group">
-      <a href="#/person/{{person.id}}" class="list-group-item" ng-repeat="person in people">
+      <a href="#/person/{{person.id}}" class="list-group-item" ng-repeat="person in people | orderBy:'Name'">
         {{person.Name}}
       </a>
     </div>
