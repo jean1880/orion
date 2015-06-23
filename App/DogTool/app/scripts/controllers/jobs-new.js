@@ -8,13 +8,22 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob) {
+  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType) {
   
   var now =new Date();
-  $scope.booking={Name:'',Dogs:[],Costs:[],Notes:[],Invoice:[],JobType:{Name:'Day Care',Description:'test'},Location:[],Calendars:{StartDate: now, EndDate: now}};  
+  $scope.booking={Name:'',Dogs:[],Costs:[],Notes:[],Invoice:[],Jobtype:{Name:'Day Care',Description:'test'},Location:[],Calendars:{StartDate: now, EndDate: now}};  
   
   var init = function() {
       loadAllDogs();
+      FactoryJobType.getAll()
+      .success(function (response) {
+        console.log(response);
+        $scope.jobTypes=response;
+         flash.success = 'job types loaded.';
+      })
+      .error(function () {
+        flash.error = 'An error occured while loading job types.';
+      });
     };
 
   // setup the datepicker directives
@@ -79,6 +88,7 @@ angular.module('dogToolApp')
      */
     $scope.bookDog = function(indexIn)
     {
+      console.log("Log booking");
       console.log($scope.booking);
       var dogIn = $scope.dogs[indexIn];
       console.log(dogIn);

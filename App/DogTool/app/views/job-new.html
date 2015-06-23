@@ -37,12 +37,8 @@
         </div>
         <div class="input-group">
           <label for="jobType" class="control-label">Booking Type: </label>
-          <select id="jobType" name="jobType"  class="form-control" >
-            <option value="DayCare">Day Care</option>
-            <option value="DayCare">Consultation</option>
-            <option value="-">Other</option>
+          <select id="jobType" name="jobType" ng-model="booking.Jobtype" ng-options="jobType as jobType.Name for jobType in jobTypes"  class="form-control">
           </select>
-          <input type="text" id="otherJobType" name ="otherJobType" class="form-control" ng-model="booking.JobType.Name"  placeholder="Other"/>
         </div>
         <div class="input-group">
           <label for="jobStart" class="control-label" >Booking Start Date:</label><br/>
