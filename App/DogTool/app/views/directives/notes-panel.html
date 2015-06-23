@@ -1,15 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     Notes
-    <span class="pull-right">
-      <span ng-repeat="tab in tabs">
-        <span class="label label-default" ng-show="tab.notes.length >= 1">{{ tab.name }}</span>
-      </span>
-    </span>
   </div>
   <div class="panel-body">
     <tabset>
-      <tab ng-repeat="tab in tabs" heading="{{tab.name}} ({{ tab.notes.length }})" active="tab.active" disable="tab.disabled">
+      <tab ng-repeat="tab in tabs" active="tab.active" disable="tab.disabled">
+        <tab-heading>
+          {{tab.name}}
+          <span class="badge" ng-show="tab.notes.length >= 1">{{tab.notes.length}}</span>
+        </tab-heading>
         <div ng-show="tab.notes.length <= 0">
           <p>No Notes</p>
         </div>
