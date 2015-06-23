@@ -124,4 +124,16 @@ angular
     }];
 
     $httpProvider.interceptors.push('jwtInterceptor');
+  })
+  .run(function ($location, FactoryLogin) {
+    FactoryLogin.validate()
+      .success(function (res) {
+        if (res.valid) {
+        }
+        else {
+          FactoryLogin.login()
+            .success(function () {
+            });
+        }
+      });
   });
