@@ -36,7 +36,6 @@ angular.module('dogToolApp')
         .success(function (response) {
           console.log(response);
           $scope.jobTypes = response;
-          flash.success = 'job types loaded.';
         })
         .error(function () {
           flash.error = 'An error occured while loading job types.';
@@ -89,16 +88,16 @@ angular.module('dogToolApp')
       $scope.booking.Jobtype.id = $scope.selectedJobType.id;
       FactoryJob.post($scope.booking).success(function (res) {
           flash.success = 'Job Created.';
-console.log("booking Data");
-        console.log($scope.booking);
-        console.log("response data");
+          console.log("booking Data");
+          console.log($scope.booking);
+          console.log("response data");
           console.log(res);
         })
         .error(function (err) {
           console.log(err);
           flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
         });
-    }
+    };
 
     /**
      * @method bookDog
@@ -106,33 +105,32 @@ console.log("booking Data");
      *
      */
     $scope.bookDog = function (indexIn) {
-        console.log("Log booking");
-        console.log($scope.booking);
-        var dogIn = $scope.dogs[indexIn];
-        console.log(dogIn);
-        $scope.dogs.splice(indexIn, 1);
-        $scope.addedDogUI.push(dogIn);
-        $scope.booking.Dogs.push(dogIn.id);
-      }
-      /**
-       * @method removeDog
-       * @description Removes dogs from the booking and pushes them back to the search list.
-       *
-       */
+      console.log("Log booking");
+      console.log($scope.booking);
+      var dogIn = $scope.dogs[indexIn];
+      console.log(dogIn);
+      $scope.dogs.splice(indexIn, 1);
+      $scope.addedDogUI.push(dogIn);
+      $scope.booking.Dogs.push(dogIn.id);
+    };
+    /**
+     * @method removeDog
+     * @description Removes dogs from the booking and pushes them back to the search list.
+     *
+     */
     $scope.removeDog = function (indexOut) {
-        console.log("Log booking remove");
-        var dogOut = $scope.addedDogUI[indexOut];
-        console.log(dogOut);
-        $scope.dogs.push(dogOut);
-        $scope.booking.Dogs.splice(indexOut, 1);
-        $scope.addedDogUI.splice(indexOut, 1);
-
-      }
-      /**
-       * @method addFee
-       * @description Adds a list of fees to the job
-       *
-       */
+      console.log("Log booking remove");
+      var dogOut = $scope.addedDogUI[indexOut];
+      console.log(dogOut);
+      $scope.dogs.push(dogOut);
+      $scope.booking.Dogs.splice(indexOut, 1);
+      $scope.addedDogUI.splice(indexOut, 1);
+    };
+    /**
+     * @method addFee
+     * @description Adds a list of fees to the job
+     *
+     */
     $scope.addFee = function () {
       if ($scope.feeDescription != '' && $scope.feeAmount != null) {
         var newCost = {
@@ -150,5 +148,5 @@ console.log("booking Data");
           flash.error = 'Please enter a fee amount in proper currency';
         }
       }
-    }
+    };
   });

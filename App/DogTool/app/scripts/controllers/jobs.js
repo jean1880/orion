@@ -38,12 +38,11 @@ angular.module('dogToolApp')
       .success(function (response) {
         //        console.log(response);
         $scope.jobTypes = response;
-        flash.success = 'job types loaded.';
       })
       .error(function () {
         flash.error = 'An error occured while loading job types.';
       });
-  }
+  };
   var loadBookingData = function () {
     //get the specific booking information
     FactoryJob.get($routeParams.id)
@@ -58,30 +57,25 @@ angular.module('dogToolApp')
         console.log("Dog ID setup");
         console.log($scope.addedDogUI);
         $scope.booking.Jobtype = $scope.booking.Jobtype.id;
-        //        for (var dogId in $scope.addedDogUI) {
-        //          console.log("Dog ID test");
-        //          var dogFind = $scope.addedDogUI[dogId];
-        //          console.log(dogFind);
-        //          $scope.booking.Dogs.push(dogFind.id);
-        //          console.log($scope.booking.Dogs);
-        //          var indexRem = $scope.dogs.indexOf(dogFind);
-        //          console.log("Index test");
-        //          console.log($scope.dogs);
-        //          console.log(indexRem);
-        ////          $scope.dogs.splice(indexRem,1);
-        //        }
+      $scope.dogs = $scope.dogs.filter(removeDuplicate);
       })
       .error(function () {
         flash.error = 'An error occured. Unable to load booking information';
       });
 
-  }
+  };
   var init = function () {
     loadAllDogs();
     getBookingTypes();
     loadBookingData();
   };
 
+  var removeDuplicate = function(obj){
+    console.log(obj);
+    console.log($scope.addedDogUI);
+    var doglistArray = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
+    return(doglistArray.indexOf(obj.id)==-1);
+  };
   // setup the datepicker directives
 
   $scope.dateOptions = {
@@ -142,7 +136,7 @@ angular.module('dogToolApp')
         console.log(err);
         flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
       });
-  }
+  };
 
   /**
    * @method bookDog
@@ -155,7 +149,7 @@ angular.module('dogToolApp')
       console.log(dogIn);
       $scope.dogs.splice(indexIn, 1);
       $scope.addedDogUI.push(dogIn);
-    }
+    };
     /**
      * @method removeDog
      * @description Removes dogs from the booking and pushes them back to the search list.
@@ -168,7 +162,7 @@ angular.module('dogToolApp')
       $scope.dogs.push(dogOut);
       $scope.addedDogUI.splice(indexOut, 1);
 
-    }
+    };
     /**
      * @method addFee
      * @description Adds a list of fees to the job
@@ -191,5 +185,11 @@ angular.module('dogToolApp')
         flash.error = 'Please enter a fee amount in proper currency';
       }
     }
-  }
+  };
+  //notes
+  $scope.updateNotes = function () {
+      //console.log($scope.booking.Notes);
+      
+    };
+  
 });

@@ -64,7 +64,7 @@
         </div>
       </div>
       <label for="newJobNotes" >Add Booking Notes</label>
-      <textarea name="newJobNotes" class="form-control" />
+      <notes-panel notes="booking.Notes" on-notes-changed="updateNotes()" default-types="['General']"></notes-panel>
       </br>
       <button type="submit" class="pull-right btn btn-lg">Create Job</button>
     </form>
