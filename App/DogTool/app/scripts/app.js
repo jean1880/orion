@@ -25,7 +25,7 @@ angular
     'angular-jwt',
     'sticky'
   ])
-  .config(function ($routeProvider, pollerConfig, flashProvider) {
+  .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
     flashProvider.successClassnames.push('alert-success');
     flashProvider.infoClassnames.push('alert-info');
     flashProvider.warnClassnames.push('alert-warning');
@@ -115,4 +115,13 @@ angular
       });
     // set sails server url
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
+
+    // authentication settings
+    jwtInterceptorProvider.authHeader = 'Token';
+    jwtInterceptorProvider.authPrefix = '';
+    jwtInterceptorProvider.tokenGetter = ['FactoryAuthToken', function (FactoryAuthToken) {
+        return FactoryAuthToken.getToken();
+    }];
+
+    $httpProvider.interceptors.push('jwtInterceptor');
   });
