@@ -4,7 +4,11 @@
 
 module.exports = {
   login: function (req, res) {
-    res.ok();
+    if(req.body.passwordCert === sails.config.passwordCert ){
+      res.json({
+        token: AuthTokenService.create({authorized: true})
+      });
+    }
   },
 
   validate: function (req, res) {
