@@ -3,12 +3,13 @@
     <h1>
       {{dog.Name}}
     </h1>
+    <hr />
   </div>
 </div>
 <div class="row">
   <div class="col-sm-4 col-lg-3">
     <div class="row">
-	  
+
       <div class="col-xs-12">
         <dog-info-panel dog="dog"></dog-info-panel>
       </div>
@@ -20,7 +21,7 @@
   </div>
 
   <div class="col-sm-4 col-lg-6">
-	
+	  <notes-panel notes="dog.Notes" on-notes-changed="updateNotes()" default-types="['Medical', 'Shots']"></notes-panel>
   </div>
 
   <div class="col-sm-4 col-lg-3">

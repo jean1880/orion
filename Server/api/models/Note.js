@@ -20,24 +20,11 @@ module.exports = {
         },
         Content:  {
             type: 'text',
-            required: true
+            defaultsTo: ''
         },
         NoteType: {
             type: 'string',
             required: true
-        },
-        Charge: {
-            model: 'charge'
-        },
-        Dogs:   {
-            model: 'dog'
-        },
-        Job:    {
-            model: 'job' 
-        },
-        People:   {
-            model: 'people'
         }
-        
     }
 };

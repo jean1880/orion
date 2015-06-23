@@ -27,9 +27,8 @@ module.exports = {
         ServiceCustom: {
             type: 'string'
         },
-        Note: {
-            collection: 'note',
-            via: 'Charge'
+        Notes: {
+            collection: 'note'
         }
     }
 };
