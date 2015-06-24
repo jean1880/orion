@@ -29,10 +29,11 @@ angular.module('dogToolApp')
     Location: [],
     Calendars: {
       StartDate: now,
-      EndDate: now
+      EndDate: now,
+      IsAllDay:false
     }
   };
-
+  $scope.submitted=false;
   var getBookingTypes = function () {
     //get the booking types
     FactoryJobType.getAll()
@@ -121,10 +122,13 @@ angular.module('dogToolApp')
    * @description creates the new booking through FactoryJob via post
    */
   $scope.createBooking = function () {
-    console.log("Booking JobType:");
-    console.log($scope.selectedJobType.id);
-    
-    $scope.booking.Jobtype = $scope.selectedJobType.id;
+  //    console.log("Booking JobType:");
+  //    console.log($scope.selectedJobType.id);
+  $scope.submitted = true;
+  if ($scope.booking.Dogs.length > 0) {
+    if ($scope.selectedJobType) {
+      $scope.booking.Jobtype.id = $scope.selectedJobType.id;
+    }
     console.log("Booking Obj:");
     console.log($scope.booking);
     $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
@@ -138,7 +142,8 @@ angular.module('dogToolApp')
         console.log(err);
         flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
       });
-  };
+  }
+};
 
   /**
    * @method bookDog

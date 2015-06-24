@@ -23,7 +23,8 @@ angular
     'angular-flash.flash-alert-directive',
     'ngFileUpload',
     'sticky',
-    'ui.bootstrap.datetimepicker'
+    'ui.bootstrap.datetimepicker',
+    'frapontillo.bootstrap-switch'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider) {
     flashProvider.successClassnames.push('alert-success');
