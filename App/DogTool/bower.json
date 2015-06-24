@@ -19,7 +19,7 @@
     "fontawesome": "~4.3.0",
     "ng-file-upload": "~4.2.4",
     "ngSticky": "~1.7.9",
-    "fullcalendar": "~2.3.2",
+    "fullcalendar": "2.3.2",
     "angular-ui-calendar": "~1.0.0",
     "font-awesome": "~4.3.0",
     "angular-jwt": "~0.0.9",
