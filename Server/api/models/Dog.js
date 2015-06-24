@@ -38,8 +38,7 @@ module.exports = {
             type: 'date'
         },
         Notes: {
-            collection: 'note',
-            via: 'Dogs'
+            collection: 'note'
         },
         Job: {
             collection: 'job',

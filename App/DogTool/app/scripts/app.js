@@ -24,9 +24,12 @@ angular
     'angular-flash.flash-alert-directive',
     'ngFileUpload',
     'sticky',
-    'angularMoment'
+    'angularMoment',
+    'angular-jwt',
+    'sticky',
+    'ui.bootstrap.datetimepicker'
   ])
-  .config(function ($routeProvider, pollerConfig, flashProvider) {
+  .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
     flashProvider.successClassnames.push('alert-success');
     flashProvider.infoClassnames.push('alert-info');
     flashProvider.warnClassnames.push('alert-warning');
@@ -35,7 +38,11 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/dog/list.html',
-        controller: 'DogListCtrl'
+        controller: 'DogListCtrl',
+        title : 'Dog'
+      })
+      .when('/working', {
+        template: '<h1>Working...</h1>'
       })
       .when('/dogs', {
         templateUrl: 'views/dog/list.html',
@@ -70,7 +77,7 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/job/jobs.html',
+        templateUrl: 'views/job/jobs-new.html',
         controller: 'JobsCtrl'
       })
       .when('/people/new', {
@@ -113,6 +120,30 @@ angular
       });
     // set sails server url
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
+
+    // authentication settings
+    jwtInterceptorProvider.authHeader = 'Token';
+    jwtInterceptorProvider.authPrefix = '';
+    jwtInterceptorProvider.tokenGetter = ['FactoryAuthToken', function (FactoryAuthToken) {
+        return FactoryAuthToken.getToken();
+    }];
+
+    $httpProvider.interceptors.push('jwtInterceptor');
   })
-.run(function(amMoment){
-});
+  .run(function ($location, FactoryLogin, amMoment) {
+    var url = $location.url();
+    $location.url('/working');
+
+    FactoryLogin.validate()
+      .success(function (res) {
+        if (res.valid) {
+          $location.url(url);
+        }
+        else {
+          FactoryLogin.login()
+            .success(function () {
+              $location.url(url);
+            });
+        }
+      });
+  });

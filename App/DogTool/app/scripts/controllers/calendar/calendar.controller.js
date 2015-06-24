@@ -55,14 +55,32 @@ angular.module('dogToolApp')
     * Calendar settings
     */
    $scope.calendarData = [];
+   $scope.addingEvent = false;
 
     var GotoDay = function(date){
       $location.url('/jobs');
     };
 
+    var CreateBooking = function(){
+      $('#calendar-event').modal('hide');
+      $location.url('/jobs/new');
+    }
+
     var CreateEvent = function(startDate, endDate){
       $scope.day = startDate;
-      $scope.endDay = endDate || startDate;
+
+      if(endDate.clone){
+        $scope.endDay = endDate
+      }else{        
+        $scope.endDay = startDate.clone();
+      }
+      console.log('startDate');
+      console.log($scope.day);
+      console.log('endDate');
+      console.log($scope.endDay);
+
+      $scope.startTime = $scope.day.toDate();
+      $scope.endTime = $scope.endDay.toDate();
       
       $('#calendar-event').modal('show');
     };
@@ -89,7 +107,8 @@ angular.module('dogToolApp')
         },
         select: SelectDateRange,
         eventClick: GotoDay,
-        dayClick: CreateEvent
+        dayClick: CreateEvent,
+        timezone: 'local'
       }
     };
     /**
@@ -98,10 +117,6 @@ angular.module('dogToolApp')
 
 
     var init = function(){
-      $('.fc-toolbar').find('.fc-button-group').addClass('btn-group');
-  		$('.fc-toolbar').find('.ui-button').addClass('btn btn-primary');
-  		$('.fc-toolbar').find('.fc-prev-button').html($('<span />').attr('class', 'glyphicon glyphicon-chevron-left'));
-  		$('.fc-toolbar').find('.fc-next-button').html($('<span />').attr('class', 'glyphicon glyphicon-chevron-right'));
     };
 
     init();

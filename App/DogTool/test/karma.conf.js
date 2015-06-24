@@ -42,6 +42,8 @@ module.exports = function(config) {
       'bower_components/ngSticky/lib/sticky.js',
       'bower_components/fullcalendar/dist/fullcalendar.js',
       'bower_components/angular-ui-calendar/src/calendar.js',
+      'bower_components/angular-jwt/dist/angular-jwt.js',
+      'bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/chance/chance.js',
       // endbower
