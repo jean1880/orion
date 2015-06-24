@@ -6,6 +6,10 @@
       </div>
       <div class="panel-body">
         <form class="dog-edit" name="dogEditForm" novalidate>
+          <div class="form-group">
+            <img class="img img-responsive" ng-src="{{dog.photoURL}}" />
+            <div class="btn btn-primary" ngf-select ngf-change="upload($files)">Select File</div>
+          </div>
           <div class="form-group" ng-class="{'has-error': (dogEditForm.name.$touched || dogEditForm.$submitted) && dogEditForm.name.$invalid}">
             <label for="name">Name</label>
             <input type="text" class="form-control" name="name" ng-model="dog.Name" required/>

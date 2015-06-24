@@ -10,6 +10,8 @@
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
   <link rel="stylesheet" href="bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.css" />
   <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
   <!-- endbower -->
@@ -20,6 +22,8 @@
   <link rel="stylesheet" href="styles/views/dog/edit.css">
   <link rel="stylesheet" href="styles/directives/dog-card.css">
   <link rel="stylesheet" href="styles/directives/weight-list.css">
+  <link rel="stylesheet" href="styles/fullCalendar-bootstrap.css">
+  <link rel="stylesheet" href="styles/fullCalendar.css">
   <link rel="stylesheet" href="styles/directives/notes-panel.css">
   <!-- endbuild -->
 </head>
@@ -50,10 +54,11 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#/">Dogs</a>
             </li>
-            <li><a ng-href="#/about">Appointments</a>
+            <li><a ng-href="#/calendar">Calendar</a>
             </li>
             <li><a ng-href="#/">Admin</a>
             </li>
+            <li><a ng-href="#/jobs">Bookings</a>
             <li><a ng-href="#/jobs/new">Jobs</a>
             </li>
           </ul>
@@ -115,11 +120,13 @@
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/matchmedia/matchMedia.js"></script>
     <script src="bower_components/ngSticky/lib/sticky.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script src="bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
     <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
     <script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
     <!-- endbower -->
-    <script src="bower_components/ngSticky/dist/sticky.min.js"></script>
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -135,7 +142,9 @@
     <script src="scripts/services/factoryweight.js"></script>
     <script src="scripts/services/sailsroute.js"></script>
     <script src="scripts/services/helper-service.js"></script>
+    <script src="scripts/services/factory-auth-token.js"></script>
     <script src="scripts/services/factory-jobtype.js"></script>
+    <script src="scripts/services/factory-login.js"></script>
 
     <!-- Controllers -->
     <script src="scripts/controllers/quote.js"></script>
@@ -149,6 +158,7 @@
     <script src="scripts/controllers/jobs.js"></script>
     <script src="scripts/controllers/homework-new.js"></script>
     <script src="scripts/controllers/homework.js"></script>
+    <script src="scripts/controllers/calendar/calendar.controller.js"></script>
 
     <!-- Directives -->
     <script src="scripts/directives/dog-card.js"></script>

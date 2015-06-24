@@ -13,12 +13,19 @@
     "angular-poller": "~0.3.2",
     "angular-bootstrap": "~0.12.1",
     "angular-bootstrap-show-errors": "~2.3.0",
-    "angular-moment": "~0.9.0",
+    "angular-moment": "~0.10.1",
     "angular-flash": "~0.1.14",
     "moment": "~2.9.0",
     "fontawesome": "~4.3.0",
     "ng-file-upload": "~4.2.4",
     "ngSticky": "~1.7.9",
+
+    "angular-ui-bootstrap-datetimepicker": "~0.11.2",
+    "angular-bootstrap-switch": "~0.4.1"
+    "fullcalendar": "~2.3.2",
+    "angular-ui-calendar": "~1.0.0",
+    "font-awesome": "~4.3.0",
+    "angular-jwt": "~0.0.9",
     "angular-ui-bootstrap-datetimepicker": "~0.11.2",
     "angular-bootstrap-switch": "~0.4.1"
   },

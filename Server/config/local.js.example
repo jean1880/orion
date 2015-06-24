@@ -1,0 +1,9 @@
+'use strict';
+
+module.exports = {
+  tokenSecret: '128 char string goes here',
+
+  // Password string
+  //  NOTE: This must match what is in the angular app config.js file
+  passwordCert: '4096 char string goes here'
+};
