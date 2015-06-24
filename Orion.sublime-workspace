@@ -137,13 +137,8 @@
 		"/home/jdesroches/Documents/github/Orion/App",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool/app",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/calendar",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/styles",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views/calendar",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/bower_components/fullcalendar/dist"
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views/calendar"
 	],
 	"file_history":
 	[
@@ -213,7 +208,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -229,8 +224,8 @@
 						"selection":
 						[
 							[
-								1424,
-								1424
+								2184,
+								2184
 							]
 						],
 						"settings":
@@ -240,10 +235,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1122.0,
+						"translation.y": 1584.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -324,13 +319,15 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
