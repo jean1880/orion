@@ -8,7 +8,7 @@
  * Controller of the dogToolApp, manages the calendar/view.html
  */
 angular.module('dogToolApp')
-  .controller('CalendarCtrl', function ($scope, $location,$timeout) {
+  .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar) {
     /**
      * Rounds the date to the bottom, or top of the hour
      * @param  {object} date new date object
@@ -59,6 +59,7 @@ angular.module('dogToolApp')
     * Calendar settings
     */
    $scope.calendarData = [];
+   $scope.eventSources = [$scope.calendarData]
    $scope.addingEvent = false;
 
     var GotoDay = function(date){
@@ -79,6 +80,8 @@ angular.module('dogToolApp')
         $scope.endDay = endDate
       }else{        
         $scope.endDay = startDate.clone();
+        $scope.endDay.add(1,'h');
+        $scope.allDay = true;
       }
 
       $scope.startTime = $scope.day.toDate();
@@ -87,8 +90,29 @@ angular.module('dogToolApp')
       $('#calendar-event').modal('show');
     };
 
-    var AddEvent = function(){
-      console.log($scope.startDate);
+    /**
+     * Adds event to server and local array
+     * @method  AddEvent
+     */
+    $scope.AddEvent = function(){
+      factoryCalendar.post({
+        StartDate: $scope.day.toDate(),
+        EndDate: $scope.endDay.toDate(),
+        Note: {
+          Title: $scope.title,
+          Content: $scope.note,
+          NoteType: 'event',
+          IsAllDay: $scope.allDay || false
+        }
+      }).success(function(){
+        $scope.calendarData.push({
+          title: $scope.title,
+          start: $scope.day.toDate(),
+          end: $scope.endDay.toDate(),
+          allDay: $scope.allDay || false
+        })
+        $('#calendar-event').modal('hide');
+      });
     };
 
     var SelectDateRange = function(start, end) {
@@ -119,6 +143,16 @@ angular.module('dogToolApp')
 
 
     var init = function(){
+      factoryCalendar.getAll().success(function(data){
+        for (var i = data.length - 1; i >= 0; i--) {
+          $scope.calendarData.push({
+            title: data[i].Title,
+            start: new Date(data[i].StartDate),
+            end: new Date(data[i].EndDate),
+            allDay: data[i].IsAllDay || false
+          });
+        };
+      });
     };
 
     init();

@@ -29,6 +29,7 @@ angular.module('dogToolApp')
     return {
       Dog:          buildRoutes('dog'),
       Cost:         buildRoutes('cost'),
+      Calendar:     buildRoutes('calendar'),
       Weight:       buildRoutes('weight'),
       Daycare:      buildRoutes('daycare'),
       Note:         buildRoutes('note'),

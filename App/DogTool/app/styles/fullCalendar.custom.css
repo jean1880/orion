@@ -5,3 +5,9 @@
 	background-color: #BBDEFB;
 	cursor: pointer;
 }
+.fc-event{	
+	transition: .3s;
+}
+.fc-event:hover{
+  background-color: #1aaaaa;
+}
