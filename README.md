@@ -48,3 +48,4 @@ Run Sails
 
 `sails lift`
 
+test
