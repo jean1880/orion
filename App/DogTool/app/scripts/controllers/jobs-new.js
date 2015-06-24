@@ -26,10 +26,11 @@ angular.module('dogToolApp')
       Location: {},
       Calendars: {
         StartDate: now,
-        EndDate: now
+        EndDate: now,
+        IsAllDay:false
       }
     };
-
+    $scope.submitted=false;
     var init = function () {
       loadAllDogs();
       FactoryJobType.getAll()
@@ -40,6 +41,7 @@ angular.module('dogToolApp')
         .error(function () {
           flash.error = 'An error occured while loading job types.';
         });
+      $("[name='setAllDay']").bootstrapSwitch();
     };
 
     // setup the datepicker directives
@@ -85,20 +87,24 @@ angular.module('dogToolApp')
      * @description creates the new booking through FactoryJob via post
      */
     $scope.createBooking = function () {
-      $scope.booking.Jobtype.id = $scope.selectedJobType.id;
-      FactoryJob.post($scope.booking).success(function (res) {
-          flash.success = 'Job Created.';
-          console.log("booking Data");
-          console.log($scope.booking);
-          console.log("response data");
-          console.log(res);
-        })
-        .error(function (err) {
-          console.log(err);
-          flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
-        });
-    };
-
+  if ($scope.selectedJobType) {
+    $scope.booking.Jobtype.id = $scope.selectedJobType.id;
+  }
+  $scope.submitted = true;
+  if ($scope.booking.Dogs.length > 0) {
+    FactoryJob.post($scope.booking).success(function (res) {
+        flash.success = 'Job Created.';
+        console.log("booking Data");
+        console.log($scope.booking);
+        console.log("response data");
+        console.log(res);
+      })
+      .error(function (err) {
+        console.log(err);
+        flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
+      });
+  }
+};
     /**
      * @method bookDog
      * @description Adds dogs to the booking list and removes the dogs from the search list (dogs avaliable to be added)

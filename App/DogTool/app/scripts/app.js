@@ -27,7 +27,8 @@ angular
     'angularMoment',
     'angular-jwt',
     'sticky',
-    'ui.bootstrap.datetimepicker'
+    'ui.bootstrap.datetimepicker',
+    'frapontillo.bootstrap-switch'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
     flashProvider.successClassnames.push('alert-success');

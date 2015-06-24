@@ -47,4 +47,3 @@ Run Grunt
 Run Sails
 
 `sails lift`
-
