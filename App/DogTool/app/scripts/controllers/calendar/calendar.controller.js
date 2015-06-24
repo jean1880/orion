@@ -8,7 +8,7 @@
  * Controller of the dogToolApp, manages the calendar/view.html
  */
 angular.module('dogToolApp')
-  .controller('CalendarCtrl', function ($scope, $location) {
+  .controller('CalendarCtrl', function ($scope, $location,$timeout) {
     /**
      * Rounds the date to the bottom, or top of the hour
      * @param  {object} date new date object
@@ -36,6 +36,10 @@ angular.module('dogToolApp')
       $scope.ismeridian = ! $scope.ismeridian;
     };
 
+    /**
+     * Called when  
+     * @return {[type]} [description]
+     */
     $scope.update = function() {
       var d = new Date();
       d.setHours( 14 );
@@ -61,9 +65,11 @@ angular.module('dogToolApp')
       $location.url('/jobs');
     };
 
-    var CreateBooking = function(){
+    $scope.CreateBooking = function(){
       $('#calendar-event').modal('hide');
-      $location.url('/jobs/new');
+      $timeout(function(){
+        $location.url('/jobs/new')
+      },350)
     }
 
     var CreateEvent = function(startDate, endDate){
@@ -74,10 +80,6 @@ angular.module('dogToolApp')
       }else{        
         $scope.endDay = startDate.clone();
       }
-      console.log('startDate');
-      console.log($scope.day);
-      console.log('endDate');
-      console.log($scope.endDay);
 
       $scope.startTime = $scope.day.toDate();
       $scope.endTime = $scope.endDay.toDate();
