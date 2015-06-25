@@ -14,7 +14,9 @@ angular.module('dogToolApp')
         notes: '=',
         defaultTypes: '=',
         onNotesChanged: '&',
-        showSaveBtn: '=?'
+        showSaveBtn: '=?',
+        panelTitle: '=',
+        panelType: '='
       },
       templateUrl: 'views/directives/notes-panel.html',
       link: function ($scope, element, attrs) {
