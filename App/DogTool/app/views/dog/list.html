@@ -19,7 +19,7 @@
       <label>Filter Dogs:</label>
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Dog name..." />
+          <input ng-model="searchDog" type="text" class="form-control" placeholder="Dog name..." />
           <div class="input-group-addon">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </div>
@@ -27,7 +27,7 @@
       </div>
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Owner name..." />
+          <input ng-model="searchOwner" type="text" class="form-control" placeholder="Owner name..." />
           <div class="input-group-addon">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
           </div>
@@ -37,17 +37,17 @@
       <label>Flags:</label>
       <div class="checkbox">
         <label>
-          <input type="checkbox"> Requires Shots
+          <input type="checkbox" ng-model="strict1"> Requires Shots
         </label>
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox"> Fees Outstanding
+          <input type="checkbox" ng-model="strict2"> Fees Outstanding
         </label>
       </div>
     </form>
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
-    <dog-card dog="dog" ng-repeat="dog in dogs | orderBy:'Name'"></dog-card>
+    <dog-card dog="dog" ng-repeat="dog in dogs | filter:searchDog:searchOwner:strict1:strict2 | orderBy:'Name'"></dog-card>
   </div>
 </div>
