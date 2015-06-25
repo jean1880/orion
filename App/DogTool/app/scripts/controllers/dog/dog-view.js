@@ -104,6 +104,17 @@ angular.module('dogToolApp')
       updatePerson('EmergencyContact', newId);
     };
 
+    $scope.updateNotes = function () {
+      console.log($scope.dog.Notes);
+      FactoryDog.update($scope.dog)
+        .success(function (res) {
+          console.log(res);
+        })
+        .error(function (res) {
+          console.log(res);
+        });
+    };
+
     /**
      * Updates the database with a new person for the given relation
      *

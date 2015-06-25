@@ -36,6 +36,7 @@ angular.module('dogToolApp')
       Homework:     buildRoutes('homework'),
       Address:      buildRoutes('address'),
       Consultation: buildRoutes('consultation'),
-      Job:          buildRoutes('job')
+      Job:          buildRoutes('job'),
+      JobType:      buildRoutes('jobtype')
     };
   });

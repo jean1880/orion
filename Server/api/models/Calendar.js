@@ -22,6 +22,9 @@ module.exports = {
             type: 'datetime',
             required: true
         },
+        IsAllDay:{
+            type: 'boolean'
+        },
         Jobs: {
             collection: 'job',
             via: 'Calendars'

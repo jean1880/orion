@@ -1,0 +1,7 @@
+.fc-day{
+	transition: .3s;
+}
+.fc-day:hover{
+	background-color: #BBDEFB;
+	cursor: pointer;
+}

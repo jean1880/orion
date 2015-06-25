@@ -1,3 +1,7 @@
+'use strict';
+
+/* global AuthTokenService */
+
 /**
  * sessionAuth
  *
@@ -8,14 +12,12 @@
  *
  */
 module.exports = function(req, res, next) {
-
-  // User is allowed, proceed to the next policy, 
-  // or if this is the last policy, the controller
-  if (req.session.authenticated) {
-    return next();
-  }
-
-  // User is not allowed
-  // (default res.forbidden() behavior can be overridden in `config/403.js`)
-  return res.forbidden('You are not permitted to perform this action.');
+  AuthTokenService.verify(req.headers.token, function (err) {
+    if(err) {
+      return res.forbidden('You are not permitted to perform this action.');
+    }
+    else {
+      return next();
+    }
+  });
 };

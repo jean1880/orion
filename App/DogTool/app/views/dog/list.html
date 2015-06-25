@@ -48,6 +48,6 @@
     </form>
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
-    <dog-card dog="dog" ng-repeat="dog in dogs | filter:searchDog:searchOwner:strict1:strict2 | orderBy:'Name'"></dog-card>
+    <dog-card dog="dog" ng-repeat="dog in dogs | filter:searchDog:searchOwner | orderBy:'Name'"></dog-card>
   </div>
 </div>
