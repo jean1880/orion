@@ -23,11 +23,8 @@
             <h4 ng-show="addedDogUI.length==0" ng-class="{'text-danger': booking.Dogs.length==0 && submitted}">No Dogs Added</h4>
             <p ng-if="booking.Dogs.length==0 && submitted" class="text-danger">Please add a dog.</p>
             <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
-
-              <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="col-xs-12 col-sm-6 col-md-4">
-                <dog-card dog="dogIn"></dog-card>
-                <button ng-click="removeDog($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                </button>
+              <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="">
+                <dog-card dog="dogIn" btn-Click="removeDog($index)" btn-Text="'Remove'"></dog-card>
               </div>
             </div>
           </div>
@@ -76,7 +73,9 @@
             <br/>
             <datetimepicker id="jobStart" class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" show-weeks="true" hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.StartDate" show-meridian="true" date-format="dd-MMM-yyyy" date-options="dateOptions" readonly-time="false"></datetimepicker>
             <label for="setAllDay" class="control-label">All Day Booking: </label>
-            <div class="pull-right"><input bs-switch class="pull-right" id="setAllDay" name="setAllDay" type="checkbox" ng-model="booking.Calendars.IsAllDay" switch-on-text="YES" switch-off-text="NO" /></div>
+            <div class="pull-right">
+              <input bs-switch class="pull-right" id="setAllDay" name="setAllDay" type="checkbox" ng-model="booking.Calendars.IsAllDay" switch-on-text="YES" switch-off-text="NO" />
+            </div>
           </div>
           <div ng-hide="booking.Calendars.IsAllDay" class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
             <label for="jobEnd" class="control-label">Booking End Date:</label>
@@ -113,36 +112,34 @@
       </br>
     </form>
   </div>
-<div id="dogListPanel" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12">
-      <div class="panel  panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Add Dog(s) to Booking</h3>
-        </div>
-        <div class="panel-body">
-          <form name="dogSearchForm ">
-            <div class="form-group">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch" />
-                <div class="input-group-addon">
-                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                </div>
+  <div id="dogListPanel" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12">
+    <div class="panel  panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Dog(s) to Booking</h3>
+      </div>
+      <div class="panel-body">
+        <form name="dogSearchForm ">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch" />
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
               </div>
             </div>
-          </form>
-          <div class="list-group">
-            <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index" class="col-xs-12 col-sm-6 col-md-4">
-              <dog-card dog="dog"></dog-card>
-              <button ng-click="bookDog($index)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              </button>
-            </div>
           </div>
+        </form>
+
+        <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index" class="">
+          <dog-card dog="dog" btn-Click="bookDog($index)" btn-Text="'Add'"></dog-card>
         </div>
+
       </div>
     </div>
+  </div>
   <div ng-if="fullAddress!=null" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12 panel">
     <h3>Map:</h3>
     <iframe class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" width="600" height="450" frameborder="0" style="border:0" ng-src="{{fullAddress}}" allowfullscreen>
     </iframe>
   </div>
-   <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
+  <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
 </div>

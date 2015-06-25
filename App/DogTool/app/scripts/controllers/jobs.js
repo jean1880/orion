@@ -71,6 +71,12 @@ angular.module('dogToolApp')
     var init = function () {
       getBookingTypes();
     };
+  /**
+     * @method removeDuplicate
+     * @return return the bool of if obj is in doglistArray
+     * @param obj, what you are looking for, must be type dog.
+     *
+     */
     var removeDuplicate = function (obj) {
       console.log(obj);
       console.log($scope.addedDogUI);
