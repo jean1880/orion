@@ -19,6 +19,15 @@ angular.module('dogToolApp')
 			return poller.get(SailsRoute.Business_info.listen);
 		},
 		
+        /**
+         * Pushes a new business info into the database
+         * @method post
+         * @param expense
+         */
+        post: function (businessInfo) {
+          return $http.post(SailsRoute.Business_info.post, businessInfo);
+        },
+      
 		update: function (object) {
         return $http.post(SailsRoute.Business_info.update(object.id), object);
         }

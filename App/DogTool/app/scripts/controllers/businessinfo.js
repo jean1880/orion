@@ -8,17 +8,48 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('BusinessinfoCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  $scope.BusinessInfo = {
-       Title: "Business Information", 
-       Name: "Not Just Kibble", 
-       Address: "6878 10th Line",
-       Phone: "(705)500-4493", 
-       Email: "NotJustKibble@awesome.com"
-    };
+  .controller('BusinessinfoCtrl', function ($scope, FactoryBusinessInfo, flash) {
+    
+  FactoryBusinessInfo.get()
+  .success(function(res){
+    $scope.BusinessInfo = res;
+  });
+  
+  
+  $scope.Title = "Business Information";
+  
+  
+  
+  $scope.editingInfo = false;
+  
+  $scope.editInfo = function(){
+    
+    if($scope.editingInfo == false){
+      $scope.name = $scope.BusinessInfo.Name;
+      $scope.address = $scope.BusinessInfo.Address;
+      $scope.phone = $scope.BusinessInfo.Phone;
+      $scope.email = $scope.BusinessInfo.Email;
+      
+      $scope.editingInfo = true;
+    }else{
+      $scope.cancelEdit;
+      $scope.editingInfo = false;
+    }
+    
+  }
+  
+  $scope.cancelEdit = function(){
+    
+    $scope.name = $scope.BusinessInfo.Name;
+    $scope.address = $scope.BusinessInfo.Address;
+    $scope.phone = $scope.BusinessInfo.Phone;
+    $scope.email = $scope.BusinessInfo.Email;
+    
+    $scope.editingInfo = false;
+  }
+  
+  $scope.saveInfo = function(){
+    $scope.editingInfo = false;
+  }
+    
   });
