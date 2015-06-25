@@ -8,9 +8,9 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType) {
+  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType,$window) {
 
-    $scope.pageType = "New ";
+    $scope.pageType = "Create ";
     $scope.selectedJobType;
     $scope.addedDogUI = [];
     var now = new Date();
@@ -23,7 +23,10 @@ angular.module('dogToolApp')
       Jobtype: {
         id: null
       },
-      Location: {},
+      Location: {
+        Street:' ',
+        City:' '
+      },
       Calendars: {
         StartDate: now,
         EndDate: now,
@@ -41,7 +44,6 @@ angular.module('dogToolApp')
         .error(function () {
           flash.error = 'An error occured while loading job types.';
         });
-      $("[name='setAllDay']").bootstrapSwitch();
     };
 
     // setup the datepicker directives
@@ -94,10 +96,11 @@ angular.module('dogToolApp')
   if ($scope.booking.Dogs.length > 0) {
     FactoryJob.post($scope.booking).success(function (res) {
         flash.success = 'Job Created.';
-        console.log("booking Data");
-        console.log($scope.booking);
-        console.log("response data");
-        console.log(res);
+//        console.log("booking Data");
+//        console.log($scope.booking);
+//        console.log("response data");
+//        console.log(res);
+      $window.location.href="#/jobs/"+res.id;
       })
       .error(function (err) {
         console.log(err);
