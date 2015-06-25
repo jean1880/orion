@@ -1,10 +1,23 @@
 <div class="panel panel-default dog-card" ng-click="gotoDogPage()">
   <div class="panel-heading">
-    <div class="name text-center">
+    <div class="text-center">
       <strong>{{dog.Name}}</strong>
     </div>
   </div>
   <div class="panel-body">
-    <img ng-src="{{dog.photoURL || '/images/no-dog-image.jpg'}}" alt="{{dog.Name}}"/>
+    <div class="img-container">
+      <img ng-src="{{dog.photoURL || '/images/no-dog-image.jpg'}}" alt="{{dog.Name}}"/>
+    </div>
+    <div class="info-area">
+      <div class="text-center">
+        {{ dog.Owner.Name }}
+      </div>
+      <div class="text-center">
+        {{ dog.Owner.Phone }}
+      </div>
+      <div class="text-center">
+        {{ dog.Owner.Email }}
+      </div>
+    </div>
   </div>
 </div>
