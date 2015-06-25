@@ -11,12 +11,20 @@ angular.module('dogToolApp')
     return {
       restrict: 'E',
       scope: {
-        dog: '='
+        dog: '=',
+        btnText: '=',
+        btnClick: '&',
+        btnType: '='
       },
       templateUrl: 'views/directives/dog-card.html',
       controller: function ($scope, $location) {
         $scope.gotoDogPage = function() {
           $location.path('/dog/' + $scope.dog.id);
+        };
+
+        $scope.callButtonCallback = function ($event) {
+            $event.stopPropagation();
+            $scope.btnClick();
         };
       }
     };

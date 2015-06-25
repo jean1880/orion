@@ -19,5 +19,8 @@
         {{ dog.Owner.Email }}
       </div>
     </div>
+    <div ng-show="btnText">
+      <a class="btn btn-{{ btnType || 'default' }} btn-block action-btn" ng-click="callButtonCallback($event)">{{ btnText }}</a>
+    </div>
   </div>
 </div>
