@@ -87,7 +87,6 @@ angular.module('dogToolApp')
             .error(function () {
               flash.error = 'An error occured while loading job types.';
             });
-          $scope.addedDogUI = $scope.booking.Dogs;
           if ($rootScope.bookingLog != null && $rootScope.bookingLog.id == null) {
             $scope.booking = $rootScope.bookingLog;
             
@@ -95,6 +94,7 @@ angular.module('dogToolApp')
             $rootScope.bookingLog = $scope.booking;
           }
           $scope.dogs = $scope.dogs.filter(removeDuplicate);
+          $scope.addedDogUI = $scope.booking.Dogs;
         })
         .error(function () {
           flash.error = 'An error occured while loading dogs.';
