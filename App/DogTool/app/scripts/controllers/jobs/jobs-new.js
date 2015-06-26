@@ -89,12 +89,14 @@ angular.module('dogToolApp')
             });
           if ($rootScope.bookingLog != null && $rootScope.bookingLog.id == null) {
             $scope.booking = $rootScope.bookingLog;
+            $scope.dogs = $scope.dogs.filter(removeDuplicate);
             
           } else {
+            $rootScope.bookingLog={};
             $rootScope.bookingLog = $scope.booking;
           }
-          $scope.dogs = $scope.dogs.filter(removeDuplicate);
-          $scope.addedDogUI = $scope.booking.Dogs;
+          
+//          $scope.addedDogUI = $scope.booking.Dogs;
         })
         .error(function () {
           flash.error = 'An error occured while loading dogs.';
@@ -113,8 +115,8 @@ angular.module('dogToolApp')
         $scope.booking.Jobtype.id = $scope.selectedJobType.id;
       }
       $scope.submitted = true;
-      if ($scope.booking.Dogs.length > 0) {
-        $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
+      if ($scope.addedDogUI.length > 0) {
+        $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
         FactoryJob.post($scope.booking).success(function (res) {
             flash.success = 'Job Created.';
             $window.location.href = "#/jobs/" + res.id;
