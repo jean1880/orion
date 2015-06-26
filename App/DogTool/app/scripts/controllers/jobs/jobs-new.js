@@ -130,10 +130,10 @@ angular.module('dogToolApp')
      * @description Adds dogs to the booking list and removes the dogs from the search list (dogs avaliable to be added)
      *
      */
-    $scope.bookDog = function (indexIn) {
+    $scope.bookDog = function (dogIn) {
       console.log("Log booking");
       console.log($scope.booking);
-      var dogIn = $scope.dogs[indexIn];
+      var indexIn = $scope.dogs.indexOf(dogIn);
       console.log(dogIn);
       $scope.addedDogUI.push(dogIn);
       $scope.dogs.splice(indexIn, 1);
@@ -143,12 +143,12 @@ angular.module('dogToolApp')
      * @description Removes dogs from the booking and pushes them back to the search list.
      *
      */
-    $scope.removeDog = function (indexOut) {
+    $scope.removeDog = function (dogOut) {
       console.log("Log booking remove");
-      var dogOut = $scope.addedDogUI[indexOut];
+      var indexOut = $scope.addedDogUI.indexOf(dogOut);
       console.log(dogOut);
       $scope.dogs.push(dogOut);
-      $scope.booking.Dogs.splice(indexOut, 1);
+      $scope.addedDogUI.splice(indexOut, 1);
     };
     /**
      * @method addFee
