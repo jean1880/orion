@@ -13,7 +13,6 @@ angular.module('dogToolApp')
     $scope.pageType = "Create ";
     $scope.selectedJobType;
     $scope.addedDogUI = [];
-    var now = new Date();
     $scope.booking = {
       Name: '',
       Dogs: [],
@@ -28,8 +27,8 @@ angular.module('dogToolApp')
         City: ' '
       },
       Calendars: {
-        StartDate: now,
-        EndDate: now,
+        StartDate: new Date(),
+        EndDate: new Date(),
         IsAllDay: false
       }
     };

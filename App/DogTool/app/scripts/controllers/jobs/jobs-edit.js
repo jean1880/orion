@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('JobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType, $routeParams, HelperService, $sce, $q) {
+  .controller('JobsEditCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType, $routeParams, HelperService, $sce, $q) {
     $scope.pageType = 'Edit ';
     $scope.selectedJobType;
     $scope.addedDogUI = [];

@@ -57,6 +57,10 @@ angular
         templateUrl: 'views/dog/view.html',
         controller: 'DogViewCtrl'
       })
+      .when('/jobs/:date?', {
+        templateUrl: 'views/job/job-list.html',
+        controller: ''
+      })
       .when('/people', {
         templateUrl: 'views/people/list.html',
         controller: 'PeopleListCtrl'
@@ -69,14 +73,6 @@ angular
         templateUrl: 'views/people/view.html',
         controller: 'PeopleViewCtrl'
       })
-      .when('/jobs', {
-        templateUrl: 'views/job/job-list.html',
-        controller: 'JobsCtrl'
-      })
-      .when('/jobs/day/:date', {
-        templateUrl: 'views/job/job-list.html',
-        controller: 'JobsCtrl'
-      })
       .when('/jobs/new', {
         templateUrl: 'views/job/job-new.html',
         controller: 'NewJobsCtrl'
@@ -86,8 +82,8 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/job/job-new.html',
-        controller: 'JobsEditCtrl'
+        templateUrl: 'views/job/jobs-new.html',
+        controller: 'JobsCtrl'
       })
       .when('/people/new', {
         templateUrl: 'views/people/new.html',
