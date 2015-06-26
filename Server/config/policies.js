@@ -29,6 +29,7 @@ module.exports.policies = {
   '*': ['isLoggedIn'],
 
   DogController: {
+    '*': ['isLoggedIn'],
     'getPhoto': true
   },
 
