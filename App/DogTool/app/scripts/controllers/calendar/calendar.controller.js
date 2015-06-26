@@ -8,7 +8,7 @@
  * Controller of the dogToolApp, manages the calendar/view.html
  */
 angular.module('dogToolApp')
-  .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar) {
+  .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob) {
     /**
      * Rounds the date to the bottom, or top of the hour
      * @param  {object} date new date object
@@ -61,6 +61,7 @@ angular.module('dogToolApp')
    $scope.calendarData = [];
    $scope.eventSources = [$scope.calendarData]
    $scope.addingEvent = false;
+   $scope.allDay = true;
 
    /**
     * Goes to the jobs for the day
@@ -99,9 +100,17 @@ angular.module('dogToolApp')
      * @method  AddEvent
      */
     $scope.AddEvent = function(){
+      console.log($scope.day);
+      var startDay = $scope.day.toDate();
+      startDay.setHours(startDay.getHours() + 4);
+
+      var endDay = $scope.endDay.toDate();
+      endDay.setHours(endDay.getHours() + 4);
+
+      console.log(startDay);
       factoryCalendar.post({
-        StartDate: $scope.day.toDate(),
-        EndDate: $scope.endDay.toDate(),
+        StartDate: startDay,
+        EndDate: endDay,
         Note: {
           Title: $scope.title,
           Content: $scope.note,
@@ -113,7 +122,7 @@ angular.module('dogToolApp')
           title: $scope.title,
           start: $scope.day.toDate(),
           end: $scope.endDay.toDate(),
-          allDay: $scope.allDay || false
+          allDay: $scope.allDay
         })
         $('#calendar-event').modal('hide');
       });
@@ -166,17 +175,39 @@ angular.module('dogToolApp')
      * End calendar controls
      */
 
+    var getJobType = function(dataObject, title){
+      FactoryJob.get(dataObject.Jobs[0].id).success(function(data){
+        console.log(data);
+        AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name);
+      });
+    };
+
+    var AddtoCalendar = function(data, title){
+      $scope.calendarData.push({
+        title: title,
+        start: new Date(data.StartDate),
+        end: new Date(data.EndDate),
+        allDay: data.IsAllDay,
+        id: data.id
+      }); 
+    }
 
     var init = function(){
       factoryCalendar.getAll().success(function(data){
         for (var i = data.length - 1; i >= 0; i--) {
-          $scope.calendarData.push({
-            title: data[i].Title,
-            start: new Date(data[i].StartDate),
-            end: new Date(data[i].EndDate),
-            allDay: data[i].IsAllDay || false,
-            id: data[i].id
-          });
+          var title, halt = false;
+          if(data[i].Note){
+            title = data[i].Note.Title;
+          }else if(data[i].Jobs && data[i].Jobs.length > 0) {
+            title = data[i].Jobs[0].Name;
+            halt = true;
+            getJobType(data[i], title);
+          }
+
+          // if not trying to fetch jobtype add data to calendar immediately
+          if(!halt){
+              AddtoCalendar(data[i],title);       
+          }
         };
       });
     };
