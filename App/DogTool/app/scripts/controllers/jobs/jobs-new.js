@@ -87,10 +87,10 @@ angular.module('dogToolApp')
             .error(function () {
               flash.error = 'An error occured while loading job types.';
             });
-
+          $scope.addedDogUI = $scope.booking.Dogs;
           if ($rootScope.bookingLog != null && $rootScope.bookingLog.id == null) {
             $scope.booking = $rootScope.bookingLog;
-            $scope.addedDogUI = $scope.booking.Dogs;
+            
           } else {
             $rootScope.bookingLog = $scope.booking;
           }
@@ -137,7 +137,6 @@ angular.module('dogToolApp')
       console.log(dogIn);
       $scope.dogs.splice(indexIn, 1);
       $scope.addedDogUI.push(dogIn);
-      $scope.booking.Dogs.push(dogIn);
     };
     /**
      * @method removeDog
@@ -150,7 +149,6 @@ angular.module('dogToolApp')
       console.log(dogOut);
       $scope.dogs.push(dogOut);
       $scope.booking.Dogs.splice(indexOut, 1);
-      $scope.addedDogUI.splice(indexOut, 1);
     };
     /**
      * @method addFee
