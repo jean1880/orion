@@ -62,6 +62,10 @@ angular.module('dogToolApp')
    $scope.eventSources = [$scope.calendarData]
    $scope.addingEvent = false;
 
+   /**
+    * Goes to the jobs for the day
+    * @param {Object} date Moment.js date object
+    */
     var GotoDay = function(date){
       $location.url('/jobs');
     };
@@ -115,6 +119,24 @@ angular.module('dogToolApp')
       });
     };
 
+    /**
+     * Updates target event start and end datetime
+     * @param {object} event FullCalendar event object
+     */
+    var UpdateEvent = function(event){
+      console.log(event);
+      factoryCalendar.update({
+        StartDate: event.start.toDate(),
+        EndDate: event.end.toDate(),
+        id: event.id
+      })
+    }
+
+    /**
+     * Creates an event from given datetime range
+     * @param {[type]} start [description]
+     * @param {[type]} end   [description]
+     */
     var SelectDateRange = function(start, end) {
       CreateEvent(start,end);
       $('#calendar').fullCalendar('unselect');
@@ -124,6 +146,7 @@ angular.module('dogToolApp')
     $scope.uiConfig = {
       calendar:{
         editable: true,
+        height: 'auto',
         selectable: true,
         eventLimit: true, // allow "more" link when too many events
         header:{
@@ -134,7 +157,9 @@ angular.module('dogToolApp')
         select: SelectDateRange,
         eventClick: GotoDay,
         dayClick: CreateEvent,
-        timezone: 'local'
+        timezone: 'local',
+        eventResize: UpdateEvent,
+        eventDrop: UpdateEvent
       }
     };
     /**
@@ -149,7 +174,8 @@ angular.module('dogToolApp')
             title: data[i].Title,
             start: new Date(data[i].StartDate),
             end: new Date(data[i].EndDate),
-            allDay: data[i].IsAllDay || false
+            allDay: data[i].IsAllDay || false,
+            id: data[i].id
           });
         };
       });

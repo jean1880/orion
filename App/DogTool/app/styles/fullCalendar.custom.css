@@ -11,3 +11,9 @@
 .fc-event:hover{
   background-color: #1aaaaa;
 }
+.fc{
+	min-height: 768px;
+}
+.fc-week{
+	min-height: 110px !important;
+}

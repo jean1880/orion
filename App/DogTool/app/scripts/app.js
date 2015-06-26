@@ -57,7 +57,7 @@ angular
         templateUrl: 'views/dog/view.html',
         controller: 'DogViewCtrl'
       })
-      .when('/jobs', {
+      .when('/jobs/:date?', {
         templateUrl: 'views/job/job-list.html',
         controller: ''
       })
@@ -74,6 +74,10 @@ angular
         controller: 'PeopleViewCtrl'
       })
       .when('/jobs/new', {
+        templateUrl: 'views/job/job-new.html',
+        controller: 'NewJobsCtrl'
+      })
+      .when('/jobs/new/:startDate/:endDate', {
         templateUrl: 'views/job/job-new.html',
         controller: 'NewJobsCtrl'
       })
