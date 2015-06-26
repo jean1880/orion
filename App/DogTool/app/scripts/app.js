@@ -82,7 +82,7 @@ angular
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/job/jobs-new.html',
+        templateUrl: 'views/job/job-new.html',
         controller: 'JobsCtrl'
       })
       .when('/people/new', {

@@ -13,10 +13,17 @@ angular.module('dogToolApp')
       scope: {
         notes: '=',
         defaultTypes: '=',
-        onNotesChanged: '&'
+        onNotesChanged: '&',
+        showSaveBtn: '=?',
+        panelTitle: '=',
+        panelType: '='
       },
       templateUrl: 'views/directives/notes-panel.html',
       link: function ($scope, element, attrs) {
+        if (!angular.isDefined(attrs.showSaveBtn)) {
+          $scope.showSaveBtn = true;
+        }
+
         $scope.tabs = [];
 
         $scope.$watch('notes', function () {

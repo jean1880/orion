@@ -1,6 +1,6 @@
-<div class="panel panel-default">
+<div class="panel panel-{{panelType || 'default'}}">
   <div class="panel-heading">
-    Notes
+    {{panelTitle || 'Notes'}}
   </div>
   <div class="panel-body">
     <tabset>
@@ -26,7 +26,7 @@
           </form>
         </div>
         <a ng-click="addNote(tab)" class="btn btn-default">New</a>
-        <a ng-click="saveAllNotes()" class="btn btn-primary pull-right">Save</a>
+        <a ng-click="saveAllNotes()" class="btn btn-primary pull-right" ng-show="showSaveBtn">Save</a>
       </tab>
     </tabset>
   </div>
