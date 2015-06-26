@@ -24,7 +24,7 @@
             <p ng-if="booking.Dogs.length==0 && submitted" class="text-danger">Please add a dog.</p>
             <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
               <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="">
-                <dog-card dog="dogIn" btn-Click="removeDog($index)" btn-Text="'Remove'"></dog-card>
+                <dog-card dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@
         </form>
 
         <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index" class="">
-          <dog-card dog="dog" btn-Click="bookDog($index)" btn-Text="'Add'"></dog-card>
+          <dog-card dog="dog" btn-Click="bookDog(dog)" btn-Text="'Add'"></dog-card>
         </div>
 
       </div>
