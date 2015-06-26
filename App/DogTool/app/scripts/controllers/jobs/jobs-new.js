@@ -135,8 +135,8 @@ angular.module('dogToolApp')
       console.log($scope.booking);
       var dogIn = $scope.dogs[indexIn];
       console.log(dogIn);
-      $scope.dogs.splice(indexIn, 1);
       $scope.addedDogUI.push(dogIn);
+      $scope.dogs.splice(indexIn, 1);
     };
     /**
      * @method removeDog
