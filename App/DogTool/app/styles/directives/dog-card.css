@@ -24,3 +24,8 @@
 .dog-card .action-btn {
   margin-top: 5px;
 }
+
+.dog-card .action-btn:hover {
+  margin-top: 6px;
+}
+
