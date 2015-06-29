@@ -1,13 +1,31 @@
 .dog-card {
-  width: 150px;
-  display: inline-block;
-  margin: 5px;
+  width:   200px;
+  display: block;
+  float:   left;
+  margin:  5px;
 }
 
-.dog-card img {
-	display: block;
-	margin: auto;
-
-	max-height: 118px;
-	max-width: 100%;
+.dog-card .img-container {
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  height:          125px;
 }
+
+.dog-card .img-container img {
+  max-height: 125px;
+  max-width:  125px;
+}
+
+.dog-card .info-area {
+  min-height: 60px;
+}
+
+.dog-card .action-btn {
+  margin-top: 5px;
+}
+
+.dog-card .action-btn:hover {
+  margin-top: 6px;
+}
+

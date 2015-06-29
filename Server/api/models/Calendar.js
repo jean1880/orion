@@ -18,9 +18,15 @@ module.exports = {
             type: 'datetime',
             required: true
         },
+        Note: {
+            model: 'note'
+        },
         EndDate: {
             type: 'datetime',
             required: true
+        },
+        IsAllDay:{
+            type: 'boolean'
         },
         Jobs: {
             collection: 'job',

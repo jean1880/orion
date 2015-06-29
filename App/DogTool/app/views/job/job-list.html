@@ -1,0 +1,23 @@
+<!--  The Job list display, Hide if specific job is seleected-->
+<div class="" id="JobListPanel">
+  <div>
+    <form action="jobFilterCtr" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Job name..." />
+        <div class="input-group-addon">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <h1>Job List</h1>
+  <!--  Add job list dynamically here, replace below content with loop  -->
+  <div ng-repeat="job in JobList">
+
+    <div class="col-xs-12 col-lg-4 panel">
+      <h3>{{job.Name}}</h3>
+      <dog-card dog="dog" ng-repeat="dog in job.Dogs | filter:searchDog | filter:searchOwner | orderBy:'Name'"></dog-card>
+    </div>
+  </div>
+  
+</div>

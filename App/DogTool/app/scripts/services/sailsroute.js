@@ -29,6 +29,7 @@ angular.module('dogToolApp')
     return {
       Dog:          buildRoutes('dog'),
       Cost:         buildRoutes('cost'),
+      Calendar:     buildRoutes('calendar'),
       Weight:       buildRoutes('weight'),
       Daycare:      buildRoutes('daycare'),
       Note:         buildRoutes('note'),
@@ -37,7 +38,11 @@ angular.module('dogToolApp')
       Address:      buildRoutes('address'),
       Consultation: buildRoutes('consultation'),
       Job:          buildRoutes('job'),
+<<<<<<< HEAD
       BusinessInfo: buildRoutes('businessinfo'),
       Expense:      buildRoutes('expense')
+=======
+      JobType:      buildRoutes('jobtype')
+>>>>>>> origin/develop
     };
   });

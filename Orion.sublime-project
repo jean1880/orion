@@ -1,0 +1,16 @@
+{
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				"App/DogTool/node_modules",
+				"App/DogTool/bower_components"
+			],
+			"path": "."
+		},
+		{
+			"path": "App/DogTool/bower_components"
+		}
+	]
+}

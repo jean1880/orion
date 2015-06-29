@@ -1,144 +1,56 @@
-<div class="row">
-  <div class="col-md-2">
-    <div sticky>
-      <h1>June 2015</h1>
-      <a class="btn btn-block btn-primary">Today</a>
-    </div>
-  </div>
-  <div class="col-md-10">
-    <div class="row">
-      <div class="col-md-10">
-        <div class="col-sm-12">
-          <h2>10th <small>Wednesday</small></h2>
-        </div>
-        <div class="col-sm-12">
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-        </div>
+<div ui-calendar="uiConfig.calendar" ng-model="eventSources" class="col-lg-12" ></div>
+<div class="form-group col-lg-12">
+  <h4>Notes:</h4>
+  <textarea rows="5" class="form-control"></textarea>
+  <button type="button" ng-click="SaveMonthNote" class="btn btn-primary pull-right">Save Note</button>
+</div>
+<div class="modal fade" id="calendar-event">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title">Add Event - {{day.format() | amCalendar}}<span ng-if="endDay > day"> to {{endDay.format() | amCalendar}}</span></h4>
       </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">All Day</div>
-          <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
+      <div class="modal-body">
+        <div ng-show="!addingEvent">
+          <div class="form-group">
+            <button type="button" ng-click="CreateBooking()" class="btn btn-primary btn-block">CreateDog Booking</button>
+          </div>          
+          <div class="form-group">
+              <button type="button" ng-click="addingEvent = !addingEvent" class="btn btn-primary btn-block">New Event</button>
+          </div>
         </div>
+        <form ng-show="addingEvent" class="form" ng-submit="AddEvent()">
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" ng-click="addingEvent = !addingEvent"><i class="fa fa-chevron-left"></i></button>
+          </div>
+          <div class="form-group">
+            <input required class="form-control" type="text" placeholder="Event Title" ng-model="title">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input ng-model="allDay" type="checkbox"> All Day?
+            </label>
+          </div>
+          <div ng-show="!allDay">
+            <div class="form-group col-lg-6">
+              <label>Start Time</label>
+              <timepicker ng-model="startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+            </div> 
+            <div class="form-group col-lg-6">
+              <label>End Time</label>
+              <timepicker ng-model="endTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Note</label>
+            <textarea class="form-control" ng-model="note">{{month.note}}</textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus"></i></button>
+          </div>
+        </form>
       </div>
-    </div>
-    <hr />
-    <div class="row">
-      <div class="col-md-10">
-        <div class="col-sm-12">
-          <h2>11th <small>Thursday</small></h2>
-          <span class="label label-danger cal-label">Today</span>
-        </div>
-        <div class="col-sm-12">
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">All Day</div>
-          <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="row">
-      <div class="col-md-10">
-        <div class="col-sm-12">
-          <h2>12th <small>Friday</small></h2>
-        </div>
-        <div class="col-sm-12">
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">All Day</div>
-          <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="row">
-      <div class="col-md-10">
-        <div class="col-sm-12">
-          <h2>13th <small>Saturday</small></h2>
-        </div>
-        <div class="col-sm-12">
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">All Day</div>
-          <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="row">
-      <div class="col-md-10">
-        <div class="col-sm-12">
-          <h2>14th <small>Sunday</small></h2>
-        </div>
-        <div class="col-sm-12">
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-          <dog-card></dog-card>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">All Day</div>
-          <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <hr />
-  </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

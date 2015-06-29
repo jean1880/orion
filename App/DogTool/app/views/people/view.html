@@ -3,6 +3,7 @@
     <h1>
       {{person.Name}}
     </h1>
+    <hr />
   </div>
 </div>
 <div class="row">
@@ -33,6 +34,22 @@
   </div>
 
   <div class="col-sm-8 col-lg-9">
-    <dog-card dog="dog" ng-repeat="dog in person.Dogs"></dog-card>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Dogs
+          </div>
+          <div class="panel-body">
+            <dog-card dog="dog" ng-repeat="dog in person.Dogs"></dog-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <notes-panel notes="person.Notes" on-notes-changed="updateNotes()" default-types="[ 'General' ]"></notes-panel>
+      </div>
+    </div>
   </div>
 </div>

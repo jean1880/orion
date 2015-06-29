@@ -46,8 +46,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+<<<<<<< HEAD
   'GET  /businessinfo': 'BusinessInfo.find',
   'PUT  /businessinfo': 'BusinessInfo.update',
   'POST /businessinfo': 'BusinessInfo.seed'
+=======
+  'POST /login':          'loginController.login',
+  'POST /login/validate': 'loginController.validate'
+>>>>>>> origin/develop
 
 };

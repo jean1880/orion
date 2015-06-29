@@ -19,12 +19,18 @@ angular
     'emguo.poller',
     'ui.bootstrap',
     'ui.bootstrap.showErrors',
+    'ui.calendar',
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'ngFileUpload',
-    'sticky'
+    'sticky',
+    'angularMoment',
+    'angular-jwt',
+    'sticky',
+    'ui.bootstrap.datetimepicker',
+    'frapontillo.bootstrap-switch'
   ])
-  .config(function ($routeProvider, pollerConfig, flashProvider) {
+  .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
     flashProvider.successClassnames.push('alert-success');
     flashProvider.infoClassnames.push('alert-info');
     flashProvider.warnClassnames.push('alert-warning');
@@ -33,7 +39,11 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/dog/list.html',
-        controller: 'DogListCtrl'
+        controller: 'DogListCtrl',
+        title : 'Dog'
+      })
+      .when('/working', {
+        template: '<h1>Working...</h1>'
       })
       .when('/dogs', {
         templateUrl: 'views/dog/list.html',
@@ -47,10 +57,6 @@ angular
         templateUrl: 'views/dog/view.html',
         controller: 'DogViewCtrl'
       })
-      .when('/jobs', {
-        templateUrl: 'views/job-list.html',
-        controller: 'JobsCtrl'
-      })
       .when('/people', {
         templateUrl: 'views/people/list.html',
         controller: 'PeopleListCtrl'
@@ -63,13 +69,25 @@ angular
         templateUrl: 'views/people/view.html',
         controller: 'PeopleViewCtrl'
       })
+      .when('/jobs', {
+        templateUrl: 'views/job/job-list.html',
+        controller: 'JobsCtrl'
+      })
+      .when('/jobs/day/:date', {
+        templateUrl: 'views/job/job-list.html',
+        controller: 'JobsCtrl'
+      })
       .when('/jobs/new', {
-        templateUrl: 'views/job-new.html',
+        templateUrl: 'views/job/job-new.html',
+        controller: 'NewJobsCtrl'
+      })
+      .when('/jobs/new/:startDate/:endDate', {
+        templateUrl: 'views/job/job-new.html',
         controller: 'NewJobsCtrl'
       })
       .when('/jobs/:id', {
-        templateUrl: 'views/jobs.html',
-        controller: 'JobsCtrl'
+        templateUrl: 'views/job/job-new.html',
+        controller: 'JobsEditCtrl'
       })
       .when('/people/new', {
         templateUrl: 'views/people/new.html',
@@ -88,7 +106,7 @@ angular
         controller: 'GridtestCtrl'
       })
       .when('/calendar', {
-        templateUrl: 'views/calendar.html',
+        templateUrl: 'views/calendar/view.html',
         controller: 'CalendarCtrl'
       })
       .when('/quote', {
@@ -106,9 +124,6 @@ angular
         templateUrl: 'views/homework.html',
         controller: 'HomeworkCtrl'
       })
-      .when('/calendar', {
-        templateUrl: 'views/calendar/view.html'
-      })
       .when('/business-info', {
         templateUrl: 'views/business-info.html',
         controller: 'BusinessInfoCtrl'
@@ -117,9 +132,36 @@ angular
         templateUrl: 'views/businessinfo.html',
         controller: 'BusinessinfoCtrl'
       })
+
       .otherwise({
         redirectTo: '/'
       });
     // set sails server url
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
+
+    // authentication settings
+    jwtInterceptorProvider.authHeader = 'Token';
+    jwtInterceptorProvider.authPrefix = '';
+    jwtInterceptorProvider.tokenGetter = ['FactoryAuthToken', function (FactoryAuthToken) {
+        return FactoryAuthToken.getToken();
+    }];
+
+    $httpProvider.interceptors.push('jwtInterceptor');
+  })
+  .run(function ($location, FactoryLogin, amMoment) {
+    var url = $location.url();
+    $location.url('/working');
+
+    FactoryLogin.validate()
+      .success(function (res) {
+        if (res.valid) {
+          $location.url(url);
+        }
+        else {
+          FactoryLogin.login()
+            .success(function () {
+              $location.url(url);
+            });
+        }
+      });
   });

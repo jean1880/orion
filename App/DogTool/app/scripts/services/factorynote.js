@@ -39,7 +39,6 @@ angular.module('dogToolApp')
       /**
        * One time fetch from server for full Note dataset
        * @method post
-       * @method post
        * @param note
        */
       post: function (note) {
