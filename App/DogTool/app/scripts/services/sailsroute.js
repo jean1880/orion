@@ -38,11 +38,10 @@ angular.module('dogToolApp')
       Address:      buildRoutes('address'),
       Consultation: buildRoutes('consultation'),
       Job:          buildRoutes('job'),
-<<<<<<< HEAD
+
       BusinessInfo: buildRoutes('businessinfo'),
-      Expense:      buildRoutes('expense')
-=======
+      Expense:      buildRoutes('expense'),
       JobType:      buildRoutes('jobtype')
->>>>>>> origin/develop
+
     };
   });
