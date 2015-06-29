@@ -33,7 +33,7 @@ angular.module('dogToolApp')
                 return poller.get(SailsRoute.Homework.listen);
             },
             /**
-             * One time fetch from server for full Homework dataset
+             * Post the new Homework dataset
              * @method post
              * @param weight
              */
@@ -48,7 +48,12 @@ angular.module('dogToolApp')
             find: function (searchObject) {
                 return $http.post(SailsRoute.Homework.find, searchObject);
             },
-
+          
+          /**
+             * Updates the homework option in question
+             * @method update
+             * @param homework
+             */
             update: function (homework) {
                 return $http.post(SailsRoute.Homework.update(homework.id), homework);
             }

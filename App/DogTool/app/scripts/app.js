@@ -117,7 +117,7 @@ angular
         redirectTo: '/homework/new'
       })
       .when('/homework/new', {
-        templateUrl: 'views/homework-new.html',
+        templateUrl: 'views/homework.html',
         controller: 'HomeworkNewCtrl'
       })
       .when('/homework/:id', {
