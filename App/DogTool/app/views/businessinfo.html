@@ -4,19 +4,87 @@
   </div>
 </div>
 <div class="row">
+ 
+ <!-- Expenses Panel -->
+ 
   <div class="col-lg-8 col-xs-12 col-md-8 col-sm-8">
     <div class="panel panel-info">
       <header class="panel-heading">
         <span class="panel-title">Expenditures</span>
-        <a class="btn btn-xs btn-link pull-right" tooltip="Add">
+        <a class="btn btn-xs btn-link pull-right" tooltip="Add" ng-click="addExpense()" ng-show="!addingExpense">
           <span class="fa fa-plus fa-2x" aria-hidden="true"></span>
+        </a>
+        <a class="btn btn-xs btn-link pull-right" tooltip="Cancel" ng-click="cancelExpense()" ng-show="addingExpense">
+          <span class="fa fa-times fa-2x" aria-hidden="true"></span>
         </a>
       </header>
       <div class="panel-body">
-        There are Currently No Expenditures
+        <div ng-show="!addingExpense">
+          <table class="table table-striped">
+            <tr>
+              <th>Expense Name</th>
+              <th>Expense Type</th>
+              <th>Expense Description</th>
+              <th>Expense Cost</th>
+              <th>Expenditure Date</th>
+            </tr>
+            <tr ng-repeat="expense in ExpenseInfo">
+              <td>{{expense.Name}}</td>
+              <td>{{expense.Type}}</td>
+              <td>{{expense.Description}}</td>
+              <td>{{expense.Cost}}</td>
+              <td>{{expense.Date}}</td>
+            </tr>
+          </table>
+        </div>
+        <div ng-show="addingExpense">
+          <form name="addExpenseForm" ng-submit="saveExpense()" novalidate>
+            <div class="form-group">
+              <label for="name">Expense Name</label>
+              <input type="text" class="form-control" ng-model="newExpense.Name" name="name" required/>
+              <div ng-show="addExpenseForm.name.$touched && addExpenseForm.name.$error.required">
+                <span>Expense Name is required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="type">Expense Type</label>
+              <input type="text" class="form-control" ng-model="newExpense.Type" name="type" required/>
+              <div ng-show="addExpenseForm.type.$touched && addExpenseForm.type.$error.required">
+                <span>Expense Type is required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Expense Description</label>
+              <input type="text" class="form-control" ng-model="newExpense.Description" name="description" required/>
+              <div ng-show="addExpenseForm.description.$touched && addExpenseForm.description.$error.required">
+                <span>Expense Description is required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cost">Expense Cost</label>
+              <input type="text" class="form-control" ng-model="newExpense.Cost" name="cost" required/>
+              <div ng-show="addExpenseForm.cost.$touched && addExpenseForm.cost.$error.required">
+                <span>Expense Cost is required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="date">Expenditure Date</label>
+              <input type="date" class="form-control" ng-model="newExpense.Date" name="date" required/>
+              <div ng-show="addExpenseForm.date.$touched && addExpenseForm.date.$error.required">
+                <span>Expenditure Date is required</span>
+              </div>
+            </div>
+            <div class="pull-right">
+              <a class="btn btn-link" ng-click="cancelExpense()">Cancel</a>
+              <input type="submit" class="btn btn-primary" ng-disabled="addExpenseForm.$invalid" value="Save"/>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+  
+  <!-- Business Information Panel -->
   <div class="col-lg-4 col-xs-12 col-md-4 col-sm-4 pull-right">
     <div class="panel panel-default">
       <header class="panel-heading">
@@ -36,7 +104,7 @@
           <p>Email: {{BusinessInfo.Email}}</p>
         </div>
 
-        <di ng-show="editingInfo" >
+        <div ng-show="editingInfo" >
           <form name="businessInfoForm" ng-submit="saveInfo()" novalidate>
             <div class="form-group">
               <label for="businessName">Business Name</label>
@@ -91,7 +159,7 @@
               </div>
              </div>
               <div class="pull-right">
-              <a href class="btn btn-link" ng-click="cancelEdit()">Cancel</a>
+              <a class="btn btn-link" ng-click="cancelEdit()">Cancel</a>
               <input type="submit" class="btn btn-primary" ng-disabled="businessInfoForm.$invalid" value="Save" />
             </div>       
           </form>
