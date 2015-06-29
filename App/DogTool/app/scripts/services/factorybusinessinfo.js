@@ -12,15 +12,12 @@ angular.module('dogToolApp')
     return {
 		
 		get: function() {
-			return $http.get(SailsRoute.Business_info.get);
+			return $http.get(SailsRoute.BusinessInfo.getAll);
 		},
-		
-		listen: function() {
-			return poller.get(SailsRoute.Business_info.listen);
-		},
-		
+      
 		update: function (object) {
-        return $http.post(SailsRoute.Business_info.update(object.id), object);
+          //Just want base route, using .get instead of .update
+          return $http.put(SailsRoute.BusinessInfo.getAll, object); 
         }
 		
     };

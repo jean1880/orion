@@ -1,25 +1,9 @@
 <div class="row">
   <div class=" col-xs-12">
-    <h1>{{BusinessInfo.Title}}</h1>
+    <h1>{{Title}}</h1>
   </div>
 </div>
 <div class="row">
- <div class="col-lg-4 col-xs-12 col-md-4 col-sm-4 pull-left">
-    <div class="panel panel-default">
-      <header class="panel-heading">
-        <span class="panel-title">Information</span>
-        <a class="btn btn-xs btn-link pull-right" tooltip="Edit Info">
-          <span class="fa fa-edit fa-2x" aria-hidden="true"></span>
-        </a>
-      </header>
-      <div class="panel-body">
-        <p>Business Name: {{BusinessInfo.Name}}</p>
-        <p>Address: {{BusinessInfo.Address}}</p>
-        <p>Phone: {{BusinessInfo.Phone}}</p>
-        <p>Email: {{BusinessInfo.Email}}</p>
-      </div>
-    </div>
-  </div>
   <div class="col-lg-8 col-xs-12 col-md-8 col-sm-8">
     <div class="panel panel-info">
       <header class="panel-heading">
@@ -33,6 +17,87 @@
       </div>
     </div>
   </div>
-  
-  
+  <div class="col-lg-4 col-xs-12 col-md-4 col-sm-4 pull-right">
+    <div class="panel panel-default">
+      <header class="panel-heading">
+        <span class="panel-title">Information</span>
+        <a class="btn btn-xs btn-link pull-right" ng-click="editInfo()" ng-show="!editingInfo" tooltip="Edit Info">
+          <span class="fa fa-edit fa-2x" aria-hidden="true"></span>
+        </a>
+        <a href class="btn btn-xs btn-link pull-right" ng-click="cancelEdit()" ng-show="editingInfo" tooltip="Cancel">
+          <span class="fa fa-times fa-2x" aria-hidden="true"></span>
+        </a>
+      </header>
+      <div class="panel-body">
+        <div ng-show="!editingInfo">
+          <p>Business Name: {{BusinessInfo.BusinessName}}</p>
+          <p>Address: &nbsp;{{BusinessInfo.Address.Street}}<br/>&emsp;&emsp;&emsp;&emsp;{{BusinessInfo.Address.City}} {{BusinessInfo.Address.Province}}, {{BusinessInfo.Address.PostalCode}}</p>
+          <p>Phone: {{BusinessInfo.Phone}}</p>
+          <p>Email: {{BusinessInfo.Email}}</p>
+        </div>
+
+        <di ng-show="editingInfo" >
+          <form name="businessInfoForm" ng-submit="saveInfo()" novalidate>
+            <div class="form-group">
+              <label for="businessName">Business Name</label>
+              <input type="text" class="form-control" ng-model="editedInfo.BusinessName" name="businessName" required/>
+              <div ng-show="businessInfoForm.businessName.$dirty && businessInfoForm.businessName.$error.required">
+                <span>Business Name is Required</span>
+              </div>
+            </div>            
+            <div class="form-group">
+              <label for="businessStreet">Street</label>
+              <input type="text" class="form-control" ng-model="editedInfo.Address.Street" name="businessStreet" required/>
+              <div ng-show="businessInfoForm.businessStreet.$dirty && businessInfoForm.businessStreet.$error.required">
+                <span>Street Address is Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="businessCity">City</label>
+              <input type="text" class="form-control" ng-model="editedInfo.Address.City" name="businessCity" required/>
+              <div ng-show="businessInfoForm.businessCity.$dirty && businessInfoForm.businessCity.$error.required">
+                <span>City is Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="businessProvince">Province</label>
+              <input type="text" class="form-control" ng-model="editedInfo.Address.Province" name="businessProvince" required/>
+              <div ng-show="businessInfoForm.businessProvince.$dirty && businessInfoForm.businessProvince.$error.required">
+                <span>Province is Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="businessPostalCode">Postal Code</label>
+              <input type="text" class="form-control" ng-model="editedInfo.Address.PostalCode" name="businessPostalCode" required/>
+              <div ng-show="businessInfoForm.businessPostalCode.$dirty && businessInfoForm.businessPostalCode.$error.required">
+                <span>Postal Code is Required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="businessName">Phone</label>
+              <input type="text" class="form-control" ng-model="editedInfo.Phone" name="businessPhone" required/>
+              <div ng-show="businessInfoForm.businessPhone.$dirty && businessInfoForm.businessPhone.$error.required">
+                <span>Phone Number is Required</span>
+              </div>
+            </div> 
+            <div class="form-group">
+              <label for="businessName">Email</label>
+              <input type="email" class="form-control" ng-model="editedInfo.Email" name="businessEmail" required/>
+              <div ng-show="businessInfoForm.businessName.$dirty && businessInfoForm.businessName.$error.required">
+                <span>Business Email is Required</span>
+              </div>
+              <div ng-show="businessInfoForm.businessEmail.$dirty && businessInfoForm.businessEmail.$error.email">
+                <span>Business Name is Required</span>
+              </div>
+             </div>
+              <div class="pull-right">
+              <a href class="btn btn-link" ng-click="cancelEdit()">Cancel</a>
+              <input type="submit" class="btn btn-primary" ng-disabled="businessInfoForm.$invalid" value="Save" />
+            </div>       
+          </form>
+        </di>
+      </div>
+    </div>
+  </div>
+
 </div>
