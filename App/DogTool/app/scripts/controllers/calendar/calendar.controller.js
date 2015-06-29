@@ -63,7 +63,10 @@ angular.module('dogToolApp')
     * @param {Object} date Moment.js date object
     */
     var GotoDay = function(date){
-      $location.url('/jobs');
+      console.log(date);
+      if(date.jobId){
+        $location.url('/jobs/' + date.jobId);
+      }
     };
 
     /**
@@ -193,8 +196,7 @@ angular.module('dogToolApp')
       */
     var getJobType = function(dataObject, title){
       FactoryJob.get(dataObject.Jobs[0].id).success(function(data){
-        console.log(data);
-        AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name);
+        AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name, data.id);
       });
     };
 
@@ -203,13 +205,15 @@ angular.module('dogToolApp')
      * @param {[type]} data  [description]
      * @param {[type]} title [description]
      */
-    var AddtoCalendar = function(data, title){
+    var AddtoCalendar = function(data, title, id){
       $scope.calendarData.push({
         title: title,
         start: new Date(data.StartDate),
         end: new Date(data.EndDate),
         allDay: data.IsAllDay,
-        id: data.id
+        jobId: id,
+        id: data.id,
+        stick: true
       }); 
     }
 
