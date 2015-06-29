@@ -26,11 +26,6 @@ angular.module('dogToolApp')
     $scope.hstep = 1;
     $scope.mstep = 15;
 
-    $scope.options = {
-      hstep: [1, 2, 3],
-      mstep: [1, 5, 10, 15, 25, 30]
-    };
-
     $scope.ismeridian = true;
     $scope.toggleMode = function() {
       $scope.ismeridian = ! $scope.ismeridian;
@@ -71,13 +66,29 @@ angular.module('dogToolApp')
       $location.url('/jobs');
     };
 
+    /**
+     * [CreateBooking description]
+     */
     $scope.CreateBooking = function(){
       $('#calendar-event').modal('hide');
+      
+      var startDay = $scope.startTime;
+      startDay.setHours(startDay.getHours() + 4);
+
+      var endDay = $scope.endTime;
+      endDay.setHours(endDay.getHours() + 4);
       $timeout(function(){
-        $location.url('/jobs/new')
+        $location.url('/jobs/new/' 
+          + encodeURI(startDay) 
+          +'/'+ encodeURI(endDay));
       },350)
     }
 
+    /**
+     * [CreateEvent description]
+     * @param {[type]} startDate [description]
+     * @param {[type]} endDate   [description]
+     */
     var CreateEvent = function(startDate, endDate){
       $scope.day = startDate;
 
@@ -107,7 +118,6 @@ angular.module('dogToolApp')
       var endDay = $scope.endDay.toDate();
       endDay.setHours(endDay.getHours() + 4);
 
-      console.log(startDay);
       factoryCalendar.post({
         StartDate: startDay,
         EndDate: endDay,
@@ -175,6 +185,12 @@ angular.module('dogToolApp')
      * End calendar controls
      */
 
+     /**
+      * [getJobType description]
+      * @param  {[type]} dataObject [description]
+      * @param  {[type]} title      [description]
+      * @return {[type]}            [description]
+      */
     var getJobType = function(dataObject, title){
       FactoryJob.get(dataObject.Jobs[0].id).success(function(data){
         console.log(data);
@@ -182,6 +198,11 @@ angular.module('dogToolApp')
       });
     };
 
+    /**
+     * [AddtoCalendar description]
+     * @param {[type]} data  [description]
+     * @param {[type]} title [description]
+     */
     var AddtoCalendar = function(data, title){
       $scope.calendarData.push({
         title: title,
@@ -192,6 +213,10 @@ angular.module('dogToolApp')
       }); 
     }
 
+    /**
+     * [init description]
+     * @return {[type]} [description]
+     */
     var init = function(){
       factoryCalendar.getAll().success(function(data){
         for (var i = data.length - 1; i >= 0; i--) {

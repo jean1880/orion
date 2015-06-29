@@ -68,10 +68,13 @@
           <h3 class="panel-title">Time:</h3>
         </div>
         <div class="panel-body">
-          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12" >
             <label for="jobStart" class="control-label">Booking Start Date:</label>
             <br/>
-            <datetimepicker id="jobStart" class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" show-weeks="true" hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.StartDate" show-meridian="true" date-format="dd-MMM-yyyy" date-options="dateOptions" readonly-time="false"></datetimepicker>
+            <div class="form-group">
+              <input type="date" class="form-control" ng-model="booking.Calendars.StartDate">
+              <timepicker hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.StartDate" show-meridian="ismeridian"></timepicker>
+            </div>
             <label for="setAllDay" class="control-label">All Day Booking: </label>
             <div class="pull-right">
               <input bs-switch class="pull-right" id="setAllDay" name="setAllDay" type="checkbox" ng-model="booking.Calendars.IsAllDay" switch-on-text="YES" switch-off-text="NO" />
@@ -79,8 +82,11 @@
           </div>
           <div ng-hide="booking.Calendars.IsAllDay" class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
             <label for="jobEnd" class="control-label">Booking End Date:</label>
-            <br/>
-            <datetimepicker id="jobEnd" class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" show-weeks="true" hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.EndDate" show-meridian="true" date-format="dd-MMM-yyyy" date-options="dateOptions" readonly-time="false"></datetimepicker>
+            <br/>            
+            <div class="form-group">
+              <input type="date" ng-model="booking.Calendars.EndDate" class="form-control">
+              <timepicker hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.EndDate" show-meridian="ismeridian"></timepicker>
+            </div>
           </div>
         </div>
       </div>

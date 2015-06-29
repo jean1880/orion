@@ -8,7 +8,10 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog, flash, FactoryJob, FactoryJobType, $window, $rootScope, HelperService) {
+  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog, 
+    flash, FactoryJob, FactoryJobType, 
+    $window, $rootScope, HelperService,
+    $routeParams) {
 
     $scope.pageType = "Create ";
     $scope.selectedJobType;
@@ -27,14 +30,37 @@ angular.module('dogToolApp')
         City: ' '
       },
       Calendars: {
-        StartDate: new Date(),
-        EndDate: new Date(),
+        StartDate: null,
+        EndDate: null,
         IsAllDay: false
       }
     };
     $scope.submitted = false;
 
+    /**
+     * Rounds the date to the bottom, or top of the hour
+     * @param  {object} date new date object
+     * @return {object}      Modified date object
+     */
+    var roundHour = function(date, topOfTheHour){
+      date.setSeconds(0);
+      date.setMinutes(0);
+      if(topOfTheHour){
+        date.setHours(date.getHours() + 1);
+      }
+      console.log(date);
+      return date;
+    };
+
+    var LoadDate = function(){
+      $scope.booking.Calendars.StartDate = $routeParams.startDate ? new Date(decodeURI($routeParams.startDate)) : new Date();
+      $scope.booking.Calendars.EndDate = $routeParams.endDate ? new Date(decodeURI($routeParams.endDate)) : new Date();
+      $scope.booking.Calendars.StartDate = roundHour($scope.booking.Calendars.StartDate);
+      $scope.booking.Calendars.EndDate = roundHour($scope.booking.Calendars.EndDate, true);
+    };
+
     var init = function () {
+      LoadDate();
       loadAllDogs();
     };
 
@@ -45,8 +71,6 @@ angular.module('dogToolApp')
      *
      */
     var removeDuplicate = function (obj) {
-      console.log(obj);
-      console.log($scope.addedDogUI);
       var doglistArray = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
       return (doglistArray.indexOf(obj.id) == -1);
     };
@@ -57,13 +81,9 @@ angular.module('dogToolApp')
       showWeeks: false
     };
 
+    $scope.ismeridian = true;
     $scope.hourStep = 1;
-    $scope.minuteStep = 1;
-
-    $scope.timeOptions = {
-      hourStep: [1, 2, 3],
-      minuteStep: [1, 5, 10, 15, 25, 30]
-    };
+    $scope.minuteStep = 15;
 
     /**
      * @method loadAllDogs
@@ -81,15 +101,15 @@ angular.module('dogToolApp')
           $scope.dogs = response;
           FactoryJobType.getAll()
             .success(function (response) {
-              console.log(response);
               $scope.jobTypes = response;
             })
             .error(function () {
               flash.error = 'An error occured while loading job types.';
             });
-          if ($rootScope.bookingLog != null && $rootScope.bookingLog.id == null) {
+          if ($rootScope.bookingLog != null 
+            && $rootScope.bookingLog.id == null) {
             $scope.booking = $rootScope.bookingLog;
-            
+            LoadDate();
           } else {
             $rootScope.bookingLog = $scope.booking;
           }
