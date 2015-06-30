@@ -62,7 +62,7 @@
             </div>
             <div class="form-group" ng-class="{'has-error':addExpenseForm.cost.$touched && (addExpenseForm.cost.$error.required || addExpenseForm.cost.$error.pattern)}">
               <label for="cost">Expense Cost</label>
-              <input type="text" class="form-control" ng-model="newExpense.Cost" name="cost" pattern='^(\${0,1}\d*\.{0,1}\d{0,2})' required/>
+              <input type="text" class="form-control" ng-model="newExpense.Cost" name="cost" pattern='^(\d*\.{0,1}\d{0,2})' required/>
               <div ng-show="addExpenseForm.cost.$touched && addExpenseForm.cost.$error.required">
                 <span class="text-danger">Expense Cost is required</span>
               </div>
