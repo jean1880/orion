@@ -39,39 +39,42 @@
         </div>
         <div ng-show="addingExpense">
           <form name="addExpenseForm" ng-submit="saveExpense()" novalidate>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':addExpenseForm.name.$touched && addExpenseForm.name.$error.required}">
               <label for="name">Expense Name</label>
               <input type="text" class="form-control" ng-model="newExpense.Name" name="name" required/>
               <div ng-show="addExpenseForm.name.$touched && addExpenseForm.name.$error.required">
-                <span>Expense Name is required</span>
+                <span class="text-danger">Expense Name is required</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':addExpenseForm.type.$touched && addExpenseForm.type.$error.required}">
               <label for="type">Expense Type</label>
               <input type="text" class="form-control" ng-model="newExpense.Type" name="type" required/>
               <div ng-show="addExpenseForm.type.$touched && addExpenseForm.type.$error.required">
-                <span>Expense Type is required</span>
+                <span class="text-danger">Expense Type is required</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':addExpenseForm.description.$touched && addExpenseForm.description.$error.required}">
               <label for="description">Expense Description</label>
               <input type="text" class="form-control" ng-model="newExpense.Description" name="description" required/>
               <div ng-show="addExpenseForm.description.$touched && addExpenseForm.description.$error.required">
-                <span>Expense Description is required</span>
+                <span class="text-danger">Expense Description is required</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':addExpenseForm.cost.$touched && (addExpenseForm.cost.$error.required || addExpenseForm.cost.$error.pattern)}">
               <label for="cost">Expense Cost</label>
-              <input type="text" class="form-control" ng-model="newExpense.Cost" name="cost" required/>
+              <input type="text" class="form-control" ng-model="newExpense.Cost" name="cost" pattern='^(\${0,1}\d*\.{0,1}\d{0,2})' required/>
               <div ng-show="addExpenseForm.cost.$touched && addExpenseForm.cost.$error.required">
-                <span>Expense Cost is required</span>
+                <span class="text-danger">Expense Cost is required</span>
+              </div>
+              <div ng-show="addExpenseForm.cost.$touched && addExpenseForm.cost.$error.pattern">
+                <span class="text-danger">Expense Cost can only be numeric and have two decimals</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':addExpenseForm.Date.$touched && addExpenseForm.Date.$error.required}">
               <label for="date">Expenditure Date</label>
-              <input type="date" class="form-control" ng-model="newExpense.Date" name="date" required/>
+              <input type="date" class="form-control" ng-model="newExpense.Date" name="date"  required/>
               <div ng-show="addExpenseForm.date.$touched && addExpenseForm.date.$error.required">
-                <span>Expenditure Date is required</span>
+                <span class="text-danger">Expenditure Date is required</span>
               </div>
             </div>
             <div class="pull-right">
@@ -106,56 +109,53 @@
 
         <div ng-show="editingInfo" >
           <form name="businessInfoForm" ng-submit="saveInfo()" novalidate>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':businessInfoForm.businessName.$touched && businessInfoForm.businessName.$error.required}">
               <label for="businessName">Business Name</label>
               <input type="text" class="form-control" ng-model="editedInfo.BusinessName" name="businessName" required/>
               <div ng-show="businessInfoForm.businessName.$dirty && businessInfoForm.businessName.$error.required">
-                <span>Business Name is Required</span>
+                <span class="text-danger">Business Name is Required</span>
               </div>
             </div>            
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':businessInfoForm.businessStreet.$touched && businessInfoForm.businessStreet.$error.required}">
               <label for="businessStreet">Street</label>
               <input type="text" class="form-control" ng-model="editedInfo.Address.Street" name="businessStreet" required/>
               <div ng-show="businessInfoForm.businessStreet.$dirty && businessInfoForm.businessStreet.$error.required">
-                <span>Street Address is Required</span>
+                <span class="text-danger">Street Address is Required</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':businessInfoForm.businessStreet.$touched && businessInfoForm.businessStreet.$error.required}">
               <label for="businessCity">City</label>
               <input type="text" class="form-control" ng-model="editedInfo.Address.City" name="businessCity" required/>
               <div ng-show="businessInfoForm.businessCity.$dirty && businessInfoForm.businessCity.$error.required">
-                <span>City is Required</span>
+                <span class="text-danger">City is Required</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':businessInfoForm.businessProvince.$touched && businessInfoForm.businessProvince.$error.required}">
               <label for="businessProvince">Province</label>
               <input type="text" class="form-control" ng-model="editedInfo.Address.Province" name="businessProvince" required/>
               <div ng-show="businessInfoForm.businessProvince.$dirty && businessInfoForm.businessProvince.$error.required">
-                <span>Province is Required</span>
+                <span class="text-danger">Province is Required</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':businessInfoForm.businessPostalCode.$touched && businessInfoForm.businessPostalCode.$error.required}">
               <label for="businessPostalCode">Postal Code</label>
               <input type="text" class="form-control" ng-model="editedInfo.Address.PostalCode" name="businessPostalCode" required/>
               <div ng-show="businessInfoForm.businessPostalCode.$dirty && businessInfoForm.businessPostalCode.$error.required">
-                <span>Postal Code is Required</span>
+                <span class="text-danger">Postal Code is Required</span>
               </div>
             </div>
-            <div class="form-group">
-              <label for="businessName">Phone</label>
+            <div class="form-group" ng-class="{'has-error':businessInfoForm.businessPhone.$touched && businessInfoForm.businessPhone.$error.required}">
+              <label for="businessPhone">Phone</label>
               <input type="text" class="form-control" ng-model="editedInfo.Phone" name="businessPhone" required/>
               <div ng-show="businessInfoForm.businessPhone.$dirty && businessInfoForm.businessPhone.$error.required">
-                <span>Phone Number is Required</span>
+                <span class="text-danger">Phone Number is Required</span>
               </div>
             </div> 
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':businessInfoForm.businessEmail.$touched && businessInfoForm.businessEmail.$error.required}">
               <label for="businessName">Email</label>
               <input type="email" class="form-control" ng-model="editedInfo.Email" name="businessEmail" required/>
-              <div ng-show="businessInfoForm.businessName.$dirty && businessInfoForm.businessName.$error.required">
-                <span>Business Email is Required</span>
-              </div>
-              <div ng-show="businessInfoForm.businessEmail.$dirty && businessInfoForm.businessEmail.$error.email">
-                <span>Business Name is Required</span>
+              <div ng-show="businessInfoForm.businessEmail.$dirty && businessInfoForm.businessEmail.$error.required">
+                <span class="text-danger">Business Email is Required</span>
               </div>
              </div>
               <div class="pull-right">
