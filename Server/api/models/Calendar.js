@@ -22,8 +22,7 @@ module.exports = {
             model: 'note'
         },
         EndDate: {
-            type: 'datetime',
-            required: true
+            type: 'datetime'
         },
         IsAllDay:{
             type: 'boolean'

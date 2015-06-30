@@ -62,11 +62,20 @@ angular.module('dogToolApp')
     * Goes to the jobs for the day
     * @param {Object} date Moment.js date object
     */
-    var GotoDay = function(date){
-      console.log(date);
+    var GotoJob = function(date){
       if(date.jobId){
         $location.url('/jobs/' + date.jobId);
       }
+    };
+
+    /**
+    * Goes to the jobs for the day
+    * @param {Object} date Moment.js date object
+    */
+    $scope.GotoDay = function(){
+      var startDay = $scope.startTime;
+      startDay.setHours(startDay.getHours() + 4)
+      $location.url('/jobs/day/' + encodeURI(startDay));
     };
 
     /**
@@ -75,11 +84,12 @@ angular.module('dogToolApp')
     $scope.CreateBooking = function(){
       $('#calendar-event').modal('hide');
       
-      var startDay = $scope.startTime;
+      var startDay = new Date($scope.startTime.valueOf());
       startDay.setHours(startDay.getHours() + 4);
 
-      var endDay = $scope.endTime;
+      var endDay = new Date($scope.endTime.valueOf());
       endDay.setHours(endDay.getHours() + 4);
+
       $timeout(function(){
         $location.url('/jobs/new/' 
           + encodeURI(startDay) 
@@ -147,9 +157,14 @@ angular.module('dogToolApp')
      */
     var UpdateEvent = function(event){
       console.log(event);
+      var endDay = event.end ? event.end.toDate() : null;
+      var startDay = event.start.toDate();
+      if(!endDay){
+        startDay.setHours(startDay.getHours() + 4);
+      }
       factoryCalendar.update({
         StartDate: event.start.toDate(),
-        EndDate: event.end.toDate(),
+        EndDate: endDay,
         id: event.id
       })
     }
@@ -177,7 +192,7 @@ angular.module('dogToolApp')
           right: 'month, agendaWeek, agendaDay'
         },
         select: SelectDateRange,
-        eventClick: GotoDay,
+        eventClick: GotoJob,
         dayClick: CreateEvent,
         timezone: 'local',
         eventResize: UpdateEvent,
