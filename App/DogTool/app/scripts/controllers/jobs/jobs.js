@@ -35,22 +35,24 @@ angular.module('dogToolApp')
 
 	var FetchDateEvents = function(){
 		var start = new Date($scope.date.valueOf());
-		start.setHours(start.getHours() - (start.getHours() - 24));
-		factoryCalendar.find({
-			StartDate: {
-				'<=': start
-			},
-			or: [
-				{
-					IsAllDay: true
+		start.setDate(start.getDate()+1);
+		start.setHours(0);
+		start.setMinutes(0);
+
+		var end = new Date($scope.date.valueOf());
+		end.setHours(0);
+		end.setMinutes(0);
+
+		
+		factoryCalendar.find({ // this will need to be rewworked for all day events not tied toa job
+				StartDate: {
+					'<=': start
 				},
-				{
-					EndDate: {
-						'>=': $scope.date
-					}
+				EndDate: {
+					'>=': end
 				}
-			]
 		}).success(function(data){
+			console.log(data);
 			$scope.events = data;
 			var ids = [];
 			for(var i = 0; i < $scope.events.length; i++){

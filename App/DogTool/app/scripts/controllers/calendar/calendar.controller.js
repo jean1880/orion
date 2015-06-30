@@ -84,11 +84,12 @@ angular.module('dogToolApp')
     $scope.CreateBooking = function(){
       $('#calendar-event').modal('hide');
       
-      var startDay = $scope.day;
+      var startDay = new Date($scope.startTime.valueOf());
       startDay.setHours(startDay.getHours() + 4);
 
-      var endDay = $scope.endTime;
+      var endDay = new Date($scope.endTime.valueOf());
       endDay.setHours(endDay.getHours() + 4);
+
       $timeout(function(){
         $location.url('/jobs/new/' 
           + encodeURI(startDay) 
