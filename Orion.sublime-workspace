@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"min",
+				"min-height"
+			],
+			[
+				"scop",
+				"$scope	AngularJS"
+			],
+			[
+				"time",
+				"$timeout	AngularJS"
+			],
+			[
+				"tim",
+				"$timeout	AngularJS"
+			],
+			[
 				"ng-cl",
 				"ng-click	AngularJS"
 			],
@@ -40,26 +56,50 @@
 	"buffers":
 	[
 		{
+			"file": "Server/api/models/Job.js",
+			"settings":
+			{
+				"buffer_size": 718,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "App/DogTool/app/scripts/controllers/calendar/calendar.controller.js",
 			"settings":
 			{
-				"buffer_size": 2584,
+				"buffer_size": 5398,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "App/DogTool/app/styles/fullCalendar.css",
+			"file": "Server/api/models/Note.js",
 			"settings":
 			{
-				"buffer_size": 91,
+				"buffer_size": 543,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "App/DogTool/app/index.html",
+			"file": "App/DogTool/app/scripts/services/sailsroute.js",
 			"settings":
 			{
-				"buffer_size": 7982,
+				"buffer_size": 1252,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Server/config/policies.js",
+			"settings":
+			{
+				"buffer_size": 1281,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Server/api/models/Calendar.js",
+			"settings":
+			{
+				"buffer_size": 680,
 				"line_ending": "Unix"
 			}
 		},
@@ -67,7 +107,7 @@
 			"file": "App/DogTool/app/views/calendar/view.html",
 			"settings":
 			{
-				"buffer_size": 1503,
+				"buffer_size": 2699,
 				"line_ending": "Unix"
 			}
 		},
@@ -75,7 +115,7 @@
 			"file": "App/DogTool/app/scripts/app.js",
 			"settings":
 			{
-				"buffer_size": 3144,
+				"buffer_size": 4353,
 				"line_ending": "Unix"
 			}
 		}
@@ -112,7 +152,7 @@
 				"View: Toggle Menu"
 			]
 		],
-		"width": 571.0
+		"width": 526.0
 	},
 	"console":
 	{
@@ -137,11 +177,48 @@
 		"/home/jdesroches/Documents/github/Orion/App",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool/app",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/calendar",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/directives",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/dog",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/jobs",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/people",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/directives",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/services",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/styles",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views/calendar"
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views/calendar",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views/job",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/test",
+		"/home/jdesroches/Documents/github/Orion/Server",
+		"/home/jdesroches/Documents/github/Orion/Server/api",
+		"/home/jdesroches/Documents/github/Orion/Server/api/controllers",
+		"/home/jdesroches/Documents/github/Orion/Server/api/models",
+		"/home/jdesroches/Documents/github/Orion/Server/config"
 	],
 	"file_history":
 	[
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/jobs/jobs-new.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/jobs/jobs.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/jobs/jobs-edit.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/services/factory-calendar.js",
+		"/home/jdesroches/Documents/github/Orion/Server/api/models/Calendar.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/index.html",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/styles/fullCalendar.custom.css",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/services/sailsroute.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/services/factorynote.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/services/fullcalendar.modified.js.backup",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/app.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/scripts/controllers/jobs.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views/job/job-list.html",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/config.js",
+		"/home/jdesroches/Documents/github/Orion/Server/config/local.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/bower.json",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/test/karma.conf.js",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/styles/fullCalendar.css",
+		"/home/jdesroches/Documents/github/Orion/App/DogTool/bower_components/fullcalendar/dist/fullcalendar.modified.js",
+		"/home/jdesroches/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool/bower_components/fullcalendar/dist/fullcalendar.js",
 		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/styles/theme.css",
 		"/home/jdesroches/Documents/github/Trumatch/Server/api/controllers/QuoteController.js",
@@ -156,7 +233,6 @@
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/app/config.js",
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/app/products/products-filter.html",
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/app/products/products.controller.js",
-		"/home/jdesroches/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/app/products/productInfo/productInfo.html",
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/app/cart/cart.html",
 		"/home/jdesroches/Documents/github/Trumatch/Server/api/controllers/CartController.js",
@@ -167,7 +243,6 @@
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/index.html",
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/app/index.scss",
 		"/home/jdesroches/Documents/github/Trumatch/Client/src/app/cart/cart-confirmation/cart-confirmation.controller.js",
-		"/home/jdesroches/Documents/github/Orion/App/DogTool/app/views/job/job-list.html",
 		"/home/jdesroches/Documents/github/weatherApp/Gruntfile.js"
 	],
 	"find":
@@ -186,6 +261,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"factoryJob",
+			"scrollerEl",
+			"fc-time-grid-c",
+			"height",
+			"669",
+			"job",
 			":focus",
 			":active",
 			"fc-button",
@@ -198,6 +279,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"Calendar"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -208,118 +290,59 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "App/DogTool/app/scripts/controllers/calendar/calendar.controller.js",
+					"file": "Server/api/models/Job.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2584,
+						"buffer_size": 718,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2184,
-								2184
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript Ultimate/JavaScript (DOM).tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1584.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "App/DogTool/app/styles/fullCalendar.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 91,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								91,
-								91
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "App/DogTool/app/index.html",
+					"buffer": 1,
+					"file": "App/DogTool/app/scripts/controllers/calendar/calendar.controller.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7982,
+						"buffer_size": 5398,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1071,
-								1071
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 66.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "App/DogTool/app/views/calendar/view.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1503,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								445,
-								445
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript Ultimate/JavaScript (DOM).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -331,20 +354,50 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "App/DogTool/app/scripts/app.js",
-					"semi_transient": false,
+					"buffer": 2,
+					"file": "Server/api/models/Note.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 3144,
+						"buffer_size": 543,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3139,
-								3139
+								465,
+								465
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript Ultimate/JavaScript (DOM).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 132.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "App/DogTool/app/scripts/services/sailsroute.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1252,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								526,
+								526
 							]
 						],
 						"settings":
@@ -354,10 +407,130 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2376.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Server/config/policies.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1281,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1211,
+								1211
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript Ultimate/JavaScript (DOM).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 396.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Server/api/models/Calendar.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 680,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								488,
+								488
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript Ultimate/JavaScript (DOM).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 132.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "App/DogTool/app/views/calendar/view.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2699,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "App/DogTool/app/scripts/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4353,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1944,
+								1944
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript Ultimate/JavaScript (DOM).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1386.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -406,7 +579,7 @@
 	"project": "Orion.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 81.0
 	},
 	"save_all_on_build": true,
 	"select_file":

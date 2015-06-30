@@ -29,6 +29,12 @@ module.exports = {
         },
         Address: {
             model: 'address'
-        }
+        },
+		Phone: {
+			type: 'string'
+		},
+		Email: {
+			type: 'string'
+		}
     }
 };

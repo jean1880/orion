@@ -26,11 +26,6 @@ angular.module('dogToolApp')
     $scope.hstep = 1;
     $scope.mstep = 15;
 
-    $scope.options = {
-      hstep: [1, 2, 3],
-      mstep: [1, 5, 10, 15, 25, 30]
-    };
-
     $scope.ismeridian = true;
     $scope.toggleMode = function() {
       $scope.ismeridian = ! $scope.ismeridian;
@@ -67,17 +62,46 @@ angular.module('dogToolApp')
     * Goes to the jobs for the day
     * @param {Object} date Moment.js date object
     */
-    var GotoDay = function(date){
-      $location.url('/jobs');
+    var GotoJob = function(date){
+      if(date.jobId){
+        $location.url('/jobs/' + date.jobId);
+      }
     };
 
+    /**
+    * Goes to the jobs for the day
+    * @param {Object} date Moment.js date object
+    */
+    $scope.GotoDay = function(){
+      var startDay = $scope.startTime;
+      startDay.setHours(startDay.getHours() + 4)
+      $location.url('/jobs/day/' + encodeURI(startDay));
+    };
+
+    /**
+     * [CreateBooking description]
+     */
     $scope.CreateBooking = function(){
       $('#calendar-event').modal('hide');
+      
+      var startDay = new Date($scope.startTime.valueOf());
+      startDay.setHours(startDay.getHours() + 4);
+
+      var endDay = new Date($scope.endTime.valueOf());
+      endDay.setHours(endDay.getHours() + 4);
+
       $timeout(function(){
-        $location.url('/jobs/new')
+        $location.url('/jobs/new/' 
+          + encodeURI(startDay) 
+          +'/'+ encodeURI(endDay));
       },350)
     }
 
+    /**
+     * [CreateEvent description]
+     * @param {[type]} startDate [description]
+     * @param {[type]} endDate   [description]
+     */
     var CreateEvent = function(startDate, endDate){
       $scope.day = startDate;
 
@@ -107,7 +131,6 @@ angular.module('dogToolApp')
       var endDay = $scope.endDay.toDate();
       endDay.setHours(endDay.getHours() + 4);
 
-      console.log(startDay);
       factoryCalendar.post({
         StartDate: startDay,
         EndDate: endDay,
@@ -134,9 +157,14 @@ angular.module('dogToolApp')
      */
     var UpdateEvent = function(event){
       console.log(event);
+      var endDay = event.end ? event.end.toDate() : null;
+      var startDay = event.start.toDate();
+      if(!endDay){
+        startDay.setHours(startDay.getHours() + 4);
+      }
       factoryCalendar.update({
         StartDate: event.start.toDate(),
-        EndDate: event.end.toDate(),
+        EndDate: endDay,
         id: event.id
       })
     }
@@ -164,7 +192,7 @@ angular.module('dogToolApp')
           right: 'month, agendaWeek, agendaDay'
         },
         select: SelectDateRange,
-        eventClick: GotoDay,
+        eventClick: GotoJob,
         dayClick: CreateEvent,
         timezone: 'local',
         eventResize: UpdateEvent,
@@ -175,23 +203,39 @@ angular.module('dogToolApp')
      * End calendar controls
      */
 
+     /**
+      * [getJobType description]
+      * @param  {[type]} dataObject [description]
+      * @param  {[type]} title      [description]
+      * @return {[type]}            [description]
+      */
     var getJobType = function(dataObject, title){
       FactoryJob.get(dataObject.Jobs[0].id).success(function(data){
-        console.log(data);
-        AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name);
+        AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name, data.id);
       });
     };
 
-    var AddtoCalendar = function(data, title){
+    /**
+     * [AddtoCalendar description]
+     * @param {[type]} data  [description]
+     * @param {[type]} title [description]
+     */
+    var AddtoCalendar = function(data, title, id){
       $scope.calendarData.push({
         title: title,
         start: new Date(data.StartDate),
         end: new Date(data.EndDate),
         allDay: data.IsAllDay,
-        id: data.id
+        jobId: id,
+        id: data.id,
+        stick: true
       }); 
     }
 
+    /**
+     * [init description]
+     * @return {[type]} [description]
+     */
     var init = function(){
       factoryCalendar.getAll().success(function(data){
         for (var i = data.length - 1; i >= 0; i--) {
