@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('HomeworkNewCtrl', function ($scope, $location, FactoryDog, FactoryHomework, flash,$rootScope,HelperService) {
+  .controller('HomeworkNewCtrl', function ($scope, $location, FactoryDog, FactoryHomework, flash,$rootScope,HelperService,$window) {
     $scope.hstep=1;
     $scope.mstep=10;
     $scope.ismeridian =true;
@@ -74,6 +74,7 @@ angular.module('dogToolApp')
             .success(function (res){
             $rootScope.HomeworkSubmitted = true;
             console.log("success");
+            $window.location.href = "#/homework/" + res.id;
           })
             .error(function(err){
             console.log(err);
