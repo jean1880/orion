@@ -8,9 +8,9 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('HomeworkNewCtrl', function ($scope, $location, FactoryDog, FactoryHomework, flash,$rootScope) {
+  .controller('HomeworkNewCtrl', function ($scope, $location, FactoryDog, FactoryHomework, flash,$rootScope,HelperService) {
     $scope.hstep=1;
-    $scope.mstep=15;
+    $scope.mstep=10;
     $scope.ismeridian =true;
     $scope.addedDogUI=[];
     var init = function() {
@@ -61,16 +61,23 @@ angular.module('dogToolApp')
   
     $scope.submitHomework = function (isValid)
     {
+      console.log(isValid);
       $scope.submitted = true;
       if(isValid)
       {
-        if (Homework.Title != "" && Homework.Description !="")
+        console.log($scope.Homework);
+        if ($scope.Homework.Title != "" && $scope.Homework.Description !="")
         {
-          FactoryHomework.post(Homework)
+          console.log("Send Homework");
+          $scope.Homework.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
+          FactoryHomework.post($scope.Homework)
             .success(function (res){
             $rootScope.HomeworkSubmitted = true;
+            console.log("success");
           })
-            .error(function(err){});
+            .error(function(err){
+            console.log(err);
+          });
         }
       }
     };

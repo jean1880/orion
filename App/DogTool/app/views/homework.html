@@ -1,5 +1,5 @@
 <h1>Homework: {{Homework.Title}}</h1>
-<form>
+<form id="homeworkForm" name="homeworkForm">
   <div id="homeworkTextArea" class="col-sm-6 col-xs-12">
     <div class="panel  panel-primary">
       <div class="panel-heading">
@@ -8,13 +8,13 @@
       <div class="panel-body">
         <div class="input-group col-xs-12" ng-class="{'has-error':homeworkTitle.$invalid && submitted}">
           <label for="homeworkTitle" class="control-label">Homework : </label>
-          <input id="homeworkTitle" name="homeworkTitle" class="form-control" type="text" ng-model="homeworkTitle" placeholder="Unnamed" required/>
+          <input id="homeworkTitle" name="homeworkTitle" class="form-control" type="text" ng-model="Homework.Title" placeholder="Unnamed" required/>
         </div>
-        <div class="input-group ">
+        <div class="form-group ">
           <label for="homeworkDescription">Homework Description:</label>
-          <textarea id="homeworkDescription" ng-model="homeworkDescription" class="form-control" placeholder="Homework Description" required/>
+          <textarea id="homeworkDescription" ng-model="Homework.Description" class="form-control" placeholder="Homework Description" required/>
         </div>
-        <button class="btn btn-primary">Update Homework</button>
+        <button class="btn btn-primary pull-right" ng-click="submitHomework(homeworkForm.$valid)">Update Homework</button>
       </div>
     </div>
   </div>
@@ -49,14 +49,12 @@
           <label for="homeworkStart" class="control-label">Homework Assigned Date:</label>
           <br/>
           <input type="date" ng-model="Homework.StartDate" class="form-control" id="homeworkStart" />
-          <timepicker ng-model="Homework.StartDate" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 
         </div>
         <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
           <label for="homeworkEnd" class="control-label">Homework Due Date:</label>
           <br/>
           <input type="date" ng-model="Homework.EndDate" class="form-control" id="homeworkEnd" />
-          <timepicker ng-model="Homework.EndDate" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
         </div>
       </div>
     </div>
