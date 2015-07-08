@@ -129,6 +129,11 @@ angular
         controller: 'BusinessinfoCtrl'
       })
 
+      .when('/invoice', {
+        templateUrl: 'views/invoice.html',
+        controller: 'InvoiceCtrl',
+        controllerAs: 'invoice'
+      })
       .otherwise({
         redirectTo: '/'
       });
