@@ -20,11 +20,11 @@ module.exports = {
 			type: 'string',
 			required: true
 		},
-		Service{
+		Service: {
 			model: 'service'
 		},
-		Quantity{
-			type: 'int'
+		Quantity: {
+			type: 'int',
 			required: true
 		},
 		StartDate: {
@@ -35,7 +35,7 @@ module.exports = {
 			type: 'datetime',
 			required: true
 		},
-		Price{
+		Price: {
 			type: 'float',
 			required: true
 		}
