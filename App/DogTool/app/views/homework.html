@@ -1,89 +1,118 @@
-<h1>Homework: {{Homework.Title}}</h1>
-<form id="homeworkForm" name="homeworkForm">
-  <div id="homeworkTextArea" class="col-sm-6 col-xs-12">
-    <div class="panel  panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Homework Title and Description:</h3>
-      </div>
-      <div class="panel-body">
-        <div class="input-group col-xs-12" ng-class="{'has-error':homeworkTitle.$invalid && submitted}">
-          <label for="homeworkTitle" class="control-label">Homework : </label>
-          <input id="homeworkTitle" name="homeworkTitle" class="form-control" type="text" ng-model="Homework.Title" placeholder="Unnamed" required/>
-        </div>
-        <div class="form-group ">
-          <label for="homeworkDescription">Homework Description:</label>
-          <textarea id="homeworkDescription" ng-model="Homework.Description" class="form-control" placeholder="Homework Description" required/>
-        </div>
-        <button class="btn btn-primary pull-right" ng-click="submitHomework(homeworkForm.$valid)">Update Homework</button>
+<div class="visible-print-block">
+  <h2 class="text-center">{{Homework.Title}}</h2>
+  <h5>Date Assigned: {{Homework.StartDate|date:'fullDate'}}</h5>
+  <h5>Date Due: {{Homework.EndDate|date:'fullDate'}}</h5>
+  <h4 ng-show="addedDogUI.length>0">For Dog(s)</h4>
+  <h4 ng-show="addedDogUI.length==0" class="text-danger">No Dogs Added</h4>
+  <p ng-if="addedDogUI.length==0 && submitted" class="text-danger">Please add a dog.</p>
+  <div class="col-xs-12 col-lg-12">
+    <div ng-repeat="dogInPrint in addedDogUI | orderBy:'Name' track by $index" class="">
+      <div class="col-xs-3">
+        <h6 class="text-center">{{dogInPrint.Name}}</h6>
+        <img ng-src="{{dogInPrint.photoURL || '/images/no-dog-image.jpg'}}" alt="{{dogInPrint.Name}}" />
       </div>
     </div>
   </div>
 
-  <div id="addedDogArea" class="col-sm-6 col-xs-12">
-    <div class="panel  panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Added Dog(s) to Homework</h3>
+  <h4 class="">Description:</h4>
+  <p>{{Homework.Description}}</p>
+  <div ng-if="Homework.Notes.length>0">
+    <h4>Notes:</h4>
+    <div ng-repeat="printNote in Homework.Notes" class="col-xs-12">
+      <h6>{{printNote.Title}}</h6>
+      <p>{{printNote.Content}}</p>
+    </div>
+  </div>
+</div>
+<div class="hidden-print">
+  <h1>Homework: {{Homework.Title}}</h1>
+  <form id="homeworkForm" name="homeworkForm">
+    <div id="homeworkTextArea" class="col-sm-6 col-xs-12">
+      <div class="panel  panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Homework Title and Description:</h3>
+        </div>
+        <div class="panel-body">
+          <div class="input-group col-xs-12" ng-class="{'has-error':homeworkTitle.$invalid && submitted}">
+            <label for="homeworkTitle" class="control-label">Homework : </label>
+            <input id="homeworkTitle" name="homeworkTitle" class="form-control" type="text" ng-model="Homework.Title" placeholder="Unnamed" required/>
+          </div>
+          <div class="form-group ">
+            <label for="homeworkDescription">Homework Description:</label>
+            <textarea id="homeworkDescription" ng-model="Homework.Description" class="form-control" placeholder="Homework Description" required/>
+          </div>
+          <button class="btn btn-primary pull-right" ng-click="submitHomework(homeworkForm.$valid)"><i class="glyphicon glyphicon-floppy-disk"></i> Save Homework</button>
+          <button class="btn btn-primary pull-right" onClick="window.print()"><i class="glyphicon glyphicon-print"></i> Print Homework</button>
+        </div>
       </div>
-      <div class="panel-body">
-        <div class="input-group col-xs-12">
-          <h4 ng-show="addedDogUI.length>0">Dog List</h4>
-          <h4 ng-show="addedDogUI.length==0" ng-class="{'text-danger': addedDogUI.length==0 && submitted}">No Dogs Added</h4>
-          <p ng-if="addedDogUI.length==0 && submitted" class="text-danger">Please add a dog.</p>
-          <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
-            <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="">
-              <dog-card dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
+    </div>
+
+    <div id="addedDogArea" class="col-sm-6 col-xs-12">
+      <div class="panel  panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Added Dog(s) to Homework</h3>
+        </div>
+        <div class="panel-body">
+          <div class="input-group col-xs-12">
+            <h4 ng-show="addedDogUI.length>0">Dog List</h4>
+            <h4 ng-show="addedDogUI.length==0" ng-class="{'text-danger': addedDogUI.length==0 && submitted}">No Dogs Added</h4>
+            <p ng-if="addedDogUI.length==0 && submitted" class="text-danger">Please add a dog.</p>
+            <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
+              <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="">
+                <dog-card dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="homeworkDates" class="col-sm-6 col-xs-12">
-    <div class="panel  panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Dates:</h3>
-      </div>
-      <div class="panel-body">
-        <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
-          <label for="homeworkStart" class="control-label">Homework Assigned Date:</label>
-          <br/>
-          <input type="date" ng-model="Homework.StartDate" class="form-control" id="homeworkStart" />
-
+    <div id="homeworkDates" class="col-sm-6 col-xs-12">
+      <div class="panel  panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dates:</h3>
         </div>
-        <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
-          <label for="homeworkEnd" class="control-label">Homework Due Date:</label>
-          <br/>
-          <input type="date" ng-model="Homework.EndDate" class="form-control" id="homeworkEnd" />
-        </div>
-      </div>
-    </div>
-  </div>
-<div id="notesForHomwork" class="col-sm-6 col-xs-12" >
-  <notes-panel notes="Homework.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Homework Notes'" default-types="['General']"></notes-panel>
-  </div>
+        <div class="panel-body">
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
+            <label for="homeworkStart" class="control-label">Homework Assigned Date:</label>
+            <br/>
+            <input type="date" ng-model="Homework.StartDate" class="form-control" id="homeworkStart" />
 
-  <div id="dogListPanel" class="col-sm-6 col-xs-12">
-    <div class="panel  panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Add Dog(s) to Booking</h3>
-      </div>
-      <div class="panel-body">
-
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch" />
-            <div class="input-group-addon">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </div>
+          </div>
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
+            <label for="homeworkEnd" class="control-label">Homework Due Date:</label>
+            <br/>
+            <input type="date" ng-model="Homework.EndDate" class="form-control" id="homeworkEnd" />
           </div>
         </div>
-
-        <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index" class="">
-          <dog-card dog="dog" btn-Click="addDog(dog)" btn-Text="'Add'"></dog-card>
-        </div>
-
       </div>
     </div>
-  </div>
-</form>
+    <div id="notesForHomwork" class="col-sm-6 col-xs-12">
+      <notes-panel notes="Homework.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Homework Notes'" default-types="['General']"></notes-panel>
+    </div>
+
+    <div id="dogListPanel" class="col-sm-6 col-xs-12">
+      <div class="panel  panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Add Dog(s) to Booking</h3>
+        </div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch" />
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+
+          <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index" class="">
+            <dog-card dog="dog" btn-Click="addDog(dog)" btn-Text="'Add'"></dog-card>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
