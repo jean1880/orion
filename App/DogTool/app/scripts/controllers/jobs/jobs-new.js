@@ -53,10 +53,15 @@ angular.module('dogToolApp')
     };
 
     var LoadDate = function(){
-      $scope.booking.Calendars.StartDate = $routeParams.startDate ? new Date(decodeURI($routeParams.startDate)) : new Date();
-      $scope.booking.Calendars.EndDate = $routeParams.endDate ? new Date(decodeURI($routeParams.endDate)) : new Date();
-      $scope.booking.Calendars.StartDate = roundHour($scope.booking.Calendars.StartDate);
-      $scope.booking.Calendars.EndDate = roundHour($scope.booking.Calendars.EndDate, true);
+      if($routeParams.startDate && $routeParams.endDate){
+        $scope.booking.Calendars.StartDate = new Date(decodeURI($routeParams.startDate));
+        $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.endDate));
+      }else{
+        $scope.booking.Calendars.StartDate = new Date();
+        $scope.booking.Calendars.EndDate = new Date();
+        $scope.booking.Calendars.StartDate = roundHour($scope.booking.Calendars.StartDate);
+        $scope.booking.Calendars.EndDate = roundHour($scope.booking.Calendars.EndDate, true);
+      }
     };
 
     var init = function () {

@@ -43,7 +43,7 @@ module.exports = {
 
         BusinessInfo.count(function (err, num) {
             if(err) {
-                return res.serverError();
+                return res.serverError(err);
             }
 
             if(num >= 1) {
@@ -52,7 +52,7 @@ module.exports = {
             else {
                 BusinessInfo.create(info).exec(function (err, businessInfo) {
                     if(err) {
-                        return res.serverError();
+                        return res.serverError(err);
                     }
 
                     return res.json(businessInfo);

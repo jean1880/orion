@@ -73,8 +73,8 @@ angular.module('dogToolApp')
     * @param {Object} date Moment.js date object
     */
     $scope.GotoDay = function(){
-      var startDay = $scope.startTime;
-      startDay.setHours(startDay.getHours() + 4)
+      var startDay = new Date($scope.startTime.valueOf());
+      startDay.setHours(startDay.getHours() + 4);
       $location.url('/jobs/day/' + encodeURI(startDay));
     };
 
@@ -85,10 +85,10 @@ angular.module('dogToolApp')
       $('#calendar-event').modal('hide');
       
       var startDay = new Date($scope.startTime.valueOf());
-      startDay.setHours(startDay.getHours() + 4);
+      startDay.setHours(startDay.getHours());
 
       var endDay = new Date($scope.endTime.valueOf());
-      endDay.setHours(endDay.getHours() + 4);
+      endDay.setHours(endDay.getHours());
 
       $timeout(function(){
         $location.url('/jobs/new/' 
