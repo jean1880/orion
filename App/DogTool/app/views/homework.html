@@ -6,12 +6,12 @@
   <h4 ng-show="addedDogUI.length==0" class="text-danger">No Dogs Added</h4>
   <p ng-if="addedDogUI.length==0 && submitted" class="text-danger">Please add a dog.</p>
   <div class="col-xs-12 col-lg-12">
-    <div ng-repeat="dogInPrint in addedDogUI | orderBy:'Name' track by $index" class="">
-      <div class="col-xs-3">
-        <h6 class="text-center">{{dogInPrint.Name}}</h6>
-        <img ng-src="{{dogInPrint.photoURL || '/images/no-dog-image.jpg'}}" alt="{{dogInPrint.Name}}" />
-      </div>
-    </div>
+    <ul>
+      <li ng-repeat="dogInPrint in addedDogUI | orderBy:'Name' track by $index" class="">
+      {{dogInPrint.Name}}
+    </li>
+    </ul>
+    
   </div>
 
   <h4 class="">Description:</h4>
@@ -25,8 +25,9 @@
   </div>
 </div>
 <div class="hidden-print">
-  <h1>Homework: {{Homework.Title}}</h1>
-  <form id="homeworkForm" name="homeworkForm">
+  <h1>Homework: {{Homework.Title}} <button class="btn btn-primary pull-right" ng-click="submitHomework(homeworkForm.$valid)"><i class="glyphicon glyphicon-floppy-disk"></i> Save </button>
+          <button class="btn btn-primary pull-right" onClick="window.print()"><i class="glyphicon glyphicon-print"></i> Print</button></h1>
+  <form id="homeworkForm" name="homeworkForm" novalidate>
     <div id="homeworkTextArea" class="col-sm-6 col-xs-12">
       <div class="panel  panel-primary">
         <div class="panel-heading">
@@ -41,8 +42,6 @@
             <label for="homeworkDescription">Homework Description:</label>
             <textarea id="homeworkDescription" ng-model="Homework.Description" class="form-control" placeholder="Homework Description" required/>
           </div>
-          <button class="btn btn-primary pull-right" ng-click="submitHomework(homeworkForm.$valid)"><i class="glyphicon glyphicon-floppy-disk"></i> Save Homework</button>
-          <button class="btn btn-primary pull-right" onClick="window.print()"><i class="glyphicon glyphicon-print"></i> Print Homework</button>
         </div>
       </div>
     </div>
