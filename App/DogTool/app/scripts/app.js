@@ -129,6 +129,10 @@ angular
         controller: 'BusinessinfoCtrl'
       })
 
+      .when('/quote', {
+        templateUrl: 'views/quote.html',
+        controller: 'QuoteCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
