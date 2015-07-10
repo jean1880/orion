@@ -74,6 +74,7 @@ angular.module('dogToolApp')
             .success(function (res){
             $rootScope.HomeworkSubmitted = true;
             console.log("success");
+            flash.success="Homework Saved";
             $window.location.href = "#/homework/" + res.id;
           })
             .error(function(err){

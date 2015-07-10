@@ -89,6 +89,7 @@ angular.module('dogToolApp')
             .success(function (res) {
               $rootScope.HomeworkSubmitted = true;
               console.log("success");
+              flash.success="Homework Saved";
             })
             .error(function (err) {
               console.log(err);
