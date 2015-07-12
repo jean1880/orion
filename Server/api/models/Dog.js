@@ -13,50 +13,64 @@
 
 module.exports = {
 
-    attributes: {
-        Owner: {
-            model: 'people'
-        },
-        Vet: {
-            model: 'people'
-        },
-        EmergencyContact: {
-            model: 'people'
-        },
-        Weights: {
-            collection: 'weight',
-            via: 'Dog'
-        },
-        Name: {
-            type: 'string',
-            required: true
-        },
-        Breed: {
-            type: 'string'
-        },
-        Birthdate: {
-            type: 'date'
-        },
-        Notes: {
-            collection: 'note'
-        },
-        Job: {
-            collection: 'job',
-            via: 'Dogs'
-        },
-        Referral: {
-            model: 'referral'
-        },
-        Homeworks: {
-            collection: 'homework',
-            via: 'Dogs'
-        },
-        PhotoURL: {
-            type: 'text'
-        },
-        PhotoFd:
-        {
-            type: 'text'
-        }
+  attributes: {
+    Owner: {
+      model: 'people',
+      required: true
+    },
+    Vet: {
+      model: 'people'
+    },
+    EmergencyContact: {
+      model: 'people'
+    },
+    Weights: {
+      collection: 'weight',
+      via: 'Dog'
+    },
+    Name: {
+      type: 'string',
+      required: true
+    },
+    Breed: {
+      type: 'string'
+    },
+    Birthdate: {
+      type: 'date'
+    },
+    Notes: {
+      collection: 'note'
+    },
+    Job: {
+      collection: 'job',
+      via: 'Dogs'
+    },
+    Referral: {
+      model: 'referral'
+    },
+    Homeworks: {
+      collection: 'homework',
+      via: 'Dogs'
+    },
+    PhotoURL: {
+      type: 'text'
+    },
+    PhotoFd: {
+      type: 'text'
+    },
+    Spayed: {
+      type: 'string',
+      defaultsTo: 'unknown'
+    },
+    OnTiters: {
+      type: 'string',
+      defaultsTo: 'unknown'
+    },
+    BehaviourFlag: {
+      model: 'BehaviourFlag'
+    },
+    FoodInfo: {
+      type: 'json'
     }
+  }
 };
