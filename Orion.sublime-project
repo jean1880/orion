@@ -8,9 +8,10 @@
 				"App/DogTool/bower_components"
 			],
 			"path": "."
-		},
-		{
-			"path": "App/DogTool/bower_components"
 		}
-	]
+	],
+	"settings":
+	{
+		"tab_size": 2
+	}
 }

@@ -20,7 +20,16 @@ angular.module('dogToolApp')
      */
     $scope.editInfoBtn = function () {
       $scope.editingInfo = true;
-      $scope.editedDog = angular.copy($scope.dog);
+
+      $scope.editedDog = {
+        id: $scope.dog.id,
+        Name: $scope.dog.Name,
+        Breed: $scope.dog.Breed,
+        Birthdate: $scope.dog.Birthdate,
+        Gender: $scope.dog.Gender,
+        photoURL: $scope.dog.photoURL
+      };
+
       $scope.infoForm.$setDirty(false);
     };
 
@@ -63,7 +72,7 @@ angular.module('dogToolApp')
         FactoryDog.upload(file, $scope.dog).progress(function (evt) {
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
         }).success(function (data) {
-          $scope.dog.photoURL = data.photoURL + '?' + Math.random(1000);
+          $scope.dog.photoURL = $scope.editedDog.photoURL = data.photoURL + '?' + Math.random(1000);
         });
       }
     };
