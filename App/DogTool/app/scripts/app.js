@@ -40,7 +40,7 @@ angular
       .when('/', {
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl',
-        title : 'Dog'
+        title: 'Dog'
       })
       .when('/working', {
         template: '<h1>Working...</h1>'
@@ -128,10 +128,14 @@ angular
         templateUrl: 'views/businessinfo.html',
         controller: 'BusinessinfoCtrl'
       })
+      .when('/library', {
+        templateUrl: 'views/library.html',
+        controller: 'LibraryCtrl'
+      })
 
-      .otherwise({
-        redirectTo: '/'
-      });
+    .otherwise({
+      redirectTo: '/'
+    });
     // set sails server url
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
 
@@ -139,7 +143,7 @@ angular
     jwtInterceptorProvider.authHeader = 'Token';
     jwtInterceptorProvider.authPrefix = '';
     jwtInterceptorProvider.tokenGetter = ['FactoryAuthToken', function (FactoryAuthToken) {
-        return FactoryAuthToken.getToken();
+      return FactoryAuthToken.getToken();
     }];
 
     $httpProvider.interceptors.push('jwtInterceptor');
@@ -152,8 +156,7 @@ angular
       .success(function (res) {
         if (res.valid) {
           $location.url(url);
-        }
-        else {
+        } else {
           FactoryLogin.login()
             .success(function () {
               $location.url(url);

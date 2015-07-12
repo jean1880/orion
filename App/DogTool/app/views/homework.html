@@ -15,12 +15,12 @@
   </div>
 
   <h4 class="">Description:</h4>
-  <p>{{Homework.Description}}</p>
+  <p class="print-whiteSpace">{{Homework.Description}}</p>
   <div ng-if="Homework.Notes.length>0">
     <h4>Notes:</h4>
     <div ng-repeat="printNote in Homework.Notes" class="col-xs-12">
       <h6>{{printNote.Title}}</h6>
-      <p>{{printNote.Content}}</p>
+      <p class="print-whiteSpace">{{printNote.Content}}</p>
     </div>
   </div>
 </div>
