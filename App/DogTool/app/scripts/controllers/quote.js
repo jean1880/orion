@@ -21,8 +21,19 @@ angular.module('dogToolApp')
   
   //-----------------------------------Adding Services---------------------------------------------------------
   $scope.addingService = false;
-  $scope.Services;
+  $scope.Services = {};
   
+  $scope.ServiceList = [
+    {
+        Name: "Daycare",
+        Value: 50.99
+    },
+    {
+        Name: "Bath",
+        Value: 25.99
+    }
+  ];
+    
   $scope.addService = function(){
     $scope.addingService = true;
   };
@@ -37,7 +48,9 @@ angular.module('dogToolApp')
     alert("Saved");
   }
   
-  
+  $scope.saveService = function(){
+    $scope.cancelService();
+  }
   
 });
 
