@@ -21,6 +21,7 @@ angular.module('dogToolApp')
   
   //-----------------------------------Adding Services---------------------------------------------------------
   $scope.addingService = false;
+  $scope.Services;
   
   $scope.addService = function(){
     $scope.addingService = true;
@@ -28,7 +29,16 @@ angular.module('dogToolApp')
   
   $scope.cancelService = function(){
     $scope.addingService = false;
+    $scope.Services = null;
+    $scope.AddServiceForm.$setUntouched();
   };
+  
+  $scope.saveQuote = function(){
+    alert("Saved");
+  }
+  
+  
+  
 });
 
 
