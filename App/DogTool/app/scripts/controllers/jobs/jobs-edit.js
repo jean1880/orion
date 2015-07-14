@@ -54,7 +54,7 @@ angular.module('dogToolApp')
           console.log("Booking Data");
           console.log(res);
           $scope.booking = res;
-          isUpdate = true;
+          $scope.isUpdated = true;
 
           $scope.addedDogUI = res.Dogs;
           $scope.dogs = $scope.dogs.filter(removeDuplicate);
@@ -205,6 +205,15 @@ angular.module('dogToolApp')
       //console.log($scope.booking.Notes);
 
     };
-
+  $scope.removeBooking = function(){
+   
+    FactoryJob.delete($scope.booking.id)
+      .success(function () {
+         flash.error = 'Worked.'
+        })
+        .error(function () {
+          flash.error = 'Failed.';
+        });
+  };
   
   });
