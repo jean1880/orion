@@ -23,11 +23,11 @@ module.exports = {
             via: 'Invoice'
         },
         Job: {
-            model: 'job',
-            via: 'Invoice'
+            model: 'job'
         },
-        Notes: {
-          collection: 'note'
+        IsBill: {
+            type: 'boolean',
+            defaultsTo: false
         }
     }
 };

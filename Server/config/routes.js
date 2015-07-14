@@ -50,7 +50,9 @@ module.exports.routes = {
   'GET  /businessinfo': 'BusinessInfo.find',
   'PUT  /businessinfo': 'BusinessInfo.update',
   'POST /businessinfo': 'BusinessInfo.seed',
-  'POST /login':          'loginController.login',
-  'POST /login/validate': 'loginController.validate'
 
+  'POST /login':          'LoginController.login',
+  'POST /login/validate': 'LoginController.validate',
+
+  'POST /invoice/:id/makeBill': 'InvoiceController.makeBill'
 };
