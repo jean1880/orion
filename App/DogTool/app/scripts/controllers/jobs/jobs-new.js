@@ -62,6 +62,7 @@ angular.module('dogToolApp')
         $scope.booking.Calendars.StartDate = roundHour($scope.booking.Calendars.StartDate);
         $scope.booking.Calendars.EndDate = roundHour($scope.booking.Calendars.EndDate, true);
       }
+    
     };
 
     var init = function () {
@@ -152,6 +153,7 @@ angular.module('dogToolApp')
           });
       }
     };
+ 
     /**
      * @method bookDog
      * @description Adds dogs to the booking list and removes the dogs from the search list (dogs avaliable to be added)

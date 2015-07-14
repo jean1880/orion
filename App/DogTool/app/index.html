@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="styles/fullCalendar-bootstrap.css">
   <link rel="stylesheet" href="styles/fullCalendar.custom.css">
   <link rel="stylesheet" href="styles/directives/notes-panel.css">
+  <link rel="stylesheet" href="styles/behave-flag.css">
   <!-- endbuild -->
 </head>
 
@@ -52,15 +53,11 @@
         <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#/">Dogs</a>
-            </li>
-            <li><a ng-href="#/calendar">Calendar</a>
-            </li>
-            <li><a ng-href="#/businessInfo">Admin</a>
-            </li>
+            <li class="active"><a href="#/">Dogs</a></li>
+            <li><a ng-href="#/calendar">Calendar</a></li>
+            <li><a ng-href="#/businessInfo">Admin</a></li>
             <li><a ng-href="#/jobs">Today</a>
-              <li><a ng-href="#/jobs/new">Jobs</a>
-              </li>
+            <li><a ng-href="#/jobs/new">Jobs</a></li>
           </ul>
         </div>
       </div>
@@ -79,7 +76,7 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <div ng-view=""></div </div>
+            <div ng-view=""></div>
           </div>
         </div>
       </div>
@@ -90,10 +87,6 @@
         <div class="row">
           <div class="col-xs-12 col-lg-10 col-lg-offset-1">
             <small>&copy; copyright 2015 Not Just Kibble</small>
-            <div class="visible-xs-block col-xs-12">Screen size: Extra small</div>
-            <div class="visible-sm-block col-xs-12">Screen size: small</div>
-            <div class="visible-md-block col-xs-12">Screen size: medium</div>
-            <div class="visible-lg-block col-xs-12">Screen size: large</div>
           </div>
         </div>
       </div>
@@ -125,6 +118,7 @@
     <script src="bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
     <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
     <script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
+    <script src="bower_components/angular-truncate/src/truncate.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -147,7 +141,7 @@
     <script src="scripts/services/factory-auth-token.js"></script>
     <script src="scripts/services/factory-jobtype.js"></script>
     <script src="scripts/services/factory-login.js"></script>
-    <script src="scripts/services/factory-homework.js"></script>
+    <script src="scripts/services/factory-behaviour-flag.js"></script>
 
     <!-- Controllers -->
     <script src="scripts/controllers/quote.js"></script>
@@ -168,6 +162,7 @@
     <!-- Directives -->
     <script src="scripts/directives/dog-card.js"></script>
     <script src="scripts/directives/dog-info-panel.js"></script>
+    <script src="scripts/directives/dog-edit-form.js"></script>
     <script src="scripts/directives/person-info.js"></script>
     <script src="scripts/directives/person-panel.js"></script>
     <script src="scripts/directives/person-select-create.js"></script>
