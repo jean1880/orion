@@ -37,6 +37,10 @@ module.exports = {
     Location: {
         model: 'address'
     }
+  }, 
+  beforeDestroy: function(value, callBack){
+   console.log(value);
+   callBack(value);
   }
 };
 

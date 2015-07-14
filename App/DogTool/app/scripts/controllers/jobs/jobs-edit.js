@@ -56,6 +56,7 @@ angular.module('dogToolApp')
           $scope.booking = res;
           $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
           $scope.booking.Calendars.StartDate = new Date($scope.booking.Calendars.StartDate);
+          $scope.isUpdate = true;
 
           $scope.addedDogUI = res.Dogs;
           $scope.dogs = $scope.dogs.filter(removeDuplicate);
@@ -206,4 +207,5 @@ angular.module('dogToolApp')
 
     };
 
+  
   });

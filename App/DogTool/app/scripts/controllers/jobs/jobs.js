@@ -44,7 +44,7 @@ angular.module('dogToolApp')
 		end.setMinutes(0);
 
 		
-		factoryCalendar.find({ // this will need to be rewworked for all day events not tied toa job
+		factoryCalendar.find({ // this will need to be rewworked for all day events not tied to a job
 				StartDate: {
 					'<=': start
 				},
