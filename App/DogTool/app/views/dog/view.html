@@ -2,6 +2,9 @@
   <div class="col-xs-12">
     <h1>
       {{dog.Name}}
+      <small ng-show="dog.Deceased">
+        (Deceased)
+      </small>
     </h1>
     <hr />
   </div>

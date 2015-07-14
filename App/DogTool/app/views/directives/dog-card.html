@@ -1,7 +1,7 @@
 <div class="panel panel-default dog-card" ng-click="gotoDogPage()">
   <div class="panel-heading">
     <div class="text-center">
-      <strong>{{dog.Name}}</strong>
+      <strong>{{dog.Name | characters:25 }}</strong>
     </div>
   </div>
   <div class="panel-body">
@@ -17,6 +17,9 @@
       </div>
       <div class="text-center">
         {{ dog.Owner.Email }}
+      </div>
+      <div class="text-center">
+        <strong>{{ dog.Deceased ? "Deceased" : "&nbsp;" }}</strong>
       </div>
     </div>
     <div ng-show="btnText">
