@@ -1,6 +1,6 @@
-<div class="conatainer">
-  <h1 class="col-lg-12 col-xs-12">{{pageType}}Booking</h1>
-  <div id="newJobFormLocaiton" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12 ">
+<div>
+  <h1 class="col-xs-12">{{pageType}}Booking</h1>
+  <div class="col-sm-6">
     <form id="newBookingForm" name="newBookingForm" ng-submit="createBooking()" novalidate>
 
       <div class="panel  panel-primary">
@@ -23,7 +23,7 @@
             <h4 ng-show="addedDogUI.length==0" ng-class="{'text-danger': booking.Dogs.length==0 && submitted}">No Dogs Added</h4>
             <p ng-if="booking.Dogs.length==0 && submitted" class="text-danger">Please add a dog.</p>
             <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
-              <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="">
+              <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index">
                 <dog-card dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
               </div>
             </div>
@@ -63,12 +63,12 @@
         </div>
       </div>
 
-      <div class="panel  panel-primary">
+      <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Time:</h3>
         </div>
         <div class="panel-body">
-          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12" >
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
             <label for="jobStart" class="control-label">Booking Start Date:</label>
             <br/>
             <div class="form-group">
@@ -82,7 +82,7 @@
           </div>
           <div ng-hide="booking.Calendars.IsAllDay" class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
             <label for="jobEnd" class="control-label">Booking End Date:</label>
-            <br/>            
+            <br/>
             <div class="form-group">
               <input type="date" ng-model="booking.Calendars.EndDate" class="form-control">
               <timepicker hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.EndDate" show-meridian="ismeridian"></timepicker>
@@ -90,8 +90,7 @@
           </div>
         </div>
       </div>
-
-      <div class="panel  panel-primary">
+      <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Fees:</h3>
         </div>
@@ -103,7 +102,7 @@
           </div>
           <div class="input-group ">
             <label for="bookingFeeDescription">Booking Fees Description:</label>
-            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description" />
+            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description" ></textarea>
           </div>
           <div class="input-group ">
             <label for="bookingFee">Booking Fees:</label>
@@ -118,35 +117,29 @@
       </br>
     </form>
   </div>
-  <div id="dogListPanel" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12">
-    <div class="panel  panel-primary">
+  <div class="col-sm-6">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Add Dog(s) to Booking</h3>
       </div>
       <div class="panel-body">
-        <form name="dogSearchForm ">
-          <div class="form-group">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch" />
-              <div class="input-group-addon">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-              </div>
-            </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch" />
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </div>
-        </form>
-
-        <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index" class="">
+        </div>
+        <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index">
           <dog-card dog="dog" btn-Click="bookDog(dog)" btn-Text="'Add'"></dog-card>
         </div>
-
       </div>
     </div>
   </div>
-  <div ng-if="fullAddress!=null" class="col-lg-6 col-mid-6 col-sm-6 col-xs-12 panel">
+  <div ng-if="fullAddress != null" class="col-sm-6 panel">
     <h3>Map:</h3>
     <iframe class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" width="600" height="450" frameborder="0" style="border:0" ng-src="{{fullAddress}}" allowfullscreen>
     </iframe>
   </div>
   <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
-  <button ng-if="isUpdated" type="submit" ng-click="removeBooking()" class="pull-right btn btn-lg btn-danger">Remove  Booking</button>
+  <button ng-if="isUpdated" type="submit" ng-click="removeBooking()" class="pull-right btn btn-lg btn-danger">Remove Booking</button>
 </div>
