@@ -2,7 +2,7 @@
 
 module.exports = {
   attributes: {
-    colour: {
+    Colour: {
       type: 'string',
       required: true
     }
