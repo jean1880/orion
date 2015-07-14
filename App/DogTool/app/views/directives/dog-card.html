@@ -9,6 +9,9 @@
       <img ng-src="{{dog.photoURL || '/images/no-dog-image.jpg'}}" alt="{{dog.Name}}"/>
     </div>
     <div class="info-area">
+      <div>
+        <span class="behave-flag behave-thin" style="background-color: {{ dog.BehaviourFlag.Colour || '#FFFFFF' }}"></span>
+      </div>
       <div class="text-center">
         {{ dog.Owner.Name }}
       </div>

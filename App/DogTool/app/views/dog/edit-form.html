@@ -1,44 +1,67 @@
-<form name="form" ng-submit="saveClicked()" novalidate>
-  <div class="row">
-    <div class="col-xs-12">
-      <img class="img img-responsive" ng-src="{{dog.photoURL}}" />
-      <div class="btn btn-primary" ngf-select ngf-change="imageChanged({files: $files})">Select File</div>
+<form name="form" novalidate>
+  <fieldset>
+    <legend>Info</legend>
+    <div class="form-group" ng-class="{'has-error': form.name.$invalid}">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" ng-model="dog.Name" required/>
+      <div ng-show="form.$submitted || form.$dirty">
+        <div ng-show="form.name.$error.required">Name is required</div>
+      </div>
     </div>
-  </div>
-  <div class="form-group" ng-class="{'has-error': form.name.$invalid}">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" name="name" ng-model="dog.Name" required/>
-    <div ng-show="form.$submitted || form.$dirty">
-      <div ng-show="form.name.$error.required">Name is required</div>
+    <div class="form-group" ng-class="{'has-error': form.breed.$invalid}">
+      <label for="breed">Breed</label>
+      <input type="text" class="form-control" name="breed" ng-model="dog.Breed" required/>
+      <div ng-show="form.$submitted || form.$dirty">
+        <div ng-show="form.breed.$error.required">Breed is required</div>
+      </div>
     </div>
-  </div>
-  <div class="form-group" ng-class="{'has-error': form.breed.$invalid}">
-    <label for="breed">Breed</label>
-    <input type="text" class="form-control" name="breed" ng-model="dog.Breed" required/>
-    <div ng-show="form.$submitted || form.$dirty">
-      <div ng-show="form.breed.$error.required">Breed is required</div>
+    <div class="form-group" ng-class="{'has-error': form.birthdate.$invalid}">
+      <label for="birthdate">Birthdate</label>
+      <small class="pull-right">(dd/mm/yyyy)</small>
+      <input type="date" class="form-control" name="birthdate" ng-model="dog.Birthdate" >
     </div>
-  </div>
-  <div class="form-group" ng-class="{'has-error': form.birthdate.$invalid}">
-    <label for="birthdate">Birthdate</label>
-    <small class="pull-right">(dd/mm/yyyy)</small>
-    <input type="date" class="form-control" name="birthdate" ng-model="dog.Birthdate" required/>
-    <div ng-show="form.$submitted || form.$dirty">
-      <div ng-show="form.birthdate.$error.required">Birthdate is required</div>
+    <div class="form-group" ng-class="{'has-error': form.gender.$invalid}">
+      <label for="gender">Gender</label>
+      <select class="form-control" name="gender" ng-model="dog.Gender">
+        <option value="Unknown">Unknown</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
     </div>
-  </div>
-  <div class="form-group" ng-class="{'has-error': form.gender.$invalid}">
-    <label for="gender">Gender</label>
-    <select class="form-control" name="gender" ng-model="dog.Gender" required>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select>
-    <div ng-show="form.$submitted || form.$dirty">
-      <div ng-show="form.gender.$error.required">Gender is required</div>
+    <div class="form-group" ng-class="{'has-error': form.spayedNeutered.$invalid}">
+      <label for="SpayedNeutered">Spayed/Neutered</label>
+      <select class="form-control" name="spayedNeutered" ng-model="dog.SpayedNeutered">
+        <option value="Unknown">Unknown</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
     </div>
-  </div>
-  <div class="pull-right">
-    <a href class="btn btn-link" ng-click="cancelClicked()">Cancel</a>
-    <input type="submit" class="btn btn-primary" value="Save" />
-  </div>
+    <div class="form-group" ng-class="{'has-error': form.onTiters.$invalid}">
+      <label for="onTiters">On Titers</label>
+      <select class="form-control" name="onTiters" ng-model="dog.OnTiters">
+        <option value="Unknown">Unknown</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+    <div class="form-group" ng-class="{'has-error': form.deceased.$invalid}">
+      <label>
+        <input type="checkbox" name="deceased" ng-model="dog.Deceased"> Deceased
+      </label>
+    </div>
+
+    <div class="form-group">
+      <fieldset>
+        <legend>Behavour Flag</legend>
+        <label class="behave-flag-label">
+          <input type="radio" class="behave-flag-radio" ng-model="dog.BehaviourFlag" ng-checked="dog.BehaviourFlag === null" value="null">
+          <span class="behave-flag"></span>
+        </label>
+        <label class="behave-flag-label" ng-repeat="flag in behaviourFlags">
+          <input type="radio" class="behave-flag-radio" ng-model="dog.BehaviourFlag" value="{{ flag.id }}">
+          <span class="behave-flag" style="background-color: {{ flag.Colour }}"></span>
+        </label>
+      </fieldset>
+    </div>
+  </fieldset>
 </form>

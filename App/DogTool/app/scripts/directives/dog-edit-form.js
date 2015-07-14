@@ -12,14 +12,34 @@ angular.module('dogToolApp')
       restrict: 'E',
       scope: {
         formCtrl: '=',
-        saveClicked: '&',
-        cancelClicked: '&',
-        imageChanged: '&',
         dog: '='
       },
       templateUrl: 'views/dog/edit-form.html',
       link: function ($scope) {
         $scope.formCtrl = $scope.form;
+      },
+      controller: function ($scope, FactoryBehaviourFlag) {
+        var init = function () {
+          FactoryBehaviourFlag.getAll()
+            .success(function (res) {
+              $scope.behaviourFlags = res;
+            });
+
+          $scope.$watch('dog', function () {
+            if(!$scope.dog) { return; }
+
+            setDogDefaults($scope.dog);
+          });
+        };
+
+        var setDogDefaults = function (dog) {
+          if(!dog.Gender) { dog.Gender = 'Unknown'; }
+          if(!dog.SpayedNeutered) { dog.SpayedNeutered = 'Unknown'; }
+          if(!dog.OnTiters) { dog.OnTiters = 'Unknown'; }
+          if(!dog.BehaviourFlag) { dog.BehaviourFlag = null; }
+        };
+
+        init();
       }
     };
   });

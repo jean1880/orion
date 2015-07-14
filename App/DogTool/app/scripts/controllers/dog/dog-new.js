@@ -46,7 +46,6 @@ angular.module('dogToolApp')
     var formIsValid = function () {
       if($scope.dogEditForm.$invalid) { return false; }
       if(!ownerIsValid())             { return false; }
-      if(!vetIsValid())               { return false; }
       return true;
     };
 
