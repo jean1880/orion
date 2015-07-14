@@ -18,7 +18,7 @@ module.exports = {
     deltaDate = deltaDate == 0 ? 1 : deltaDate;
 
     // for each dog, create a charge, times the number of days
-    for (var i = self.Dogs.length; i >= 0; i--) {
+    for (var i = self.Dogs.length - 1; i >= 0; i--) {
       charges.push({
         Quantity: deltaDate,
         JobType: self.Jobtype.id
