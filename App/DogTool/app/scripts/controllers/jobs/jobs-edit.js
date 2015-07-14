@@ -54,6 +54,8 @@ angular.module('dogToolApp')
           console.log("Booking Data");
           console.log(res);
           $scope.booking = res;
+          $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
+          $scope.booking.Calendars.StartDate = new Date($scope.booking.Calendars.StartDate);
 
           $scope.addedDogUI = res.Dogs;
           $scope.dogs = $scope.dogs.filter(removeDuplicate);
@@ -132,8 +134,7 @@ angular.module('dogToolApp')
       $scope.submitted = true;
       if ($scope.booking.Dogs.length > 0) {
         if ($scope.selectedJobType) {
-          $scope.booking.Jobtype = {};
-          $scope.booking.Jobtype.id = $scope.selectedJobType.id;
+          $scope.booking.Jobtype = $scope.selectedJobType.id;
         }
         console.log("Booking Obj:");
         console.log($scope.booking);
