@@ -58,7 +58,7 @@ module.exports = {
     PhotoFd: {
       type: 'text'
     },
-    Spayed: {
+    SpayedNeutered: {
       type: 'string',
       defaultsTo: 'unknown'
     },
@@ -71,6 +71,10 @@ module.exports = {
     },
     FoodInfo: {
       type: 'json'
+    },
+    Deceased: {
+      type: 'boolean',
+      defaultsTo: false
     }
   }
 };
