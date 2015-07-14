@@ -23,8 +23,11 @@ module.exports = {
             via: 'Invoice'
         },
         Job: {
-            collection: 'job',
+            model: 'job',
             via: 'Invoice'
+        },
+        Notes: {
+          collection: 'note'
         }
     }
 };
