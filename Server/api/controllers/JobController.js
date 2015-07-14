@@ -34,7 +34,6 @@ module.exports = {
     // save invoice to system
     Job.create(self).exec(function (err, result) {
       if (!err) {
-        console.log(result);
         res.send(result);
       }
     })
