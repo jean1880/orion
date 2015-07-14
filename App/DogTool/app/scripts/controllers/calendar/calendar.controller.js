@@ -75,6 +75,7 @@ angular.module('dogToolApp')
     $scope.GotoDay = function () {
       var startDay = new Date($scope.startTime.valueOf());
       startDay.setHours(startDay.getHours() + 4);
+      
       $location.url('/jobs/day/' + encodeURI(startDay));
     };
 
@@ -95,6 +96,11 @@ angular.module('dogToolApp')
       }, 350)
     }
 
+    var CreateEventDay = function(startDate, endDate){
+      startDate.add(4, 'h');
+      CreateEvent(startDate,endDate);
+    }
+    
     /**
      * [CreateEvent description]
      * @param {[type]} startDate [description]
@@ -114,13 +120,11 @@ angular.module('dogToolApp')
       $scope.startTime = $scope.day.toDate();
       $scope.endTime = $scope.endDay.toDate();
 
-      //      $('#calendar-event').modal('show');
       var varibleList = {
         startTime: $scope.startTime,
-        endTime:$scope.endTime
+        endTime: $scope.endTime
       }
-      console.log(varibleList);
-      console.log("fire event creation");
+      
       if (!$modalStack.getTop()) {
         $modal.open({
           animation: true,
@@ -134,12 +138,12 @@ angular.module('dogToolApp')
         });
       }
     };
+  
     /**
      * Adds event to server and local array
      * @method  AddEvent
      */
     $scope.AddEvent = function () {
-      console.log($scope.day);
       var startDay = $scope.day.toDate();
       startDay.setHours(startDay.getHours() + 4);
 
@@ -171,7 +175,6 @@ angular.module('dogToolApp')
      * @param {object} event FullCalendar event object
      */
     var UpdateEvent = function (event) {
-      console.log(event);
       var endDay = event.end ? event.end.toDate() : null;
       var startDay = event.start.toDate();
       if (!endDay) {
@@ -208,7 +211,7 @@ angular.module('dogToolApp')
         },
         select: SelectDateRange,
         eventClick: GotoJob,
-        dayClick: CreateEvent,
+        dayClick: CreateEventDay,
         timezone: 'local',
         eventResize: UpdateEvent,
         eventDrop: UpdateEvent
@@ -283,7 +286,7 @@ angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $
 
   $scope.startTime = pass.startTime;
   $scope.endTime = pass.endTime;
-  console.log(pass.startTime);
+  
   $scope.ok = function () {
     $modalInstance.close();
   };
@@ -301,8 +304,7 @@ angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $
   /**
    * [CreateBooking description]
    */
-  $scope.CreateBooking = function () {
-    
+  $scope.CreateBooking = function () {    
     var startDay = new Date($scope.startTime.valueOf());
     startDay.setHours(startDay.getHours());
 
@@ -317,7 +319,6 @@ angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $
    * @method  AddEvent
    */
   $scope.AddEvent = function () {
-    console.log($scope.day);
     var startDay = $scope.day.toDate();
     startDay.setHours(startDay.getHours() + 4);
 
