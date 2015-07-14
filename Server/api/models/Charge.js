@@ -29,6 +29,9 @@ module.exports = {
     },
     Notes: {
       collection: 'note'
+    },
+    Value:{
+      type:'float'
     }
   }
 };

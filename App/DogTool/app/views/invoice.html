@@ -1,1 +1,112 @@
-<p>This is the invoice view.</p>
+<div class="row">
+  <div class="leftSection col-xs-7">
+
+    <h1>{{BusinessInfo.BusinessName}} </h1>
+    <h4>{{BusinessInfo.Address.Street}}</h4>
+    <h4>{{BusinessInfo.Address.City}}, {{BusinessInfo.Address.Country}}, {{BusinessInfo.Address.PostalCode}}</h4>
+    <h4>Phone: {{BusinessInfo.Phone}}</h4>
+    <h4>Email: {{BusinessInfo.Email}}</h4>
+    <h3>Bill To:</h3>
+    <h4>{{ownerData.Name}}</h4>
+    <h4>{{ownerData.Address.City}}, {{ownerData.Address.Country}}, {{ownerData.Address.PostalCode}}</h4>
+    <h4>{{ownerData.Phone}}</h4>
+    <h4>{{ownerData.Email}}</h4>
+  </div>
+  <div class="col-xs-5 text-right">
+    <h1>INVOICE</h1>
+    <h4 class="visible-print-block">Date Issued: {{today|date:'fullDate'}}</h4>
+    <h4 class="hidden-print"> Date Issued: <input type="date" class="form-control" ng-model="today"></h4>
+    <h4 class="visible-print-block">Date Due: {{dateDue|date:'fullDate'}}</h4>
+    <h4 class="hidden-print"> Date Due: <input type="date" class="form-control" ng-model="dateDue"></h4>
+    <h4>Invoice Id: {{bookingData.id}}</h4>
+  </div>
+</div>
+<div class="row col-xs-12">
+
+  <h3>Description <button class="btn btn-primary pull-right hidden-print" ng-click="addCharge()"><span class="glyphicon glyphicon-plus"></span></button></h3>
+  <form>
+    <div class="col-xs-12">
+
+      <table class="table">
+
+        <tr>
+          <th class="col-xs-7">Item/Service</th>
+          <th class="col-xs-2">Quantity</th>
+          <th>Cost Per Unit</th>
+          <th class="hidden-print">Delete</th>
+        </tr>
+        <tr class="form-group" ng-repeat="charge in invoiceData.Charges">
+
+          <td>
+            <div ng-show="(invoiceData.Charges[$index].JobType==null)">
+              <input type="text" class="col-xs-12 hidden-print" ng-model="invoiceData.Charges[$index].ServiceCustom" />
+              <span class="visible-print-block text-left">{{invoiceData.Charges[$index].ServiceCustom}}</span>
+            </div>
+
+
+            <div ng-hide="(invoiceData.Charges[$index].JobType==null)" class="col-xs-12 text-left">
+              <span class="hidden-print text-left">{{bookingData.Jobtype.Name}}</span>
+              <span class="visible-print-block text-left">{{bookingData.Jobtype.Name}}</span>
+            </div>
+          </td>
+          <td>
+            <input class="col-xs-12 hidden-print" type="number" ng-model="invoiceData.Charges[$index].Quantity" />
+            <span class="visible-print-inline-block text-center">{{invoiceData.Charges[$index].Quantity}}</span>
+          </td>
+          <td>
+            <div ng-show="(invoiceData.Charges[$index].JobType==null)">
+              <input  class="col-xs-12 hidden-print" type="number" ng-model="invoiceData.Charges[$index].Value" />
+              <span class="visible-print-block text-center">{{invoiceData.Charges[$index].Value}}</span>
+            </div>
+
+            <div ng-hide="(invoiceData.Charges[$index].JobType==null)" class="col-xs-12">
+              <span class="visible-print-block text-center">{{bookingData.Jobtype.Value}}</span>
+               <span class="hidden-print text-center">{{bookingData.Jobtype.Value}}</span>
+            </div>
+          </td>
+          <td class="hidden-print">
+            <button class="btn btn-danger" ng-click="removeCharge($index)"><span class="glyphicon glyphicon-minus"></span>
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <th></th>
+          <th>SubTotal</th>
+          <th>${{subtotal()|number:2}}</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>Taxes(HST {{taxRate}}&#37;)</th>
+          <th>${{taxes()|number:2}}</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>Total</th>
+          <th>${{subtotal()+taxes()|number:2}}</th>
+          <th></th>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </form>
+
+</div>
+
+<div class="row col-sm-12 hidden-print">
+  <notes-panel notes="invoiceData.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Invoice Notes'" default-types="['General']"></notes-panel>
+
+</div>
+<div class=" row col-sm-12 visible-print-block">
+  <h2>Notes:</h2>
+  <div ng-repeat="note in invoiceData.Notes">
+    <h4>{{note.Title}}</h4>
+    <pre>{{note.Content}}</pre>
+  </div>
+</div>
+<button class="hidden-print btn btn-primary pull-right" ng-click="printInvoice()">Print</button>
+<button class="hidden-print btn btn-primary pull-right" ng-click="saveInvoice()">Save</button>

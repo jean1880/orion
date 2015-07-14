@@ -44,6 +44,7 @@ angular.module('dogToolApp')
       BehaviourFlag: buildRoutes('behaviourflag'),
       BusinessInfo:  buildRoutes('businessinfo'),
       Expense:       buildRoutes('expense'),
-      JobType:       buildRoutes('jobtype')
+      JobType:       buildRoutes('jobtype'),
+      Invoice:       buildRoutes('invoice')
     };
   });

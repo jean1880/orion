@@ -134,7 +134,7 @@ angular
         controller: 'LibraryCtrl'
       })
 
-      .when('/invoice', {
+      .when('/invoice/:id', {
         templateUrl: 'views/invoice.html',
         controller: 'InvoiceCtrl',
         controllerAs: 'invoice'
