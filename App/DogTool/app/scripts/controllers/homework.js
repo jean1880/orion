@@ -8,11 +8,95 @@
  * Controller of the dogToolApp, manages the homework.html, designed to gather data of specific homework via homework ids.
  */
 angular.module('dogToolApp')
-  .controller('HomeworkCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    $scope.Homework= {Title:"Homework Title Place Holder",Description:"Puppy kitty ipsum dolor sit good dog kibble barky lazy dog cockatiel roll over teeth leash right paw pet supplies right paw vaccination chirp. Water Dog wet nose play water dog roll over vitamins warm slobber pet supplies warm licks dinnertime Spike canary. Food finch sit puppy dog groom water groom food shake stick running. Polydactyl scratch pet food food cat scratcher right paw Snowball catch shake yawn groom fleas right paw tail. Slobber water dog left paw warm park wag tail tooth bird leash throw critters shake whiskers good boy lick dragging fleas whiskers twine. Bird aquarium toy right paw parrot behavior. Kitten finch groom Rover vaccination aquarium small animals lol catz Rover barky carrier. Run Fast lazy cat nest harness crate puppy licks pet gate. Leash throw bird seed lol catz scratch string litter. Scooby Snacks walk Buddy play dead groom stick dog scratch Tigger right paw lazy cat pet food Scooby snacks carrier twine licks vaccine Buddy left paw.Stripes feeder Snowball good boy fluffy park biscuit ferret puppy ball vaccination critters roll over. Feeder walk gimme five licks lol catz dog house right paw parakeet run fast nap vitamins bedding water. Leash behavior ferret Tigger maine coon cat catch maine coon cat cat drool small animals Rover foot. Food pet Rover aquatic aquarium cage fish stripes stay catch."};
+  .controller('HomeworkCtrl', function ($scope, $location, FactoryDog, FactoryHomework, flash, $rootScope, HelperService, $routeParams) {
+    $scope.hstep = 1;
+    $scope.mstep = 10;
+    $scope.ismeridian = true;
+    $scope.addedDogUI = [];
+
+    var init = function () {
+      loadAllDogs();
+    };
+
+    $scope.addDog = function (dog) {
+      $scope.addedDogUI.push(dog);
+      var dogIndex = $scope.dogs.indexOf(dog);
+      console.log(dog);
+      console.log(dogIndex);
+      if (dogIndex > -1) {
+        $scope.dogs.splice(dogIndex, 1);
+      }
+    };
+
+    $scope.removeDog = function (dog) {
+      var dogOutIndex = $scope.addedDogUI.indexOf(dog);
+      $scope.dogs.push(dog)
+      if (dogOutIndex > -1) {
+        $scope.addedDogUI.splice(dogOutIndex, 1);
+      }
+    };
+
+    var loadAllDogs = function () {
+      $scope.dogs = null;
+
+      FactoryDog.getAll()
+        .success(function (response) {
+          $scope.dogs = response;
+          loadHomework();
+        })
+        .error(function () {
+          flash.error = 'A error occured while loading dogs.';
+        });
+    };
+
+    var loadHomework = function () {
+      FactoryHomework.get($routeParams.id)
+        .success(function (response) {
+          $scope.Homework = response;
+         
+          $scope.addedDogUI = response.Dogs;
+        
+        $scope.dogs = $scope.dogs.filter(removeDuplicate);
+         console.log($scope.Homework);
+        $scope.Homework.StartDate = new Date($scope.Homework.StartDate);
+        $scope.Homework.EndDate = new Date($scope.Homework.EndDate);
+        })
+        .error(function (error) {
+          flash.error = 'Sorry we could not access the job in question.';
+        });
+    }
+
+    /**
+     * @method removeDuplicate
+     * @return return the bool of if obj is in doglistArray
+     * @param obj, what you are looking for, must be type dog.
+     *
+     */
+    var removeDuplicate = function (obj) {
+      var doglistArray = HelperService.convert.objectArrayToIdArray($scope.Homework.Dogs);
+      return (doglistArray.indexOf(obj.id) == -1);
+    };
+
+    $scope.submitHomework = function (isValid) {
+      console.log(isValid);
+      $scope.submitted = true;
+      if (isValid) {
+        console.log($scope.Homework);
+        if ($scope.Homework.Title != "" && $scope.Homework.Description != "") {
+          console.log("Send Homework");
+          $scope.Homework.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
+          FactoryHomework.update($scope.Homework)
+            .success(function (res) {
+              $rootScope.HomeworkSubmitted = true;
+              console.log("success");
+              flash.success="Homework Saved";
+            })
+            .error(function (err) {
+              console.log(err);
+            });
+        }
+      }
+    };
+
+    init();
   });

@@ -22,6 +22,9 @@ angular.module('dogToolApp')
         },
         update: function (id) {
           return this.route + '/' + id;
+        },
+        delete: function (id){
+          return this.route + '/' + id;
         }
       };
     };
