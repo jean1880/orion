@@ -12,93 +12,91 @@
     <div ng-hide="editingInfo">
       <div class="row">
         <div class="col-xs-12">
-          <img class="img img-responsive" ng-src="{{dog.photoURL}}" />
+          <div class="form-group">
+            <img class="img img-responsive" ng-src="{{dog.photoURL || '/images/no-dog-image.jpg'}}" />
+          </div>
+          <div class="form-group">
+            <div class="btn btn-default btn-xs btn-block" ngf-select ngf-change="upload($files)">Select New Image</div>
+          </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-5">
           <strong>Breed</strong>
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-7">
           {{dog.Breed}}
         </div>
       </div>
 
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-5">
           <strong>Birthdate</strong>
         </div>
-        <div class="col-xs-8">
-          {{dog.Birthdate | date : 'longDate'}}
+        <div class="col-xs-7">
+          <div ng-show="dog.Brithdate">
+            {{dog.Birthdate | date : 'longDate'}}
+          </div>
+          <div ng-hide="dog.Brithdate">
+            Unknown
+          </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-5">
           <strong>Age</strong>
         </div>
-        <div class="col-xs-8">
-          {{dog.Age}}
+        <div class="col-xs-7">
+          {{dog.Age || 'Unknown'}}
         </div>
       </div>
 
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-5">
           <strong>Gender</strong>
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-7">
           {{dog.Gender}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-5">
+          <strong>
+            {{ labels.SpayedNeutered }}
+          </strong>
+        </div>
+        <div class="col-xs-7">
+          {{ dog.SpayedNeutered }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-5">
+          <strong>
+            On Titers
+          </strong>
+        </div>
+        <div class="col-xs-7">
+          {{ dog.OnTiters }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <span class="behave-flag" style="background-color: {{ dog.BehaviourFlag.Colour || '#FFFFFF'}}"></span>
         </div>
       </div>
     </div>
 
     <div ng-show="editingInfo">
-      <form name="infoForm" ng-submit="saveInfoBtn()" novalidate>
-
-        <div class="row">
-          <div class="col-xs-12">
-            <img class="img img-responsive" ng-src="{{dog.photoURL}}" />
-            <div class="btn btn-primary" ngf-select ngf-change="upload($files)">Select File</div>
-          </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error': infoForm.name.$invalid}">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" name="name" ng-model="editedDog.Name" required/>
-          <div ng-show="infoForm.$submitted || infoForm.$dirty">
-            <div ng-show="infoForm.name.$error.required">Name is required</div>
-          </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error': infoForm.breed.$invalid}">
-          <label for="breed">Breed</label>
-          <input type="text" class="form-control" name="breed" ng-model="editedDog.Breed" required/>
-          <div ng-show="infoForm.$submitted || infoForm.$dirty">
-            <div ng-show="infoForm.breed.$error.required">Breed is required</div>
-          </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error': infoForm.birthdate.$invalid}">
-          <label for="birthdate">Birthdate</label>
-          <small class="pull-right">(dd/mm/yyyy)</small>
-          <input type="date" class="form-control" name="birthdate" ng-model="editedDog.Birthdate" required/>
-          <div ng-show="infoForm.$submitted || infoForm.$dirty">
-            <div ng-show="infoForm.birthdate.$error.required">Birthdate is required</div>
-          </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error': infoForm.gender.$invalid}">
-          <label for="gender">Gender</label>
-          <select class="form-control" name="gender" ng-model="editedDog.Gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-          <div ng-show="infoForm.$submitted || infoForm.$dirty">
-            <div ng-show="infoForm.gender.$error.required">Gender is required</div>
-          </div>
-        </div>
-        <div class="pull-right">
-          <a href class="btn btn-link" ng-click="cancelInfoBtn()">Cancel</a>
-          <input type="submit" class="btn btn-primary" value="Save" />
-        </div>
-      </form>
+      <dog-edit-form dog="editedDog" form-ctrl="infoForm"></dog-edit-form>
+      <div class="pull-right">
+        <a href class="btn btn-link" ng-click="cancelInfoBtn()">Cancel</a>
+        <a href class="btn btn-primary" ng-click="saveInfoBtn()">Save</a>
+      </div>
     </div>
   </div>
 </div>

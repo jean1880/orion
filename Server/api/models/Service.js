@@ -13,18 +13,14 @@
 
 module.exports = {
 
-    attributes: {
-        Name: {
-            type: 'string',
-            required: true
-        },
-        Value: {
-            type: 'float',
-            required: true
-        },
-        Charges: {
-            collection: 'charge',
-            via: 'Service'
-        }
+  attributes: {
+    Name: {
+      type: 'string',
+      required: true
+    },
+    Value: {
+      type: 'float',
+      required: true
     }
+  }
 };

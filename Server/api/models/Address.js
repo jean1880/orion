@@ -15,20 +15,18 @@ module.exports = {
 
     attributes: {
         Street: {
-            type: 'string',
-            required: true
+            type: 'string'
         },
         City: {
-            type: 'string',
-            required: true
+            type: 'string'
         },
         Province: {
             type: 'string',
-            defaultsTo: 'ON'
+            defaultsTo: 'Ontario'
         },
         Country: {
             type: 'string',
-            defaultsTo: 'CA'
+            defaultsTo: 'Canada'
         },
         PostalCode: {
             type: 'string'

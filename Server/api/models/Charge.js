@@ -13,22 +13,22 @@
 
 module.exports = {
 
-    attributes: {
-        Quantity: {
-            type: 'integer',
-            required: true
-        },
-        Invoice: {
-            model: 'invoice'
-        },
-        Service: {
-            model: 'service'
-        },
-        ServiceCustom: {
-            type: 'string'
-        },
-        Notes: {
-            collection: 'note'
-        }
+  attributes: {
+    Quantity: {
+      type: 'integer',
+      required: true
+    },
+    Invoice: {
+      model: 'invoice'
+    },
+    JobType: {
+      model: 'jobtype'
+    },
+    ServiceCustom: {
+      type: 'string'
+    },
+    Notes: {
+      collection: 'note'
     }
+  }
 };

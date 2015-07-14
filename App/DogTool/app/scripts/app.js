@@ -10,25 +10,26 @@
  */
 angular
   .module('dogToolApp', [
+    'angular-flash.flash-alert-directive',
+    'angular-flash.service',
+    'angular-jwt',
+    'angularMoment',
+    'emguo.poller',
+    'frapontillo.bootstrap-switch',
     'ngAnimate',
     'ngCookies',
+    'ngFileUpload',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'emguo.poller',
+    'sticky',
+    'sticky',
+    'truncate',
     'ui.bootstrap',
-    'ui.bootstrap.showErrors',
-    'ui.calendar',
-    'angular-flash.service',
-    'angular-flash.flash-alert-directive',
-    'ngFileUpload',
-    'sticky',
-    'angularMoment',
-    'angular-jwt',
-    'sticky',
     'ui.bootstrap.datetimepicker',
-    'frapontillo.bootstrap-switch'
+    'ui.bootstrap.showErrors',
+    'ui.calendar'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
     flashProvider.successClassnames.push('alert-success');
@@ -133,9 +134,14 @@ angular
         controller: 'LibraryCtrl'
       })
 
-    .otherwise({
-      redirectTo: '/'
-    });
+      .when('/invoice', {
+        templateUrl: 'views/invoice.html',
+        controller: 'InvoiceCtrl',
+        controllerAs: 'invoice'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
     // set sails server url
     pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
 

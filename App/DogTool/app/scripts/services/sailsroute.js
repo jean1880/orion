@@ -30,21 +30,20 @@ angular.module('dogToolApp')
     };
 
     return {
-      Dog:          buildRoutes('dog'),
-      Cost:         buildRoutes('cost'),
-      Calendar:     buildRoutes('calendar'),
-      Weight:       buildRoutes('weight'),
-      Daycare:      buildRoutes('daycare'),
-      Note:         buildRoutes('note'),
-      People:       buildRoutes('people'),
-      Homework:     buildRoutes('homework'),
-      Address:      buildRoutes('address'),
-      Consultation: buildRoutes('consultation'),
-      Job:          buildRoutes('job'),
-
-      BusinessInfo: buildRoutes('businessinfo'),
-      Expense:      buildRoutes('expense'),
-      JobType:      buildRoutes('jobtype')
-
+      Dog:           buildRoutes('dog'),
+      Cost:          buildRoutes('cost'),
+      Calendar:      buildRoutes('calendar'),
+      Weight:        buildRoutes('weight'),
+      Daycare:       buildRoutes('daycare'),
+      Note:          buildRoutes('note'),
+      People:        buildRoutes('people'),
+      Homework:      buildRoutes('homework'),
+      Address:       buildRoutes('address'),
+      Consultation:  buildRoutes('consultation'),
+      Job:           buildRoutes('job'),
+      BehaviourFlag: buildRoutes('behaviourflag'),
+      BusinessInfo:  buildRoutes('businessinfo'),
+      Expense:       buildRoutes('expense'),
+      JobType:       buildRoutes('jobtype')
     };
   });

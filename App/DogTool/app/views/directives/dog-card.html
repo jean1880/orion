@@ -1,7 +1,7 @@
 <div class="panel panel-default dog-card" ng-click="gotoDogPage()">
   <div class="panel-heading">
     <div class="text-center">
-      <strong>{{dog.Name}}</strong>
+      <strong>{{dog.Name | characters:25 }}</strong>
     </div>
   </div>
   <div class="panel-body">
@@ -9,6 +9,9 @@
       <img ng-src="{{dog.photoURL || '/images/no-dog-image.jpg'}}" alt="{{dog.Name}}"/>
     </div>
     <div class="info-area">
+      <div>
+        <span class="behave-flag behave-thin" style="background-color: {{ dog.BehaviourFlag.Colour || '#FFFFFF' }}"></span>
+      </div>
       <div class="text-center">
         {{ dog.Owner.Name }}
       </div>
@@ -17,6 +20,9 @@
       </div>
       <div class="text-center">
         {{ dog.Owner.Email }}
+      </div>
+      <div class="text-center">
+        <strong>{{ dog.Deceased ? "Deceased" : "&nbsp;" }}</strong>
       </div>
     </div>
     <div ng-show="btnText">

@@ -70,8 +70,14 @@ angular.module('dogToolApp')
      * @param  {Dog} dog The dog to update
      */
     var processDog = function (dog) {
-      dog.Birthdate = new Date(dog.Birthdate);
-      dog.Age = moment(dog.Birthdate).fromNow(true);
+      if(dog.Birthdate) {
+        dog.Birthdate = new Date(dog.Birthdate);
+        dog.Age = moment(dog.Birthdate).fromNow(true);
+      }
+      else {
+        dog.Birthdate = null;
+        dog.Age = null;
+      }
     };
 
     /**
