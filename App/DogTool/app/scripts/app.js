@@ -41,7 +41,7 @@ angular
       .when('/', {
         templateUrl: 'views/dog/list.html',
         controller: 'DogListCtrl',
-        title : 'Dog'
+        title: 'Dog'
       })
       .when('/working', {
         template: '<h1>Working...</h1>'
@@ -118,7 +118,7 @@ angular
         redirectTo: '/homework/new'
       })
       .when('/homework/new', {
-        templateUrl: 'views/homework-new.html',
+        templateUrl: 'views/homework.html',
         controller: 'HomeworkNewCtrl'
       })
       .when('/homework/:id', {
@@ -129,7 +129,16 @@ angular
         templateUrl: 'views/businessinfo.html',
         controller: 'BusinessinfoCtrl'
       })
+      .when('/library', {
+        templateUrl: 'views/library.html',
+        controller: 'LibraryCtrl'
+      })
 
+      .when('/invoice', {
+        templateUrl: 'views/invoice.html',
+        controller: 'InvoiceCtrl',
+        controllerAs: 'invoice'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -140,7 +149,7 @@ angular
     jwtInterceptorProvider.authHeader = 'Token';
     jwtInterceptorProvider.authPrefix = '';
     jwtInterceptorProvider.tokenGetter = ['FactoryAuthToken', function (FactoryAuthToken) {
-        return FactoryAuthToken.getToken();
+      return FactoryAuthToken.getToken();
     }];
 
     $httpProvider.interceptors.push('jwtInterceptor');
@@ -153,8 +162,7 @@ angular
       .success(function (res) {
         if (res.valid) {
           $location.url(url);
-        }
-        else {
+        } else {
           FactoryLogin.login()
             .success(function () {
               $location.url(url);

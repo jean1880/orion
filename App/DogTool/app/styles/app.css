@@ -53,3 +53,8 @@ body {
 .badge {
   margin-left: 5px;
 }
+
+.print-whiteSpace
+{
+  white-space: pre-wrap;
+}

@@ -53,15 +53,11 @@
         <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#/">Dogs</a>
-            </li>
-            <li><a ng-href="#/calendar">Calendar</a>
-            </li>
-            <li><a ng-href="#/businessInfo">Admin</a>
-            </li>
+            <li class="active"><a href="#/">Dogs</a></li>
+            <li><a ng-href="#/calendar">Calendar</a></li>
+            <li><a ng-href="#/businessInfo">Admin</a></li>
             <li><a ng-href="#/jobs">Today</a>
-            <li><a ng-href="#/jobs/new">Jobs</a>
-            </li>
+            <li><a ng-href="#/jobs/new">Jobs</a></li>
           </ul>
         </div>
       </div>
@@ -80,25 +76,20 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <div ng-view=""></div
+            <div ng-view=""></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="footer">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-          <small>&copy; copyright 2015 Not Just Kibble</small>
-          <div class="visible-xs-block col-xs-12">Screen size: Extra small</div>
-          <div class="visible-sm-block col-xs-12">Screen size: small</div>
-          <div class="visible-md-block col-xs-12">Screen size: medium</div>
-          <div class="visible-lg-block col-xs-12">Screen size: large</div>
+    <div class="footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+            <small>&copy; copyright 2015 Not Just Kibble</small>
+          </div>
         </div>
       </div>
-    </div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -163,6 +154,7 @@
     <script src="scripts/controllers/jobs/jobs-new.js"></script>
     <script src="scripts/controllers/jobs/jobs-edit.js"></script>
     <script src="scripts/controllers/jobs/jobs.js"></script>
+    <script src="scripts/controllers/library.js"></script>
     <script src="scripts/controllers/homework-new.js"></script>
     <script src="scripts/controllers/homework.js"></script>
     <script src="scripts/controllers/calendar/calendar.controller.js"></script>
@@ -189,7 +181,8 @@
     <script src="scripts/controllers/businessinfo.js"></script>
 
     <script src="scripts/services/factory-calendar.js"></script>
-
+    <script src="scripts/controllers/invoice/invoice.js"></script>
+    <script src="scripts/services/factoryquote.js"></script>
     <!-- endbuild -->
 </body>
 
