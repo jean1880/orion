@@ -118,26 +118,6 @@ angular.module('dogToolApp')
         };
 
         /**
-         * Processes the raw dog that is returned by the server by making the
-         * birthdate a date object, and sets the age of the dog
-         *
-         * @private
-         * @method processDog
-         */
-        var processDog = function (dog) {
-
-
-          if(dog.Birthdate) {
-            dog.Birthdate = new Date(dog.Birthdate);
-            dog.Age = moment(dog.Birthdate).fromNow(true);
-          }
-          else {
-            dog.Birthdate = null;
-            dog.Age = null;
-          }
-        };
-
-        /**
          * Updates the given dog in the database
          *
          * @private
@@ -161,7 +141,7 @@ angular.module('dogToolApp')
          *   the new dog data
          */
         var processSuccess = function (response) {
-          processDog(response);
+          FactoryDog.processDog(response);
 
           $scope.dog = response;
           $scope.editingInfo = false;

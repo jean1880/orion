@@ -41,7 +41,7 @@ angular.module('dogToolApp')
         .success(function (response) {
           var dog = response;
 
-          processDog(dog);
+          FactoryDog.processDog(dog);
 
           $scope.dog = dog;
         })
@@ -57,27 +57,6 @@ angular.module('dogToolApp')
 
           $location.path('/');
         });
-    };
-
-    /**
-     * Converts the raw data on the given dog into more manageable objects
-     *
-     * - birthdate is converted to a Date Object
-     * - age is populated from the birthdate
-     *
-     * @private
-     * @method processDog
-     * @param  {Dog} dog The dog to update
-     */
-    var processDog = function (dog) {
-      if(dog.Birthdate) {
-        dog.Birthdate = new Date(dog.Birthdate);
-        dog.Age = moment(dog.Birthdate).fromNow(true);
-      }
-      else {
-        dog.Birthdate = null;
-        dog.Age = null;
-      }
     };
 
     /**

@@ -71,6 +71,26 @@ angular.module('dogToolApp')
           url: 'http://localhost:1337/Dog/uploadPhoto/' + dog.id,
           file: file[0]
         });
+      },
+
+      /**
+       * Converts the raw data on the given dog into more manageable objects
+       *
+       * - birthdate is converted to a Date Object
+       * - age is populated from the birthdate
+       *
+       * @method processDog
+       * @param  {Dog} dog The dog to update
+       */
+      processDog: function (dog) {
+        if(dog.Birthdate) {
+          dog.Birthdate = new Date(dog.Birthdate);
+          dog.Age = moment(dog.Birthdate).fromNow(true);
+        }
+        else {
+          dog.Birthdate = undefined;
+          dog.Age = undefined;
+        }
       }
     };
   });
