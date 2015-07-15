@@ -62,9 +62,23 @@ angular.module('dogToolApp')
           $scope.dogs = $scope.dogs.filter(removeDuplicate);
           $scope.selectedJobType = res.Jobtype;
 
+          var GoogleMapsUrl = 'https://www.google.com/maps/embed/v1/place';
+          var GoogleMapsKey = 'AIzaSyBVriHiqrpv6aGFnYnFl-pbxThfuPQB3G0';
 
-          //                $scope.booking.Jobtype = $scope.booking.Jobtype.id;
-          $scope.fullAddress = $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?key=AIzaSyBVriHiqrpv6aGFnYnFl-pbxThfuPQB3G0&q=" + $scope.booking.Location.Street.split(' ').join('+') + '+' + $scope.booking.Location.City.split(' ').join('+') + '+' + $scope.booking.Location.Province.split(' ').join('+') + '+' + $scope.booking.Location.Country.split(' ').join('+'));
+          var location = [
+            $scope.booking.Location.Street,
+            $scope.booking.Location.City,
+            $scope.booking.Location.Province,
+            $scope.booking.Location.Country
+          ];
+
+          var locationParam = location.join('+').replace(' ', '+');
+
+          $scope.fullAddress = $sce.trustAsResourceUrl(
+            GoogleMapsUrl +
+            '?key=' + GoogleMapsKey +
+            '&q=' + locationParam
+          );
         })
         .error(function () {
           flash.error = 'An error occured. Unable to load booking information';
