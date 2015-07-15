@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('PeopleViewCtrl', function ($scope, $location, FactoryPeople, flash, $routeParams) {
+  .controller('PeopleViewCtrl', function ($scope, $location, FactoryPeople, flash, $routeParams, FactoryDog) {
     var init = function() {
       loadPerson($routeParams.id);
     };
@@ -17,6 +17,7 @@ angular.module('dogToolApp')
       FactoryPeople.get(id)
         .success(function (response) {
           $scope.person = response;
+          loadDogsForPerson($scope.person);
         })
         .error(function (response, status) {
           switch(status) {
@@ -29,6 +30,16 @@ angular.module('dogToolApp')
           }
 
           $location.path('/people');
+        });
+    };
+
+    var loadDogsForPerson = function (person) {
+      FactoryDog.find({ Owner: person.id })
+        .success(function (res) {
+          person.Dogs = res;
+        })
+        .error(function () {
+          flash.error = 'An error occured loading dog info';
         });
     };
 
