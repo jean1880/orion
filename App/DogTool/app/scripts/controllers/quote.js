@@ -10,6 +10,8 @@
 angular.module('dogToolApp')
   .controller('QuoteCtrl', function ($scope, FactoryBusinessInfo, FactoryQuote, FactoryService, flash) {
 
+    $scope.Services = {};
+
     //--------------------------------------Business Info Stuff------------------------------------------------------
 
     FactoryBusinessInfo.get()
@@ -18,7 +20,7 @@ angular.module('dogToolApp')
       });
 
 
-    $scope.Date = new Date();
+    $scope.Services.Date = new Date();
 
     //-----------------------------------Adding Services---------------------------------------------------------
     $scope.addingService = false;
@@ -30,7 +32,7 @@ angular.module('dogToolApp')
 
 
 
-    $scope.Services = {};
+
 
     $scope.addService = function () {
       $scope.addingService = true;

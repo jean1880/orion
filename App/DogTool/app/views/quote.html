@@ -16,7 +16,7 @@
   </div>
   <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-right">
     <br/>
-    <span><strong>Date: {{Date | amDateFormat: 'MM/DD/YYYY'}}</strong></span>
+    <span><strong>Date: {{Services.Date | amDateFormat: 'MM/DD/YYYY'}}</strong></span>
     <br />
   </div>
   <div class="col-sm-1 col-md-1 col-lg-1"></div>
@@ -94,7 +94,7 @@
             </div>
             <div class="col-xs-12 form-group">
               <div class="col-sm-2">
-                <span ng-model="Services.Price" name="servicePrice">Price: ${{(Services.Service.Value * Services.Quantity) * ((Services.EndDate | amDifference : Services.StartDate : 'days' ) + 1) | number : 2}}</span>
+                <span ng-model="Services.Price" name="servicePrice">Price: ${{Services.Price = ((Services.Service.Value * Services.Quantity) * ((Services.EndDate | amDifference : Services.StartDate : 'days' ) + 1)) | number : 2}}</span>
               </div>
             </div>
           </div>
