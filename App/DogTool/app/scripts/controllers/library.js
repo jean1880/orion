@@ -10,7 +10,7 @@
 angular.module('dogToolApp')
   .controller('LibraryCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash) {
 
-    /*createDogLookup, re-orders the array into a JSON object propertied by 
+    /*createDogLookup, re-orders the array into a JSON object propertied by
      *dog's id.
      *@param dogList, the list of dogs to be striped of the array.
      *
@@ -18,10 +18,10 @@ angular.module('dogToolApp')
     var createDogLookup = function (dogList) {
         for (var dog in dogList) {
           $scope.dog[dogList[dog].id] = dogList[dog];
-          console.log(dog);
+
         }
       }
-      /*createLibraryLookup, re-orders the array into a JSON object propertied 
+      /*createLibraryLookup, re-orders the array into a JSON object propertied
        * by homework id.
        *@param homeworkList, the list of homework to be striped of the array.
        *
@@ -29,7 +29,7 @@ angular.module('dogToolApp')
     var createLibraryLookup = function (homeworkList) {
         for (var homework in homeworkList) {
           $scope.LibraryList[homeworkList[homework].id] = homeworkList[homework];
-          console.log(homework);
+
         }
       }
       /**
@@ -37,7 +37,7 @@ angular.module('dogToolApp')
        *@param homeworIdToEdit, what homework by id to edit
        */
     $scope.edit = function (homeworkIdToEdit) {
-      console.log(homeworkIdToEdit);
+
       $location.url('/homework/' + homeworkIdToEdit);
     };
     /**
@@ -81,24 +81,24 @@ angular.module('dogToolApp')
        * the homework.
        */
     var parseDogs = function () {
-      console.log($scope.LibraryList);
+
       for (var item in $scope.LibraryList) {
         for (var dogPos in $scope.LibraryList[item].Dogs) {
           var dogId = $scope.LibraryList[item].Dogs[dogPos].id;
-          console.log(dogId);
+
           if ($scope.dogHomeworkGroup[dogId] == null) {
             $scope.dogHomeworkGroup[dogId] = [];
           }
           $scope.dogHomeworkGroup[dogId].push($scope.LibraryList[item].id);
         }
       }
-      console.log($scope.dogHomeworkGroup);
+
     };
 
 
     $scope.changeSortBy = function (newSort) {
       $scope.sortBy = newSort;
-      console.log(newSort);
+
     };
     init();
   });

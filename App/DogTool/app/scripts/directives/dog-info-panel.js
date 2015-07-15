@@ -125,7 +125,7 @@ angular.module('dogToolApp')
          * @method processDog
          */
         var processDog = function (dog) {
-          console.log(dog.Birthdate);
+
 
           if(dog.Birthdate) {
             dog.Birthdate = new Date(dog.Birthdate);

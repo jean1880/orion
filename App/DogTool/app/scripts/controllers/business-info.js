@@ -10,36 +10,36 @@
 angular.module('dogToolApp')
   .controller('BusinessinfoCtrl', function ($scope, FactoryBusinessInfo, FactoryExpense, flash) {
 
-  
+
   $scope.Title = "Business Information";
-  
+
   //Functions for Expenses
   //****************************************************************************************
-  
+
   FactoryExpense.getAll()
     .success(function (res) {
       $scope.ExpenseInfo = res;
   });
-    
+
   $scope.addingExpense = false;
-  
+
   $scope.addExpense = function(){
     $scope.newExpense = {};
     $scope.addingExpense = true;
-    
+
   };
-  
+
   $scope.cancelExpense = function(){
     $scope.newExpense = {};
     $scope.addingExpense = false;
     $scope.addExpenseForm.$setUntouched();
   };
-  
+
   $scope.saveExpense = function(){
-    
+
     if($scope.addExpenseForm.$valid){
       if($scope.addExpenseForm.$dirty){
-        console.log($scope.newExpense);
+
         addNewExpense($scope.newExpense);
       }else{
         $scope.addingExpense = false;
@@ -47,16 +47,16 @@ angular.module('dogToolApp')
     }else{
       $scope.addingExpense = false;
     }
-    
+
     $scope.addingExpense = false;
   };
-  
+
   var addNewExpense = function(expense){
     FactoryExpense.post(expense)
       .success(processSuccessExpense)
       .error(processErrorExpense);
   };
-  
+
   var processSuccessExpense = function(){
     FactoryExpense.getAll()
       .success(function (res) {
@@ -64,20 +64,20 @@ angular.module('dogToolApp')
     });
     $scope.cancelExpense();
   };
-  
+
   var processErrorExpense = function() {
     flash.error = 'An error occured';
   }
-  
-  
+
+
   //Functions for Business Information
   //****************************************************************************************
-  
+
   FactoryBusinessInfo.get()
     .success(function (res) {
       $scope.BusinessInfo = res;
     });
-  
+
   $scope.editingInfo = false;
 
   $scope.editInfo = function () {
@@ -98,7 +98,7 @@ angular.module('dogToolApp')
   $scope.saveInfo = function () {
     if ($scope.businessInfoForm.$valid) {
       if ($scope.businessInfoForm.$dirty) {
-        console.log($scope.editedInfo);
+
         updateInfo($scope.editedInfo);
       } else {
         $scope.editingInfo = false;

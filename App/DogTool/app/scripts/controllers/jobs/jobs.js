@@ -15,7 +15,7 @@ angular.module('dogToolApp')
 		FactoryJob.find({
   			Calendars: range
   		}).success(function(data){
-  			console.log(data);
+
   			$scope.JobList = data;
   			for (var i = data.length - 1; i >= 0; i--) {
   				for (var x = data[i].Dogs.length - 1; x >= 0; x--) {
@@ -43,7 +43,7 @@ angular.module('dogToolApp')
 		end.setHours(0);
 		end.setMinutes(0);
 
-		
+
 		factoryCalendar.find({ // this will need to be rewworked for all day events not tied to a job
 				StartDate: {
 					'<=': start
@@ -52,7 +52,7 @@ angular.module('dogToolApp')
 					'>=': end
 				}
 		}).success(function(data){
-			console.log(data);
+
 			$scope.events = data;
 			var ids = [];
 			for(var i = 0; i < $scope.events.length; i++){

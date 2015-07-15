@@ -50,19 +50,19 @@ angular.module('dogToolApp')
       $scope.taxRate = 13;
       $scope.subtotal = function () {
         $scope.invoiceSubTotal = 0;
-        //        console.log("test run", $scope.invoiceSubTotal);
+        //
         if ($scope.invoiceData) {
           $scope.invoiceData.Charges.forEach(function (charge) {
-            //            console.log("charge:", charge);
+            //
             if (charge.JobType != null) {
               $scope.invoiceSubTotal += ($scope.bookingData.Jobtype.Value * charge.Quantity);
-              //              console.log("add:", $scope.invoiceSubTotal);
+              //
             } else {
               $scope.invoiceSubTotal += (charge.Value * charge.Quantity);
-              //              console.log("value:", $scope.invoiceSubTotal);
+              //
             }
           });
-          //          console.log($scope.invoiceSubTotal);
+          //
           return $scope.invoiceSubTotal;
         } else {
           return 0;
@@ -114,7 +114,7 @@ angular.module('dogToolApp')
      *
      */
     $scope.saveInvoice = function () {
-      console.log("save");
+
       FactoryInvoice.update($scope.invoiceData)
         .success(function (res) {
          flash.success="Invoice Saved";

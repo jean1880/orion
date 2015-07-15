@@ -8,8 +8,8 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog, 
-    flash, FactoryJob, FactoryJobType, 
+  .controller('NewJobsCtrl', function ($scope, $location, FactoryDog,
+    flash, FactoryJob, FactoryJobType,
     $window, $rootScope, HelperService,
     $routeParams) {
 
@@ -48,7 +48,7 @@ angular.module('dogToolApp')
       if(topOfTheHour){
         date.setHours(date.getHours() + 1);
       }
-      console.log(date);
+
       return date;
     };
 
@@ -62,7 +62,7 @@ angular.module('dogToolApp')
         $scope.booking.Calendars.StartDate = roundHour($scope.booking.Calendars.StartDate);
         $scope.booking.Calendars.EndDate = roundHour($scope.booking.Calendars.EndDate, true);
       }
-    
+
     };
 
     var init = function () {
@@ -112,7 +112,7 @@ angular.module('dogToolApp')
             .error(function () {
               flash.error = 'An error occured while loading job types.';
             });
-          if ($rootScope.bookingLog != null 
+          if ($rootScope.bookingLog != null
             && $rootScope.bookingLog.id == null) {
             $scope.booking = $rootScope.bookingLog;
             LoadDate();
@@ -121,7 +121,7 @@ angular.module('dogToolApp')
             $rootScope.bookingLog={};
             $rootScope.bookingLog = $scope.booking;
           }
-          
+
 //          $scope.addedDogUI = $scope.booking.Dogs;
         })
         .error(function () {
@@ -148,22 +148,22 @@ angular.module('dogToolApp')
             $window.location.href = "#/jobs/" + res.id;
           })
           .error(function (err) {
-            console.log(err);
+
             flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
           });
       }
     };
- 
+
     /**
      * @method bookDog
      * @description Adds dogs to the booking list and removes the dogs from the search list (dogs avaliable to be added)
      *
      */
     $scope.bookDog = function (dogIn) {
-      console.log("Log booking");
-      console.log($scope.booking);
+
+
       var indexIn = $scope.dogs.indexOf(dogIn);
-      console.log(dogIn);
+
       $scope.addedDogUI.push(dogIn);
       $scope.dogs.splice(indexIn, 1);
     };
@@ -173,9 +173,9 @@ angular.module('dogToolApp')
      *
      */
     $scope.removeDog = function (dogOut) {
-      console.log("Log booking remove");
+
       var indexOut = $scope.addedDogUI.indexOf(dogOut);
-      console.log(dogOut);
+
       $scope.dogs.push(dogOut);
       $scope.addedDogUI.splice(indexOut, 1);
     };
@@ -191,7 +191,7 @@ angular.module('dogToolApp')
           Description: $scope.feeDescription,
           Cost: $scope.feeAmount
         };
-        console.log(newCost);
+
         $scope.booking.Costs.push(newCost);
       } else {
         if ($scope.feeDescription == '') {
@@ -202,5 +202,5 @@ angular.module('dogToolApp')
         }
       }
     };
-  
+
   });

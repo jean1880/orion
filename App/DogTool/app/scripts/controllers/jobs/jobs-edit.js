@@ -39,7 +39,7 @@ angular.module('dogToolApp')
       //get the booking types
       FactoryJobType.getAll()
         .success(function (response) {
-          //        console.log(response);
+          //
           $scope.jobTypes = response;
           loadAllDogs();
         })
@@ -51,8 +51,8 @@ angular.module('dogToolApp')
       //get the specific booking information
       FactoryJob.get($routeParams.id)
         .success(function (res) {
-          console.log("Booking Data");
-          console.log(res);
+
+
           $scope.booking = res;
           $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
           $scope.booking.Calendars.StartDate = new Date($scope.booking.Calendars.StartDate);
@@ -61,8 +61,8 @@ angular.module('dogToolApp')
           $scope.addedDogUI = res.Dogs;
           $scope.dogs = $scope.dogs.filter(removeDuplicate);
           $scope.selectedJobType = res.Jobtype;
-          console.log("Dog ID setup");
-          console.log($scope.addedDogUI);
+
+
           //                $scope.booking.Jobtype = $scope.booking.Jobtype.id;
           $scope.fullAddress = $sce.trustAsResourceUrl("https://www.google.com/maps/embed/v1/place?key=AIzaSyBVriHiqrpv6aGFnYnFl-pbxThfuPQB3G0&q=" + $scope.booking.Location.Street.split(' ').join('+') + '+' + $scope.booking.Location.City.split(' ').join('+') + '+' + $scope.booking.Location.Province.split(' ').join('+') + '+' + $scope.booking.Location.Country.split(' ').join('+'));
         })
@@ -81,8 +81,8 @@ angular.module('dogToolApp')
      *
      */
     var removeDuplicate = function (obj) {
-      console.log(obj);
-      console.log($scope.addedDogUI);
+
+
       var doglistArray = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
       return (doglistArray.indexOf(obj.id) == -1);
     };
@@ -130,24 +130,24 @@ angular.module('dogToolApp')
      * @description creates the new booking through FactoryJob via post
      */
     $scope.createBooking = function () {
-      console.log("Booking JobType:");
-      console.log($scope.selectedJobType.id);
+
+
       $scope.submitted = true;
       if ($scope.booking.Dogs.length > 0) {
         if ($scope.selectedJobType) {
           $scope.booking.Jobtype = $scope.selectedJobType.id;
         }
-        console.log("Booking Obj:");
-        console.log($scope.booking);
+
+
         $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
-        console.log($scope.booking.Dogs);
+
         FactoryJob.update($scope.booking).success(function (res) {
             flash.success = 'Job Created.';
 
-            console.log(res);
+
           })
           .error(function (err) {
-            console.log(err);
+
             flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
           });
       }
@@ -159,9 +159,9 @@ angular.module('dogToolApp')
      *
      */
     $scope.bookDog = function (indexIn) {
-      console.log("Log booking add");
+
       var dogIn = $scope.dogs[indexIn];
-      console.log(dogIn);
+
       $scope.dogs.splice(indexIn, 1);
       $scope.addedDogUI.push(dogIn);
     };
@@ -171,9 +171,9 @@ angular.module('dogToolApp')
      *
      */
     $scope.removeDog = function (indexOut) {
-      console.log("Log booking remove");
+
       var dogOut = $scope.addedDogUI[indexOut];
-      console.log(dogOut);
+
       $scope.dogs.push(dogOut);
       $scope.addedDogUI.splice(indexOut, 1);
 
@@ -190,7 +190,7 @@ angular.module('dogToolApp')
           Description: $scope.feeDescription,
           Cost: $scope.feeAmount
         };
-        console.log(newCost);
+
         $scope.booking.Costs.push(newCost);
       } else {
         if ($scope.feeDescription == '') {
@@ -203,7 +203,7 @@ angular.module('dogToolApp')
     };
     //notes
     $scope.updateNotes = function () {
-      //console.log($scope.booking.Notes);
+      //
 
     };
   $scope.removeBooking = function(){
@@ -216,5 +216,5 @@ angular.module('dogToolApp')
           flash.error = 'Failed.';
         });
   };
-  
+
   });

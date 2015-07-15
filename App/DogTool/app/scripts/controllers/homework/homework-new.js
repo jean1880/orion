@@ -17,18 +17,18 @@ angular.module('dogToolApp')
       loadAllDogs();
       $scope.Homework = {Title:"Unnamed",Description:"",Dogs:[],Notes:[],StartDate:new Date(),EndDate:new Date()}
     };
-  
+
     $scope.addDog = function(dog){
       $scope.addedDogUI.push(dog);
       var dogIndex = $scope.dogs.indexOf(dog);
-      console.log(dog);
-      console.log(dogIndex);
+
+
       if(dogIndex >-1)
       {
         $scope.dogs.splice(dogIndex,1);
       }
     };
-  
+
      $scope.removeDog = function(dog){
       var dogOutIndex = $scope.addedDogUI.indexOf(dog);
       $scope.dogs.push(dog)
@@ -37,7 +37,7 @@ angular.module('dogToolApp')
         $scope.addedDogUI.splice(dogOutIndex,1);
       }
     };
-  
+
     var loadAllDogs = function () {
       $scope.dogs = null;
 
@@ -53,36 +53,36 @@ angular.module('dogToolApp')
         $rootScope.HomeworkSubmitted =false;
         $rootScope.HomeworkLog ={Title:"Unnamed",Description:"",Dogs:[],Notes:[],StartDate:new Date(),EndDate:new Date()};
       }
-      else 
+      else
       {
         $scope.Homework = $rootScope.HomeworkLog;
       }
     };
-  
+
     $scope.submitHomework = function (isValid)
     {
-      console.log(isValid);
+
       $scope.submitted = true;
       if(isValid)
       {
-        console.log($scope.Homework);
+
         if ($scope.Homework.Title != "" && $scope.Homework.Description !="")
         {
-          console.log("Send Homework");
+
           $scope.Homework.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
           FactoryHomework.post($scope.Homework)
             .success(function (res){
             $rootScope.HomeworkSubmitted = true;
-            console.log("success");
+
             flash.success="Homework Saved";
             $window.location.href = "#/homework/" + res.id;
           })
             .error(function(err){
-            console.log(err);
+
           });
         }
       }
     };
-  
+
     init();
   });

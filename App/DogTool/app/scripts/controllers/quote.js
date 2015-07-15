@@ -47,7 +47,7 @@ angular.module('dogToolApp')
     $scope.saveQuote = function () {
       if ($scope.AddServiceForm.$valid) {
         if ($scope.AddServiceForm.$dirty) {
-          console.log($scope.Services);
+
           FactoryQuote.post($scope.Services)
             .success(function () {
               flash.success = "Quote has been Saved!";
