@@ -137,10 +137,10 @@ angular.module('dogToolApp')
 
       FactoryDog.update(payload)
         .success(function () {
-          flash.success = 'Person updated';
+          flash.success = 'Dog updated';
         })
         .error(function () {
-          flash.error = 'Error updating person';
+          flash.error = 'Error updating dog';
         });
     };
 
