@@ -42,7 +42,8 @@ angular.module('dogToolApp')
       BusinessInfo: buildRoutes('businessinfo'),
       Expense: buildRoutes('expense'),
       JobType: buildRoutes('jobtype'),
-      Service: buildRoutes('service')
+      Service: buildRoutes('service'),
+      Quote: buildRoutes('quote')
 
     };
   });

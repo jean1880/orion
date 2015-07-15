@@ -43,7 +43,18 @@ angular.module('dogToolApp')
     };
 
     $scope.saveQuote = function () {
-      alert("Saved");
+      if ($scope.AddServiceForm.$valid) {
+        if ($scope.AddServiceForm.$dirty) {
+          console.log($scope.Services);
+          FactoryQuote.post($scope.Services)
+            .success(function () {
+              flash.success = "Quote has been Saved!";
+            })
+            .error(function () {
+              flash.error = "A Problem has Occured";
+            });
+        }
+      }
     }
 
     $scope.saveService = function () {
