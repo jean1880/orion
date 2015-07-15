@@ -24,7 +24,6 @@ angular
     'ngSanitize',
     'ngTouch',
     'sticky',
-    'sticky',
     'truncate',
     'ui.bootstrap',
     'ui.bootstrap.datetimepicker',
@@ -133,11 +132,14 @@ angular
         templateUrl: 'views/library.html',
         controller: 'LibraryCtrl'
       })
-
       .when('/invoice/:id', {
         templateUrl: 'views/invoice.html',
         controller: 'InvoiceCtrl',
         controllerAs: 'invoice'
+      })
+      .when('/quote', {
+        templateUrl: 'views/quote.html',
+        controller: 'QuoteCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -162,7 +164,8 @@ angular
       .success(function (res) {
         if (res.valid) {
           $location.url(url);
-        } else {
+        }
+	else {
           FactoryLogin.login()
             .success(function () {
               $location.url(url);
