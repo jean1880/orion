@@ -35,5 +35,14 @@ module.exports.policies = {
 
   LoginController: {
     '*': true
+  },
+
+  BillController: {
+    '*': false,
+    'find': ['isLoggedIn'],
+    'findOne': ['isLoggedIn'],
+    'populate': ['isLoggedIn'],
+    'create': ['isLoggedIn'],
+    'add': ['isLoggedIn']
   }
 };
