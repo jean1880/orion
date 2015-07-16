@@ -55,9 +55,9 @@ angular.module('dogToolApp')
        * @param homework
        */
       update: function (homework) {
-        return $http.post(SailsRoute.Homework.update(homework.id), homework);
+        return $http.put(SailsRoute.Homework.update(homework.id), homework);
       },
-      
+
       /**
        * Delete the homework option in question
        * @method delete

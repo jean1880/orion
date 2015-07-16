@@ -35,10 +35,10 @@ angular.module('dogToolApp')
             /**
              * Add a new Booking with the value of cost
              * @method post
-             * @param consultation
+             * @param jobType
              */
-            post: function (consultation) {
-                return $http.post(SailsRoute.JobType.post, consultation);
+            post: function (jobType) {
+                return $http.post(SailsRoute.JobType.post, jobType);
             },
             /**
              * One time fetch from server for full job type dataset
@@ -53,8 +53,8 @@ angular.module('dogToolApp')
              * @method update
              * @param searchObject
              */
-            update: function (consultation) {
-                return $http.post(SailsRoute.JobType.update(consultation.id), consultation);
+            update: function (jobType) {
+                return $http.put(SailsRoute.JobType.update(jobType.id), jobType);
             }
         };
   });

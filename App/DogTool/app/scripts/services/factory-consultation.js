@@ -53,7 +53,7 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             update: function (consultation) {
-                return $http.post(SailsRoute.Consultation.update(consultation.id), consultation);
+                return $http.put(SailsRoute.Consultation.update(consultation.id), consultation);
             }
         };
   });

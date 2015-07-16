@@ -55,9 +55,9 @@ angular.module('dogToolApp')
        * @param homework
        */
       update: function (homework) {
-        return $http.post(SailsRoute.Invoice.update(homework.id), homework);
+        return $http.put(SailsRoute.Invoice.update(homework.id), homework);
       },
-      
+
       /**
        * Delete the Invoice option in question
        * @method delete

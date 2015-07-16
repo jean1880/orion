@@ -54,14 +54,14 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             update: function (consultation) {
-                return $http.post(SailsRoute.Job.update(consultation.id), consultation);
+                return $http.put(SailsRoute.Job.update(consultation.id), consultation);
             },
-            
+
             delete: function(id){
               return $http.delete(SailsRoute.Job.delete, id);
-              
+
             }
         };
-  
-         
+
+
   });

@@ -7,7 +7,7 @@
  */
 angular.module('dogToolApp')
     .factory('FactoryCost', function ($http, SailsRoute, poller) {
-        
+
 
         return {
             /**
@@ -48,14 +48,14 @@ angular.module('dogToolApp')
             find: function (searchObject) {
                 return $http.post(SailsRoute.Cost.find, searchObject);
             },
-            
+
             /**
             * Update the value of an item, with the new value
             * @method update
             * @param cost
             */
             update: function (cost) {
-                return $http.post(SailsRoute.Cost.update(cost.id), cost);
+                return $http.put(SailsRoute.Cost.update(cost.id), cost);
             }
         };
     });

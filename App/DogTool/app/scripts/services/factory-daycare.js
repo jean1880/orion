@@ -57,7 +57,7 @@ angular.module('dogToolApp')
        * @param object
        */
       update: function (object) {
-        return $http.post(SailsRoute.Daycare.update(object.id), object);
+        return $http.put(SailsRoute.Daycare.update(object.id), object);
       }
     };
   });

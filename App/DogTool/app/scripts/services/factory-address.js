@@ -68,7 +68,7 @@ angular.module('dogToolApp')
             * @return {Http.promise} Returns a http promise
             */
             update: function (address) {
-                return $http.post(SailsRoute.Address.update(address.id), address);
+                return $http.put(SailsRoute.Address.update(address.id), address);
             }
         };
     });

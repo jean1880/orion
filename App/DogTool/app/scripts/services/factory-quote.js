@@ -42,7 +42,7 @@ angular.module('dogToolApp')
        * @param person  object
        */
       update: function (quote) {
-        return $http.post(SailsRoute.Quote.update(quote.id), quote);
+        return $http.put(SailsRoute.Quote.update(quote.id), quote);
       }
     };
   });

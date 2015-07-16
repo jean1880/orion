@@ -58,7 +58,7 @@ angular.module('dogToolApp')
        * @param weight
        */
       update: function (weight) {
-        return $http.post(SailsRoute.Weight.update(weight.id), weight);
+        return $http.put(SailsRoute.Weight.update(weight.id), weight);
       }
     };
   });

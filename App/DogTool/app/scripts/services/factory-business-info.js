@@ -10,15 +10,15 @@ angular.module('dogToolApp')
   .factory('FactoryBusinessInfo', function ($http, SailsRoute, poller) {
 
     return {
-		
+
 		get: function() {
 			return $http.get(SailsRoute.BusinessInfo.getAll);
 		},
-      
+
 		update: function (object) {
           //Just want base route, using .get instead of .update
-          return $http.put(SailsRoute.BusinessInfo.getAll, object); 
+          return $http.put(SailsRoute.BusinessInfo.getAll, object);
         }
-		
+
     };
   });

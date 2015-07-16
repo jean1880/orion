@@ -55,7 +55,7 @@ angular.module('dogToolApp')
       },
 
       update: function (note) {
-        return $http.post(SailsRoute.Note.update(note.id), note);
+        return $http.put(SailsRoute.Note.update(note.id), note);
       }
     };
   });

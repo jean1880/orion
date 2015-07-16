@@ -60,7 +60,7 @@ angular.module('dogToolApp')
        * @param person  object
        */
       update: function (person) {
-        return $http.post(SailsRoute.People.update(person.id), person);
+        return $http.put(SailsRoute.People.update(person.id), person);
       }
     };
   });
