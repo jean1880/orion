@@ -38,7 +38,8 @@
       </div>
       <div class="col-sm-1 col-md-1 col-lg-1 pull-right"></div>
       <div class="pull-right">
-        <input type="button" class="btn btn-primary" value="Save" ng-click="saveQuote()" ng-disabled="QuoteTitleForm.$invalid || addingService" />
+        <input type="button" class="btn btn-primary hidden-print" value="Save" ng-click="saveQuote()" ng-disabled="QuoteTitleForm.$invalid || addingService" />
+        <button class="btn btn-primary hidden-print" ng-click="print()">Print</button>
       </div>
     </form>
   </div>

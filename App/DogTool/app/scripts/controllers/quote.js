@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('QuoteCtrl', function ($scope, FactoryBusinessInfo, FactoryQuote, FactoryService, flash) {
+  .controller('QuoteCtrl', function ($scope, FactoryBusinessInfo, FactoryQuote, FactoryService, flash,$window) {
 
     $scope.Services = {};
 
@@ -31,7 +31,10 @@ angular.module('dogToolApp')
       });
 
 
-
+    $scope.print = function ()
+    {
+      $window.print();
+    }
 
 
     $scope.addService = function () {
