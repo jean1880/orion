@@ -51,7 +51,14 @@ angular.module('dogToolApp')
      * @method editInfoBtn
      */
     $scope.editInfoBtn = function() {
-      $scope.editedPerson = angular.copy($scope.person);
+      $scope.editedPerson = {
+        id: $scope.person.id,
+        Name: $scope.person.Name,
+        Email: $scope.person.Email,
+        Phone: $scope.person.Phone,
+        Address: $scope.person.Address
+      };
+
       $scope.editingInfo = true;
     };
 
