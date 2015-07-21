@@ -39,6 +39,13 @@ angular.module('dogToolApp')
           if(!dog.BehaviourFlag) { dog.BehaviourFlag = null; }
         };
 
+        $scope.open = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          $scope.opened = true;
+        };
+
         init();
       }
     };
