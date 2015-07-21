@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('LibraryCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash) {
+  .controller('HomeworkMngCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash) {
 
     /*createDogLookup, re-orders the array into a JSON object propertied by
      *dog's id.
@@ -40,10 +40,15 @@ angular.module('dogToolApp')
 
       $location.url('/homework/' + homeworkIdToEdit);
     };
-    /**
-     *deleteHomework function that deletes homework
-     *@param homeworIdToDelete, what homework by id to delete
-     */
+  
+    $scope.duplicateHomework = function (homeworkIdToDuplicate) {
+        
+        $location.url('/homework/new/' + homeworkIdToDuplicate);
+      }
+      /**
+       *deleteHomework function that deletes homework
+       *@param homeworIdToDelete, what homework by id to delete
+       */
     $scope.deleteHomework = function (homeworIdToDelete) {
       FactoryHomework.remove(homeworIdToDelete)
         .success(function (res) {

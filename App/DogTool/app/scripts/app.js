@@ -28,7 +28,8 @@ angular
     'ui.bootstrap',
     'ui.bootstrap.datetimepicker',
     'ui.bootstrap.showErrors',
-    'ui.calendar'
+    'ui.calendar',
+    'filters'
   ])
   .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
     flashProvider.successClassnames.push('alert-success');
@@ -128,9 +129,13 @@ angular
         templateUrl: 'views/businessinfo.html',
         controller: 'BusinessinfoCtrl'
       })
+      .when('/homework/new/:id', {
+        templateUrl: 'views/homework.html',
+        controller: 'HomeworkNewCtrl'
+      })
       .when('/library', {
-        templateUrl: 'views/library.html',
-        controller: 'LibraryCtrl'
+        templateUrl: 'views/homeworkManagement.html',
+        controller: 'HomeworkMngCtrl'
       })
       .when('/invoice/:id', {
         templateUrl: 'views/invoice.html',
@@ -164,8 +169,7 @@ angular
       .success(function (res) {
         if (res.valid) {
           $location.url(url);
-        }
-	else {
+        } else {
           FactoryLogin.login()
             .success(function () {
               $location.url(url);
@@ -173,3 +177,29 @@ angular
         }
       });
   });
+
+/**
+ * Truncate Filter
+ * @Param text
+ * @Param length, default is 10
+ * @Param end, default is "..."
+ * @return string
+ */
+angular.module('filters', []).
+    filter('truncate', function () {
+        return function (text, length, end) {
+            if (isNaN(length))
+                length = 10;
+
+            if (end === undefined)
+                end = "...";
+
+            if (text.length <= length || text.length - end.length <= length) {
+                return text;
+            }
+            else {
+                return String(text).substring(0, length-end.length) + end;
+            }
+
+        };
+    });
