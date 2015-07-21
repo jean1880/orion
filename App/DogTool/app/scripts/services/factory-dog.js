@@ -1,4 +1,7 @@
 'use strict';
+
+/* global moment */
+
 /**
  * @class FactoryDog
  * @ngdoc service
@@ -6,7 +9,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryDog', function ($http, SailsRoute, poller, Upload) {
+  .factory('FactoryDog', function ($http, SailsRoute, SAILS_URL, poller, Upload) {
     return {
       /**
        * One time fetch from server for single Dog dataset based on id
@@ -68,7 +71,7 @@ angular.module('dogToolApp')
        */
       upload: function (file, dog) {
         return Upload.upload({
-          url: 'http://localhost:1337/Dog/uploadPhoto/' + dog.id,
+          url: SAILS_URL + '/Dog/uploadPhoto/' + dog.id,
           file: file[0]
         });
       },
