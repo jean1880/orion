@@ -20,7 +20,7 @@ angular.module('dogToolApp')
           $log.info($scope.dog.photoURL);
 
           if($scope.dog.photoURL) {
-            attrs.$set('src', SAILS_URL + $scope.dog.photoURL);
+            attrs.$set('src', SAILS_URL + $scope.dog.photoURL + '?' + Math.random());
           }
           else {
             attrs.$set('src', '/images/no-dog-image.jpg');
