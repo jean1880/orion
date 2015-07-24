@@ -22,7 +22,8 @@ angular.module('dogToolApp')
         Dogs: [],
         Notes: [],
         StartDate: new Date(),
-        EndDate: new Date()
+        EndDate: new Date(),
+        Status:false
       }
       if ($routeParams.id != null) {
         FactoryHomework.get($routeParams.id).success(function (homeworkRes) {

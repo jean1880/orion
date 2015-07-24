@@ -53,7 +53,10 @@ angular.module('dogToolApp')
       FactoryHomework.remove(homeworIdToDelete)
         .success(function (res) {
           flash.success = "Homework Deleted";
-          init();
+          $scope.dogHomeworkGroup = {};
+          $scope.dog = {};
+          $scope.LibraryList = {};
+          loadHomework();
           $scope.$apply();
         }).error(function (err) {
           flash.error = "Sorry but could not delete the homework"
@@ -68,6 +71,19 @@ angular.module('dogToolApp')
       loadHomework();
     };
 
+  /**
+   *updateHomework function that updates homework
+   *@param homeworkId, what homework by id to update
+   */
+    $scope.updateHomework = function(homeworkId){
+      FactoryHomework.update($scope.LibraryList[homeworkId])
+        .success(function(homeworkRes){
+        flash.success="Status Saved";
+      }).error(function(errorHomework){
+        flash.error="Sorry there was an issue saving the status change";
+      })
+    }
+    
     var loadHomework = function () {
         FactoryHomework.getAll().success(function (response) {
           createLibraryLookup(response);
@@ -86,23 +102,27 @@ angular.module('dogToolApp')
        * the homework.
        */
     var parseDogs = function () {
-      var listDogHomeworkGroup={};
+      var listDogHomeworkGroup = {};
       for (var item in $scope.LibraryList) {
         for (var dogPos in $scope.LibraryList[item].Dogs) {
           var dogId = $scope.LibraryList[item].Dogs[dogPos].id;
 
           if (listDogHomeworkGroup[dogId] == null) {
-           listDogHomeworkGroup[dogId] = {homeworkList:[],dogName:$scope.LibraryList[item].Dogs[dogPos].Name,id:dogId};
+            listDogHomeworkGroup[dogId] = {
+              homeworkList: [],
+              dogName: $scope.LibraryList[item].Dogs[dogPos].Name,
+              id: dogId
+            };
           }
-            listDogHomeworkGroup[dogId]['homeworkList'].push($scope.LibraryList[item].id);
+          listDogHomeworkGroup[dogId]['homeworkList'].push($scope.LibraryList[item].id);
         }
       }
-      $scope.dogHomeworkGroup=[];
-      angular.forEach(listDogHomeworkGroup, function(value,key){
+      $scope.dogHomeworkGroup = [];
+      angular.forEach(listDogHomeworkGroup, function (value, key) {
         $scope.dogHomeworkGroup.push(value);
       });
-      $scope.homeworkByTitle=[];
-      angular.forEach($scope.LibraryList, function(value,key){
+      $scope.homeworkByTitle = [];
+      angular.forEach($scope.LibraryList, function (value, key) {
         $scope.homeworkByTitle.push(value);
       });
     };

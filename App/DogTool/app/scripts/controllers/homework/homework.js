@@ -66,6 +66,7 @@ angular.module('dogToolApp')
 
           $scope.Homework.StartDate = new Date($scope.Homework.StartDate);
           $scope.Homework.EndDate = new Date($scope.Homework.EndDate);
+          console.log("status:",$scope.Homework.Status);
         })
         .error(function (error) {
           flash.error = 'Sorry we could not access the job in question.';
@@ -94,7 +95,8 @@ angular.module('dogToolApp')
     $scope.submitHomework = function (isValid) {
 
       $scope.submitted = true;
-      if (isValid) {
+       console.log("isVald:",isValid," Lenght",$scope.addedDogUI.lenght);
+      if (isValid && $scope.addedDogUI.length>0) {
 
         if ($scope.Homework.Title != "" && $scope.Homework.Description != "") {
 

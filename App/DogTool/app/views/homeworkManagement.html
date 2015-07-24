@@ -46,6 +46,10 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-8">
           <h5>Due Date: {{homework.EndDate|date:'fullDate'}}</h5>
+          <label class="control-label">Status: </label>
+          <div class="pull-right">
+            <input bs-switch class="pull-right" type="checkbox" ng-model="LibraryList[homework.id].Status" switch-on-text="Complete" switch-off-text="Incomplete" ng-change="updateHomework(homework.id)"/>
+          </div>
           <h5>Description:</h5>
           <p>{{homework.Description|truncateFilter:250}}</p>
         </div>
@@ -66,7 +70,7 @@
         </div>
         <div class="row col-xs-12 col-sm-6 col-md-8">
           <div ng-repeat="homeworkId in homeworkList.homeworkList">
-            <div >
+            <div>
               <div class="btn-group pull-right">
                 <button class="btn btn-danger pull-right" ng-click="deleteHomework(homeworkId)"><span class="glyphicon glyphicon-remove"></span>
                 </button>
@@ -78,6 +82,10 @@
               <h4>{{LibraryList[homeworkId].Title}} 
             </h4>
               <h6>Due Date: {{LibraryList[homeworkId].EndDate|date:'fullDate'}}</h6>
+              <label class="control-label">Status: </label>
+              <div class="pull-right">
+                <input bs-switch class="pull-right" type="checkbox" ng-model="LibraryList[homeworkId].Status" switch-on-text="Complete" switch-off-text="Incomplete" ng-change="updateHomework(homeworkId)"/>
+              </div>
               <h6>Description:</h6>
               <p>{{LibraryList[homeworkId].Description|truncateFilter:250}}</p>
             </div>
