@@ -101,12 +101,10 @@ angular.module('dogToolApp')
       angular.forEach(listDogHomeworkGroup, function(value,key){
         $scope.dogHomeworkGroup.push(value);
       });
-      var homeworklistTemp=[];
+      $scope.homeworkByTitle=[];
       angular.forEach($scope.LibraryList, function(value,key){
-        homeworklistTemp.push(value);
+        $scope.homeworkByTitle.push(value);
       });
-      $scope.LibraryList=[];
-      $scope.LibraryList=homeworklistTemp;
     };
 
 

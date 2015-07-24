@@ -26,7 +26,7 @@
 
 <div class="col-xs-12 col-sm-9" ng-show="sortBy=='title'">
 
-  <div ng-repeat="homework in LibraryList |filter:{$:searchDog}">
+  <div ng-repeat="homework in homeworkByTitle |filter:{$:searchDog}">
     <div class="panel panel-primary">
       <div class="btn-group pull-right">
         <button class="btn btn-danger pull-right" ng-click="deleteHomework(homework.id)"><span class="glyphicon glyphicon-remove "></span>
@@ -47,7 +47,7 @@
         <div class="col-xs-12 col-sm-6 col-md-8">
           <h5>Due Date: {{homework.EndDate|date:'fullDate'}}</h5>
           <h5>Description:</h5>
-          <p>{{homework.Description|truncate:300}}</p>
+          <p>{{homework.Description|truncateFilter:250}}</p>
         </div>
       </div>
     </div>
@@ -56,30 +56,31 @@
 
 <div class="col-xs-12 col-sm-9" ng-show="sortBy=='dog'">
   <div ng-repeat="(dogIds,homeworkList) in dogHomeworkGroup|filter:{$:searchDog}">
-
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h5 class="panel-title">Homework List for {{dog[dogIds].Name}}</h5>
+        <h5 class="panel-title">Homework List for {{dog[homeworkList.id].Name}}</h5>
       </div>
       <div class="panel-body">
         <div class="col-xs-12 col-sm-6 col-md-4">
           <dog-card dog="dog[homeworkList.id]"></dog-card>
         </div>
-        <div ng-repeat="homeworkId in homeworkList.homeworkList">
-          <div class="row col-xs-12 col-sm-6 col-md-8">
-            <div class="btn-group pull-right">
-              <button class="btn btn-danger pull-right" ng-click="deleteHomework(homeworkId)"><span class="glyphicon glyphicon-remove"></span>
-              </button>
-              <button class="btn btn-primary pull-right" ng-click="edit(homeworkId)"><span class="glyphicon glyphicon-edit"></span>
-              </button>
-              <button class="btn btn-primary pull-right" ng-click="duplicateHomework(homeworkId)"><span class="glyphicon glyphicon-copy"></span>
-              </button>
-            </div>
-            <h4>{{LibraryList[homeworkId].Title}} 
+        <div class="row col-xs-12 col-sm-6 col-md-8">
+          <div ng-repeat="homeworkId in homeworkList.homeworkList">
+            <div >
+              <div class="btn-group pull-right">
+                <button class="btn btn-danger pull-right" ng-click="deleteHomework(homeworkId)"><span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button class="btn btn-primary pull-right" ng-click="edit(homeworkId)"><span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button class="btn btn-primary pull-right" ng-click="duplicateHomework(homeworkId)"><span class="glyphicon glyphicon-copy"></span>
+                </button>
+              </div>
+              <h4>{{LibraryList[homeworkId].Title}} 
             </h4>
-            <h6>Due Date: {{LibraryList[homeworkId].EndDate|date:'fullDate'}}</h6>
-            <h6>Description:</h6>
-            <p>{{LibraryList[homeworkId].Description|truncate:200}}</p>
+              <h6>Due Date: {{LibraryList[homeworkId].EndDate|date:'fullDate'}}</h6>
+              <h6>Description:</h6>
+              <p>{{LibraryList[homeworkId].Description|truncateFilter:250}}</p>
+            </div>
           </div>
         </div>
       </div>
