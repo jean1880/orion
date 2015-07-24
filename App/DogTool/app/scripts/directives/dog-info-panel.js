@@ -112,7 +112,7 @@ angular.module('dogToolApp')
             FactoryDog.upload(file, $scope.dog).progress(function (evt) {
               var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             }).success(function (data) {
-              $scope.dog.photoURL = data.photoURL + '?' + Math.random(1000);
+              $scope.dog.photoURL = data.photoURL;
             });
           }
         };

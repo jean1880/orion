@@ -1,3 +1,12 @@
+'use strict';
+
+/* global Dog */
+
+var skipperDisk = require('skipper-disk');
+var util = require('util');
+var Chance = require('chance');
+var chance = new Chance();
+
 /**
  * DogsController
  *
@@ -22,7 +31,7 @@ module.exports = {
         return res.badRequest('No file uploaded');
       }
       Dog.update(req.param('id'), {
-          photoURL: require('util').format('/Dog/getPhoto/%s', req.param('id')),
+          photoURL: util.format('/Dog/getPhoto/%s?rng=%s', req.param('id'), chance.hash({length: 10})),
 
           photoFd: uploadedFiles[0].fd
         })
@@ -48,8 +57,8 @@ module.exports = {
       if (!dog.photoFd) {
         return res.notFound();
       }
-      var SkipperDisk = require('skipper-disk');
-      var fileAdapter = SkipperDisk( /* optional opts */ );
+
+      var fileAdapter = skipperDisk();
 
       // Stream the file down
       fileAdapter.read(dog.photoFd)
