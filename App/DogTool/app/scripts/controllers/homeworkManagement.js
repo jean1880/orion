@@ -40,9 +40,9 @@ angular.module('dogToolApp')
 
       $location.url('/homework/' + homeworkIdToEdit);
     };
-  
+
     $scope.duplicateHomework = function (homeworkIdToDuplicate) {
-        
+
         $location.url('/homework/new/' + homeworkIdToDuplicate);
       }
       /**
@@ -86,24 +86,34 @@ angular.module('dogToolApp')
        * the homework.
        */
     var parseDogs = function () {
-
+      var listDogHomeworkGroup={};
       for (var item in $scope.LibraryList) {
         for (var dogPos in $scope.LibraryList[item].Dogs) {
           var dogId = $scope.LibraryList[item].Dogs[dogPos].id;
 
-          if ($scope.dogHomeworkGroup[dogId] == null) {
-            $scope.dogHomeworkGroup[dogId] = [];
+          if (listDogHomeworkGroup[dogId] == null) {
+           listDogHomeworkGroup[dogId] = {homeworkList:[],dogName:$scope.LibraryList[item].Dogs[dogPos].Name,id:dogId};
           }
-          $scope.dogHomeworkGroup[dogId].push($scope.LibraryList[item].id);
+            listDogHomeworkGroup[dogId]['homeworkList'].push($scope.LibraryList[item].id);
         }
       }
-
+      $scope.dogHomeworkGroup=[];
+      angular.forEach(listDogHomeworkGroup, function(value,key){
+        $scope.dogHomeworkGroup.push(value);
+      });
+      var homeworklistTemp=[];
+      angular.forEach($scope.LibraryList, function(value,key){
+        homeworklistTemp.push(value);
+      });
+      $scope.LibraryList=[];
+      $scope.LibraryList=homeworklistTemp;
     };
 
 
     $scope.changeSortBy = function (newSort) {
       $scope.sortBy = newSort;
-
     };
+
+
     init();
   });

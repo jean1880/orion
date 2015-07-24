@@ -13,15 +13,20 @@
       </ul>
       <div class="form-group">
         <div class="input-group">
-          <input ng-model="searchDog" type="text" class="form-control" placeholder="Search" />
-          <a class="btn btn-primary" ng-href="#/homework">Create New</a>
+          <input ng-model="searchDog" type="text" class="form-control" placeholder="Dog name..." />
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </div>
         </div>
       </div>
+      <a class="btn btn-primary" ng-href="#/homework">Create New</a>
     </div>
   </div>
 </div>
+
 <div class="col-xs-12 col-sm-9" ng-show="sortBy=='title'">
-  <div ng-repeat="homework in LibraryList |filter:searchDog">
+
+  <div ng-repeat="homework in LibraryList |filter:{$:searchDog}">
     <div class="panel panel-primary">
       <div class="btn-group pull-right">
         <button class="btn btn-danger pull-right" ng-click="deleteHomework(homework.id)"><span class="glyphicon glyphicon-remove "></span>
@@ -50,16 +55,17 @@
 </div>
 
 <div class="col-xs-12 col-sm-9" ng-show="sortBy=='dog'">
-  <div ng-repeat="(dogIds,homeworkList) in dogHomeworkGroup|filter:{Name:searchDog}">
+  <div ng-repeat="(dogIds,homeworkList) in dogHomeworkGroup|filter:{$:searchDog}">
+
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h5 class="panel-title">Homework List for {{dog[dogIds].Name}}</h5>
       </div>
       <div class="panel-body">
         <div class="col-xs-12 col-sm-6 col-md-4">
-          <dog-card dog="dog[dogIds]"></dog-card>
+          <dog-card dog="dog[homeworkList.id]"></dog-card>
         </div>
-        <div ng-repeat="homeworkId in homeworkList">
+        <div ng-repeat="homeworkId in homeworkList.homeworkList">
           <div class="row col-xs-12 col-sm-6 col-md-8">
             <div class="btn-group pull-right">
               <button class="btn btn-danger pull-right" ng-click="deleteHomework(homeworkId)"><span class="glyphicon glyphicon-remove"></span>
