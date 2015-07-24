@@ -81,6 +81,23 @@ angular.module('dogToolApp')
           });
         };
 
+        $scope.saveNoteOnBlur = function (note) {
+          if(note.Title && note.Content){
+            console.log("blurred");
+          var action;
+          if(note.id) {
+            action = FactoryNote.update(note);
+          }
+          else {
+            action = FactoryNote.post(note);
+          }
+
+          action
+            .success(function (res) { })
+            .error(function (res) {  });
+          }
+        };
+        
         var saveNote = function (note, callback) {
           var action;
           if(note.id) {
