@@ -53,10 +53,6 @@ angular.module('dogToolApp')
       return $scope.dog.Owner ? true : false;
     };
 
-    var vetIsValid = function () {
-      return $scope.dog.Vet ? true : false;
-    };
-
     init();
   });
 

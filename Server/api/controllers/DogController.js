@@ -22,7 +22,7 @@ module.exports = {
         return res.badRequest('No file uploaded');
       }
       Dog.update(req.param('id'), {
-          photoURL: require('util').format('%s/Dog/getPhoto/%s', sails.getBaseUrl(), req.param('id')),
+          photoURL: require('util').format('/Dog/getPhoto/%s', req.param('id')),
 
           photoFd: uploadedFiles[0].fd
         })

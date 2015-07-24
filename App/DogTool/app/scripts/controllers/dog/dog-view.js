@@ -90,13 +90,18 @@ angular.module('dogToolApp')
     };
 
     $scope.updateNotes = function () {
+      var payload = {
+        id: $scope.dog.id,
+        Notes: $scope.dog.Notes
+      };
 
-      FactoryDog.update($scope.dog)
+      FactoryDog.update(payload)
         .success(function (res) {
-
+          $scope.dog = res;
+          flash.success = 'Notes saved';
         })
-        .error(function (res) {
-
+        .error(function () {
+          flash.error = 'An error occured while saving notes.';
         });
     };
 
@@ -108,8 +113,9 @@ angular.module('dogToolApp')
      * @param  {ID} newId The ID of the new Vet
      */
     var updatePerson = function (relation, newId) {
-      var payload = {};
-      payload.id = $scope.dog.id;
+      var payload = {
+        id: $scope.dog.id
+      };
 
       //dynamically prepare the payload
       payload[relation] = newId;

@@ -47,6 +47,7 @@ module.exports = function(config) {
       'bower_components/bootstrap-switch/dist/js/bootstrap-switch.js',
       'bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js',
       'bower_components/angular-truncate/src/truncate.js',
+      'bower_components/async/lib/async.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/chance/chance.js',
       // endbower

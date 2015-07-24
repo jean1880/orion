@@ -169,7 +169,8 @@ angular
       .success(function (res) {
         if (res.valid) {
           $location.url(url);
-        } else {
+        }
+	      else {
           FactoryLogin.login()
             .success(function () {
               $location.url(url);
