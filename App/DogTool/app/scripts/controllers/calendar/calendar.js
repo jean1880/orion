@@ -8,7 +8,7 @@
  * Controller of the dogToolApp, manages the calendar/view.html
  */
 angular.module('dogToolApp')
-  .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, $modal, $modalStack) {
+  .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack) {
     /**
      * Rounds the date to the bottom, or top of the hour
      * @param  {object} date new date object
@@ -57,6 +57,10 @@ angular.module('dogToolApp')
     $scope.eventSources = [$scope.calendarData]
     $scope.addingEvent = false;
     $scope.allDay = true;
+    $scope.monthNote = {};
+    $scope.monthTitle = null;
+    $scope.monthNoteExists = false;
+    $scope.NOTE_TYPE = 'MonthNote';
 
     /**
      * Goes to the jobs for the day
@@ -68,39 +72,11 @@ angular.module('dogToolApp')
       }
     };
 
-    /**
-     * Goes to the jobs for the day
-     * @param {Object} date Moment.js date object
-     */
-    $scope.GotoDay = function () {
-      var startDay = new Date($scope.startTime.valueOf());
-      startDay.setHours(startDay.getHours() + 4);
-      
-      $location.url('/jobs/day/' + encodeURI(startDay));
-    };
-
-    /**
-     * [CreateBooking description]
-     */
-    $scope.CreateBooking = function () {
-      //      $('#calendar-event').modal('hide');
-
-      var startDay = new Date($scope.startTime.valueOf());
-      startDay.setHours(startDay.getHours());
-
-      var endDay = new Date($scope.endTime.valueOf());
-      endDay.setHours(endDay.getHours());
-
-      $timeout(function () {
-        $location.url('/jobs/new/' + encodeURI(startDay) + '/' + encodeURI(endDay));
-      }, 350)
-    }
-
-    var CreateEventDay = function(startDate, endDate){
+    var CreateEventDay = function (startDate, endDate) {
       startDate.add(4, 'h');
-      CreateEvent(startDate,endDate);
+      CreateEvent(startDate, endDate);
     }
-    
+
     /**
      * [CreateEvent description]
      * @param {[type]} startDate [description]
@@ -124,7 +100,7 @@ angular.module('dogToolApp')
         startTime: $scope.startTime,
         endTime: $scope.endTime
       }
-      
+
       if (!$modalStack.getTop()) {
         $modal.open({
           animation: true,
@@ -138,7 +114,7 @@ angular.module('dogToolApp')
         });
       }
     };
-  
+
     /**
      * Adds event to server and local array
      * @method  AddEvent
@@ -197,6 +173,23 @@ angular.module('dogToolApp')
       $('#calendar').fullCalendar('unselect');
     }
 
+    var GetNotes = function (view, element) {
+      $scope.monthTitle = view.title;
+      FactoryNote.find({
+        Title: $scope.monthTitle,
+        NoteType: $scope.NOTE_TYPE
+      }).success(function (data) {
+        console.log(data);
+        if (data.length > 0) {
+          $scope.monthNoteExists = true;
+          $scope.monthNote = data[0];
+        } else {
+          $scope.monthNoteExists = false;
+          $scope.monthNote = {};
+        }
+      })
+    }
+
     /* config object */
     $scope.uiConfig = {
       calendar: {
@@ -214,7 +207,8 @@ angular.module('dogToolApp')
         dayClick: CreateEventDay,
         timezone: 'local',
         eventResize: UpdateEvent,
-        eventDrop: UpdateEvent
+        eventDrop: UpdateEvent,
+        viewRender: GetNotes
       }
     };
     /**
@@ -251,7 +245,19 @@ angular.module('dogToolApp')
     }
 
 
-
+    $scope.SaveMonthNote = function () {
+      $scope.monthNote.Title = $scope.monthTitle;
+      $scope.monthNote.NoteType = $scope.NOTE_TYPE;
+      if ($scope.monthNoteExists) {
+        FactoryNote.update($scope.monthNote).success(function (data) {
+          console.log("Updated note");
+        });
+      } else {
+        FactoryNote.post($scope.monthNote).success(function (data) {
+          console.log("created note");
+        })
+      }
+    }
 
 
     /**
@@ -280,71 +286,3 @@ angular.module('dogToolApp')
 
     init();
   });
-
-//modal controller
-angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $location, $timeout, $modalInstance, pass) {
-
-  $scope.startTime = pass.startTime;
-  $scope.endTime = pass.endTime;
-  
-  $scope.ok = function () {
-    $modalInstance.close();
-  };
-  /**
-   * Goes to the jobs for the day
-   * @param {Object} date Moment.js date object
-   */
-  $scope.GotoDay = function () {
-    var startDay = new Date($scope.startTime.valueOf());
-    startDay.setHours(startDay.getHours() + 4);
-    $location.url('/jobs/day/' + encodeURI(startDay));
-    $modalInstance.close();
-  };
-
-  /**
-   * [CreateBooking description]
-   */
-  $scope.CreateBooking = function () {    
-    var startDay = new Date($scope.startTime.valueOf());
-    startDay.setHours(startDay.getHours());
-
-    var endDay = new Date($scope.endTime.valueOf());
-    endDay.setHours(endDay.getHours());
-     $location.url('/jobs/new/' + encodeURI(startDay) + '/' + encodeURI(endDay));
-    $modalInstance.close();
-  }
-
-  /**
-   * Adds event to server and local array
-   * @method  AddEvent
-   */
-  $scope.AddEvent = function () {
-    var startDay = $scope.day.toDate();
-    startDay.setHours(startDay.getHours() + 4);
-
-    var endDay = $scope.endDay.toDate();
-    endDay.setHours(endDay.getHours() + 4);
-
-    factoryCalendar.post({
-      StartDate: startDay,
-      EndDate: endDay,
-      Note: {
-        Title: $scope.title,
-        Content: $scope.note,
-        NoteType: 'event',
-        IsAllDay: $scope.allDay || false
-      }
-    }).success(function () {
-      $scope.calendarData.push({
-          title: $scope.title,
-          start: $scope.day.toDate(),
-          end: $scope.endDay.toDate(),
-          allDay: $scope.allDay
-        })
-      $modalInstance.close();
-    });
-  };
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-});
