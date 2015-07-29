@@ -35,6 +35,10 @@ module.exports = {
         Title:
         {
           type:'text'
+        },
+        Status:
+        {
+          type:'boolean'
         }
     }
 };

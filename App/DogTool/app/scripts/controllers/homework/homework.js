@@ -53,25 +53,40 @@ angular.module('dogToolApp')
       FactoryHomework.get($routeParams.id)
         .success(function (response) {
           $scope.Homework = response;
+          var doglistArray = HelperService.convert.objectArrayToIdArray($scope.dogs);
+          console.log(doglistArray);
+          angular.forEach(response.Dogs, function (value, key) {
+            console.log(doglistArray.indexOf(value.id), value.id);
+            if (doglistArray.indexOf(value.id) != -1) {
+              $scope.addedDogUI.push($scope.dogs[doglistArray.indexOf(value.id)]);
+            }
+          });
+          console.log(response);
+          $scope.dogs = $scope.dogs.filter(removeDuplicate);
 
-          $scope.addedDogUI = response.Dogs;
-
-        $scope.dogs = $scope.dogs.filter(removeDuplicate);
-
-        $scope.Homework.StartDate = new Date($scope.Homework.StartDate);
-        $scope.Homework.EndDate = new Date($scope.Homework.EndDate);
+          $scope.Homework.StartDate = new Date($scope.Homework.StartDate);
+          $scope.Homework.EndDate = new Date($scope.Homework.EndDate);
+          console.log("status:",$scope.Homework.Status);
         })
         .error(function (error) {
           flash.error = 'Sorry we could not access the job in question.';
         });
     }
 
-    /**
-     * @method removeDuplicate
-     * @return return the bool of if obj is in doglistArray
-     * @param obj, what you are looking for, must be type dog.
-     *
-     */
+    var cloneObj = function (obj) {
+        if (null == obj || "object" != typeof obj) return obj;
+        var copy = obj.constructor();
+        for (var attr in obj) {
+          if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+        }
+        return copy;
+      }
+      /**
+       * @method removeDuplicate
+       * @return return the bool of if obj is in doglistArray
+       * @param obj, what you are looking for, must be type dog.
+       *
+       */
     var removeDuplicate = function (obj) {
       var doglistArray = HelperService.convert.objectArrayToIdArray($scope.Homework.Dogs);
       return (doglistArray.indexOf(obj.id) == -1);
@@ -80,7 +95,8 @@ angular.module('dogToolApp')
     $scope.submitHomework = function (isValid) {
 
       $scope.submitted = true;
-      if (isValid) {
+       console.log("isVald:",isValid," Lenght",$scope.addedDogUI.lenght);
+      if (isValid && $scope.addedDogUI.length>0) {
 
         if ($scope.Homework.Title != "" && $scope.Homework.Description != "") {
 
@@ -89,7 +105,7 @@ angular.module('dogToolApp')
             .success(function (res) {
               $rootScope.HomeworkSubmitted = true;
 
-              flash.success="Homework Saved";
+              flash.success = "Homework Saved";
             })
             .error(function (err) {
 

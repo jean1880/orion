@@ -128,9 +128,13 @@ angular
         templateUrl: 'views/businessinfo.html',
         controller: 'BusinessinfoCtrl'
       })
+      .when('/homework/new/:id', {
+        templateUrl: 'views/homework.html',
+        controller: 'HomeworkNewCtrl'
+      })
       .when('/library', {
-        templateUrl: 'views/library.html',
-        controller: 'LibraryCtrl'
+        templateUrl: 'views/homeworkManagement.html',
+        controller: 'HomeworkMngCtrl'
       })
       .when('/invoice/:id', {
         templateUrl: 'views/invoice.html',
@@ -165,7 +169,7 @@ angular
         if (res.valid) {
           $location.url(url);
         }
-	else {
+	      else {
           FactoryLogin.login()
             .success(function () {
               $location.url(url);
@@ -173,3 +177,5 @@ angular
         }
       });
   });
+
+

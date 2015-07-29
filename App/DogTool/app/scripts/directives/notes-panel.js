@@ -1,5 +1,7 @@
 'use strict';
 
+/* global async */
+
 /**
  * @ngdoc directive
  * @name dogToolApp.directive:dogCard
@@ -23,7 +25,8 @@ angular.module('dogToolApp')
         if (!angular.isDefined(attrs.showSaveBtn)) {
           $scope.showSaveBtn = true;
         }
-
+      },
+      controller: function($scope, FactoryNote, flash, $modal) {
         $scope.tabs = [];
 
         $scope.$watch('notes', function () {
@@ -71,18 +74,81 @@ angular.module('dogToolApp')
         });
 
         $scope.saveAllNotes = function () {
-          $scope.onNotesChanged();
+          async.map($scope.notes, saveNote, function (err, updatedNotes) {
+            $scope.notes = updatedNotes;
+
+            $scope.onNotesChanged();
+          });
         };
 
-        $scope.removeNote = function (note) {
+        $scope.saveNoteOnBlur = function (note) {
+          if(note.Title && note.Content){
+            console.log("blurred");
+          var action;
+          if(note.id) {
+            action = FactoryNote.update(note);
+          }
+          else {
+            action = FactoryNote.post(note);
+          }
+
+          action
+            .success(function (res) { })
+            .error(function (res) {  });
+          }
+        };
+        
+        var saveNote = function (note, callback) {
+          var action;
+          if(note.id) {
+            action = FactoryNote.update(note);
+          }
+          else {
+            action = FactoryNote.post(note);
+          }
+
+          action
+            .success(function (res) { callback(null, res); })
+            .error(function (res) { callback(res); });
+        };
+
+        $scope.comfirmDelete = function (note) {
+          var modal = $modal.open({
+            templateUrl: 'views/modals/confirm-note-delete.html',
+            controller: 'confirmNoteDeleteModalCtrl',
+            size: 'sm',
+            animation: true,
+            resolve: {
+              data: function () {
+                return {
+                  note: note
+                };
+              }
+            }
+          });
+
+          modal.result.then(function success() {
+            removeNote(note);
+          });
+        };
+
+        var removeNote = function (note) {
           var index = $scope.notes.indexOf(note);
-          $scope.notes.splice(index, 1);
 
-          var tab = findTabByName(note.NoteType);
-          var tabIndex = tab.notes.indexOf(note);
-          tab.notes.splice(tabIndex, 1);
+          FactoryNote.destroy(note)
+            .success(function(res){
+              $scope.notes.splice(index, 1);
 
-          $scope.onNotesChanged();
+              var tab = findTabByName(note.NoteType);
+              var tabIndex = tab.notes.indexOf(note);
+
+              tab.notes.splice(tabIndex, 1);
+
+              $scope.onNotesChanged();
+            })
+            .error(function(res) {
+              flash.error = 'An error occured while deleteing the Note';
+            });
         };
 
         $scope.addNote = function (tab) {
@@ -92,10 +158,16 @@ angular.module('dogToolApp')
             NoteType: tab.name
           };
 
-          $scope.notes.push(note);
-          tab.notes.push(note);
+          FactoryNote.post(note)
+            .success(function(res){
+              $scope.notes.push(res);
+              tab.notes.push(res);
 
-          $scope.onNotesChanged();
+              $scope.onNotesChanged();
+            })
+            .error(function() {
+              flash.error = 'An error occured while creating a Note';
+            });
         };
 
         var findTabByName = function(name) {
@@ -110,7 +182,7 @@ angular.module('dogToolApp')
             }
           });
           return foundTab;
-        }
+        };
       }
     };
   });
