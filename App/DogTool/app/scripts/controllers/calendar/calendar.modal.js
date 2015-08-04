@@ -1,10 +1,10 @@
-
 //modal controller
-angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $location, $timeout, $modalInstance, pass) {
+angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $location, $timeout, $modalInstance, pass, factoryCalendar) {
 
   $scope.startTime = pass.startTime;
   $scope.endTime = pass.endTime;
-  
+  $scope.allDay = pass.allDay;
+
   $scope.ok = function () {
     $modalInstance.close();
   };
@@ -22,25 +22,32 @@ angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $
   /**
    * [CreateBooking description]
    */
-  $scope.CreateBooking = function () {    
+  $scope.CreateBooking = function () {
     var startDay = new Date($scope.startTime.valueOf());
     startDay.setHours(startDay.getHours());
 
     var endDay = new Date($scope.endTime.valueOf());
     endDay.setHours(endDay.getHours());
-     $location.url('/jobs/new/' + encodeURI(startDay) + '/' + encodeURI(endDay));
+
+    console.log($scope.allDay);
+    if ($scope.allDay) {
+      $location.url('/jobs/new/' + encodeURI(startDay) + '/' + encodeURI(endDay) + '/' + encodeURI($scope.allDay));
+    } else {
+      $location.url('/jobs/new/' + encodeURI(startDay) + '/' + encodeURI(endDay));
+    }
     $modalInstance.close();
-  }
+  };
 
   /**
    * Adds event to server and local array
    * @method  AddEvent
    */
   $scope.AddEvent = function () {
-    var startDay = $scope.day.toDate();
+    var eventColour = '#5bc0de';
+    var startDay = new Date($scope.startTime.valueOf())
     startDay.setHours(startDay.getHours() + 4);
 
-    var endDay = $scope.endDay.toDate();
+    var endDay = new Date($scope.endTime.valueOf());
     endDay.setHours(endDay.getHours() + 4);
 
     factoryCalendar.post({
@@ -54,11 +61,11 @@ angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $
       }
     }).success(function () {
       $scope.calendarData.push({
-          title: $scope.title,
-          start: $scope.day.toDate(),
-          end: $scope.endDay.toDate(),
-          allDay: $scope.allDay
-        })
+        title: $scope.title,
+        start: $scope.day.toDate(),
+        end: $scope.endDay.toDate(),
+        allDay: $scope.allDay
+      });
       $modalInstance.close();
     });
   };

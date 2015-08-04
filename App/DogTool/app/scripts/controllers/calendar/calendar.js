@@ -73,8 +73,8 @@ angular.module('dogToolApp')
     };
 
     var CreateEventDay = function (startDate, endDate) {
-      startDate.add(4, 'h');
-      CreateEvent(startDate, endDate);
+      startDate.add(12, 'h');
+      CreateEvent(startDate, endDate, true);
     }
 
     /**
@@ -82,7 +82,7 @@ angular.module('dogToolApp')
      * @param {[type]} startDate [description]
      * @param {[type]} endDate   [description]
      */
-    var CreateEvent = function (startDate, endDate) {
+    var CreateEvent = function (startDate, endDate, allday) {
       $scope.day = startDate;
 
       if (endDate.clone) {
@@ -96,9 +96,10 @@ angular.module('dogToolApp')
       $scope.startTime = $scope.day.toDate();
       $scope.endTime = $scope.endDay.toDate();
 
-      var varibleList = {
+      var variableList = {
         startTime: $scope.startTime,
-        endTime: $scope.endTime
+        endTime: $scope.endTime,
+        allDay: allday
       }
 
       if (!$modalStack.getTop()) {
@@ -106,9 +107,10 @@ angular.module('dogToolApp')
           animation: true,
           templateUrl: 'selection.html',
           controller: 'ModalInstanceCtrl',
+          scope: $scope,
           resolve: {
             pass: function () {
-              return varibleList;
+              return variableList;
             }
           }
         });
@@ -168,8 +170,13 @@ angular.module('dogToolApp')
      * @param {[type]} start [description]
      * @param {[type]} end   [description]
      */
-    var SelectDateRange = function (start, end) {
-      CreateEvent(start, end);
+    var SelectDateRange = function (start, end, ev, view) {
+      var allday = false;
+      if (view.type == 'month') {
+        start.add(12, 'h');
+        allday = true
+      }
+      CreateEvent(start, end, allday);
       $('#calendar').fullCalendar('unselect');
     }
 
@@ -179,7 +186,6 @@ angular.module('dogToolApp')
         Title: $scope.monthTitle,
         NoteType: $scope.NOTE_TYPE
       }).success(function (data) {
-        console.log(data);
         if (data.length > 0) {
           $scope.monthNoteExists = true;
           $scope.monthNote = data[0];
@@ -233,11 +239,13 @@ angular.module('dogToolApp')
      * @param {[type]} title [description]
      */
     var AddtoCalendar = function (data, title, id) {
+      var colour = data.Colour || '#3a87ad';
       $scope.calendarData.push({
         title: title,
         start: new Date(data.StartDate),
         end: new Date(data.EndDate),
         allDay: data.IsAllDay,
+        color: colour,
         jobId: id,
         id: data.id,
         stick: true
@@ -249,13 +257,9 @@ angular.module('dogToolApp')
       $scope.monthNote.Title = $scope.monthTitle;
       $scope.monthNote.NoteType = $scope.NOTE_TYPE;
       if ($scope.monthNoteExists) {
-        FactoryNote.update($scope.monthNote).success(function (data) {
-          console.log("Updated note");
-        });
+        FactoryNote.update($scope.monthNote).success(function (data) {});
       } else {
-        FactoryNote.post($scope.monthNote).success(function (data) {
-          console.log("created note");
-        })
+        FactoryNote.post($scope.monthNote).success(function (data) {})
       }
     }
 

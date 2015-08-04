@@ -42,27 +42,33 @@ angular.module('dogToolApp')
      * @param  {object} date new date object
      * @return {object}      Modified date object
      */
-    var roundHour = function(date, topOfTheHour){
+    var roundHour = function (date, topOfTheHour) {
       date.setSeconds(0);
       date.setMinutes(0);
-      if(topOfTheHour){
+      if (topOfTheHour) {
         date.setHours(date.getHours() + 1);
       }
 
       return date;
     };
 
-    var LoadDate = function(){
-      if($routeParams.startDate && $routeParams.endDate){
+    var LoadDate = function () {
+      if ($routeParams.startDate && $routeParams.endDate) {
         $scope.booking.Calendars.StartDate = new Date(decodeURI($routeParams.startDate));
-        $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.endDate));
-      }else{
+
+        if ($routeParams.allDay) {
+          $scope.booking.Calendars.IsAllDay = $routeParams.allDay;
+          $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.startDate));
+          $scope.booking.Calendars.EndDate.setHours(startDay.getHours() + 12);
+        } else {
+          $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.endDate));
+        }
+      } else {
         $scope.booking.Calendars.StartDate = new Date();
         $scope.booking.Calendars.EndDate = new Date();
         $scope.booking.Calendars.StartDate = roundHour($scope.booking.Calendars.StartDate);
         $scope.booking.Calendars.EndDate = roundHour($scope.booking.Calendars.EndDate, true);
       }
-
     };
 
     var init = function () {
@@ -112,17 +118,16 @@ angular.module('dogToolApp')
             .error(function () {
               flash.error = 'An error occured while loading job types.';
             });
-          if ($rootScope.bookingLog != null
-            && $rootScope.bookingLog.id == null) {
+          if ($rootScope.bookingLog != null && $rootScope.bookingLog.id == null) {
             $scope.booking = $rootScope.bookingLog;
             LoadDate();
             $scope.dogs = $scope.dogs.filter(removeDuplicate);
           } else {
-            $rootScope.bookingLog={};
+            $rootScope.bookingLog = {};
             $rootScope.bookingLog = $scope.booking;
           }
 
-//          $scope.addedDogUI = $scope.booking.Dogs;
+          //          $scope.addedDogUI = $scope.booking.Dogs;
         })
         .error(function () {
           flash.error = 'An error occured while loading dogs.';

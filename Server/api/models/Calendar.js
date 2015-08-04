@@ -13,23 +13,26 @@
 
 module.exports = {
 
-    attributes: {
-        StartDate: {
-            type: 'datetime',
-            required: true
-        },
-        Note: {
-            model: 'note'
-        },
-        EndDate: {
-            type: 'datetime'
-        },
-        IsAllDay:{
-            type: 'boolean'
-        },
-        Jobs: {
-            collection: 'job',
-            via: 'Calendars'
-        }
+  attributes: {
+    StartDate: {
+      type: 'datetime',
+      required: true
+    },
+    Note: {
+      model: 'note'
+    },
+    EndDate: {
+      type: 'datetime'
+    },
+    IsAllDay: {
+      type: 'boolean'
+    },
+    Jobs: {
+      collection: 'job',
+      via: 'Calendars'
+    },
+    Colour: {
+      type: 'string'
     }
+  }
 };

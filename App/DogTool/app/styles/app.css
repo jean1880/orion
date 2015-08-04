@@ -1,21 +1,29 @@
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
 
 .flash-container .fade {
-    display: none;
-    z-index: 10000;
+  display: none;
+  z-index: 10000;
 }
 
 .flash-container .fade.in {
-    position: relative;
-    margin-bottom: 0;
-    display: block;
+  position: relative;
+  margin-bottom: 0;
+  display: block;
 }
 
 .panel.panel-info .panel-heading a,
 .panel.panel-danger .panel-heading a {
-    color: white;
+  color: white;
 }
 
+.margin-10 {
+  margin-bottom: 10px;
+}
 
 i.fa {
   margin-right: 5px;
@@ -27,15 +35,13 @@ body {
 }
 
 .cal-label {
-    position: relative;
-    top: -10px;
+  position: relative;
+  top: -10px;
 }
 
 .footer {
   margin-top: 10px;
 }
-
-
 
 #main-container {
   background-color: #FFFFFF;
@@ -54,8 +60,7 @@ body {
   margin-left: 5px;
 }
 
-.print-whiteSpace
-{
+.print-whiteSpace {
   white-space: pre-wrap;
 }
 

@@ -13,11 +13,19 @@
   <h1>Job List</h1>
   <!--  Add job list dynamically here, replace below content with loop  -->
   <div ng-repeat="job in JobList">
-
-    <div class="col-xs-12 col-lg-4 panel">
-      <h3>{{job.Name}}</h3>
+    <div class="col-xs-12 col-lg-6 panel">
+      <h3>{{job.Name}} - {{job.Jobtype.Name}}</h3>
+      <div>
+        <h4>{{job.Calendars.StartDate | amCalendar}} <br> until <br> {{job.Calendars.EndDate | amCalendar}} </h4>
+      </div>
       <dog-card dog="dog" ng-repeat="dog in job.Dogs | filter:searchDog | filter:searchOwner | orderBy:'Name'"></dog-card>
+      <div class="col-xs-12">
+        <a class="btn btn-primary margin-10 pull-right" href="#/jobs/{{job.id}}">View Booking</a>
+      </div>
     </div>
   </div>
-  
+  <div ng-if="JobList.length < 1">
+    <h2>No bookings are in today</h2>
+  </div>
+
 </div>

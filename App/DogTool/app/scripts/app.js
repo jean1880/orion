@@ -85,6 +85,10 @@ angular
         templateUrl: 'views/job/job-new.html',
         controller: 'NewJobsCtrl'
       })
+      .when('/jobs/new/:startDate/:endDate/:allDay', {
+        templateUrl: 'views/job/job-new.html',
+        controller: 'NewJobsCtrl'
+      })
       .when('/jobs/:id', {
         templateUrl: 'views/job/job-new.html',
         controller: 'JobsEditCtrl'
@@ -168,8 +172,7 @@ angular
       .success(function (res) {
         if (res.valid) {
           $location.url(url);
-        }
-	      else {
+        } else {
           FactoryLogin.login()
             .success(function () {
               $location.url(url);
@@ -177,5 +180,3 @@ angular
         }
       });
   });
-
-
