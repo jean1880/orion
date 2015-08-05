@@ -9,8 +9,10 @@
 <div class="row">
   <div class="col-xs-12 col-sm-3 col-md-3">
     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation"><a href="#/dogs">Dogs</a></li>
-      <li role="presentation" class="active"><a href="#/people">People</a></li>
+      <li role="presentation"><a href="#/dogs">Dogs</a>
+      </li>
+      <li role="presentation" class="active"><a href="#/people">People</a>
+      </li>
     </ul>
     <hr />
     <a href="#/person/new" class="btn btn-primary btn-block">Add Person</a>
@@ -29,25 +31,16 @@
       <label>Type:</label>
       <div class="checkbox">
         <label>
-          <input type="checkbox" ng-model="strict1"> Owner
-        </label>
-      </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="strict2"> Vet
-        </label>
-      </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="strict3"> Emergancy Contact
+          <input type="checkbox" ng-model="ownerFlag"> Owner
         </label>
       </div>
     </form>
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
     <div class="list-group">
-      <a href="#/person/{{person.id}}" class="list-group-item" ng-repeat="person in people | orderBy:'Name' | filter:searchPeople:strict1:strict2:strict3">
+      <a href="#/person/{{person.id}}" class="list-group-item" ng-repeat="person in people | orderBy:'Name' | filter:searchPeople | filter:isOwner">
         {{person.Name}}
+        <span ng-if="person.Dogs.length > 0"  class="badge">{{person.Dogs.length}}</span>
       </a>
     </div>
   </div>

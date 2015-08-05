@@ -15,7 +15,7 @@ angular.module('dogToolApp')
      * @private
      * @method init
      */
-    var init = function() {
+    var init = function () {
       loadAllPeople();
     };
 
@@ -31,11 +31,20 @@ angular.module('dogToolApp')
       FactoryPeople.getAll()
         .success(function (response) {
           $scope.people = response;
+          console.log(response);
         })
         .error(function () {
           flash.error = 'A error occured while loading people.';
         });
     };
+
+    $scope.isOwner = function (item) {
+      if (item && $scope.ownerFlag) {
+        return item.Dogs.length > 0
+      } else {
+        return true
+      }
+    }
 
     init();
   });

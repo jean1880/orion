@@ -257,9 +257,13 @@ angular.module('dogToolApp')
       $scope.monthNote.Title = $scope.monthTitle;
       $scope.monthNote.NoteType = $scope.NOTE_TYPE;
       if ($scope.monthNoteExists) {
-        FactoryNote.update($scope.monthNote).success(function (data) {});
+        FactoryNote.update($scope.monthNote).success(function (data) {
+          flash.success = 'Note created';
+        });
       } else {
-        FactoryNote.post($scope.monthNote).success(function (data) {})
+        FactoryNote.post($scope.monthNote).success(function (data) {
+          flash.success = 'Note updated';
+        })
       }
     }
 

@@ -59,7 +59,7 @@ angular.module('dogToolApp')
         if ($routeParams.allDay) {
           $scope.booking.Calendars.IsAllDay = $routeParams.allDay;
           $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.startDate));
-          $scope.booking.Calendars.EndDate.setHours(startDay.getHours() + 12);
+          $scope.booking.Calendars.EndDate.setHours($scope.booking.Calendars.StartDate.getHours() + 12);
         } else {
           $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.endDate));
         }
