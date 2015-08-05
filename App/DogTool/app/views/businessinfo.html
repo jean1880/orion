@@ -1,12 +1,13 @@
 <div class="row">
   <div class=" col-xs-12">
     <h1>{{Title}}</h1>
+    <hr />
   </div>
 </div>
 <div class="row">
- 
+
  <!-- Expenses Panel -->
- 
+
   <div class="col-lg-8 col-xs-12 col-md-8 col-sm-8">
     <div class="panel panel-info">
       <header class="panel-heading">
@@ -86,7 +87,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Business Information Panel -->
   <div class="col-lg-4 col-xs-12 col-md-4 col-sm-4 pull-right">
     <div class="panel panel-default">
@@ -115,7 +116,7 @@
               <div ng-show="businessInfoForm.businessName.$dirty && businessInfoForm.businessName.$error.required">
                 <span class="text-danger">Business Name is Required</span>
               </div>
-            </div>            
+            </div>
             <div class="form-group" ng-class="{'has-error':businessInfoForm.businessStreet.$touched && businessInfoForm.businessStreet.$error.required}">
               <label for="businessStreet">Street</label>
               <input type="text" class="form-control" ng-model="editedInfo.Address.Street" name="businessStreet" required/>
@@ -150,7 +151,7 @@
               <div ng-show="businessInfoForm.businessPhone.$dirty && businessInfoForm.businessPhone.$error.required">
                 <span class="text-danger">Phone Number is Required</span>
               </div>
-            </div> 
+            </div>
             <div class="form-group" ng-class="{'has-error':businessInfoForm.businessEmail.$touched && businessInfoForm.businessEmail.$error.required}">
               <label for="businessName">Email</label>
               <input type="email" class="form-control" ng-model="editedInfo.Email" name="businessEmail" required/>
@@ -161,7 +162,7 @@
               <div class="pull-right">
               <a class="btn btn-link" ng-click="cancelEdit()">Cancel</a>
               <input type="submit" class="btn btn-primary" ng-disabled="businessInfoForm.$invalid" value="Save" />
-            </div>       
+            </div>
           </form>
         </di>
       </div>

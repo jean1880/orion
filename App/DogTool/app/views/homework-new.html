@@ -1,64 +1,70 @@
-<h1 class="col-xs-12 col-lg-12">Create New Homework</h1>
-
-<div id="dogArea" class="col-xs-12 col-sm-6">
-  <h2>Dogs</h2>
-  <div>
-    <h3>Attached Dogs</h3>
-    <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=1" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
-    <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=2" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
-  </div>
-  <div>
-    <h3>Add Dogs</h3>
-    <form name="addDogsToHomework">
-      <div class ="col-sm-12">
-        <input type=text placeholder="Search For Dogs"><button><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></input>
-      </div>
-      <div class ="col-sm-12">
-        <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=3" alt=""/><button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a>
-      </div>
-    </form>
+<div class="row">
+  <div class=" col-xs-12">
+    <h1>Create New Homework</h1>
+    <hr />
   </div>
 </div>
-
-<div id ="homeworkArea" class="col-lg-6 col-xs-12">
-  <form name="createNewHomework" method="post">
-    <!-- later hook up below to angular -->
-    <div id="taskTypeArea" >
-      <h2>Tasks</h2>
-      <h3>Tasks Added To Homework</h3>
-      <ul>
-        <li><a>Task 1 <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a></li>
-        <li><a>Task 2 <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a></li>
-        <li><a>Task 3 <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a></li>
-      </ul>
-      <h3>Add Tasks</h3>
-      <input type=text placeholder="Search For Tasks"><button><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></input>
-      <ul class ="bulletLess">
-        <li>Task 1 <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></li>
-        <li>Task 2 <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></li>
-      </ul>
+<div class="row">
+  <div id="dogArea" class="col-xs-12 col-sm-6">
+    <h2>Dogs</h2>
+    <div>
+      <h3>Attached Dogs</h3>
+      <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=1" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
+      <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=2" alt=""/><button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a>
     </div>
     <div>
-      <h4>Create New Task</h4>
-      <div>
-        <label for="newTaskTitle" class ="col-xs-6 col-sm-4 col-lg-2">New Task Title:</label>
-        <input type=text name ="newTaskTitle"/>
-      </div>
-      <div>
-        <label for="newTask" class ="col-xs-12 col-sm-4 col-lg-2">New Task Instructions:</label>
-        <textarea name ="newTask"/>
-      </div>
-      <div>
-        <label for="isGlobalTask" class ="col-xs-12 col-sm-4 col-lg-2">Make Global Task</label>
-        <input type="checkbox" name="isGlobalTask" value="true"/>
-      </div>
-      <button>Create New Task</button>
+      <h3>Add Dogs</h3>
+      <form name="addDogsToHomework">
+        <div class ="col-sm-12">
+          <input type=text placeholder="Search For Dogs"><button><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></input>
+        </div>
+        <div class ="col-sm-12">
+          <a href="#/dog/2"><img src="http://loremflickr.com/300/300/dog?random=3" alt=""/><button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a>
+        </div>
+      </form>
     </div>
-    <h3>Homework Description</h3>
-      <div id="descriptionArea">
-        <label for="descriptionTextArea" class ="col-xs-12 col-sm-4 col-lg-2" >Description:</label>
-        <textarea name="description" required></textarea>
+  </div>
+
+  <div id ="homeworkArea" class="col-lg-6 col-xs-12">
+    <form name="createNewHomework" method="post">
+      <!-- later hook up below to angular -->
+      <div id="taskTypeArea" >
+        <h2>Tasks</h2>
+        <h3>Tasks Added To Homework</h3>
+        <ul>
+          <li><a>Task 1 <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a></li>
+          <li><a>Task 2 <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a></li>
+          <li><a>Task 3 <button><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></a></li>
+        </ul>
+        <h3>Add Tasks</h3>
+        <input type=text placeholder="Search For Tasks"><button><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></input>
+        <ul class ="bulletLess">
+          <li>Task 1 <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></li>
+          <li>Task 2 <button><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></li>
+        </ul>
       </div>
-    <button type=submit name="submitNewTask">Submit Task</button>
-  </form>
+      <div>
+        <h4>Create New Task</h4>
+        <div>
+          <label for="newTaskTitle" class ="col-xs-6 col-sm-4 col-lg-2">New Task Title:</label>
+          <input type=text name ="newTaskTitle"/>
+        </div>
+        <div>
+          <label for="newTask" class ="col-xs-12 col-sm-4 col-lg-2">New Task Instructions:</label>
+          <textarea name ="newTask"/>
+        </div>
+        <div>
+          <label for="isGlobalTask" class ="col-xs-12 col-sm-4 col-lg-2">Make Global Task</label>
+          <input type="checkbox" name="isGlobalTask" value="true"/>
+        </div>
+        <button>Create New Task</button>
+      </div>
+      <h3>Homework Description</h3>
+        <div id="descriptionArea">
+          <label for="descriptionTextArea" class ="col-xs-12 col-sm-4 col-lg-2" >Description:</label>
+          <textarea name="description" required></textarea>
+        </div>
+      <button type=submit name="submitNewTask">Submit Task</button>
+    </form>
+  </div>
 </div>
