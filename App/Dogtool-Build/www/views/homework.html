@@ -1,0 +1,80 @@
+<div class="visible-print-block"> <h2 class="text-center">{{Homework.Title}}</h2> <h5>Date Assigned: {{Homework.StartDate|date:'fullDate'}}</h5> <h5>Date Due: {{Homework.EndDate|date:'fullDate'}}</h5> <h4 ng-show="addedDogUI.length>0">For Dog(s)</h4> <h4 ng-show="addedDogUI.length==0" class="text-danger">No Dogs Added</h4> <p ng-if="addedDogUI.length==0 && submitted" class="text-danger">Please add a dog.</p> <div class="col-xs-12 col-lg-12"> <ul> <li ng-repeat="dogInPrint in addedDogUI | orderBy:'Name' track by $index" class=""> {{dogInPrint.Name}} </li> </ul> </div> <h4 class="">Description:</h4> <p class="print-whiteSpace">{{Homework.Description}}</p> <div ng-if="Homework.Notes.length>0"> <h4>Notes:</h4> <div ng-repeat="printNote in Homework.Notes|filter:{'NoteType':'General'}" class="col-xs-12"> <h6>{{printNote.Title}}</h6> <p class="print-whiteSpace">{{printNote.Content}}</p> </div> </div> </div> <div class="hidden-print"> <h1>Homework: {{Homework.Title}} <button class="btn btn-primary pull-right" ng-click="submitHomework(homeworkForm.$valid)"><i class="glyphicon glyphicon-floppy-disk"></i> Save </button> <button class="btn btn-primary pull-right" onclick="window.print()"><i class="glyphicon glyphicon-print"></i> Print</button></h1> <form id="homeworkForm" name="homeworkForm" novalidate> <div id="homeworkTextArea" class="col-sm-6 col-xs-12"> <div class="panel panel-primary"> <div class="panel-heading"> <h3 class="panel-title">Homework Title and Description:</h3> </div> <div class="panel-body"> <div class="input-group col-xs-12" ng-class="{'has-error':homeworkTitle.$invalid && submitted}"> <label for="homeworkTitle" class="control-label">Homework : </label> <input id="homeworkTitle" name="homeworkTitle" class="form-control" type="text" ng-model="Homework.Title" placeholder="Unnamed" required> </div> <div class="input-group"> <label for="homeworkDescription">Homework Description:</label> <textarea id="homeworkDescription" ng-model="Homework.Description" class="form-control" placeholder="Homework Description" required>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="addedDogArea" class="col-sm-6 col-xs-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Added Dog(s) to Homework</h3>
+        </div>
+        <div class="panel-body">
+          <div class="input-group col-xs-12">
+            <h4 ng-show="addedDogUI.length>0">Dog List</h4>
+            <h4 ng-show="addedDogUI.length==0" ng-class="{'text-danger': addedDogUI.length==0 && submitted}">No Dogs Added</h4>
+            <p ng-if="addedDogUI.length==0 && submitted" class="text-danger">Please add a dog.</p>
+            <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
+              <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index" class="">
+                <dog-card dog="dogIn" btn-click="removeDog(dogIn)" btn-text="'Remove'"></dog-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="homeworkDates" class="col-sm-6 col-xs-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dates and Status:</h3>
+        </div>
+        <div class="panel-body">
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
+            <label for="homeworkStart" class="control-label">Homework Assigned Date:</label>
+            <br>
+            <input type="date" ng-model="Homework.StartDate" class="form-control" id="homeworkStart">
+
+          </div>
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
+            <label for="homeworkEnd" class="control-label">Homework Due Date:</label>
+            <br>
+            <input type="date" ng-model="Homework.EndDate" class="form-control" id="homeworkEnd">
+          </div>
+          
+          <label class="control-label">Status: </label>
+              <div class="pull-right">
+                <input bs-switch class="pull-right" type="checkbox" ng-model="Homework.Status" switch-on-text="Complete" switch-off-text="Incomplete">
+              </div>
+        </div>
+      </div>
+    </div>
+    <div id="notesForHomwork" class="col-sm-6 col-xs-12">
+      <notes-panel notes="Homework.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Homework Notes'" default-types="['General','Private']"></notes-panel>
+    </div>
+
+    <div id="dogListPanel" class="col-sm-6 col-xs-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Add Dog(s) to Booking</h3>
+        </div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+
+          <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index" class="">
+            <dog-card dog="dog" btn-click="addDog(dog)" btn-text="'Add'"></dog-card>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

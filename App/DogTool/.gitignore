@@ -5,7 +5,8 @@ dist
 bower_components
 npm-debug.log
 docs
-
+platforms
+plugins
 coverage
 
 config.js
