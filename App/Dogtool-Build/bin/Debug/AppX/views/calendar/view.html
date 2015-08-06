@@ -1,0 +1,53 @@
+<script type="text/ng-template" id="selection.html"><div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()" aria-label="Close"><i class="fa fa-times"></i>
+    </button>
+    <h4 class="modal-title">Add Event - {{day.format() | amCalendar}}<span ng-if="endDay > day"> to {{endDay.format() | amCalendar}}</span></h4>
+  </div>
+  <div class="modal-body">
+    <!-- Select option -->
+    <div ng-show="!addingEvent">
+      <div class="form-group">
+        <button type="button" ng-click="CreateBooking()" class="btn btn-primary btn-block">CreateDog Booking</button>
+      </div>
+      <div class="form-group">
+        <button type="button" ng-click="addingEvent = !addingEvent" class="btn btn-primary btn-block">New Event</button>
+      </div>
+      <div class="form-group">
+        <button type="button" ng-click="GotoDay()" class="btn btn-primary btn-block">View Booking List</button>
+      </div>
+    </div>
+    <!-- END -->
+    <form ng-show="addingEvent" class="form" ng-submit="AddEvent()">
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addingEvent = !addingEvent"><i class="fa fa-chevron-left"></i>
+        </button>
+      </div>
+      <div class="form-group">
+        <input required class="form-control" type="text" placeholder="Event Title" ng-model="title">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input ng-model="allDay" type="checkbox"> All Day?
+        </label>
+      </div>
+      <div ng-show="!allDay">
+        <div class="form-group col-lg-6">
+          <label>Start Time</label>
+          <timepicker ng-model="startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        </div>
+        <div class="form-group col-lg-6">
+          <label>End Time</label>
+          <timepicker ng-model="endTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Note</label>
+        <textarea class="form-control" ng-model="note">{{month.note}}</textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- /.modal</script> <div ui-calendar="uiConfig.calendar" ng-model="eventSources" class="col-lg-12"></div> <div class="form-group col-lg-12"> <h4>Notes:</h4> <textarea rows="5" class="form-control" ng-model="monthNote.Content"></textarea> <button type="button" ng-click="SaveMonthNote()" class="btn btn-primary pull-right">Save Note</button> </div>

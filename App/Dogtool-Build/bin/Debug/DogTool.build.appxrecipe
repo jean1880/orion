@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>JL-LAPTOP</Machine>
+    <WindowsUser>Jean-Luc</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>3c0b25b3-c3e3-4fe6-9140-60d7b4df9576</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bld\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\404.html">
+      <PackagePath>404.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\index.html">
+      <PackagePath>index.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\businessinfo.html">
+      <PackagePath>views\businessinfo.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\calendar\view.html">
+      <PackagePath>views\calendar\view.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\dog-card.html">
+      <PackagePath>views\directives\dog-card.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\dog-info-panel.html">
+      <PackagePath>views\directives\dog-info-panel.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\edit-note-model.html">
+      <PackagePath>views\directives\edit-note-model.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\notes-panel.html">
+      <PackagePath>views\directives\notes-panel.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\person-edit-form.html">
+      <PackagePath>views\directives\person-edit-form.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\person-info.html">
+      <PackagePath>views\directives\person-info.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\person-panel.html">
+      <PackagePath>views\directives\person-panel.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\person-select-create.html">
+      <PackagePath>views\directives\person-select-create.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\directives\weight-list.html">
+      <PackagePath>views\directives\weight-list.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\dog\edit-form.html">
+      <PackagePath>views\dog\edit-form.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\dog\list.html">
+      <PackagePath>views\dog\list.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\dog\new.html">
+      <PackagePath>views\dog\new.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\dog\view.html">
+      <PackagePath>views\dog\view.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\homework-new.html">
+      <PackagePath>views\homework-new.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\homework.html">
+      <PackagePath>views\homework.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\homeworkManagement.html">
+      <PackagePath>views\homeworkManagement.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\invoice.html">
+      <PackagePath>views\invoice.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\job\job-list.html">
+      <PackagePath>views\job\job-list.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\job\job-new.html">
+      <PackagePath>views\job\job-new.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\modals\confirm-note-delete.html">
+      <PackagePath>views\modals\confirm-note-delete.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\people\list.html">
+      <PackagePath>views\people\list.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\people\new.html">
+      <PackagePath>views\people\new.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\people\view.html">
+      <PackagePath>views\people\view.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\views\quote.html">
+      <PackagePath>views\quote.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\Assets\BadgeLogo.scale-100.png">
+      <PackagePath>Assets\BadgeLogo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\Assets\BadgeLogo.scale-140.png">
+      <PackagePath>Assets\BadgeLogo.scale-140.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\Assets\BadgeLogo.scale-180.png">
+      <PackagePath>Assets\BadgeLogo.scale-180.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\images\Badges\Hooch.scale-100.png">
+      <PackagePath>images\Badges\Hooch.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\images\Badges\Hooch.scale-140.png">
+      <PackagePath>images\Badges\Hooch.scale-140.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\images\Badges\Hooch.scale-180.png">
+      <PackagePath>images\Badges\Hooch.scale-180.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\images\Hooch.scale-100.png">
+      <PackagePath>images\Hooch.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\images\Hooch.scale-140.png">
+      <PackagePath>images\Hooch.scale-140.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\images\Hooch.scale-180.png">
+      <PackagePath>images\Hooch.scale-180.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\styles\img\background.png">
+      <PackagePath>styles\img\background.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bower_components\bootstrap\fonts\glyphicons-halflings-regular.eot">
+      <PackagePath>bower_components\bootstrap\fonts\glyphicons-halflings-regular.eot</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\fonts\fontawesome-webfont.eot">
+      <PackagePath>fonts\fontawesome-webfont.eot</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bower_components\bootstrap\fonts\glyphicons-halflings-regular.svg">
+      <PackagePath>bower_components\bootstrap\fonts\glyphicons-halflings-regular.svg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\fonts\fontawesome-webfont.svg">
+      <PackagePath>fonts\fontawesome-webfont.svg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bower_components\bootstrap\fonts\glyphicons-halflings-regular.ttf">
+      <PackagePath>bower_components\bootstrap\fonts\glyphicons-halflings-regular.ttf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\fonts\fontawesome-webfont.ttf">
+      <PackagePath>fonts\fontawesome-webfont.ttf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff">
+      <PackagePath>bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\fonts\fontawesome-webfont.woff">
+      <PackagePath>fonts\fontawesome-webfont.woff</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff2">
+      <PackagePath>bower_components\bootstrap\fonts\glyphicons-halflings-regular.woff2</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\fonts\fontawesome-webfont.woff2">
+      <PackagePath>fonts\fontawesome-webfont.woff2</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\favicon.ico">
+      <PackagePath>favicon.ico</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\fonts\FontAwesome.otf">
+      <PackagePath>fonts\FontAwesome.otf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\images\no-dog-image.jpg">
+      <PackagePath>images\no-dog-image.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\scripts\scripts.beb8fbff.js">
+      <PackagePath>scripts\scripts.beb8fbff.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\scripts\vendor.42303e25.js">
+      <PackagePath>scripts\vendor.42303e25.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\scripts\winstore-jscompat.b1578e4e.js">
+      <PackagePath>scripts\winstore-jscompat.b1578e4e.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\styles\main.423b1a62.css">
+      <PackagePath>styles\main.423b1a62.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\styles\vendor.45a0ca83.css">
+      <PackagePath>styles\vendor.45a0ca83.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jean-Luc\Documents\github\Orion\App\Dogtool-Build\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\">
+      <Name>Microsoft.WinJS.2.0</Name>
+      <Version>1.0.9600.17018</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.2.0, MinVersion=1.0.9600.17018</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\Microsoft.WinJS.2.0.appx</AppxLocation>
+      <MoreInfo>http://go.microsoft.com/fwlink/%3fLinkId=260891</MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>
