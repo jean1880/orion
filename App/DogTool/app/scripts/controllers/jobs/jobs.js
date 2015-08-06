@@ -10,11 +10,13 @@
 angular.module('dogToolApp')
   .controller('JobsCtrl', function ($scope, FactoryDog, FactoryJob, $routeParams, factoryCalendar) {
     $scope.JobList = [];
+    $scope.isLoading = true;
 
     var LoadJobs = function (range) {
       FactoryJob.find({
         Calendars: range
       }).success(function (data) {
+        $scope.isLoading = false;
         $scope.JobList = data;
         for (var i = data.length - 1; i >= 0; i--) {
           for (var x = data[i].Dogs.length - 1; x >= 0; x--) {

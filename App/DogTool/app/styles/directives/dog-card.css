@@ -1,20 +1,26 @@
 .dog-card {
-  width:   200px;
+  width: 200px;
   display: block;
-  float:   left;
-  margin:  5px;
+  float: left;
+  margin: 5px;
+  transition: background-color 0.5s ease;
+}
+
+.dog-card:hover {
+  cursor: pointer;
+  background-color: antiquewhite;
 }
 
 .dog-card .img-container {
-  display:         flex;
+  display: flex;
   justify-content: center;
-  align-items:     center;
-  height:          125px;
+  align-items: center;
+  height: 125px;
 }
 
 .dog-card .img-container img {
   max-height: 125px;
-  max-width:  125px;
+  max-width: 125px;
 }
 
 .dog-card .info-area {
@@ -28,4 +34,3 @@
 .dog-card .action-btn:hover {
   margin-top: 6px;
 }
-

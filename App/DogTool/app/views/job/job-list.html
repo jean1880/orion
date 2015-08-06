@@ -25,7 +25,8 @@
     </div>
   </div>
   <div ng-if="JobList.length < 1">
-    <h2>No bookings are in today</h2>
+    <h2 ng-if="!isLoading">No bookings are in today</h2>
+    <i ng-if="isLoading" class="fa fa-spin fa spinner fa-4x"></i>
   </div>
 
 </div>
