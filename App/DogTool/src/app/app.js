@@ -58,15 +58,15 @@ angular
         controller: 'DogViewCtrl'
       })
       .when('/people', {
-        templateUrl: 'views/people/list.html',
+        templateUrl: 'app/People/People-List/list.html',
         controller: 'PeopleListCtrl'
       })
       .when('/person/new', {
-        templateUrl: 'views/people/new.html',
+        templateUrl: 'app/People/People-New/new.html',
         controller: 'PeopleNewCtrl'
       })
       .when('/person/:id', {
-        templateUrl: 'views/people/view.html',
+        templateUrl: 'app/People/People-View/view.html',
         controller: 'PeopleViewCtrl'
       })
       .when('/jobs', {

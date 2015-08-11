@@ -20,7 +20,7 @@ angular.module('dogToolApp')
       link: function ($scope) {
         $scope.unlinkable = angular.isDefined($scope.unlinkable) ? $scope.unlinkable : true;
       },
-      templateUrl: 'views/directives/person-panel.html',
+      templateUrl: 'app/People/Directives/person-panel.html',
       controller: 'PersonPanelCtrl'
     };
   });
