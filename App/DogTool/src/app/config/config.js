@@ -8,7 +8,7 @@
  * Constant in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .constant('SAILS_URL', 'http://104.236.234.238:1337')
+    .constant('SAILS_URL', 'http://104.236.234.238:1337')
 
 // Password string
 //  NOTE: This must match what is in the sails app local.js file

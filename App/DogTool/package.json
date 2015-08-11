@@ -1,7 +1,9 @@
 {
   "name": "dogtool",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "node-sass": "^3.2.0"
+  },
   "scripts": {
     "test": "gulp test"
   },
