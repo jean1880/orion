@@ -20,17 +20,17 @@ angular.module('dogToolApp')
         panelTitle: '=',
         panelType: '='
       },
-      templateUrl: 'views/directives/notes-panel.html',
+      templateUrl: 'app/views/directives/notes-panel.html',
       link: function ($scope, element, attrs) {
         if (!angular.isDefined(attrs.showSaveBtn)) {
           $scope.showSaveBtn = true;
         }
       },
-      controller: function($scope, FactoryNote, flash, $modal) {
+      controller: function ($scope, FactoryNote, flash, $modal) {
         $scope.tabs = [];
 
         $scope.$watch('notes', function () {
-          if(!$scope.notes){
+          if (!$scope.notes) {
             return;
           }
 
@@ -41,7 +41,7 @@ angular.module('dogToolApp')
           $scope.notes.forEach(function (note) {
             var tab = findTabByName(note.NoteType);
 
-            if(tab === null) {
+            if (tab === null) {
               tab = {
                 name: note.NoteType,
                 notes: []
@@ -55,14 +55,14 @@ angular.module('dogToolApp')
         });
 
         $scope.$watch('defaultTypes', function () {
-          if(!$scope.defaultTypes) {
+          if (!$scope.defaultTypes) {
             return;
           }
 
-          $scope.defaultTypes.forEach( function (type) {
+          $scope.defaultTypes.forEach(function (type) {
             var tab = findTabByName(type);
 
-            if(tab === null) {
+            if (tab === null) {
               tab = {
                 name: type,
                 notes: []
@@ -82,34 +82,36 @@ angular.module('dogToolApp')
         };
 
         $scope.saveNoteOnBlur = function (note) {
-          if(note.Title && note.Content){
+          if (note.Title && note.Content) {
             console.log("blurred");
-          var action;
-          if(note.id) {
-            action = FactoryNote.update(note);
-          }
-          else {
-            action = FactoryNote.post(note);
-          }
+            var action;
+            if (note.id) {
+              action = FactoryNote.update(note);
+            } else {
+              action = FactoryNote.post(note);
+            }
 
-          action
-            .success(function (res) { })
-            .error(function (res) {  });
+            action
+              .success(function (res) {})
+              .error(function (res) {});
           }
         };
-        
+
         var saveNote = function (note, callback) {
           var action;
-          if(note.id) {
+          if (note.id) {
             action = FactoryNote.update(note);
-          }
-          else {
+          } else {
             action = FactoryNote.post(note);
           }
 
           action
-            .success(function (res) { callback(null, res); })
-            .error(function (res) { callback(res); });
+            .success(function (res) {
+              callback(null, res);
+            })
+            .error(function (res) {
+              callback(res);
+            });
         };
 
         $scope.comfirmDelete = function (note) {
@@ -136,7 +138,7 @@ angular.module('dogToolApp')
           var index = $scope.notes.indexOf(note);
 
           FactoryNote.destroy(note)
-            .success(function(res){
+            .success(function (res) {
               $scope.notes.splice(index, 1);
 
               var tab = findTabByName(note.NoteType);
@@ -146,7 +148,7 @@ angular.module('dogToolApp')
 
               $scope.onNotesChanged();
             })
-            .error(function(res) {
+            .error(function (res) {
               flash.error = 'An error occured while deleteing the Note';
             });
         };
@@ -159,25 +161,25 @@ angular.module('dogToolApp')
           };
 
           FactoryNote.post(note)
-            .success(function(res){
+            .success(function (res) {
               $scope.notes.push(res);
               tab.notes.push(res);
 
               $scope.onNotesChanged();
             })
-            .error(function() {
+            .error(function () {
               flash.error = 'An error occured while creating a Note';
             });
         };
 
-        var findTabByName = function(name) {
+        var findTabByName = function (name) {
           var foundTab = null;
           $scope.tabs.forEach(function (tab) {
-            if(foundTab !== null) {
+            if (foundTab !== null) {
               return;
             }
 
-            if(tab.name === name) {
+            if (tab.name === name) {
               foundTab = tab;
             }
           });

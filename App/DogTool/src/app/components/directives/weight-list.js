@@ -9,7 +9,7 @@
 angular.module('dogToolApp')
   .directive('weightList', function () {
     return {
-      templateUrl: 'views/directives/weight-list.html',
+      templateUrl: 'app/views/directives/weight-list.html',
       restrict: 'E',
       scope: {
         dog: '='
