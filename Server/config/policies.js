@@ -20,11 +20,11 @@
 module.exports.policies = {
 
   /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions (`true` allows public     *
-  * access)                                                                  *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Default policy for all controllers and actions (`true` allows public     *
+   * access)                                                                  *
+   *                                                                          *
+   ***************************************************************************/
 
   '*': ['isLoggedIn'],
 
@@ -38,7 +38,7 @@ module.exports.policies = {
   },
 
   BillController: {
-    '*': false,
+    '*': ['isLoggedIn'],
     'find': ['isLoggedIn'],
     'findOne': ['isLoggedIn'],
     'populate': ['isLoggedIn'],

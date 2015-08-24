@@ -116,7 +116,7 @@ angular.module('dogToolApp')
 
         $scope.comfirmDelete = function (note) {
           var modal = $modal.open({
-            templateUrl: 'views/modals/confirm-note-delete.html',
+            templateUrl: 'app/Note/Modal/confirm-note-delete.html',
             controller: 'confirmNoteDeleteModalCtrl',
             size: 'sm',
             animation: true,
