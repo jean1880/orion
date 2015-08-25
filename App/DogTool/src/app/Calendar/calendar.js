@@ -175,7 +175,6 @@
         var allday = false;
         if (view.type == 'month') {
           start.add(12, 'h');
-          allday = true
         }
         CreateEvent(start, end, allday);
         $('#calendar').fullCalendar('unselect');

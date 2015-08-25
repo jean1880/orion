@@ -286,7 +286,7 @@
       var DestroyBooking = function () {
         FactoryJob.remove($scope.booking.id)
           .success(function () {
-            flash.success = 'Successfully Removed the Booking';
+            flash.success = 'Successfully removed the booking';
             $location.url('/');
           })
           .error(function () {

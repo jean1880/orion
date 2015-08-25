@@ -31,7 +31,6 @@
       var endDay = new Date($scope.endTime.valueOf());
       endDay.setHours(endDay.getHours());
 
-      console.log($scope.allDay);
       if ($scope.allDay) {
         $location.url('/jobs/new/' + encodeURI(startDay) + '/' + encodeURI(endDay) + '/' + encodeURI($scope.allDay));
       } else {
