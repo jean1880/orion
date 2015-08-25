@@ -109,7 +109,7 @@
           </div>
           <div class="input-group ">
             <label for="bookingFeeDescription">Booking Fees Description:</label>
-            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description" ></textarea>
+            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description"></textarea>
           </div>
           <div class="input-group ">
             <label for="bookingFee">Booking Fees:</label>
@@ -148,6 +148,6 @@
     </iframe>
   </div>
   <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
-  <button ng-if="isUpdated" type="button" ng-click="removeBooking()" class="pull-right btn btn-lg btn-danger">Remove  Booking</button>
+  <button ng-if="isUpdated" type="button" ng-click="ConfirmDelete()" class="pull-right btn btn-lg btn-danger">Remove Booking</button>
 
 </div>

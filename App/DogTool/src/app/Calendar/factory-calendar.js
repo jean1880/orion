@@ -56,6 +56,15 @@
          */
         update: function (calendar) {
           return $http.put(SailsRoute.Calendar.update(calendar.id), calendar);
+        },
+
+        /**
+         * Deletes the job by ID
+         * @param   {string} id Target ID to destroy
+         * @returns {$http.promise}
+         */
+        remove: function (id) {
+          return $http.delete(SailsRoute.Calendar.delete(id));
         }
       };
     });

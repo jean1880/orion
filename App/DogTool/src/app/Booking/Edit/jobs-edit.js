@@ -17,6 +17,9 @@
       FactoryJob,
       FactoryInvoice,
       FactoryJobType,
+      factoryCalendar,
+      FactoryAddress,
+      FactoryNote,
       $routeParams,
       HelperService,
       $sce,
@@ -231,43 +234,60 @@
       };
 
       $scope.ConfirmDelete = function () {
+        console.log($scope.booking);
         var modal = $modal.open({
           templateUrl: 'app/Booking/modal/confirm-delete.html',
-          controller: 'confirmNoteDeleteModalCtrl',
+          controller: 'confirmBookingDeleteModalCtrl',
           size: 'sm',
           animation: true,
-          resolve: {
-            data: function () {
-              return {
-                note: note
-              };
-            }
-          }
+          resolve: {}
         });
 
         modal.result.then(function success() {
-          removeBooking();
+          ClearAllBookingData();
         });
       };
 
-      var removeBooking = function () {
+      var ClearAllBookingData = function () {
+        DestroyInvoice();
+        DestroyCalendar();
+        DestroyNotes();
+        DestroyLocation();
+        DestroyBooking();
+      };
+
+      var DestroyNotes = function () {
+        if ($scope.booking.Notes && $scope.booking.Notes.length > 0) {
+          for (var i = $scope.booking.Notes.length - 1; i >= 0; i--) {
+            FactoryNote.destroy($scope.booking.Notes[i]);
+          }
+        }
+      }
+
+      var DestroyLocation = function () {
+        if ($scope.booking.Location) {
+          FactoryAddress.remove($scope.booking.Location.id);
+        }
+      }
+
+      var DestroyCalendar = function () {
+        if ($scope.booking.Calendars) {
+          factoryCalendar.remove($scope.booking.Calendars.id);
+        }
+      }
+
+      var DestroyInvoice = function () {
         if ($scope.booking.Invoice) {
           // destroy invoice
-          FactoryInvoice.remove($scope.booking.Invoice.id).success(function () {
-            console.log('destroyed the invoice');
-            DestroyBooking($scope.booking.id);
-          }).error(function () {
-            console.log('Something went wrong');
-          });
-        } else {
-          DestroyBooking($scope.booking.id);
+          FactoryInvoice.remove($scope.booking.Invoice.id);
         }
       };
 
-      var DestroyBooking = function (id) {
-        FactoryJob.remove(id)
+      var DestroyBooking = function () {
+        FactoryJob.remove($scope.booking.id)
           .success(function () {
-            flash.error = 'Worked.'
+            flash.success = 'Successfully Removed the Booking';
+            $location.url('/');
           })
           .error(function () {
             flash.error = 'Failed.';
