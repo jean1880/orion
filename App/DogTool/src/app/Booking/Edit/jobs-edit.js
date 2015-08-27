@@ -262,19 +262,19 @@
             FactoryNote.destroy($scope.booking.Notes[i]);
           }
         }
-      }
+      };
 
       var DestroyLocation = function () {
         if ($scope.booking.Location) {
           FactoryAddress.remove($scope.booking.Location.id);
         }
-      }
+      };
 
       var DestroyCalendar = function () {
         if ($scope.booking.Calendars) {
           factoryCalendar.remove($scope.booking.Calendars.id);
         }
-      }
+      };
 
       var DestroyInvoice = function () {
         if ($scope.booking.Invoice) {

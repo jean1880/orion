@@ -70,6 +70,14 @@
       var GotoJob = function (date) {
         if (date.jobId) {
           $location.url('/jobs/' + date.jobId);
+        } else {
+          console.log(date);
+          $modal.open({
+            animation: true,
+            templateUrl: 'app/Calendar/modal/event.html',
+            controller: 'CalendarEventCtrl',
+            scope: $scope
+          });
         }
       };
 
@@ -103,19 +111,17 @@
           allDay: allday
         }
 
-        if (!$modalStack.getTop()) {
-          $modal.open({
-            animation: true,
-            templateUrl: 'selection.html',
-            controller: 'ModalInstanceCtrl',
-            scope: $scope,
-            resolve: {
-              pass: function () {
-                return variableList;
-              }
+        $modal.open({
+          animation: true,
+          templateUrl: 'app/Calendar/modal/selection.html',
+          controller: 'ModalInstanceCtrl',
+          scope: $scope,
+          resolve: {
+            pass: function () {
+              return variableList;
             }
-          });
-        }
+          }
+        });
       };
 
       /**
@@ -140,12 +146,11 @@
           }
         }).success(function () {
           $scope.calendarData.push({
-              title: $scope.title,
-              start: $scope.day.toDate(),
-              end: $scope.endDay.toDate(),
-              allDay: $scope.allDay
-            })
-            //        $('#calendar-event').modal('hide');
+            title: $scope.title,
+            start: $scope.day.toDate(),
+            end: $scope.endDay.toDate(),
+            allDay: $scope.allDay
+          })
         });
       };
 
@@ -275,6 +280,7 @@
       var init = function () {
         factoryCalendar.getAll().success(function (data) {
           for (var i = data.length - 1; i >= 0; i--) {
+            console.log(data[i]);
             var title, halt = false;
             if (data[i].Note) {
               title = data[i].Note.Title;

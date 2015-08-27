@@ -17,25 +17,6 @@
       $scope.pageType = "Create ";
       $scope.selectedJobType;
       $scope.addedDogUI = [];
-      $scope.booking = {
-        Name: '',
-        Dogs: [],
-        Costs: [],
-        Notes: [],
-        Invoice: [],
-        Jobtype: {
-          id: null
-        },
-        Location: {
-          Street: ' ',
-          City: ' '
-        },
-        Calendars: {
-          StartDate: null,
-          EndDate: null,
-          IsAllDay: false
-        }
-      };
       $scope.submitted = false;
 
       /**
@@ -75,6 +56,25 @@
       var init = function () {
         LoadDate();
         loadAllDogs();
+        $scope.booking = {
+          Name: '',
+          Dogs: [],
+          Costs: [],
+          Notes: [],
+          Invoice: [],
+          Jobtype: {
+            id: null
+          },
+          Location: {
+            Street: ' ',
+            City: ' '
+          },
+          Calendars: {
+            StartDate: null,
+            EndDate: null,
+            IsAllDay: false
+          }
+        };
       };
 
       /**
@@ -166,8 +166,6 @@
        *
        */
       $scope.bookDog = function (dogIn) {
-
-
         var indexIn = $scope.dogs.indexOf(dogIn);
 
         $scope.addedDogUI.push(dogIn);

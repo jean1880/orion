@@ -31,4 +31,4 @@
     'ui.bootstrap.showErrors',
     'ui.calendar'
   ]);
-}())
+}());
