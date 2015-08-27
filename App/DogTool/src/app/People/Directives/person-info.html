@@ -3,7 +3,7 @@
     <strong>Name</strong>
   </div>
   <div class="col-xs-8">
-    <a href="#/people/{{ person.id }}">
+    <a href="#/person/{{ person.id }}">
       {{person.Name}}
     </a>
   </div>
@@ -34,11 +34,10 @@
     <strong>Address</strong>
   </div>
   <div class="col-xs-8">
-    {{person.Address.Street}}<br />
-    {{person.Address.City}}<br />
-    {{person.Address.Province}}<br />
-    {{person.Address.Country}}<br />
-    {{person.Address.PostalCode}}
+    {{person.Address.Street}}
+    <br /> {{person.Address.City}}
+    <br /> {{person.Address.Province}}
+    <br /> {{person.Address.Country}}
+    <br /> {{person.Address.PostalCode}}
   </div>
 </div>
-

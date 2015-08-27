@@ -29,28 +29,10 @@
       $scope.selectedJobType;
       $scope.addedDogUI = [];
       $scope.fullAddress = null;
-
-      var now = new Date();
-      $scope.booking = {
-        Name: '',
-        Dogs: [],
-        Costs: [],
-        Notes: [],
-        Invoice: [],
-        Jobtype: {
-          id: null
-        },
-        Location: {
-          Street: ' ',
-          City: ' '
-        },
-        Calendars: {
-          StartDate: now,
-          EndDate: now,
-          IsAllDay: false
-        }
-      };
       $scope.submitted = false;
+      var now = new Date();
+
+
       var getBookingTypes = function () {
         //get the booking types
         FactoryJobType.getAll()
@@ -102,6 +84,25 @@
 
       };
       var init = function () {
+        $scope.booking = {
+          Name: '',
+          Dogs: [],
+          Costs: [],
+          Notes: [],
+          Invoice: [],
+          Jobtype: {
+            id: null
+          },
+          Location: {
+            Street: ' ',
+            City: ' '
+          },
+          Calendars: {
+            StartDate: now,
+            EndDate: now,
+            IsAllDay: false
+          }
+        };
         getBookingTypes();
       };
       /**
@@ -121,6 +122,7 @@
         showWeeks: false
       };
 
+      $scope.ismeridian = true;
       $scope.hourStep = 1;
       $scope.minuteStep = 1;
 

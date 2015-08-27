@@ -133,12 +133,18 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search For Dog" ng-model="dogSearch" />
           <div class="input-group-addon">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <span class="fa fa-search" aria-hidden="true"></span>
           </div>
         </div>
-        <div ng-repeat="dog in dogs | orderBy:'Name' |filter : dogSearch track by $index">
+        <div ng-repeat="dog in dogs | orderBy:'Name' | filter : dogSearch | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)">
           <dog-card dog="dog" btn-Click="bookDog(dog)" btn-Text="'Add'"></dog-card>
         </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <pagination total-items="(dogs | filter : dogSearch).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

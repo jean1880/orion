@@ -155,7 +155,7 @@ angular.module('dogToolApp')
 
         $scope.addNote = function (tab) {
           var note = {
-            Title: 'New Note',
+            Title: '',
             Content: '',
             NoteType: tab.name
           };

@@ -9,7 +9,12 @@
  */
 angular.module('dogToolApp')
   .controller('DogListCtrl', function ($scope, $location, FactoryDog, flash) {
-    var init = function() {
+    $scope.pagination = {
+      currentPage: 1,
+      limit: 9
+    }
+    $scope.showDeceased = false;
+    var init = function () {
       loadAllDogs();
     };
 

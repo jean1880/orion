@@ -15,6 +15,10 @@
       $routeParams) {
 
       $scope.pageType = "Create ";
+      $scope.pagination = {
+        currentPage: 1,
+        limit: 9
+      }
       $scope.selectedJobType;
       $scope.addedDogUI = [];
       $scope.submitted = false;
@@ -54,8 +58,6 @@
       };
 
       var init = function () {
-        LoadDate();
-        loadAllDogs();
         $scope.booking = {
           Name: '',
           Dogs: [],
@@ -75,6 +77,8 @@
             IsAllDay: false
           }
         };
+        LoadDate();
+        loadAllDogs();
       };
 
       /**

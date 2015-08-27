@@ -25,6 +25,7 @@
      * [CreateBooking description]
      */
     $scope.CreateBooking = function () {
+      console.log($scope.startTime);
       var startDay = new Date($scope.startTime.valueOf());
       startDay.setHours(startDay.getHours());
 

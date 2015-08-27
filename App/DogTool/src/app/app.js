@@ -27,6 +27,7 @@
     'sticky',
     'truncate',
     'ui.bootstrap',
+    'ui.bootstrap.pagination',
     'ui.bootstrap.datetimepicker',
     'ui.bootstrap.showErrors',
     'ui.calendar'

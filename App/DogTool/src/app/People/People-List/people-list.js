@@ -9,6 +9,11 @@
  */
 angular.module('dogToolApp')
   .controller('PeopleListCtrl', function ($scope, FactoryPeople, flash) {
+    $scope.pagination = {
+      currentPage: 1,
+      limit: 15
+    }
+    $scope.ownerFlag = true;
     /**
      * Initalizes the controller for use
      *
@@ -37,6 +42,7 @@ angular.module('dogToolApp')
           flash.error = 'A error occured while loading people.';
         });
     };
+
 
     $scope.isOwner = function (item) {
       if (item && $scope.ownerFlag) {

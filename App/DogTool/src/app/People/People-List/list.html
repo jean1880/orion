@@ -31,17 +31,22 @@
       <label>Type:</label>
       <div class="checkbox">
         <label>
-          <input type="checkbox" ng-model="ownerFlag"> Owner
+          <input type="checkbox" ng-model="ownerFlag"> Owners Only
         </label>
       </div>
     </form>
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
     <div class="list-group">
-      <a href="#/person/{{person.id}}" class="list-group-item" ng-repeat="person in people | orderBy:'Name' | filter:searchPeople | filter:isOwner">
+      <a href="#/person/{{person.id}}" class="list-group-item" ng-repeat="person in people | orderBy:'Name' | filter:searchPeople | filter:isOwner | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)">
         {{person.Name}}
         <span ng-if="person.Dogs.length > 0"  class="badge">{{person.Dogs.length}}</span>
       </a>
+      <div class="row">
+        <div class="col-xs-12">
+          <pagination total-items="(people | orderBy:'Name' | filter:searchPeople | filter:isOwner).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
+        </div>
+      </div>
     </div>
   </div>
 </div>

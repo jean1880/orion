@@ -65,14 +65,6 @@
           templateUrl: 'app/People/People-View/view.html',
           controller: 'PeopleViewCtrl'
         })
-        .when('/people/new', {
-          templateUrl: 'app/views/people/new.html',
-          controller: 'PeopleNewCtrl'
-        })
-        .when('/people/:id', {
-          templateUrl: 'app/views/people/view.html',
-          controller: 'PeopleViewCtrl'
-        })
         .when('/Tester', {
           templateUrl: 'app/views/tester.html',
           controller: 'TesterCtrl'
