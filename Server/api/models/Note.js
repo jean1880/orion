@@ -13,18 +13,17 @@
 
 module.exports = {
 
-    attributes: {
-        Title: {
-            type: 'string',
-            required: true
-        },
-        Content:  {
-            type: 'text',
-            defaultsTo: ''
-        },
-        NoteType: {
-            type: 'string',
-            required: true
-        }
+  attributes: {
+    Title: {
+      type: 'string'
+    },
+    Content: {
+      type: 'text',
+      defaultsTo: ''
+    },
+    NoteType: {
+      type: 'string',
+      required: true
     }
+  }
 };
