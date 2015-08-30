@@ -71,7 +71,6 @@
         if (date.jobId) {
           $location.url('/jobs/' + date.jobId);
         } else {
-          console.log(date);
           $modal.open({
             animation: true,
             templateUrl: 'app/Calendar/modal/event.html',

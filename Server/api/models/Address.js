@@ -13,23 +13,26 @@
 
 module.exports = {
 
-    attributes: {
-        Street: {
-            type: 'string'
-        },
-        City: {
-            type: 'string'
-        },
-        Province: {
-            type: 'string',
-            defaultsTo: 'Ontario'
-        },
-        Country: {
-            type: 'string',
-            defaultsTo: 'Canada'
-        },
-        PostalCode: {
-            type: 'string'
-        }
+  attributes: {
+    Street: {
+      type: 'string',
+      defaultsTo: '41 Campbell Ave.'
+    },
+    City: {
+      type: 'string',
+      defaultsTo: 'Barrie'
+    },
+    Province: {
+      type: 'string',
+      defaultsTo: 'Ontario'
+    },
+    Country: {
+      type: 'string',
+      defaultsTo: 'Canada'
+    },
+    PostalCode: {
+      type: 'string',
+      defaultsTo: 'L4N 2T2'
     }
+  }
 };
