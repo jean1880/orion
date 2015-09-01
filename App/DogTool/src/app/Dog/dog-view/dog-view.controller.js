@@ -20,11 +20,13 @@ angular.module('dogToolApp')
      */
     var init = function() {
       loadDog($routeParams.id);
-
       $scope.editingInfo    = false;
       $scope.editOwner      = false;
       $scope.editVet        = false;
       $scope.editEmgContact = false;
+      $scope.pagination={};
+      $scope.pagination.limit=10;
+      $scope.pagination.currentPage=1;
     };
 
     /**

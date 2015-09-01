@@ -20,6 +20,22 @@
       <div class="col-xs-12">
         <weight-list dog="dog"></weight-list>
       </div>
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Homework <span ng-show="dog.Homeworks.length>0" class="badge pull-right">{{dog.Homeworks.length}}</span>
+          </div>
+          <div class="panel-body">
+            <p>
+              <div class="col-xs-12" ng-repeat="homework in dog.Homeworks| slice: pagination.limit:((pagination.currentPage-1)*pagination.limit) |orderBy: 'EndDate':true">
+                {{homework.Title}}<a ng-href="#/homework/{{homework.id}}" class="btn btn-sm btn-default pull-right">View</a>
+              </div>
+            </p>
+            <a ng-href="#/library/{{dog.Name}}">View All Homework For {{dog.Name}}</a>
+          <pagination total-items="(dog.Homeworks).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
