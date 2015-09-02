@@ -7,17 +7,14 @@ module.exports = {
     jwt.verify(token, sails.config.tokenSecret, {}, callback);
   },
   create: function (data) {
-    return jwt.sign(data, sails.config.tokenSecret, {
-        expiresInMinutes: 720
-    });
+    return jwt.sign(data, sails.config.tokenSecret);
   },
   decode: function (token, callback) {
     var decoded = jwt.decode(token, {});
 
-    if(callback) {
+    if (callback) {
       callback(decoded);
-    }
-    else {
+    } else {
       return decoded;
     }
   }
