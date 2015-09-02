@@ -53,7 +53,7 @@
     </form>
   </div>
   <div class="col-xs-12 col-sm-9 col-md-9">
-    <dog-card dog="dog" ng-repeat="dog in dogs | filter:{Deceased: showDeceased} | filter:{Name:searchDog} | filter:{Owner:{Name :searchOwner}} | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit) | orderBy:'Name'"></dog-card>
+    <dog-card dog="dog" ng-repeat="dog in dogs | filter:{Deceased: showDeceased} | filter:{Name:searchDog} | filter:{Owner:{Name :searchOwner}} | orderBy:'Name' | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit) "></dog-card>
     <div class="row">
       <div class="col-xs-12">
         <pagination total-items="(dogs | filter:{Deceased: showDeceased} | filter:searchDog | filter:{Owner:{Name :searchOwner}}).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>

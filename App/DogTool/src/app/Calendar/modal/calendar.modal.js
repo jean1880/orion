@@ -47,10 +47,10 @@
     $scope.AddEvent = function () {
       var eventColour = '#5bc0de';
       var startDay = new Date($scope.startTime.valueOf())
-      startDay.setHours(startDay.getHours() + 4);
+      startDay.setHours(startDay.getHours());
 
       var endDay = new Date($scope.endTime.valueOf());
-      endDay.setHours(endDay.getHours() + 4);
+      endDay.setHours(endDay.getHours());
 
       factoryCalendar.post({
         StartDate: startDay,

@@ -27,6 +27,7 @@
       $scope.hstep = 1;
       $scope.mstep = 15;
 
+      var opened = false;
       $scope.ismeridian = true;
       $scope.toggleMode = function () {
         $scope.ismeridian = !$scope.ismeridian;
@@ -70,7 +71,7 @@
       var GotoJob = function (date) {
         if (date.jobId) {
           $location.url('/jobs/' + date.jobId);
-        } else {
+        } else if (!$modalStack.getTop()) {
           $modal.open({
             animation: true,
             templateUrl: 'app/Calendar/modal/event.html',
@@ -79,11 +80,6 @@
           });
         }
       };
-
-      var CreateEventDay = function (startDate, endDate) {
-        startDate.add(12, 'h');
-        CreateEvent(startDate, endDate, true);
-      }
 
       /**
        * [CreateEvent description]
@@ -109,48 +105,21 @@
           endTime: $scope.endTime,
           allDay: allday
         }
-
-        $modal.open({
-          animation: true,
-          templateUrl: 'app/Calendar/modal/selection.html',
-          controller: 'ModalInstanceCtrl',
-          scope: $scope,
-          resolve: {
-            pass: function () {
-              return variableList;
+        if (!$modalStack.getTop() && !opened) {
+          opened = true;
+          $modal.open({
+            animation: true,
+            templateUrl: 'app/Calendar/modal/selection.html',
+            controller: 'ModalInstanceCtrl',
+            scope: $scope,
+            resolve: {
+              pass: function () {
+                opened = false;
+                return variableList;
+              }
             }
-          }
-        });
-      };
-
-      /**
-       * Adds event to server and local array
-       * @method  AddEvent
-       */
-      $scope.AddEvent = function () {
-        var startDay = $scope.day.toDate();
-        startDay.setHours(startDay.getHours() + 4);
-
-        var endDay = $scope.endDay.toDate();
-        endDay.setHours(endDay.getHours() + 4);
-
-        factoryCalendar.post({
-          StartDate: startDay,
-          EndDate: endDay,
-          Note: {
-            Title: $scope.title,
-            Content: $scope.note,
-            NoteType: 'event',
-            IsAllDay: $scope.allDay || false
-          }
-        }).success(function () {
-          $scope.calendarData.push({
-            title: $scope.title,
-            start: $scope.day.toDate(),
-            end: $scope.endDay.toDate(),
-            allDay: $scope.allDay
-          })
-        });
+          });
+        }
       };
 
       /**
@@ -214,7 +183,6 @@
           },
           select: SelectDateRange,
           eventClick: GotoJob,
-          dayClick: CreateEventDay,
           timezone: 'local',
           eventResize: UpdateEvent,
           eventDrop: UpdateEvent,
