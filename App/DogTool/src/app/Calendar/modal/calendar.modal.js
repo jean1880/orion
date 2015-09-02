@@ -1,7 +1,7 @@
 (function () {
   'use strict'
   //modal controller
-  angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $location, $timeout, $modalInstance, pass, factoryCalendar) {
+  angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $location, $timeout, $modalInstance, pass, factoryCalendar, EVENT_COLOURS) {
 
     $scope.startTime = pass.startTime;
     $scope.endTime = pass.endTime;
@@ -45,7 +45,7 @@
      * @method  AddEvent
      */
     $scope.AddEvent = function () {
-      var eventColour = '#5bc0de';
+      var eventColour = EVENT_COLOURS.event;
       var startDay = new Date($scope.startTime.valueOf())
       startDay.setHours(startDay.getHours());
 

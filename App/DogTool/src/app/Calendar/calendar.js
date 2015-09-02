@@ -9,7 +9,7 @@
    * Controller of the dogToolApp, manages the calendar/view.html
    */
   angular.module('dogToolApp')
-    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack) {
+    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS) {
       /**
        * Rounds the date to the bottom, or top of the hour
        * @param  {object} date new date object
@@ -72,6 +72,7 @@
         if (date.jobId) {
           $location.url('/jobs/' + date.jobId);
         } else if (!$modalStack.getTop()) {
+          $scope.event = date;
           $modal.open({
             animation: true,
             templateUrl: 'app/Calendar/modal/event.html',
@@ -210,8 +211,9 @@
        * @param {[type]} data  [description]
        * @param {[type]} title [description]
        */
-      var AddtoCalendar = function (data, title, id) {
-        var colour = data.Colour || '#3a87ad';
+      var AddtoCalendar = function (data, title, id, note) {
+        var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
+        var colour = data.Colour || eventColour;
         $scope.calendarData.push({
           title: title,
           start: new Date(data.StartDate),
@@ -219,6 +221,7 @@
           allDay: data.IsAllDay,
           color: colour,
           jobId: id,
+          note: note,
           id: data.id,
           stick: true
         });
@@ -247,10 +250,10 @@
       var init = function () {
         factoryCalendar.getAll().success(function (data) {
           for (var i = data.length - 1; i >= 0; i--) {
-            console.log(data[i]);
             var title, halt = false;
             if (data[i].Note) {
               title = data[i].Note.Title;
+              var note = data[i].Note;
             } else if (data[i].Jobs && data[i].Jobs.length > 0) {
               title = data[i].Jobs[0].Name;
               halt = true;
@@ -259,7 +262,7 @@
 
             // if not trying to fetch jobtype add data to calendar immediately
             if (!halt) {
-              AddtoCalendar(data[i], title);
+              AddtoCalendar(data[i], title, null, note);
             }
           };
         });
