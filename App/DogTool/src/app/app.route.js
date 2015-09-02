@@ -104,6 +104,10 @@
           templateUrl: 'app/views/homeworkManagement.html',
           controller: 'HomeworkMngCtrl'
         })
+        .when('/library/:dog', {
+          templateUrl: 'app/views/homeworkManagement.html',
+          controller: 'HomeworkMngCtrl'
+        })
         .when('/invoice/:id', {
           templateUrl: 'app/views/invoice.html',
           controller: 'InvoiceCtrl',

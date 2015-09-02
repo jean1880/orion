@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('HomeworkMngCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash) {
+  .controller('HomeworkMngCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash,$routeParams) {
 
     /*createDogLookup, re-orders the array into a JSON object propertied by
      *dog's id.
@@ -64,6 +64,7 @@ angular.module('dogToolApp')
     };
 
     var init = function () {
+      $scope.searchDog=$routeParams.dog;//if dog name entered then populate the search bar
       $scope.dogHomeworkGroup = {};
       $scope.dog = {};
       $scope.LibraryList = {};
@@ -114,7 +115,8 @@ angular.module('dogToolApp')
               id: dogId
             };
           }
-          listDogHomeworkGroup[dogId]['homeworkList'].push($scope.LibraryList[item].id);
+          var tempObj ={id:$scope.LibraryList[item].id,EndDate:$scope.LibraryList[item].EndDate};
+          listDogHomeworkGroup[dogId]['homeworkList'].push(tempObj);
         }
       }
       $scope.dogHomeworkGroup = [];

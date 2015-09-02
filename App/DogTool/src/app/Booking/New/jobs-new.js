@@ -67,10 +67,7 @@
           Jobtype: {
             id: null
           },
-          Location: {
-            Street: ' ',
-            City: ' '
-          },
+          Location: {},
           Calendars: {
             StartDate: null,
             EndDate: null,
