@@ -235,6 +235,11 @@
 
       };
 
+      /**
+       * Confirms with the user to delete the booking, if the userconfirms the action
+       * call the ClearAllBookingData function, which clears all of the associated data with the
+       * model before deleting the model itself
+       */
       $scope.ConfirmDelete = function () {
         console.log($scope.booking);
         var modal = $modal.open({

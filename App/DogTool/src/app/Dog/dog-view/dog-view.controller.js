@@ -11,22 +11,22 @@
  * Controller for the viewing of a dog based on a id from routeParams
  */
 angular.module('dogToolApp')
-  .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog, flash) {
+  .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog, flash, FactoryNote, $modal) {
     /**
      * Prepares the controller for use
      *
      * @private
      * @method init
      */
-    var init = function() {
+    var init = function () {
       loadDog($routeParams.id);
-      $scope.editingInfo    = false;
-      $scope.editOwner      = false;
-      $scope.editVet        = false;
+      $scope.editingInfo = false;
+      $scope.editOwner = false;
+      $scope.editVet = false;
       $scope.editEmgContact = false;
-      $scope.pagination={};
-      $scope.pagination.limit=10;
-      $scope.pagination.currentPage=1;
+      $scope.pagination = {};
+      $scope.pagination.limit = 10;
+      $scope.pagination.currentPage = 1;
     };
 
     /**
@@ -48,13 +48,13 @@ angular.module('dogToolApp')
           $scope.dog = dog;
         })
         .error(function (response, status) {
-          switch(status) {
-            case 404:
-              flash.error = 'Dog not found';
-              break;
-            default:
-              flash.error = 'An error occured';
-              break;
+          switch (status) {
+          case 404:
+            flash.error = 'Dog not found';
+            break;
+          default:
+            flash.error = 'An error occured';
+            break;
           }
 
           $location.path('/');

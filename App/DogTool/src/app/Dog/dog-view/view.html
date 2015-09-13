@@ -32,7 +32,7 @@
               </div>
             </p>
             <a ng-href="#/library/{{dog.Name}}">View All Homework For {{dog.Name}}</a>
-          <pagination total-items="(dog.Homeworks).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
+            <pagination total-items="(dog.Homeworks).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
   </div>
 
   <div class="col-sm-4 col-lg-6">
-    <notes-panel notes="dog.Notes" on-notes-changed="updateNotes()" default-types="['Medical', 'Shots' ,'General', 'Behavioural','Client Care']"></notes-panel>
+    <notes-panel notes="dog.Notes" on-notes-changed="updateNotes()" default-types="['Medical', 'Shots' ,'General', 'Behavioural','Client Care', 'Friends', 'Foes']"></notes-panel>
   </div>
 
   <div class="col-sm-4 col-lg-3">
