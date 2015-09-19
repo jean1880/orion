@@ -10,7 +10,7 @@
    */
   angular.module('dogToolApp')
     .controller('NewJobsCtrl', function ($scope, $location, FactoryDog,
-      flash, FactoryJob, FactoryJobType,
+      flash, FactoryJob, FactoryJobType, FactoryBehaviourFlag,
       $window, $rootScope, HelperService,
       $routeParams) {
 
@@ -58,6 +58,8 @@
       };
 
       var init = function () {
+        $scope.feeAmount;
+        $scope.feeDescription;
         $scope.booking = {
           Name: '',
           Dogs: [],
@@ -74,6 +76,11 @@
             IsAllDay: false
           }
         };
+
+        FactoryBehaviourFlag.getAll()
+          .success(function (res) {
+            $scope.colours = res;
+          });
         LoadDate();
         loadAllDogs();
       };

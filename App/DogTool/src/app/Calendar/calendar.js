@@ -9,7 +9,7 @@
    * Controller of the dogToolApp, manages the calendar/view.html
    */
   angular.module('dogToolApp')
-    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS) {
+    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash) {
       /**
        * Rounds the date to the bottom, or top of the hour
        * @param  {object} date new date object
@@ -154,6 +154,11 @@
         $('#calendar').fullCalendar('unselect');
       }
 
+      /**
+       * Fetches notes from the server
+       * @param {Object}   view    Calendar view object
+       * @param {Object} element Cakendar element
+       */
       var GetNotes = function (view, element) {
         $scope.monthTitle = view.title;
         FactoryNote.find({

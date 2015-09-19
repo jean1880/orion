@@ -2,7 +2,8 @@
   "name": "dogtool",
   "version": "0.0.0",
   "dependencies": {
-    "node-sass": "^3.2.0"
+    "angular-moment": "^0.10.3",
+    "node-sass": "^3.3.3"
   },
   "scripts": {
     "test": "gulp test"

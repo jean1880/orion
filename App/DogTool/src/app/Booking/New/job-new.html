@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
+    <button ng-if="isUpdated" type="button" ng-click="ConfirmDelete()" class="pull-right btn btn-lg btn-danger">Remove Booking</button>
     <h1>
       {{pageType}}Booking
     </h1>
@@ -99,6 +100,23 @@
       </div>
       <div class="panel panel-primary">
         <div class="panel-heading">
+          Booking Behaviour Flag
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="behave-flag-label">
+              <input type="radio" class="behave-flag-radio" ng-model="booking.Calendars.Colour" ng-checked="booking.Calendars.Colour === null" value="null">
+              <span class="behave-flag"></span>
+            </label>
+            <label class="behave-flag-label" ng-repeat="colour in colours">
+              <input type="radio" class="behave-flag-radio" ng-model="booking.Calendars.Colour" value="{{ colour.Colour }}">
+              <span class="behave-flag" style="background-color: {{ colour.Colour }}"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
           <h3 class="panel-title">Fees:</h3>
         </div>
         <div class="panel-body">
@@ -108,12 +126,12 @@
             <p class="col-lg-6 col-md-6 col-sm-6">{{fees.Cost}}</p>
           </div>
           <div class="input-group ">
-            <label for="bookingFeeDescription">Booking Fees Description:</label>
-            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description"></textarea>
-          </div>
-          <div class="input-group ">
             <label for="bookingFee">Booking Fees:</label>
             <input id="bookingFee" type="text" ng-model="feeAmount" class="form-control" pattern="^\d*(\.\d{0,2}$)?" />
+          </div>
+          <div class="input-group ">
+            <label for="bookingFeeDescription">Booking Fees Description:</label>
+            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description"></textarea>
           </div>
           <div>
             <button type="button" class="btn btn-lg pull-right btn-primary" ng-click="addFee()">Add Fee</button>
@@ -136,7 +154,7 @@
             <span class="fa fa-search" aria-hidden="true"></span>
           </div>
         </div>
-        <div ng-repeat="dog in dogs | orderBy:'Name' | filter : dogSearch | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)">
+        <div ng-repeat="dog in dogs | orderBy:'Name' | filter:{Deceased: false} | filter : dogSearch | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)">
           <dog-card dog="dog" btn-Click="bookDog(dog)" btn-Text="'Add'"></dog-card>
         </div>
         <div class="row">
@@ -154,6 +172,5 @@
     </iframe>
   </div>
   <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
-  <button ng-if="isUpdated" type="button" ng-click="ConfirmDelete()" class="pull-right btn btn-lg btn-danger">Remove Booking</button>
 
 </div>

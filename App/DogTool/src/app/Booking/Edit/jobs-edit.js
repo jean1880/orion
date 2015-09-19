@@ -20,6 +20,7 @@
       factoryCalendar,
       FactoryAddress,
       FactoryNote,
+      FactoryBehaviourFlag,
       $routeParams,
       HelperService,
       $sce,
@@ -103,6 +104,11 @@
             IsAllDay: false
           }
         };
+
+        FactoryBehaviourFlag.getAll()
+          .success(function (res) {
+            $scope.colours = res;
+          });
         getBookingTypes();
       };
       /**
