@@ -83,12 +83,13 @@
               <input type="date" class="form-control" ng-model="booking.Calendars.StartDate">
               <timepicker hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.StartDate" show-meridian="ismeridian"></timepicker>
             </div>
-            <label for="setAllDay" class="control-label">All Day Booking: </label>
+          </div>
+          <!--
+          <label for="setAllDay" class="control-label">All Day Booking: </label>
             <div class="pull-right">
               <input bs-switch class="pull-right" id="setAllDay" name="setAllDay" type="checkbox" ng-model="booking.Calendars.IsAllDay" switch-on-text="YES" switch-off-text="NO" />
-            </div>
-          </div>
-          <div ng-hide="booking.Calendars.IsAllDay" class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
+            </div> -->
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
             <label for="jobEnd" class="control-label">Booking End Date:</label>
             <br/>
             <div class="form-group">
@@ -138,8 +139,6 @@
           </div>
         </div>
       </div>
-      <notes-panel notes="booking.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Booking Notes'" default-types="['General']"></notes-panel>
-      </br>
     </form>
   </div>
   <div class="col-sm-6">
@@ -165,12 +164,19 @@
 
       </div>
     </div>
+    <div ng-if="fullAddress != null" class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Map:</h3>
+      </div>
+      <div class="panel-body">
+        <iframe class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" width="600" height="450" frameborder="0" style="border:0" ng-src="{{fullAddress}}" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <notes-panel notes="booking.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Booking Notes'" default-types="['General']"></notes-panel>
   </div>
-  <div ng-if="fullAddress != null" class="col-sm-6 panel">
-    <h3>Map:</h3>
-    <iframe class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" width="600" height="450" frameborder="0" style="border:0" ng-src="{{fullAddress}}" allowfullscreen>
-    </iframe>
+  <div class="col-xs-12">
+    <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
   </div>
-  <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
 
 </div>

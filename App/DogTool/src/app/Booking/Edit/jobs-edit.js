@@ -26,7 +26,11 @@
       $sce,
       $modal,
       $q) {
-      $scope.pageType = 'Edit ';
+      $scope.pageType = 'Update ';
+      $scope.pagination = {
+        currentPage: 1,
+        limit: 9
+      }
       $scope.selectedJobType;
       $scope.addedDogUI = [];
       $scope.fullAddress = null;
@@ -38,9 +42,7 @@
         //get the booking types
         FactoryJobType.getAll()
           .success(function (response) {
-            //
             $scope.jobTypes = response;
-            loadAllDogs();
           })
           .error(function () {
             flash.error = 'An error occured while loading job types.';
@@ -51,13 +53,16 @@
         FactoryJob.get($routeParams.id)
           .success(function (res) {
 
-
+            console.log(res);
             $scope.booking = res;
             $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
             $scope.booking.Calendars.StartDate = new Date($scope.booking.Calendars.StartDate);
             $scope.isUpdated = true;
 
-            $scope.addedDogUI = res.Dogs;
+            // match dogs to fetched dogs, with full info
+            for (var i = res.Dogs.length - 1; i >= 0; i--) {
+              $scope.addedDogUI.push(findDoginDogs(res.Dogs[i]));
+            }
             $scope.dogs = $scope.dogs.filter(removeDuplicate);
             $scope.selectedJobType = res.Jobtype;
 
@@ -84,6 +89,20 @@
           });
 
       };
+
+      /**
+       * Parses through all loaded dogs, and matches the dog to a dog data set, to fill inmissing data
+       * @method findDoginDogs
+       * @param {object} dog The dog to search for
+       */
+      var findDoginDogs = function (dog) {
+        for (var i = $scope.dogs.length - 1; i >= 0; i--) {
+          if ($scope.dogs[i].id === dog.id) {
+            return $scope.dogs[i];
+          }
+        }
+      };
+
       var init = function () {
         $scope.booking = {
           Name: '',
@@ -110,7 +129,9 @@
             $scope.colours = res;
           });
         getBookingTypes();
+        loadAllDogs();
       };
+
       /**
        * @method removeDuplicate
        * @return return the bool of if obj is in doglistArray
@@ -166,10 +187,8 @@
        * @description creates the new booking through FactoryJob via post
        */
       $scope.createBooking = function () {
-
-
         $scope.submitted = true;
-        if ($scope.booking.Dogs.length > 0) {
+        if ($scope.booking.Dogs && $scope.booking.Dogs.length > 0) {
           if ($scope.selectedJobType) {
             $scope.booking.Jobtype = $scope.selectedJobType.id;
           }
@@ -231,7 +250,7 @@
             flash.error = 'Please enter a description';
           }
           if ($scope.feeAmount == null) {
-            flash.error = 'Please enter a fee amount in proper currency';
+            flash.error = 'Please enter a fee with only numbers, and no letters or symbols';
           }
         }
       };
@@ -247,7 +266,6 @@
        * model before deleting the model itself
        */
       $scope.ConfirmDelete = function () {
-        console.log($scope.booking);
         var modal = $modal.open({
           templateUrl: 'app/Booking/modal/confirm-delete.html',
           controller: 'confirmBookingDeleteModalCtrl',

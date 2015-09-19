@@ -72,8 +72,7 @@
           Location: {},
           Calendars: {
             StartDate: null,
-            EndDate: null,
-            IsAllDay: false
+            EndDate: null
           }
         };
 
