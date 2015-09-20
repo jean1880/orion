@@ -9,7 +9,7 @@
    * Controller of the dogToolApp, manages the calendar/view.html
    */
   angular.module('dogToolApp')
-    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash) {
+    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash, $interval) {
       /**
        * Rounds the date to the bottom, or top of the hour
        * @param  {object} date new date object
@@ -172,6 +172,7 @@
             $scope.monthNoteExists = false;
             $scope.monthNote = {};
           }
+          $interval($scope.SaveMonthNote, 300000);
         })
       }
 
@@ -233,17 +234,34 @@
       }
 
 
-      $scope.SaveMonthNote = function () {
+      var changeCount = 0;
+      /**
+       * Saves a note to the database
+       * @param {bool} change Flag if funciton is called by ng-change
+       */
+      $scope.SaveMonthNote = function (change) {
         $scope.monthNote.Title = $scope.monthTitle;
         $scope.monthNote.NoteType = $scope.NOTE_TYPE;
-        if ($scope.monthNoteExists) {
-          FactoryNote.update($scope.monthNote).success(function (data) {
-            flash.success = 'Note created';
-          });
+        if (changeCount % 4 == 0) {
+          if ($scope.monthNoteExists) {
+            FactoryNote.update($scope.monthNote).success(function (data) {
+              if (!change) {
+                flash.success = 'Note created';
+              }
+            });
+          } else {
+            FactoryNote.post($scope.monthNote).success(function (data) {
+              if (!change) {
+                flash.success = 'Note updated';
+              }
+            })
+          }
+        }
+        // if count is multiple of four reset the count
+        if (changeCount % 4 == 0) {
+          changeCount = 0;
         } else {
-          FactoryNote.post($scope.monthNote).success(function (data) {
-            flash.success = 'Note updated';
-          })
+          changeCount++;
         }
       }
 
