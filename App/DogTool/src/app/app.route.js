@@ -85,11 +85,11 @@
           redirectTo: '/homework/new'
         })
         .when('/homework/new', {
-          templateUrl: 'app/views/homework.html',
+          templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkNewCtrl'
         })
         .when('/homework/:id', {
-          templateUrl: 'app/views/homework.html',
+          templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkCtrl'
         })
         .when('/businessInfo', {
@@ -97,15 +97,15 @@
           controller: 'BusinessinfoCtrl'
         })
         .when('/homework/new/:id', {
-          templateUrl: 'app/views/homework.html',
+          templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkNewCtrl'
         })
         .when('/library', {
-          templateUrl: 'app/views/homeworkManagement.html',
+          templateUrl: 'app/homework/homeworkManagement.html',
           controller: 'HomeworkMngCtrl'
         })
         .when('/library/:dog', {
-          templateUrl: 'app/views/homeworkManagement.html',
+          templateUrl: 'app/homework/homeworkManagement.html',
           controller: 'HomeworkMngCtrl'
         })
         .when('/invoice/:id', {
