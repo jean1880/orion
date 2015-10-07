@@ -8,7 +8,7 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('HomeworkMngCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash,$routeParams) {
+  .controller('HomeworkMngCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash, $routeParams) {
 
     /*createDogLookup, re-orders the array into a JSON object propertied by
      *dog's id.
@@ -29,7 +29,6 @@ angular.module('dogToolApp')
     var createLibraryLookup = function (homeworkList) {
         for (var homework in homeworkList) {
           $scope.LibraryList[homeworkList[homework].id] = homeworkList[homework];
-
         }
       }
       /**
@@ -64,7 +63,7 @@ angular.module('dogToolApp')
     };
 
     var init = function () {
-      $scope.searchDog=$routeParams.dog;//if dog name entered then populate the search bar
+      $scope.searchDog = $routeParams.dog; //if dog name entered then populate the search bar
       $scope.dogHomeworkGroup = {};
       $scope.dog = {};
       $scope.LibraryList = {};
@@ -72,19 +71,19 @@ angular.module('dogToolApp')
       loadHomework();
     };
 
-  /**
-   *updateHomework function that updates homework
-   *@param homeworkId, what homework by id to update
-   */
-    $scope.updateHomework = function(homeworkId){
+    /**
+     *updateHomework function that updates homework
+     *@param homeworkId, what homework by id to update
+     */
+    $scope.updateHomework = function (homeworkId) {
       FactoryHomework.update($scope.LibraryList[homeworkId])
-        .success(function(homeworkRes){
-        flash.success="Status Saved";
-      }).error(function(errorHomework){
-        flash.error="Sorry there was an issue saving the status change";
-      })
+        .success(function (homeworkRes) {
+          flash.success = "Status Saved";
+        }).error(function (errorHomework) {
+          flash.error = "Sorry there was an issue saving the status change";
+        })
     }
-    
+
     var loadHomework = function () {
         FactoryHomework.getAll().success(function (response) {
           createLibraryLookup(response);
@@ -115,7 +114,10 @@ angular.module('dogToolApp')
               id: dogId
             };
           }
-          var tempObj ={id:$scope.LibraryList[item].id,EndDate:$scope.LibraryList[item].EndDate};
+          var tempObj = {
+            id: $scope.LibraryList[item].id,
+            EndDate: $scope.LibraryList[item].EndDate
+          };
           listDogHomeworkGroup[dogId]['homeworkList'].push(tempObj);
         }
       }

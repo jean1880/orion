@@ -64,6 +64,7 @@
       $scope.monthNoteExists = false;
       $scope.NOTE_TYPE = 'MonthNote';
 
+
       /**
        * Goes to the jobs for the day
        * @param {Object} date Moment.js date object
@@ -254,6 +255,7 @@
               if (!change) {
                 flash.success = 'Note updated';
               }
+              $scope.monthNoteExists = true; // set that a note now exists
             })
           }
         }
@@ -266,8 +268,9 @@
       }
 
 
-      /**
-       * [init description]
+      /**Initializer function called when controller is called
+       * @method init
+       * @private
        * @return {[type]} [description]
        */
       var init = function () {

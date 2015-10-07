@@ -1,19 +1,17 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name dogToolApp.controller:HomeworkCtrl
- * @description
- * # HomeworkCtrl
  * Controller of the dogToolApp, manages the homework.html, designed to gather data of specific homework via homework ids.
+ * @class HomeworkCtrl
  */
 angular.module('dogToolApp')
   .controller('HomeworkCtrl', function ($scope, $location, FactoryDog, FactoryHomework, flash, $rootScope, HelperService, $routeParams) {
     $scope.pagination = {
       currentPage: 1,
       limit: 9
-    }
+    };
     $scope.showDeceased = false;
+
     $scope.hstep = 1;
     $scope.mstep = 10;
     $scope.ismeridian = true;
@@ -23,6 +21,11 @@ angular.module('dogToolApp')
       loadAllDogs();
     };
 
+    /**
+     * Adds dog to homework
+     * @method addDog
+     * @param {Object} dog Dog to add to the homework
+     */
     $scope.addDog = function (dog) {
       $scope.addedDogUI.push(dog);
       var dogIndex = $scope.dogs.indexOf(dog);
@@ -33,13 +36,19 @@ angular.module('dogToolApp')
       }
     };
 
+    /**
+     * Removes dog from homework
+     * @method removeDog
+     * @param {object} dog Dog object to be removed
+     */
     $scope.removeDog = function (dog) {
       var dogOutIndex = $scope.addedDogUI.indexOf(dog);
-      $scope.dogs.push(dog)
+      $scope.dogs.push(dog);
       if (dogOutIndex > -1) {
         $scope.addedDogUI.splice(dogOutIndex, 1);
       }
     };
+
 
     var loadAllDogs = function () {
       $scope.dogs = null;
@@ -62,7 +71,7 @@ angular.module('dogToolApp')
           console.log(doglistArray);
           angular.forEach(response.Dogs, function (value, key) {
             console.log(doglistArray.indexOf(value.id), value.id);
-            if (doglistArray.indexOf(value.id) != -1) {
+            if (doglistArray.indexOf(value.id) !== -1) {
               $scope.addedDogUI.push($scope.dogs[doglistArray.indexOf(value.id)]);
             }
           });
@@ -76,29 +85,37 @@ angular.module('dogToolApp')
         .error(function (error) {
           flash.error = 'Sorry we could not access the job in question.';
         });
-    }
+    };
 
     var cloneObj = function (obj) {
-        if (null == obj || "object" != typeof obj) return obj;
-        var copy = obj.constructor();
-        for (var attr in obj) {
-          if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-        }
-        return copy;
+      if (null == obj || "object" != typeof obj) {
+        return obj;
       }
-      /**
-       * @method removeDuplicate
-       * @return return the bool of if obj is in doglistArray
-       * @param obj, what you are looking for, must be type dog.
-       *
-       */
+      var copy = obj.constructor();
+      for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) {
+          copy[attr] = obj[attr];
+        }
+      }
+      return copy;
+    };
+    /**
+     * @method removeDuplicate
+     * @return return the bool of if obj is in doglistArray
+     * @param obj, what you are looking for, must be type dog.
+     *
+     */
     var removeDuplicate = function (obj) {
       var doglistArray = HelperService.convert.objectArrayToIdArray($scope.Homework.Dogs);
       return (doglistArray.indexOf(obj.id) == -1);
     };
 
+    /**
+     * Submits a new homework set to the database
+     * @method submitHomework
+     * @paramm  {boolean} isValid   Whether the form is valid or not
+     */
     $scope.submitHomework = function (isValid) {
-
       $scope.submitted = true;
       console.log("isVald:", isValid, " Lenght", $scope.addedDogUI.lenght);
       if (isValid && $scope.addedDogUI.length > 0) {
@@ -116,6 +133,8 @@ angular.module('dogToolApp')
 
             });
         }
+      } else {
+        flash.error = "You must add a dog before submitting a homework task";
       }
     };
 

@@ -7,6 +7,11 @@
   <!-- END -->
   <form class="form" ng-submit="UpdateEvent()">
     <div class="form-group">
+      <button type="button" class="btn btn-danger btn-block" ng-click="deleteEvent(event.id)">
+        <i class="fa fa-remove"></i>
+      </button>
+    </div>
+    <div class="form-group">
       <input required class="form-control" ng-model="event.note.Title" type="text" placeholder="Event Title" ng-model="title">
     </div>
     <div class="checkbox">

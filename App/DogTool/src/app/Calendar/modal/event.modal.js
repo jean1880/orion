@@ -1,7 +1,7 @@
 (function () {
   'use strict'
   //modal controller
-  angular.module('dogToolApp').controller('CalendarEventCtrl', function ($scope, $location, $timeout, $modalInstance, factoryCalendar, EVENT_COLOURS) {
+  angular.module('dogToolApp').controller('CalendarEventCtrl', function ($scope, $location, $timeout, $modalInstance, factoryCalendar, EVENT_COLOURS, flash) {
     $scope.ok = function () {
       $modalInstance.close();
     };
@@ -38,6 +38,19 @@
       });
     };
 
+
+    $scope.deleteEvent = function (id) {
+      factoryCalendar.remove(id).success(function () {
+        $scope.cancel();
+        flash.success = "Removed event";
+        for (var i = $scope.calendarData.length - 1; i >= 0; i--) {
+          if ($scope.calendarData[i].id == $scope.event.id) {
+            $scope.calendarData.splice(i, 1);
+            console.log("removed");
+          }
+        }
+      });
+    }
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };

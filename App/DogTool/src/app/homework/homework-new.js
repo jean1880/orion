@@ -9,6 +9,11 @@
  */
 angular.module('dogToolApp')
   .controller('HomeworkNewCtrl', function ($scope, $location, FactoryDog, FactoryHomework, flash, $rootScope, HelperService, $window, $routeParams) {
+    $scope.pagination = {
+      currentPage: 1,
+      limit: 9
+    };
+    $scope.showDeceased = false;
     $scope.hstep = 1;
     $scope.mstep = 10;
     $scope.ismeridian = true;
@@ -17,13 +22,13 @@ angular.module('dogToolApp')
     var init = function () {
       loadAllDogs();
       $scope.Homework = {
-        Title: "Unnamed",
+        Title: "",
         Description: "",
         Dogs: [],
         Notes: [],
         StartDate: new Date(),
         EndDate: new Date(),
-        Status:false
+        Status: false
       }
       if ($routeParams.id != null) {
         FactoryHomework.get($routeParams.id).success(function (homeworkRes) {

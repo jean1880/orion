@@ -161,7 +161,6 @@
               $window.location.href = "#/jobs/" + res.id;
             })
             .error(function (err) {
-
               flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
             });
         }
