@@ -12,13 +12,15 @@
     .controller('NewJobsCtrl', function ($scope, $location, FactoryDog,
       flash, FactoryJob, FactoryJobType, FactoryBehaviourFlag,
       $window, $rootScope, HelperService,
-      $routeParams) {
+      $routeParams, $localStorage) {
 
+      //. Set pagination
       $scope.pageType = "Create ";
       $scope.pagination = {
         currentPage: 1,
         limit: 9
       }
+
       $scope.selectedJobType;
       $scope.addedDogUI = [];
       $scope.submitted = false;
@@ -156,13 +158,15 @@
         $scope.submitted = true;
         if ($scope.addedDogUI.length > 0) {
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
-          FactoryJob.post($scope.booking).success(function (res) {
+          FactoryJob.post($scope.booking).then(function (err, data) {
+            if (!err) {
               flash.success = 'Job Created.';
-              $window.location.href = "#/jobs/" + res.id;
-            })
-            .error(function (err) {
+              $localStorage.calendarData.push(data);
+              $window.location.href = "#/jobs/" + data.id;
+            } else {
               flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
-            });
+            }
+          });
         }
       };
 

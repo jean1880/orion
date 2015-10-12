@@ -2,9 +2,11 @@
   'use strict';
   angular
     .module('dogToolApp')
-    .run(function ($location, FactoryLogin, amMoment) {
+    .run(function ($location, FactoryLogin, amMoment, $localStorage) {
       var url = $location.url();
       $location.url('/working');
+      $localStorage.calendarData = $localStorage.calendarData || [];
+      $localStorage.dogs = $localStorage.dogs || [];
 
       FactoryLogin.validate()
         .success(function (res) {

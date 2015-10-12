@@ -3,7 +3,8 @@
 
   angular
     .module('dogToolApp')
-    .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
+    .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider, $localStorageProvider) {
+      $localStorageProvider.setKeyPrefix('NotJustKibble');
       flashProvider.successClassnames.push('alert-success');
       flashProvider.infoClassnames.push('alert-info');
       flashProvider.warnClassnames.push('alert-warning');

@@ -196,15 +196,14 @@
 
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
 
-          FactoryJob.update($scope.booking).success(function (res) {
-              flash.success = 'Job Created.';
+          FactoryJob.update($scope.booking).then(function (err, data) {
+            if (!err) {
+              flash.success = "Job created"
 
-
-            })
-            .error(function (err) {
-
-              flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
-            });
+            } else {
+              flash.error = "Something went wrong"
+            }
+          });
         }
       };
 

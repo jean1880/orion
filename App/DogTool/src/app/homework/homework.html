@@ -93,7 +93,7 @@
               <p ng-if="addedDogUI.length==0 && submitted" class="text-danger">Please add a dog.</p>
               <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
                 <div ng-repeat="dogIn in addedDogUI  | orderBy:'Name' track by $index" class="">
-                  <dog-card dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
+                  <dog-card no-Click="true" dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
                 </div>
               </div>
             </div>
@@ -118,7 +118,7 @@
               </div>
             </div>
             <div ng-repeat="dog in dogs | orderBy:'Name' | filter:{Deceased: showDeceased} | filter: {Name: dogSearch} | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)" class="">
-              <dog-card dog="dog" btn-Click="addDog(dog)" btn-Text="'Add'"></dog-card>
+              <dog-card no-Click="true" dog="dog" btn-Click="addDog(dog)" btn-Text="'Add'"></dog-card>
             </div>
             <div class="row">
               <div class="col-xs-12">

@@ -41,8 +41,6 @@ angular.module('dogToolApp')
     $scope.addDog = function (dog) {
       $scope.addedDogUI.push(dog);
       var dogIndex = $scope.dogs.indexOf(dog);
-
-
       if (dogIndex > -1) {
         $scope.dogs.splice(dogIndex, 1);
       }
@@ -82,17 +80,13 @@ angular.module('dogToolApp')
     };
 
     $scope.submitHomework = function (isValid) {
-
       $scope.submitted = true;
       if (isValid) {
-
         if ($scope.Homework.Title != "" && $scope.Homework.Description != "") {
-
           $scope.Homework.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
           FactoryHomework.post($scope.Homework)
             .success(function (res) {
               $rootScope.HomeworkSubmitted = true;
-
               flash.success = "Homework Saved";
               $window.location.href = "#/homework/" + res.id;
             })

@@ -9,7 +9,10 @@
  */
 angular.module('dogToolApp')
   .controller('HomeworkMngCtrl', function ($scope, FactoryHomework, FactoryDog, HelperService, $location, flash, $routeParams) {
-
+    $scope.pagination = {
+      currentPage: 1,
+      limit: 3
+    };
     /*createDogLookup, re-orders the array into a JSON object propertied by
      *dog's id.
      *@param dogList, the list of dogs to be striped of the array.
@@ -67,7 +70,7 @@ angular.module('dogToolApp')
       $scope.dogHomeworkGroup = {};
       $scope.dog = {};
       $scope.LibraryList = {};
-      $scope.sortBy = 'dog';
+      $scope.sortBy = 'Dog.Name';
       loadHomework();
     };
 
@@ -121,10 +124,6 @@ angular.module('dogToolApp')
           listDogHomeworkGroup[dogId]['homeworkList'].push(tempObj);
         }
       }
-      $scope.dogHomeworkGroup = [];
-      angular.forEach(listDogHomeworkGroup, function (value, key) {
-        $scope.dogHomeworkGroup.push(value);
-      });
       $scope.homeworkByTitle = [];
       angular.forEach($scope.LibraryList, function (value, key) {
         $scope.homeworkByTitle.push(value);
@@ -133,6 +132,7 @@ angular.module('dogToolApp')
 
 
     $scope.changeSortBy = function (newSort) {
+      $scope.pagination.currentPage = 1;
       $scope.sortBy = newSort;
     };
 

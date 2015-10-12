@@ -9,7 +9,7 @@
    * Controller of the dogToolApp, manages the calendar/view.html
    */
   angular.module('dogToolApp')
-    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash, $interval) {
+    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash, $interval, $localStorage) {
       /**
        * Rounds the date to the bottom, or top of the hour
        * @param  {object} date new date object
@@ -55,8 +55,8 @@
       /**
        * Calendar settings
        */
-      $scope.calendarData = [];
-      $scope.eventSources = [$scope.calendarData]
+      var temp = [];
+      $scope.eventSources = [$localStorage.calendarData]
       $scope.addingEvent = false;
       $scope.allDay = true;
       $scope.monthNote = {};
@@ -173,7 +173,6 @@
             $scope.monthNoteExists = false;
             $scope.monthNote = {};
           }
-          $interval($scope.SaveMonthNote, 300000);
         })
       }
 
@@ -202,6 +201,43 @@
        */
 
       /**
+       * [AddtoCalendar description]
+       * @param {[type]} data  [description]
+       * @param {[type]} title [description]
+       */
+      var AddtoCalendar = function (data, title, id, note) {
+        var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
+        var colour = data.Colour || eventColour;
+        var found = false;
+        for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
+          if ($localStorage.calendarData[i].id === data.id) {
+            $localStorage.calendarData[i].start = new Date(data.StartDate);
+            $localStorage.calendarData[i].end = new Date(data.EndDate);
+            $localStorage.calendarData[i].allDay = data.IsAllDay;
+            $localStorage.calendarData[i].color = colour;
+            $localStorage.calendarData[i].jobId = id;
+            $localStorage.calendarData[i].note = note;
+            $localStorage.calendarData[i].id = data.id;
+            $localStorage.calendarData[i].stick = true;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          $localStorage.calendarData.push({
+            title: title,
+            start: new Date(data.StartDate),
+            end: new Date(data.EndDate),
+            allDay: data.IsAllDay,
+            color: colour,
+            jobId: id,
+            note: note,
+            id: data.id,
+            stick: true
+          });
+        }
+      };
+      /**
        * [getJobType description]
        * @param  {[type]} dataObject [description]
        * @param  {[type]} title      [description]
@@ -213,26 +249,6 @@
         });
       };
 
-      /**
-       * [AddtoCalendar description]
-       * @param {[type]} data  [description]
-       * @param {[type]} title [description]
-       */
-      var AddtoCalendar = function (data, title, id, note) {
-        var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
-        var colour = data.Colour || eventColour;
-        $scope.calendarData.push({
-          title: title,
-          start: new Date(data.StartDate),
-          end: new Date(data.EndDate),
-          allDay: data.IsAllDay,
-          color: colour,
-          jobId: id,
-          note: note,
-          id: data.id,
-          stick: true
-        });
-      }
 
 
       var changeCount = 0;
@@ -258,7 +274,7 @@
               $scope.monthNoteExists = true; // set that a note now exists
             })
           }
-        }
+        };
         // if count is multiple of four reset the count
         if (changeCount % 4 == 0) {
           changeCount = 0;
@@ -275,7 +291,8 @@
        */
       var init = function () {
         factoryCalendar.getAll().success(function (data) {
-          for (var i = data.length - 1; i >= 0; i--) {
+          var i
+          for (i = 0; i < data.length; i++) {
             var title, halt = false;
             if (data[i].Note) {
               title = data[i].Note.Title;
