@@ -25,7 +25,8 @@
       HelperService,
       $sce,
       $modal,
-      $q) {
+      $q,
+      $localStorage) {
       $scope.pageType = 'Update ';
       $scope.pagination = {
         currentPage: 1,
@@ -52,8 +53,6 @@
         //get the specific booking information
         FactoryJob.get($routeParams.id)
           .success(function (res) {
-
-            console.log(res);
             $scope.booking = res;
             $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
             $scope.booking.Calendars.StartDate = new Date($scope.booking.Calendars.StartDate);
@@ -167,7 +166,7 @@
        *
        */
       var loadAllDogs = function () {
-        $scope.dogs = null;
+        $scope.dogs = $localStorage.dogs;
 
         FactoryDog.getAll()
           .success(function (response) {
@@ -196,13 +195,16 @@
 
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
 
-          FactoryJob.update($scope.booking).then(function (err, data) {
-            if (!err) {
-              flash.success = "Job created"
-
-            } else {
-              flash.error = "Something went wrong"
+          FactoryJob.update($scope.booking).success(function (data) {
+            flash.success = "Job created";
+            for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
+              if ($localStorage.calendarData[i].id == data.id) {
+                $localStorage.calendarData[i] = data.id;
+                break;
+              }
             }
+          }).error(function () {
+            flash.error = "Something went wrong"
           });
         }
       };
@@ -317,6 +319,12 @@
         FactoryJob.remove($scope.booking.id)
           .success(function () {
             flash.success = 'Successfully removed the booking';
+            for (var i = $localStorage.calendarData.length; i >= 0; i--) {
+              if ($localStorage.calendarData.jobId = $scope.booking.id) {
+                $localStorage.calendarData.splice(i, 1);
+                break;
+              }
+            }
             $location.url('/');
           })
           .error(function () {

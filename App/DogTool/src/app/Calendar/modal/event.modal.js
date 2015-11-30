@@ -1,7 +1,7 @@
 (function () {
   'use strict'
   //modal controller
-  angular.module('dogToolApp').controller('CalendarEventCtrl', function ($scope, $location, $timeout, $modalInstance, factoryCalendar, EVENT_COLOURS, flash) {
+  angular.module('dogToolApp').controller('CalendarEventCtrl', function ($scope, $location, $timeout, $modalInstance, factoryCalendar, EVENT_COLOURS, flash, $localStorage) {
     $scope.ok = function () {
       $modalInstance.close();
     };
@@ -29,10 +29,10 @@
         id: $scope.event.id
       }).success(function () {
         $modalInstance.close();
-        for (var i = $scope.calendarData.length - 1; i >= 0; i--) {
-          if ($scope.calendarData[i].id == $scope.event.id) {
+        for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
+          if ($localStorage.calendarData[i].id == $scope.event.id) {
             $scope.event.title = $scope.event.note.Title;
-            $scope.calendarData[i] = $scope.event;
+            $localStorage.calendarData[i] = $scope.event;
           }
         }
       });
@@ -43,10 +43,9 @@
       factoryCalendar.remove(id).success(function () {
         $scope.cancel();
         flash.success = "Removed event";
-        for (var i = $scope.calendarData.length - 1; i >= 0; i--) {
-          if ($scope.calendarData[i].id == $scope.event.id) {
-            $scope.calendarData.splice(i, 1);
-            console.log("removed");
+        for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
+          if ($localStorage.calendarData[i].id == $scope.event.id) {
+            $localStorage.calendarData.splice(i, 1);
           }
         }
       });

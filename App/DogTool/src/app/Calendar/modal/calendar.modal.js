@@ -1,7 +1,7 @@
 (function () {
   'use strict'
   //modal controller
-  angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $location, $timeout, $modalInstance, pass, factoryCalendar, EVENT_COLOURS) {
+  angular.module('dogToolApp').controller('ModalInstanceCtrl', function ($scope, $location, $timeout, $modalInstance, pass, factoryCalendar, FactoryNote, EVENT_COLOURS, $localStorage) {
 
     $scope.startTime = pass.startTime;
     $scope.endTime = pass.endTime;
@@ -25,7 +25,7 @@
      * [CreateBooking description]
      */
     $scope.CreateBooking = function () {
-      console.log($scope.startTime);
+      $modalInstance.close();
       var startDay = new Date($scope.startTime.valueOf());
       startDay.setHours(startDay.getHours());
 
@@ -37,7 +37,6 @@
       } else {
         $location.url('/jobs/new/' + encodeURI(startDay) + '/' + encodeURI(endDay));
       }
-      $modalInstance.close();
     };
 
     /**
@@ -45,6 +44,7 @@
      * @method  AddEvent
      */
     $scope.AddEvent = function () {
+      $modalInstance.close();
       var eventColour = EVENT_COLOURS.event;
       var startDay = new Date($scope.startTime.valueOf())
       startDay.setHours(startDay.getHours());
@@ -60,15 +60,20 @@
           Content: $scope.note,
           NoteType: 'event',
           IsAllDay: $scope.allDay || false
-        }
-      }).success(function () {
-        $scope.calendarData.push({
-          title: $scope.title,
-          start: $scope.day.toDate(),
-          end: $scope.endDay.toDate(),
-          allDay: $scope.allDay
+        },
+        Colour: EVENT_COLOURS.event
+      }).success(function (data) {
+        FactoryNote.get(data.Note).success(function (item) {
+          $localStorage.calendarData.push({
+            id: data.id,
+            color: data.Colour,
+            note: item,
+            title: $scope.title,
+            start: $scope.day.toDate(),
+            end: $scope.endDay.toDate(),
+            allDay: $scope.allDay
+          });
         });
-        $modalInstance.close();
       });
     };
     $scope.cancel = function () {

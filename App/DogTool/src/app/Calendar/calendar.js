@@ -182,6 +182,7 @@
           editable: true,
           height: 'auto',
           selectable: true,
+          nextDayThreshold: "00:00:00",
           eventLimit: true, // allow "more" link when too many events
           header: {
             left: 'title',
@@ -208,34 +209,17 @@
       var AddtoCalendar = function (data, title, id, note) {
         var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
         var colour = data.Colour || eventColour;
-        var found = false;
-        for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
-          if ($localStorage.calendarData[i].id === data.id) {
-            $localStorage.calendarData[i].start = new Date(data.StartDate);
-            $localStorage.calendarData[i].end = new Date(data.EndDate);
-            $localStorage.calendarData[i].allDay = data.IsAllDay;
-            $localStorage.calendarData[i].color = colour;
-            $localStorage.calendarData[i].jobId = id;
-            $localStorage.calendarData[i].note = note;
-            $localStorage.calendarData[i].id = data.id;
-            $localStorage.calendarData[i].stick = true;
-            found = true;
-            break;
-          }
-        }
-        if (!found) {
-          $localStorage.calendarData.push({
-            title: title,
-            start: new Date(data.StartDate),
-            end: new Date(data.EndDate),
-            allDay: data.IsAllDay,
-            color: colour,
-            jobId: id,
-            note: note,
-            id: data.id,
-            stick: true
-          });
-        }
+        $localStorage.calendarData.push({
+          title: title,
+          start: new Date(data.StartDate),
+          end: new Date(data.EndDate),
+          allDay: data.IsAllDay,
+          color: colour,
+          jobId: id,
+          note: note,
+          id: data.id,
+          stick: true
+        });
       };
       /**
        * [getJobType description]
@@ -248,8 +232,6 @@
           AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name, data.id);
         });
       };
-
-
 
       var changeCount = 0;
       /**
@@ -291,8 +273,10 @@
        */
       var init = function () {
         factoryCalendar.getAll().success(function (data) {
-          var i
-          for (i = 0; i < data.length; i++) {
+          // remove any local calendar data not found in remote
+          $localStorage.calendarData.splice(0, $localStorage.calendarData.length);
+          // update local
+          for (var i = 0; i < data.length; i++) {
             var title, halt = false;
             if (data[i].Note) {
               title = data[i].Note.Title;
