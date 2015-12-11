@@ -209,16 +209,36 @@
       var AddtoCalendar = function (data, title, id, note) {
         var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
         var colour = data.Colour || eventColour;
-        $localStorage.calendarData.push({
-          title: title,
-          start: new Date(data.StartDate),
-          end: new Date(data.EndDate),
-          allDay: data.IsAllDay,
-          color: colour,
-          jobId: id,
-          note: note,
-          id: data.id,
-          stick: true
+        var found = false;
+        async.each($localStorage.calendarData,function(calandar, cb){
+          if(calandar.id === data.id){
+            found = true;
+            calandar = {
+              title: title,
+              start: new Date(data.StartDate),
+              end: new Date(data.EndDate),
+              allDay: data.IsAllDay,
+              color: colour,
+              jobId: id,
+              note: note,
+              id: data.id,
+              stick: true
+            };
+          }
+        }, function(){
+          if(!found){            
+            $localStorage.calendarData.push({
+              title: title,
+              start: new Date(data.StartDate),
+              end: new Date(data.EndDate),
+              allDay: data.IsAllDay,
+              color: colour,
+              jobId: id,
+              note: note,
+              id: data.id,
+              stick: true
+            });
+          }
         });
       };
       /**
@@ -273,8 +293,6 @@
        */
       var init = function () {
         factoryCalendar.getAll().success(function (data) {
-          // remove any local calendar data not found in remote
-          $localStorage.calendarData.splice(0, $localStorage.calendarData.length);
           // update local
           for (var i = 0; i < data.length; i++) {
             var title, halt = false;

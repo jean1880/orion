@@ -9,9 +9,9 @@
     "test": "gulp test"
   },
   "devDependencies": {
-    "gulp": "~3.9.0",
-    "gulp-autoprefixer": "~2.3.1",
-    "gulp-angular-templatecache": "~1.6.0",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-angular-templatecache": "latest",
     "del": "~1.2.0",
     "lodash": "~3.9.3",
     "gulp-csso": "~1.0.0",

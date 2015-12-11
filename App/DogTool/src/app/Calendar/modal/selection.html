@@ -25,12 +25,7 @@
     <div class="form-group">
       <input required class="form-control" type="text" placeholder="Event Title" ng-model="title">
     </div>
-    <div class="checkbox">
-      <label>
-        <input ng-model="allDay" type="checkbox"> All Day?
-      </label>
-    </div>
-    <div ng-show="!allDay">
+    <div>
       <div class="form-group col-lg-6">
         <label>Start Time</label>
         <timepicker ng-model="startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
