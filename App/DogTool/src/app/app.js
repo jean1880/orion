@@ -31,6 +31,7 @@
     'ui.bootstrap.datetimepicker',
     'ui.bootstrap.showErrors',
     'ui.calendar',
+    'ui.router',
     'ngStorage'
   ]);
 }());

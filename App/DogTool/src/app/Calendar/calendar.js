@@ -226,7 +226,7 @@
             };
           }
         }, function(){
-          if(!found){            
+          if(!found){
             $localStorage.calendarData.push({
               title: title,
               start: new Date(data.StartDate),

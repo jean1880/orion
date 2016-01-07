@@ -3,124 +3,120 @@
 
   angular
     .module('dogToolApp')
-    .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider, $localStorageProvider) {
+    .config(function ($stateProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider, $localStorageProvider, $urlRouterProvider) {
       $localStorageProvider.setKeyPrefix('NotJustKibble');
       flashProvider.successClassnames.push('alert-success');
       flashProvider.infoClassnames.push('alert-info');
       flashProvider.warnClassnames.push('alert-warning');
       flashProvider.errorClassnames.push('alert-danger');
 
-      $routeProvider
-        .when('/', {
-          templateUrl: 'app/Dog/dog-list/list.html',
-          controller: 'DogListCtrl',
-          title: 'Dog'
-        })
-        .when('/working', {
-          template: '<h1>Working...</h1>'
-        })
-        .when('/dogs', {
+      $stateProvider
+        .state('dogs',{
+          url: '/dogs',
           templateUrl: 'app/Dog/dog-list/list.html',
           controller: 'DogListCtrl'
         })
-        .when('/dog/new', {
+        .state('dogs.new', {
+          url: '/new',
           templateUrl: 'app/Dog/dog-new/new.html',
           controller: 'DogNewCtrl'
         })
-        .when('/dog/:id', {
+        .state('working', {
+          url: '/working',
+          template: '<h1>Working...</h1>'
+        })
+        .state('dog.detail', {
+          url: '/:id',
           templateUrl: 'app/Dog/dog-view/view.html',
           controller: 'DogViewCtrl'
-        }).when('/jobs', {
+        })
+        .state('jobs', {
+          url: '/jobs',
           templateUrl: 'app/Booking/List/job-list.html',
           controller: 'JobsCtrl'
         })
-        .when('/jobs/day/:date', {
-          templateUrl: 'app/Booking/List/job-list.html',
-          controller: 'JobsCtrl'
-        })
-        .when('/jobs/new', {
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'NewJobsCtrl'
-        })
-        .when('/jobs/new/:startDate/:endDate', {
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'NewJobsCtrl'
-        })
-        .when('/jobs/new/:startDate/:endDate/:allDay', {
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'NewJobsCtrl'
-        })
-        .when('/jobs/:id', {
+        .state('jobs_detail', {
+          url: 'jobs/:id',
           templateUrl: 'app/Booking/New/job-new.html',
           controller: 'JobsEditCtrl'
         })
-        .when('/people', {
+        .state('jobs_day', {
+          url: 'jobs/day/:date',
+          templateUrl: 'app/Booking/List/job-list.html',
+          controller: 'JobsCtrl'
+        })
+        .state('jobs_new', {
+          url: 'jobs/new',
+          templateUrl: 'app/Booking/New/job-new.html',
+          controller: 'NewJobsCtrl'
+        })
+        .state('jobs_new_specific', {
+          url: 'jobs/:startDate/:endDate',
+          templateUrl: 'app/Booking/New/job-new.html',
+          controller: 'NewJobsCtrl'
+        })
+        .state('people', {
+          url: '/people',
           templateUrl: 'app/People/People-List/list.html',
           controller: 'PeopleListCtrl'
         })
-        .when('/person/new', {
+        .state('person', {
+          url: 'person/new',
           templateUrl: 'app/People/People-New/new.html',
           controller: 'PeopleNewCtrl'
         })
-        .when('/person/:id', {
+        .state('person_detail', {
+          url: 'person/:id',
           templateUrl: 'app/People/People-View/view.html',
           controller: 'PeopleViewCtrl'
         })
-        .when('/Tester', {
-          templateUrl: 'app/views/tester.html',
-          controller: 'TesterCtrl'
-        })
-        .when('/gridTest', {
-          templateUrl: 'app/views/gridtest.html',
-          controller: 'GridtestCtrl'
-        })
-        .when('/calendar', {
+        .state('calendar', {
+          url: '/calendar',
           templateUrl: 'app/Calendar/view.html',
           controller: 'CalendarCtrl'
         })
-        .when('/quote', {
+        .state('quote', {
+          url: '/quote',
           templateUrl: 'app/views/quote.html',
           controller: 'QuoteCtrl'
         })
-        .when('/homework', {
-          redirectTo: '/homework/new'
-        })
-        .when('/homework/new', {
+        .state('homework', {
+          url: '/homework',
           templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkNewCtrl'
         })
-        .when('/homework/:id', {
+        .state('homework.new', {
+          url: '/new/?id',
+          templateUrl: 'app/homework/homework.html',
+          controller: 'HomeworkNewCtrl'
+        })
+        .state('homework.detail', {
+          url: '/:id',
           templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkCtrl'
         })
-        .when('/businessInfo', {
+        .state('businessInfo', {
+          url: 'businessInfo',
           templateUrl: 'app/views/businessinfo.html',
           controller: 'BusinessinfoCtrl'
         })
-        .when('/homework/new/:id', {
-          templateUrl: 'app/homework/homework.html',
-          controller: 'HomeworkNewCtrl'
-        })
-        .when('/library', {
+        .state('library', {
+          url: '/library',
           templateUrl: 'app/homework/homeworkManagement.html',
           controller: 'HomeworkMngCtrl'
         })
-        .when('/library/:dog', {
+        .state('library.dog', {
+          url: '/:dog',
           templateUrl: 'app/homework/homeworkManagement.html',
           controller: 'HomeworkMngCtrl'
         })
-        .when('/invoice/:id', {
+        .state('invoice', {
+          url: '/invoice/:id',
           templateUrl: 'app/views/invoice.html',
           controller: 'InvoiceCtrl',
           controllerAs: 'invoice'
-        })
-        .when('/quote', {
-          templateUrl: 'app/views/quote.html',
-          controller: 'QuoteCtrl'
-        })
-        .otherwise({
-          redirectTo: '/'
         });
+      $urlRouterProvider.otherwise('/dogs');
       // set sails server url
       pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
 
