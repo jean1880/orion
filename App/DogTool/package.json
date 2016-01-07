@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "angular-moment": "^0.10.3",
-    "node-sass": "^3.3.3"
+    "node-sass": "^3.3.3",
+    "phantomjs": "^1.9.19"
   },
   "scripts": {
     "test": "gulp test"
