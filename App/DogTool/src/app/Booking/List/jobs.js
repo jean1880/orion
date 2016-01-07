@@ -9,7 +9,7 @@
    * Controller of the dogToolApp
    */
   angular.module('dogToolApp')
-    .controller('JobsCtrl', function ($scope, FactoryDog, FactoryJob, $routeParams, factoryCalendar) {
+    .controller('JobsCtrl', function ($scope, FactoryDog, FactoryJob, $stateParams, factoryCalendar) {
       $scope.JobList = [];
       $scope.isLoading = true;
 
@@ -65,7 +65,7 @@
       };
 
       var init = function () {
-        $scope.date = $routeParams.date || new Date();
+        $scope.date = $stateParams.date || new Date();
         FetchDateEvents();
       };
 

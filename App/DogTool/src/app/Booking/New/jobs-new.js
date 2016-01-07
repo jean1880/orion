@@ -12,7 +12,7 @@
     .controller('NewJobsCtrl', function ($scope, $location, FactoryDog,
       flash, FactoryJob, FactoryJobType, FactoryBehaviourFlag,
       $window, $rootScope, HelperService,
-      $routeParams, $localStorage) {
+      $stateParams, $localStorage) {
 
       //. Set pagination
       $scope.pageType = "Create ";
@@ -41,15 +41,15 @@
       };
 
       var LoadDate = function () {
-        if ($routeParams.startDate && $routeParams.endDate) {
-          $scope.booking.Calendars.StartDate = new Date(decodeURI($routeParams.startDate));
+        if ($stateParams.startDate && $stateParams.endDate) {
+          $scope.booking.Calendars.StartDate = new Date(decodeURI($stateParams.startDate));
 
-          if ($routeParams.allDay) {
-            $scope.booking.Calendars.IsAllDay = $routeParams.allDay;
-            $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.startDate));
+          if ($stateParams.allDay) {
+            $scope.booking.Calendars.IsAllDay = $stateParams.allDay;
+            $scope.booking.Calendars.EndDate = new Date(decodeURI($stateParams.startDate));
             $scope.booking.Calendars.EndDate.setHours($scope.booking.Calendars.StartDate.getHours() + 12);
           } else {
-            $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.endDate));
+            $scope.booking.Calendars.EndDate = new Date(decodeURI($stateParams.endDate));
           }
         } else {
           $scope.booking.Calendars.StartDate = new Date();

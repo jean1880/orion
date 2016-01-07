@@ -7,7 +7,6 @@
       $localStorage.calendarData = $localStorage.calendarData || [];
       $localStorage.dogs = $localStorage.dogs || [];
         console.log('test');
-
       FactoryLogin.validate()
         .success(function (res) {
           if (res.valid) {

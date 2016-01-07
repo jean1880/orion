@@ -16,8 +16,8 @@
           templateUrl: 'app/Dog/dog-list/list.html',
           controller: 'DogListCtrl'
         })
-        .state('dogs.new', {
-          url: '/new',
+        .state('dogs_new', {
+          url: '/dog/new',
           templateUrl: 'app/Dog/dog-new/new.html',
           controller: 'DogNewCtrl'
         })
@@ -25,8 +25,8 @@
           url: '/working',
           template: '<h1>Working...</h1>'
         })
-        .state('dog.detail', {
-          url: '/:id',
+        .state('dog_detail', {
+          url: '/dog/:id',
           templateUrl: 'app/Dog/dog-view/view.html',
           controller: 'DogViewCtrl'
         })
@@ -35,23 +35,23 @@
           templateUrl: 'app/Booking/List/job-list.html',
           controller: 'JobsCtrl'
         })
-        .state('jobs_detail', {
-          url: 'jobs/:id',
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'JobsEditCtrl'
-        })
         .state('jobs_day', {
-          url: 'jobs/day/:date',
+          url: '/jobs/day/:date',
           templateUrl: 'app/Booking/List/job-list.html',
           controller: 'JobsCtrl'
         })
         .state('jobs_new', {
-          url: 'jobs/new',
+          url: '/jobs/new',
           templateUrl: 'app/Booking/New/job-new.html',
           controller: 'NewJobsCtrl'
         })
+        .state('jobs_detail', {
+          url: '/jobs/:id',
+          templateUrl: 'app/Booking/New/job-new.html',
+          controller: 'JobsEditCtrl'
+        })
         .state('jobs_new_specific', {
-          url: 'jobs/:startDate/:endDate',
+          url: '/jobs/:startDate/:endDate',
           templateUrl: 'app/Booking/New/job-new.html',
           controller: 'NewJobsCtrl'
         })
@@ -61,12 +61,12 @@
           controller: 'PeopleListCtrl'
         })
         .state('person', {
-          url: 'person/new',
+          url: '/person/new',
           templateUrl: 'app/People/People-New/new.html',
           controller: 'PeopleNewCtrl'
         })
         .state('person_detail', {
-          url: 'person/:id',
+          url: '/person/:id',
           templateUrl: 'app/People/People-View/view.html',
           controller: 'PeopleViewCtrl'
         })
@@ -85,13 +85,13 @@
           templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkNewCtrl'
         })
-        .state('homework.new', {
-          url: '/new/?id',
+        .state('homework_new', {
+          url: '/homework/new/?id',
           templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkNewCtrl'
         })
-        .state('homework.detail', {
-          url: '/:id',
+        .state('homework_detail', {
+          url: '/homework/:id',
           templateUrl: 'app/homework/homework.html',
           controller: 'HomeworkCtrl'
         })
@@ -105,8 +105,8 @@
           templateUrl: 'app/homework/homeworkManagement.html',
           controller: 'HomeworkMngCtrl'
         })
-        .state('library.dog', {
-          url: '/:dog',
+        .state('library_dog', {
+          url: '/library/:dog',
           templateUrl: 'app/homework/homeworkManagement.html',
           controller: 'HomeworkMngCtrl'
         })
@@ -128,5 +128,6 @@
     }];
 
       $httpProvider.interceptors.push('jwtInterceptor');
+      $httpProvider.defaults.headers.common.Accept = 'application/json, text/plain, */*';
     });
 }());

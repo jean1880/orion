@@ -11,7 +11,7 @@
  * Controller for the viewing of a dog based on a id from routeParams
  */
 angular.module('dogToolApp')
-  .controller('DogViewCtrl', function ($scope, $routeParams, $location, FactoryDog, flash, FactoryNote, $modal) {
+  .controller('DogViewCtrl', function ($scope, $stateParams, $location, FactoryDog, flash, FactoryNote, $modal) {
     /**
      * Prepares the controller for use
      *
@@ -19,7 +19,7 @@ angular.module('dogToolApp')
      * @method init
      */
     var init = function () {
-      loadDog($routeParams.id);
+      loadDog($stateParams.id);
       $scope.editingInfo = false;
       $scope.editOwner = false;
       $scope.editVet = false;

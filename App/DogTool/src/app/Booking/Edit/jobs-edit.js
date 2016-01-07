@@ -21,7 +21,7 @@
       FactoryAddress,
       FactoryNote,
       FactoryBehaviourFlag,
-      $routeParams,
+      $stateParams,
       HelperService,
       $sce,
       $modal,
@@ -51,7 +51,7 @@
       };
       var loadBookingData = function () {
         //get the specific booking information
-        FactoryJob.get($routeParams.id)
+        FactoryJob.get($stateParams.id)
           .success(function (res) {
             $scope.booking = res;
             $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
