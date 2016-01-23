@@ -69,13 +69,14 @@
             var GoogleMapsKey = 'AIzaSyBVriHiqrpv6aGFnYnFl-pbxThfuPQB3G0';
 
             var location = [
-            $scope.booking.Location.Street,
-            $scope.booking.Location.City,
-            $scope.booking.Location.Province,
-            $scope.booking.Location.Country
-          ];
+              $scope.booking.Location.Street,
+              $scope.booking.Location.City,
+              $scope.booking.Location.Province,
+              $scope.booking.Location.Country
+            ];
 
-            var locationParam = location.join('+').replace(' ', '+');
+            var locationParam = location.join('+')
+              .replace(' ', '+');
 
             $scope.fullAddress = $sce.trustAsResourceUrl(
               GoogleMapsUrl +
@@ -192,20 +193,21 @@
             $scope.booking.Jobtype = $scope.selectedJobType.id;
           }
 
-
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
 
-          FactoryJob.update($scope.booking).success(function (data) {
-            flash.success = "Job created";
-            for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
-              if ($localStorage.calendarData[i].id == data.id) {
-                $localStorage.calendarData[i] = data.id;
-                break;
+          FactoryJob.update($scope.booking)
+            .success(function (data) {
+              flash.success = "Job Updated";
+              for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
+                if ($localStorage.calendarData[i].id == data.id) {
+                  $localStorage.calendarData[i] = data.id;
+                  break;
+                }
               }
-            }
-          }).error(function () {
-            flash.error = "Something went wrong"
-          });
+            })
+            .error(function () {
+              flash.error = "Something went wrong"
+            });
         }
       };
 
@@ -214,12 +216,11 @@
        * @description Adds dogs to the booking list and removes the dogs from the search list (dogs avaliable to be added)
        *
        */
-      $scope.bookDog = function (indexIn) {
-
-        var dogIn = $scope.dogs[indexIn];
-
-        $scope.dogs.splice(indexIn, 1);
+      $scope.bookDog = function (dogIn) {
+        var indexIn = $scope.dogs.indexOf(dogIn);
         $scope.addedDogUI.push(dogIn);
+        $scope.booking.Dogs.push(dogIn);
+        $scope.dogs.splice(indexIn, 1);
       };
       /**
        * @method removeDog
@@ -230,7 +231,7 @@
         var dogOut = $scope.addedDogUI[indexOut];
         $scope.dogs.push(dogOut);
         $scope.addedDogUI.splice(indexOut, 1);
-
+        $scope.booking.Dogs.splice(indexOut, 1);
       };
       /**
        * @method addFee
@@ -255,6 +256,7 @@
           }
         }
       };
+
       //notes
       $scope.updateNotes = function () {
         //

@@ -152,7 +152,8 @@
           start.add(12, 'h');
         }
         CreateEvent(start, end, allday);
-        $('#calendar').fullCalendar('unselect');
+        $('#calendar')
+          .fullCalendar('unselect');
       }
 
       /**
@@ -163,17 +164,18 @@
       var GetNotes = function (view, element) {
         $scope.monthTitle = view.title;
         FactoryNote.find({
-          Title: $scope.monthTitle,
-          NoteType: $scope.NOTE_TYPE
-        }).success(function (data) {
-          if (data.length > 0) {
-            $scope.monthNoteExists = true;
-            $scope.monthNote = data[0];
-          } else {
-            $scope.monthNoteExists = false;
-            $scope.monthNote = {};
-          }
-        })
+            Title: $scope.monthTitle,
+            NoteType: $scope.NOTE_TYPE
+          })
+          .success(function (data) {
+            if (data.length > 0) {
+              $scope.monthNoteExists = true;
+              $scope.monthNote = data[0];
+            } else {
+              $scope.monthNoteExists = false;
+              $scope.monthNote = {};
+            }
+          })
       }
 
       /* config object */
@@ -209,9 +211,9 @@
       var AddtoCalendar = function (data, title, id, note) {
         var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
         var colour = data.Colour || eventColour;
-        var found = false;
-        async.each($localStorage.calendarData,function(calandar, cb){
-          if(calandar.id === data.id){
+        async.each($localStorage.calendarData, function (calandar, cb) {
+          var found = false;
+          if (calandar.id === data.id) {
             found = true;
             calandar = {
               title: title,
@@ -225,8 +227,9 @@
               stick: true
             };
           }
-        }, function(){
-          if(!found){
+          cb(found);
+      }, function (found) {
+          if (!found) {
             $localStorage.calendarData.push({
               title: title,
               start: new Date(data.StartDate),
@@ -248,9 +251,10 @@
        * @return {[type]}            [description]
        */
       var getJobType = function (dataObject, title) {
-        FactoryJob.get(dataObject.Jobs[0].id).success(function (data) {
-          AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name, data.id);
-        });
+        FactoryJob.get(dataObject.Jobs[0].id)
+          .success(function (data) {
+            AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name, data.id);
+          });
       };
 
       var changeCount = 0;
@@ -263,18 +267,20 @@
         $scope.monthNote.NoteType = $scope.NOTE_TYPE;
         if (changeCount % 4 == 0) {
           if ($scope.monthNoteExists) {
-            FactoryNote.update($scope.monthNote).success(function (data) {
-              if (!change) {
-                flash.success = 'Note created';
-              }
-            });
+            FactoryNote.update($scope.monthNote)
+              .success(function (data) {
+                if (!change) {
+                  flash.success = 'Note created';
+                }
+              });
           } else {
-            FactoryNote.post($scope.monthNote).success(function (data) {
-              if (!change) {
-                flash.success = 'Note updated';
-              }
-              $scope.monthNoteExists = true; // set that a note now exists
-            })
+            FactoryNote.post($scope.monthNote)
+              .success(function (data) {
+                if (!change) {
+                  flash.success = 'Note updated';
+                }
+                $scope.monthNoteExists = true; // set that a note now exists
+              })
           }
         };
         // if count is multiple of four reset the count
@@ -292,25 +298,26 @@
        * @return {[type]} [description]
        */
       var init = function () {
-        factoryCalendar.getAll().success(function (data) {
-          // update local
-          for (var i = 0; i < data.length; i++) {
-            var title, halt = false;
-            if (data[i].Note) {
-              title = data[i].Note.Title;
-              var note = data[i].Note;
-            } else if (data[i].Jobs && data[i].Jobs.length > 0) {
-              title = data[i].Jobs[0].Name;
-              halt = true;
-              getJobType(data[i], title);
-            }
+        factoryCalendar.getAll()
+          .success(function (data) {
+            // update local
+            for (var i = 0; i < data.length; i++) {
+              var title, halt = false;
+              if (data[i].Note) {
+                title = data[i].Note.Title;
+                var note = data[i].Note;
+              } else if (data[i].Jobs && data[i].Jobs.length > 0) {
+                title = data[i].Jobs[0].Name;
+                halt = true;
+                getJobType(data[i], title);
+              }
 
-            // if not trying to fetch jobtype add data to calendar immediately
-            if (!halt) {
-              AddtoCalendar(data[i], title, null, note);
-            }
-          };
-        });
+              // if not trying to fetch jobtype add data to calendar immediately
+              if (!halt) {
+                AddtoCalendar(data[i], title, null, note);
+              }
+            };
+          });
       };
 
       init();
