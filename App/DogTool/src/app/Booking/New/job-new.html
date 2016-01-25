@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
+    <button ng-if="isUpdated" type="button" ng-click="ConfirmDelete()" class="pull-right btn btn-lg btn-danger">Remove Booking</button>
     <h1>
       {{pageType}}Booking
     </h1>
@@ -31,7 +32,7 @@
             <p ng-if="booking.Dogs.length==0 && submitted" class="text-danger">Please add a dog.</p>
             <div name="dragDropDogArea" id="dogSelectionBox" class="col-xs-12 col-lg-12">
               <div ng-repeat="dogIn in addedDogUI | orderBy:'Name' track by $index">
-                <dog-card dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
+                <dog-card no-Click="true" dog="dogIn" btn-Click="removeDog(dogIn)" btn-Text="'Remove'"></dog-card>
               </div>
             </div>
           </div>
@@ -82,18 +83,36 @@
               <input type="date" class="form-control" ng-model="booking.Calendars.StartDate">
               <timepicker hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.StartDate" show-meridian="ismeridian"></timepicker>
             </div>
-            <label for="setAllDay" class="control-label">All Day Booking: </label>
+          </div>
+          <!--
+          <label for="setAllDay" class="control-label">All Day Booking: </label>
             <div class="pull-right">
               <input bs-switch class="pull-right" id="setAllDay" name="setAllDay" type="checkbox" ng-model="booking.Calendars.IsAllDay" switch-on-text="YES" switch-off-text="NO" />
-            </div>
-          </div>
-          <div ng-hide="booking.Calendars.IsAllDay" class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
+            </div> -->
+          <div class="input-group col-lg-12 col-mid-12 col-sm-12 col-xs-12">
             <label for="jobEnd" class="control-label">Booking End Date:</label>
             <br/>
             <div class="form-group">
               <input type="date" ng-model="booking.Calendars.EndDate" class="form-control">
               <timepicker hour-step="hourStep" minute-step="minuteStep" ng-model="booking.Calendars.EndDate" show-meridian="ismeridian"></timepicker>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Booking Behaviour Flag
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="behave-flag-label">
+              <input type="radio" class="behave-flag-radio" ng-model="booking.Calendars.Colour" ng-checked="booking.Calendars.Colour === null" value="null">
+              <span class="behave-flag"></span>
+            </label>
+            <label class="behave-flag-label" ng-repeat="colour in colours">
+              <input type="radio" class="behave-flag-radio" ng-model="booking.Calendars.Colour" value="{{ colour.Colour }}">
+              <span class="behave-flag" style="background-color: {{ colour.Colour }}"></span>
+            </label>
           </div>
         </div>
       </div>
@@ -108,20 +127,18 @@
             <p class="col-lg-6 col-md-6 col-sm-6">{{fees.Cost}}</p>
           </div>
           <div class="input-group ">
-            <label for="bookingFeeDescription">Booking Fees Description:</label>
-            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description"></textarea>
-          </div>
-          <div class="input-group ">
             <label for="bookingFee">Booking Fees:</label>
             <input id="bookingFee" type="text" ng-model="feeAmount" class="form-control" pattern="^\d*(\.\d{0,2}$)?" />
+          </div>
+          <div class="input-group ">
+            <label for="bookingFeeDescription">Booking Fees Description:</label>
+            <textarea id="bookingFeeDescription" ng-model="feeDescription" class="form-control" placeholder="description"></textarea>
           </div>
           <div>
             <button type="button" class="btn btn-lg pull-right btn-primary" ng-click="addFee()">Add Fee</button>
           </div>
         </div>
       </div>
-      <notes-panel notes="booking.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Booking Notes'" default-types="['General']"></notes-panel>
-      </br>
     </form>
   </div>
   <div class="col-sm-6">
@@ -136,8 +153,8 @@
             <span class="fa fa-search" aria-hidden="true"></span>
           </div>
         </div>
-        <div ng-repeat="dog in dogs | orderBy:'Name' | filter : dogSearch | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)">
-          <dog-card dog="dog" btn-Click="bookDog(dog)" btn-Text="'Add'"></dog-card>
+        <div ng-repeat="dog in dogs | orderBy:'Name' | filter:{Deceased: false} | filter : dogSearch | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)">
+          <dog-card no-Click="true" dog="dog" btn-Click="bookDog(dog)" btn-Text="'Add'"></dog-card>
         </div>
         <div class="row">
           <div class="col-xs-12">
@@ -147,13 +164,19 @@
 
       </div>
     </div>
+    <div ng-if="fullAddress != null" class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Map:</h3>
+      </div>
+      <div class="panel-body">
+        <iframe class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" width="600" height="450" frameborder="0" style="border:0" ng-src="{{fullAddress}}" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <notes-panel notes="booking.Notes" show-save-btn="false" panel-type="'primary'" panel-title="'Booking Notes'" default-types="['General']"></notes-panel>
   </div>
-  <div ng-if="fullAddress != null" class="col-sm-6 panel">
-    <h3>Map:</h3>
-    <iframe class="col-lg-12 col-mid-12 col-sm-12 col-xs-12" width="600" height="450" frameborder="0" style="border:0" ng-src="{{fullAddress}}" allowfullscreen>
-    </iframe>
+  <div class="col-xs-12">
+    <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
   </div>
-  <button type="submit" ng-click="createBooking()" class="pull-right btn btn-lg btn-primary">{{pageType}} Booking</button>
-  <button ng-if="isUpdated" type="button" ng-click="ConfirmDelete()" class="pull-right btn btn-lg btn-danger">Remove Booking</button>
 
 </div>

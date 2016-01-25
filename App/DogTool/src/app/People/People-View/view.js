@@ -8,9 +8,9 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('PeopleViewCtrl', function ($scope, $location, FactoryPeople, flash, $routeParams, FactoryDog) {
-    var init = function() {
-      loadPerson($routeParams.id);
+  .controller('PeopleViewCtrl', function ($scope, $location, FactoryPeople, flash, $stateParams, FactoryDog, $modal, FactoryAddress, FactoryNote) {
+    var init = function () {
+      loadPerson($stateParams.id);
     };
 
     var loadPerson = function (id) {
@@ -20,13 +20,13 @@ angular.module('dogToolApp')
           loadDogsForPerson($scope.person);
         })
         .error(function (response, status) {
-          switch(status) {
-            case 404:
-              flash.error = 'Person not found';
-              break;
-            default:
-              flash.error = 'An error occured';
-              break;
+          switch (status) {
+          case 404:
+            flash.error = 'Person not found';
+            break;
+          default:
+            flash.error = 'An error occured';
+            break;
           }
 
           $location.path('/people');
@@ -34,7 +34,9 @@ angular.module('dogToolApp')
     };
 
     var loadDogsForPerson = function (person) {
-      FactoryDog.find({ Owner: person.id })
+      FactoryDog.find({
+          Owner: person.id
+        })
         .success(function (res) {
           person.Dogs = res;
         })
@@ -44,13 +46,53 @@ angular.module('dogToolApp')
     };
 
     /**
+     * Confirms with user to delete the person, if confirmed the user 
+     * is removed from the database
+     */
+    $scope.ConfirmDelete = function () {
+      var modal = $modal.open({
+        templateUrl: 'app/confirm-delete/confirm-delete.modal.html',
+        controller: 'confirmDeleteModalCtrl',
+        size: 'sm',
+        animation: true,
+        resolve: {}
+      });
+
+      modal.result.then(function success() {
+        Delete();
+      });
+    };
+
+    /**
+     * Deletes the person from the database
+     */
+    var Delete = function () {
+      // Delete attached notes, and address
+      if ($scope.person.Notes.length > 0) {
+        for (var i = $scope.person.Notes.length - 1; i >= 0; i--) {
+          FactoryNote.destroy($scope.person.Notes[i].id);
+        }
+      }
+      if ($scope.person.Address) {
+        FactoryAddress.remove($scope.person.Address.id);
+      }
+
+      FactoryPeople.remove($scope.person.id).success(function () {
+        flash.success = "Successfully deleted " + $scope.person.Name;
+        $location.path("/people");
+      }).error(function () {
+        flash.error = "Something went wrong, the person was not removed from the database";
+      });
+    }
+
+    /**
      * handler for the edit button
      *
      * Switches the panel into editing mode when called.
      *
      * @method editInfoBtn
      */
-    $scope.editInfoBtn = function() {
+    $scope.editInfoBtn = function () {
       $scope.editedPerson = {
         id: $scope.person.id,
         Name: $scope.person.Name,
@@ -69,7 +111,7 @@ angular.module('dogToolApp')
      *
      * @method cancelInfoBtn
      */
-    $scope.cancelInfoBtn = function() {
+    $scope.cancelInfoBtn = function () {
       $scope.editingInfo = false;
     };
 
@@ -85,7 +127,7 @@ angular.module('dogToolApp')
      *
      * @method saveInfoBtn
      */
-    $scope.editInfoSubmit = function() {
+    $scope.editInfoSubmit = function () {
       FactoryPeople.update($scope.editedPerson)
         .success(function (response) {
           $scope.person = response;

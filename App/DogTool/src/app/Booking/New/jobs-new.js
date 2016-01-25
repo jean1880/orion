@@ -10,15 +10,17 @@
    */
   angular.module('dogToolApp')
     .controller('NewJobsCtrl', function ($scope, $location, FactoryDog,
-      flash, FactoryJob, FactoryJobType,
+      flash, FactoryJob, FactoryJobType, FactoryBehaviourFlag,
       $window, $rootScope, HelperService,
-      $routeParams) {
+      $stateParams, $localStorage) {
 
+      //. Set pagination
       $scope.pageType = "Create ";
       $scope.pagination = {
         currentPage: 1,
         limit: 9
       }
+
       $scope.selectedJobType;
       $scope.addedDogUI = [];
       $scope.submitted = false;
@@ -39,15 +41,15 @@
       };
 
       var LoadDate = function () {
-        if ($routeParams.startDate && $routeParams.endDate) {
-          $scope.booking.Calendars.StartDate = new Date(decodeURI($routeParams.startDate));
+        if ($stateParams.startDate && $stateParams.endDate) {
+          $scope.booking.Calendars.StartDate = new Date(decodeURI($stateParams.startDate));
 
-          if ($routeParams.allDay) {
-            $scope.booking.Calendars.IsAllDay = $routeParams.allDay;
-            $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.startDate));
+          if ($stateParams.allDay) {
+            $scope.booking.Calendars.IsAllDay = $stateParams.allDay;
+            $scope.booking.Calendars.EndDate = new Date(decodeURI($stateParams.startDate));
             $scope.booking.Calendars.EndDate.setHours($scope.booking.Calendars.StartDate.getHours() + 12);
           } else {
-            $scope.booking.Calendars.EndDate = new Date(decodeURI($routeParams.endDate));
+            $scope.booking.Calendars.EndDate = new Date(decodeURI($stateParams.endDate));
           }
         } else {
           $scope.booking.Calendars.StartDate = new Date();
@@ -58,6 +60,8 @@
       };
 
       var init = function () {
+        $scope.feeAmount;
+        $scope.feeDescription;
         $scope.booking = {
           Name: '',
           Dogs: [],
@@ -70,10 +74,14 @@
           Location: {},
           Calendars: {
             StartDate: null,
-            EndDate: null,
-            IsAllDay: false
+            EndDate: null
           }
         };
+
+        FactoryBehaviourFlag.getAll()
+          .success(function (res) {
+            $scope.colours = res;
+          });
         LoadDate();
         loadAllDogs();
       };
@@ -108,7 +116,7 @@
        *
        */
       var loadAllDogs = function () {
-        $scope.dogs = null;
+        $scope.dogs = $localStorage.dogs;
 
         FactoryDog.getAll()
           .success(function (response) {
@@ -150,14 +158,13 @@
         $scope.submitted = true;
         if ($scope.addedDogUI.length > 0) {
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
-          FactoryJob.post($scope.booking).success(function (res) {
-              flash.success = 'Job Created.';
-              $window.location.href = "#/jobs/" + res.id;
-            })
-            .error(function (err) {
-
-              flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
-            });
+          FactoryJob.post($scope.booking).success(function (data) {
+            flash.success = 'Job Created.';
+            $localStorage.calendarData.push(data);
+            $window.location.href = "#/jobs/" + data.id;
+          }).error(function () {
+            flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
+          });
         }
       };
 

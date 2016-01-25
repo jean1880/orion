@@ -9,7 +9,7 @@
    * Controller of the dogToolApp, manages the calendar/view.html
    */
   angular.module('dogToolApp')
-    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS) {
+    .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash, $interval, $localStorage) {
       /**
        * Rounds the date to the bottom, or top of the hour
        * @param  {object} date new date object
@@ -55,14 +55,15 @@
       /**
        * Calendar settings
        */
-      $scope.calendarData = [];
-      $scope.eventSources = [$scope.calendarData]
+      var temp = [];
+      $scope.eventSources = [$localStorage.calendarData]
       $scope.addingEvent = false;
       $scope.allDay = true;
       $scope.monthNote = {};
       $scope.monthTitle = null;
       $scope.monthNoteExists = false;
       $scope.NOTE_TYPE = 'MonthNote';
+
 
       /**
        * Goes to the jobs for the day
@@ -151,23 +152,30 @@
           start.add(12, 'h');
         }
         CreateEvent(start, end, allday);
-        $('#calendar').fullCalendar('unselect');
+        $('#calendar')
+          .fullCalendar('unselect');
       }
 
+      /**
+       * Fetches notes from the server
+       * @param {Object}   view    Calendar view object
+       * @param {Object} element Cakendar element
+       */
       var GetNotes = function (view, element) {
         $scope.monthTitle = view.title;
         FactoryNote.find({
-          Title: $scope.monthTitle,
-          NoteType: $scope.NOTE_TYPE
-        }).success(function (data) {
-          if (data.length > 0) {
-            $scope.monthNoteExists = true;
-            $scope.monthNote = data[0];
-          } else {
-            $scope.monthNoteExists = false;
-            $scope.monthNote = {};
-          }
-        })
+            Title: $scope.monthTitle,
+            NoteType: $scope.NOTE_TYPE
+          })
+          .success(function (data) {
+            if (data.length > 0) {
+              $scope.monthNoteExists = true;
+              $scope.monthNote = data[0];
+            } else {
+              $scope.monthNoteExists = false;
+              $scope.monthNote = {};
+            }
+          })
       }
 
       /* config object */
@@ -176,6 +184,7 @@
           editable: true,
           height: 'auto',
           selectable: true,
+          nextDayThreshold: "00:00:00",
           eventLimit: true, // allow "more" link when too many events
           header: {
             left: 'title',
@@ -195,18 +204,6 @@
        */
 
       /**
-       * [getJobType description]
-       * @param  {[type]} dataObject [description]
-       * @param  {[type]} title      [description]
-       * @return {[type]}            [description]
-       */
-      var getJobType = function (dataObject, title) {
-        FactoryJob.get(dataObject.Jobs[0].id).success(function (data) {
-          AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name, data.id);
-        });
-      };
-
-      /**
        * [AddtoCalendar description]
        * @param {[type]} data  [description]
        * @param {[type]} title [description]
@@ -214,58 +211,113 @@
       var AddtoCalendar = function (data, title, id, note) {
         var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
         var colour = data.Colour || eventColour;
-        $scope.calendarData.push({
-          title: title,
-          start: new Date(data.StartDate),
-          end: new Date(data.EndDate),
-          allDay: data.IsAllDay,
-          color: colour,
-          jobId: id,
-          note: note,
-          id: data.id,
-          stick: true
+        async.each($localStorage.calendarData, function (calandar, cb) {
+          var found = false;
+          if (calandar.id === data.id) {
+            found = true;
+            calandar = {
+              title: title,
+              start: new Date(data.StartDate),
+              end: new Date(data.EndDate),
+              allDay: data.IsAllDay,
+              color: colour,
+              jobId: id,
+              note: note,
+              id: data.id,
+              stick: true
+            };
+          }
+          cb(found);
+      }, function (found) {
+          if (!found) {
+            $localStorage.calendarData.push({
+              title: title,
+              start: new Date(data.StartDate),
+              end: new Date(data.EndDate),
+              allDay: data.IsAllDay,
+              color: colour,
+              jobId: id,
+              note: note,
+              id: data.id,
+              stick: true
+            });
+          }
         });
-      }
+      };
+      /**
+       * [getJobType description]
+       * @param  {[type]} dataObject [description]
+       * @param  {[type]} title      [description]
+       * @return {[type]}            [description]
+       */
+      var getJobType = function (dataObject, title) {
+        FactoryJob.get(dataObject.Jobs[0].id)
+          .success(function (data) {
+            AddtoCalendar(dataObject, title + ' - ' + data.Jobtype.Name, data.id);
+          });
+      };
 
-
-      $scope.SaveMonthNote = function () {
+      var changeCount = 0;
+      /**
+       * Saves a note to the database
+       * @param {bool} change Flag if funciton is called by ng-change
+       */
+      $scope.SaveMonthNote = function (change) {
         $scope.monthNote.Title = $scope.monthTitle;
         $scope.monthNote.NoteType = $scope.NOTE_TYPE;
-        if ($scope.monthNoteExists) {
-          FactoryNote.update($scope.monthNote).success(function (data) {
-            flash.success = 'Note created';
-          });
+        if (changeCount % 4 == 0) {
+          if ($scope.monthNoteExists) {
+            FactoryNote.update($scope.monthNote)
+              .success(function (data) {
+                if (!change) {
+                  flash.success = 'Note created';
+                }
+              });
+          } else {
+            FactoryNote.post($scope.monthNote)
+              .success(function (data) {
+                if (!change) {
+                  flash.success = 'Note updated';
+                }
+                $scope.monthNoteExists = true; // set that a note now exists
+              })
+          }
+        };
+        // if count is multiple of four reset the count
+        if (changeCount % 4 == 0) {
+          changeCount = 0;
         } else {
-          FactoryNote.post($scope.monthNote).success(function (data) {
-            flash.success = 'Note updated';
-          })
+          changeCount++;
         }
       }
 
 
-      /**
-       * [init description]
+      /**Initializer function called when controller is called
+       * @method init
+       * @private
        * @return {[type]} [description]
        */
       var init = function () {
-        factoryCalendar.getAll().success(function (data) {
-          for (var i = data.length - 1; i >= 0; i--) {
-            var title, halt = false;
-            if (data[i].Note) {
-              title = data[i].Note.Title;
-              var note = data[i].Note;
-            } else if (data[i].Jobs && data[i].Jobs.length > 0) {
-              title = data[i].Jobs[0].Name;
-              halt = true;
-              getJobType(data[i], title);
-            }
+        factoryCalendar.getAll()
+          .success(function (data) {
+            // update local
+            for (var i = 0; i < data.length; i++) {
+              var title, halt = false;
+              if (data[i].Note) {
+                title = data[i].Note.Title;
+                var note = data[i].Note;
+              } else if (data[i].Jobs && data[i].Jobs.length > 0) {
+                title = data[i].Jobs[0].Name;
+                halt = true;
+                getJobType(data[i], title);
+              }
 
-            // if not trying to fetch jobtype add data to calendar immediately
-            if (!halt) {
-              AddtoCalendar(data[i], title, null, note);
-            }
-          };
-        });
+              // if not trying to fetch jobtype add data to calendar immediately
+              if (!halt) {
+                AddtoCalendar(data[i], title, null, note);
+              }
+            };
+          });
       };
 
       init();

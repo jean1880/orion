@@ -61,7 +61,15 @@ angular.module('dogToolApp')
        */
       update: function (person) {
         return $http.put(SailsRoute.People.update(person.id), person);
+      },
+
+      /**
+       * Deletes the person by ID
+       * @param   {string} id Target ID to destroy
+       * @returns {$http.promise}
+       */
+      remove: function (id) {
+        return $http.delete(SailsRoute.People.delete(id));
       }
     };
   });
-

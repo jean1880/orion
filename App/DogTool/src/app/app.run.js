@@ -1,21 +1,22 @@
 (function () {
-  'use strict';
-  angular
-    .module('dogToolApp')
-    .run(function ($location, FactoryLogin, amMoment) {
-      var url = $location.url();
-      $location.url('/working');
-
-      FactoryLogin.validate()
-        .success(function (res) {
-          if (res.valid) {
-            $location.url(url);
-          } else {
-            FactoryLogin.login()
-              .success(function () {
-                $location.url(url);
-              });
-          }
+    'use strict';
+    angular
+        .module('dogToolApp')
+        .run(function ($location, FactoryLogin, amMoment, $localStorage, $state) {
+            $state.go('working');
+            $localStorage.calendarData = $localStorage.calendarData || [];
+            $localStorage.dogs = $localStorage.dogs || [];
+            FactoryLogin.validate()
+                .success(function (res) {
+                    if (res.valid) {
+                        $state.go('dogs');
+                    } else {
+                        FactoryLogin.login()
+                            .success(function () {
+                                $state.go('dogs');
+                            });
+                    }
+                })
+                .error(function (err) {});;
         });
-    });
 }());

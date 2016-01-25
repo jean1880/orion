@@ -1,135 +1,133 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('dogToolApp')
-    .config(function ($routeProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider) {
-      flashProvider.successClassnames.push('alert-success');
-      flashProvider.infoClassnames.push('alert-info');
-      flashProvider.warnClassnames.push('alert-warning');
-      flashProvider.errorClassnames.push('alert-danger');
+    angular
+        .module('dogToolApp')
+        .config(function ($stateProvider, pollerConfig, flashProvider, jwtInterceptorProvider, $httpProvider, $localStorageProvider, $urlRouterProvider) {
+            $localStorageProvider.setKeyPrefix('NotJustKibble');
+            flashProvider.successClassnames.push('alert-success');
+            flashProvider.infoClassnames.push('alert-info');
+            flashProvider.warnClassnames.push('alert-warning');
+            flashProvider.errorClassnames.push('alert-danger');
 
-      $routeProvider
-        .when('/', {
-          templateUrl: 'app/Dog/dog-list/list.html',
-          controller: 'DogListCtrl',
-          title: 'Dog'
-        })
-        .when('/working', {
-          template: '<h1>Working...</h1>'
-        })
-        .when('/dogs', {
-          templateUrl: 'app/Dog/dog-list/list.html',
-          controller: 'DogListCtrl'
-        })
-        .when('/dog/new', {
-          templateUrl: 'app/Dog/dog-new/new.html',
-          controller: 'DogNewCtrl'
-        })
-        .when('/dog/:id', {
-          templateUrl: 'app/Dog/dog-view/view.html',
-          controller: 'DogViewCtrl'
-        }).when('/jobs', {
-          templateUrl: 'app/Booking/List/job-list.html',
-          controller: 'JobsCtrl'
-        })
-        .when('/jobs/day/:date', {
-          templateUrl: 'app/Booking/List/job-list.html',
-          controller: 'JobsCtrl'
-        })
-        .when('/jobs/new', {
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'NewJobsCtrl'
-        })
-        .when('/jobs/new/:startDate/:endDate', {
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'NewJobsCtrl'
-        })
-        .when('/jobs/new/:startDate/:endDate/:allDay', {
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'NewJobsCtrl'
-        })
-        .when('/jobs/:id', {
-          templateUrl: 'app/Booking/New/job-new.html',
-          controller: 'JobsEditCtrl'
-        })
-        .when('/people', {
-          templateUrl: 'app/People/People-List/list.html',
-          controller: 'PeopleListCtrl'
-        })
-        .when('/person/new', {
-          templateUrl: 'app/People/People-New/new.html',
-          controller: 'PeopleNewCtrl'
-        })
-        .when('/person/:id', {
-          templateUrl: 'app/People/People-View/view.html',
-          controller: 'PeopleViewCtrl'
-        })
-        .when('/Tester', {
-          templateUrl: 'app/views/tester.html',
-          controller: 'TesterCtrl'
-        })
-        .when('/gridTest', {
-          templateUrl: 'app/views/gridtest.html',
-          controller: 'GridtestCtrl'
-        })
-        .when('/calendar', {
-          templateUrl: 'app/Calendar/view.html',
-          controller: 'CalendarCtrl'
-        })
-        .when('/quote', {
-          templateUrl: 'app/views/quote.html',
-          controller: 'QuoteCtrl'
-        })
-        .when('/homework', {
-          redirectTo: '/homework/new'
-        })
-        .when('/homework/new', {
-          templateUrl: 'app/views/homework.html',
-          controller: 'HomeworkNewCtrl'
-        })
-        .when('/homework/:id', {
-          templateUrl: 'app/views/homework.html',
-          controller: 'HomeworkCtrl'
-        })
-        .when('/businessInfo', {
-          templateUrl: 'app/views/businessinfo.html',
-          controller: 'BusinessinfoCtrl'
-        })
-        .when('/homework/new/:id', {
-          templateUrl: 'app/views/homework.html',
-          controller: 'HomeworkNewCtrl'
-        })
-        .when('/library', {
-          templateUrl: 'app/views/homeworkManagement.html',
-          controller: 'HomeworkMngCtrl'
-        })
-        .when('/library/:dog', {
-          templateUrl: 'app/views/homeworkManagement.html',
-          controller: 'HomeworkMngCtrl'
-        })
-        .when('/invoice/:id', {
-          templateUrl: 'app/views/invoice.html',
-          controller: 'InvoiceCtrl',
-          controllerAs: 'invoice'
-        })
-        .when('/quote', {
-          templateUrl: 'app/views/quote.html',
-          controller: 'QuoteCtrl'
-        })
-        .otherwise({
-          redirectTo: '/'
-        });
-      // set sails server url
-      pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
+            $stateProvider
+                .state('dogs', {
+                    url: '/dogs',
+                    templateUrl: 'app/Dog/dog-list/list.html',
+                    controller: 'DogListCtrl'
+                })
+                .state('dogs_new', {
+                    url: '/dog/new',
+                    templateUrl: 'app/Dog/dog-new/new.html',
+                    controller: 'DogNewCtrl'
+                })
+                .state('working', {
+                    url: '/working',
+                    template: '<h1>Working...</h1>'
+                })
+                .state('dog_detail', {
+                    url: '/dog/:id',
+                    templateUrl: 'app/Dog/dog-view/view.html',
+                    controller: 'DogViewCtrl'
+                })
+                .state('jobs', {
+                    url: '/jobs',
+                    templateUrl: 'app/Booking/List/job-list.html',
+                    controller: 'JobsCtrl'
+                })
+                .state('jobs_day', {
+                    url: '/jobs/day/:date',
+                    templateUrl: 'app/Booking/List/job-list.html',
+                    controller: 'JobsCtrl'
+                })
+                .state('jobs_new', {
+                    url: '/jobs/new',
+                    templateUrl: 'app/Booking/New/job-new.html',
+                    controller: 'NewJobsCtrl'
+                })
+                .state('jobs_detail', {
+                    url: '/jobs/:id',
+                    templateUrl: 'app/Booking/New/job-new.html',
+                    controller: 'JobsEditCtrl'
+                })
+                .state('jobs_new_specific', {
+                    url: '/jobs/:startDate/:endDate',
+                    templateUrl: 'app/Booking/New/job-new.html',
+                    controller: 'NewJobsCtrl'
+                })
+                .state('people', {
+                    url: '/people',
+                    templateUrl: 'app/People/People-List/list.html',
+                    controller: 'PeopleListCtrl'
+                })
+                .state('person', {
+                    url: '/person/new',
+                    templateUrl: 'app/People/People-New/new.html',
+                    controller: 'PeopleNewCtrl'
+                })
+                .state('person_detail', {
+                    url: '/person/:id',
+                    templateUrl: 'app/People/People-View/view.html',
+                    controller: 'PeopleViewCtrl'
+                })
+                .state('calendar', {
+                    url: '/calendar',
+                    templateUrl: 'app/Calendar/view.html',
+                    controller: 'CalendarCtrl'
+                })
+                .state('quote', {
+                    url: '/quote',
+                    templateUrl: 'app/views/quote.html',
+                    controller: 'QuoteCtrl'
+                })
+                .state('homework', {
+                    url: '/homework',
+                    templateUrl: 'app/homework/homework.html',
+                    controller: 'HomeworkNewCtrl'
+                })
+                .state('homework_new', {
+                    url: '/homework/new/?id',
+                    templateUrl: 'app/homework/homework.html',
+                    controller: 'HomeworkNewCtrl'
+                })
+                .state('homework_detail', {
+                    url: '/homework/:id',
+                    templateUrl: 'app/homework/homework.html',
+                    controller: 'HomeworkCtrl'
+                })
+                .state('businessInfo', {
+                    url: '/businessInfo',
+                    templateUrl: 'app/views/businessinfo.html',
+                    controller: 'BusinessinfoCtrl'
+                })
+                .state('library', {
+                    url: '/library',
+                    templateUrl: 'app/homework/homeworkManagement.html',
+                    controller: 'HomeworkMngCtrl'
+                })
+                .state('library_dog', {
+                    url: '/library/:dog',
+                    templateUrl: 'app/homework/homeworkManagement.html',
+                    controller: 'HomeworkMngCtrl'
+                })
+                .state('invoice', {
+                    url: '/invoice/:id',
+                    templateUrl: 'app/views/invoice.html',
+                    controller: 'InvoiceCtrl',
+                    controllerAs: 'invoice'
+                });
+            $urlRouterProvider.otherwise('/dogs');
+            // set sails server url
+            pollerConfig.stopOnRouteChange = true; // If you use $routeProvider from ngRoute.
 
-      // authentication settings
-      jwtInterceptorProvider.authHeader = 'Token';
-      jwtInterceptorProvider.authPrefix = '';
-      jwtInterceptorProvider.tokenGetter = ['FactoryAuthToken', function (FactoryAuthToken) {
-        return FactoryAuthToken.getToken();
+            // authentication settings
+            jwtInterceptorProvider.authHeader = 'Token';
+            jwtInterceptorProvider.authPrefix = '';
+            jwtInterceptorProvider.tokenGetter = ['FactoryAuthToken', function (FactoryAuthToken) {
+                return FactoryAuthToken.getToken();
     }];
 
-      $httpProvider.interceptors.push('jwtInterceptor');
-    });
+            $httpProvider.interceptors.push('jwtInterceptor');
+            $httpProvider.defaults.headers.common.Accept = 'application/json, text/plain, */*';
+        });
 }());

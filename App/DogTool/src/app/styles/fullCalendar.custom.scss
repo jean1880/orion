@@ -1,19 +1,28 @@
-.fc-day{
-	transition: .3s;
+.fc-day {
+  transition: .3s;
 }
-.fc-day:hover{
-	background-color: #BBDEFB;
-	cursor: pointer;
+
+.fc-content {
+  color: black;
 }
-.fc-event{	
-	transition: .3s;
+
+.fc-day:hover {
+  background-color: #BBDEFB;
+  cursor: pointer;
 }
-.fc-event:hover{
+
+.fc-event {
+  transition: .3s;
+}
+
+.fc-event:hover {
   background-color: #1aaaaa;
 }
-.fc{
-	min-height: 768px;
+
+.fc {
+  min-height: 768px;
 }
-.fc-week{
-	min-height: 110px !important;
+
+.fc-week {
+  min-height: 170px !important;
 }

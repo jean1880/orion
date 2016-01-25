@@ -30,6 +30,8 @@
     'ui.bootstrap.pagination',
     'ui.bootstrap.datetimepicker',
     'ui.bootstrap.showErrors',
-    'ui.calendar'
+    'ui.calendar',
+    'ui.router',
+    'ngStorage'
   ]);
 }());

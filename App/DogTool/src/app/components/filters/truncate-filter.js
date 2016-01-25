@@ -16,12 +16,14 @@ angular.module('dogToolApp')
   .filter('truncateFilter', function () {
 
     return function (text, length, end) {
-      if (isNaN(length))
+      if (isNaN(length)) {
         length = 10;
+      }
 
-      if (end === undefined)
+      if (end === undefined) {
         end = "...";
-      
+      }
+
       if (text) {
         var inputWords = text.split(/\s+/);
         if (inputWords.length > length) {
@@ -29,6 +31,5 @@ angular.module('dogToolApp')
         }
       }
       return text;
-
     };
   });

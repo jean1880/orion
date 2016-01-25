@@ -20,12 +20,18 @@
       factoryCalendar,
       FactoryAddress,
       FactoryNote,
-      $routeParams,
+      FactoryBehaviourFlag,
+      $stateParams,
       HelperService,
       $sce,
       $modal,
-      $q) {
-      $scope.pageType = 'Edit ';
+      $q,
+      $localStorage) {
+      $scope.pageType = 'Update ';
+      $scope.pagination = {
+        currentPage: 1,
+        limit: 9
+      }
       $scope.selectedJobType;
       $scope.addedDogUI = [];
       $scope.fullAddress = null;
@@ -37,9 +43,7 @@
         //get the booking types
         FactoryJobType.getAll()
           .success(function (response) {
-            //
             $scope.jobTypes = response;
-            loadAllDogs();
           })
           .error(function () {
             flash.error = 'An error occured while loading job types.';
@@ -47,16 +51,17 @@
       };
       var loadBookingData = function () {
         //get the specific booking information
-        FactoryJob.get($routeParams.id)
+        FactoryJob.get($stateParams.id)
           .success(function (res) {
-
-
             $scope.booking = res;
             $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
             $scope.booking.Calendars.StartDate = new Date($scope.booking.Calendars.StartDate);
             $scope.isUpdated = true;
 
-            $scope.addedDogUI = res.Dogs;
+            // match dogs to fetched dogs, with full info
+            for (var i = res.Dogs.length - 1; i >= 0; i--) {
+              $scope.addedDogUI.push(findDoginDogs(res.Dogs[i]));
+            }
             $scope.dogs = $scope.dogs.filter(removeDuplicate);
             $scope.selectedJobType = res.Jobtype;
 
@@ -64,13 +69,14 @@
             var GoogleMapsKey = 'AIzaSyBVriHiqrpv6aGFnYnFl-pbxThfuPQB3G0';
 
             var location = [
-            $scope.booking.Location.Street,
-            $scope.booking.Location.City,
-            $scope.booking.Location.Province,
-            $scope.booking.Location.Country
-          ];
+              $scope.booking.Location.Street,
+              $scope.booking.Location.City,
+              $scope.booking.Location.Province,
+              $scope.booking.Location.Country
+            ];
 
-            var locationParam = location.join('+').replace(' ', '+');
+            var locationParam = location.join('+')
+              .replace(' ', '+');
 
             $scope.fullAddress = $sce.trustAsResourceUrl(
               GoogleMapsUrl +
@@ -83,6 +89,20 @@
           });
 
       };
+
+      /**
+       * Parses through all loaded dogs, and matches the dog to a dog data set, to fill inmissing data
+       * @method findDoginDogs
+       * @param {object} dog The dog to search for
+       */
+      var findDoginDogs = function (dog) {
+        for (var i = $scope.dogs.length - 1; i >= 0; i--) {
+          if ($scope.dogs[i].id === dog.id) {
+            return $scope.dogs[i];
+          }
+        }
+      };
+
       var init = function () {
         $scope.booking = {
           Name: '',
@@ -103,8 +123,15 @@
             IsAllDay: false
           }
         };
+
+        FactoryBehaviourFlag.getAll()
+          .success(function (res) {
+            $scope.colours = res;
+          });
         getBookingTypes();
+        loadAllDogs();
       };
+
       /**
        * @method removeDuplicate
        * @return return the bool of if obj is in doglistArray
@@ -140,7 +167,7 @@
        *
        */
       var loadAllDogs = function () {
-        $scope.dogs = null;
+        $scope.dogs = $localStorage.dogs;
 
         FactoryDog.getAll()
           .success(function (response) {
@@ -160,25 +187,26 @@
        * @description creates the new booking through FactoryJob via post
        */
       $scope.createBooking = function () {
-
-
         $scope.submitted = true;
-        if ($scope.booking.Dogs.length > 0) {
+        if ($scope.booking.Dogs && $scope.booking.Dogs.length > 0) {
           if ($scope.selectedJobType) {
             $scope.booking.Jobtype = $scope.selectedJobType.id;
           }
 
-
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
 
-          FactoryJob.update($scope.booking).success(function (res) {
-              flash.success = 'Job Created.';
-
-
+          FactoryJob.update($scope.booking)
+            .success(function (data) {
+              flash.success = "Job Updated";
+              for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
+                if ($localStorage.calendarData[i].id == data.id) {
+                  $localStorage.calendarData[i] = data.id;
+                  break;
+                }
+              }
             })
-            .error(function (err) {
-
-              flash.error = 'An error occured while creating a new Job. Sorry but this job was not created.';
+            .error(function () {
+              flash.error = "Something went wrong"
             });
         }
       };
@@ -188,12 +216,11 @@
        * @description Adds dogs to the booking list and removes the dogs from the search list (dogs avaliable to be added)
        *
        */
-      $scope.bookDog = function (indexIn) {
-
-        var dogIn = $scope.dogs[indexIn];
-
-        $scope.dogs.splice(indexIn, 1);
+      $scope.bookDog = function (dogIn) {
+        var indexIn = $scope.dogs.indexOf(dogIn);
         $scope.addedDogUI.push(dogIn);
+        $scope.booking.Dogs.push(dogIn);
+        $scope.dogs.splice(indexIn, 1);
       };
       /**
        * @method removeDog
@@ -204,7 +231,7 @@
         var dogOut = $scope.addedDogUI[indexOut];
         $scope.dogs.push(dogOut);
         $scope.addedDogUI.splice(indexOut, 1);
-
+        $scope.booking.Dogs.splice(indexOut, 1);
       };
       /**
        * @method addFee
@@ -225,18 +252,23 @@
             flash.error = 'Please enter a description';
           }
           if ($scope.feeAmount == null) {
-            flash.error = 'Please enter a fee amount in proper currency';
+            flash.error = 'Please enter a fee with only numbers, and no letters or symbols';
           }
         }
       };
+
       //notes
       $scope.updateNotes = function () {
         //
 
       };
 
+      /**
+       * Confirms with the user to delete the booking, if the userconfirms the action
+       * call the ClearAllBookingData function, which clears all of the associated data with the
+       * model before deleting the model itself
+       */
       $scope.ConfirmDelete = function () {
-        console.log($scope.booking);
         var modal = $modal.open({
           templateUrl: 'app/Booking/modal/confirm-delete.html',
           controller: 'confirmBookingDeleteModalCtrl',
@@ -289,6 +321,12 @@
         FactoryJob.remove($scope.booking.id)
           .success(function () {
             flash.success = 'Successfully removed the booking';
+            for (var i = $localStorage.calendarData.length; i >= 0; i--) {
+              if ($localStorage.calendarData.jobId = $scope.booking.id) {
+                $localStorage.calendarData.splice(i, 1);
+                break;
+              }
+            }
             $location.url('/');
           })
           .error(function () {

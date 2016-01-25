@@ -13,14 +13,27 @@
   <h1>Job List</h1>
   <!--  Add job list dynamically here, replace below content with loop  -->
   <div ng-repeat="job in JobList">
-    <div class="col-xs-12 col-lg-6 panel">
-      <h3>{{job.Name}} - {{job.Jobtype.Name}}</h3>
-      <div>
-        <h4>{{job.Calendars.StartDate | amCalendar}} <br> until <br> {{job.Calendars.EndDate | amCalendar}} </h4>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{job.Name}} - {{job.Jobtype.Name}}</h3>
       </div>
-      <dog-card dog="dog" ng-repeat="dog in job.Dogs | filter:searchDog | filter:searchOwner | orderBy:'Name'"></dog-card>
-      <div class="col-xs-12">
-        <a class="btn btn-primary margin-10 pull-right" href="#/jobs/{{job.id}}">View Booking</a>
+      <div class="panel-body">
+        <div class="col-xs-3">
+          <h4>Start Date: {{job.Calendars.StartDate | amCalendar}}</h4>
+          <h4>End Date: {{job.Calendars.EndDate | amCalendar}}</h4>
+          <div class="panel panel-primary" ng-repeat="note in job.Notes">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{note.Title}}</h3>
+            </div>
+            <div class="panel-body">
+              <p>{{note.Content}}</p>
+            </div>
+          </div>
+        </div>
+        <dog-card dog="dog" ng-repeat="dog in job.Dogs | filter:searchDog | filter:searchOwner | orderBy:'Name'"></dog-card>
+        <div class="col-xs-12">
+          <a class="btn btn-primary margin-10 pull-right" href="#/jobs/{{job.id}}">View Booking</a>
+        </div>
       </div>
     </div>
   </div>
