@@ -28,6 +28,10 @@ angular.module('dogToolApp')
         return $http.get(SailsRoute.Dog.getAll);
       },
 
+      getAllNoPopulate: function () {
+        return $http.get(SailsRoute.Dog.getAll + '?populate=[BehaviourFlag,Owner]');
+      },
+
       /**
        * Listen to server for changes to full Dog dataset
        * @method listen
@@ -86,11 +90,11 @@ angular.module('dogToolApp')
        * @param  {Dog} dog The dog to update
        */
       processDog: function (dog) {
-        if(dog.Birthdate) {
+        if (dog.Birthdate) {
           dog.Birthdate = new Date(dog.Birthdate);
-          dog.Age = moment(dog.Birthdate).fromNow(true);
-        }
-        else {
+          dog.Age = moment(dog.Birthdate)
+            .fromNow(true);
+        } else {
           dog.Birthdate = undefined;
           dog.Age = undefined;
         }

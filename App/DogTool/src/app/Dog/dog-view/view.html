@@ -20,26 +20,30 @@
       <div class="col-xs-12">
         <weight-list dog="dog"></weight-list>
       </div>
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Homework <span ng-show="dog.Homeworks.length>0" class="badge pull-right">{{dog.Homeworks.length}}</span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="col-sm-4 col-lg-6">
     <notes-panel notes="dog.Notes" on-notes-changed="updateNotes()" default-types="['Medical', 'Shots' ,'General', 'Behavioural','Client Care', 'Friends', 'Foes' ]"></notes-panel>
-    <div class="panel-body">
-      <p>
-        <div class="col-xs-12" ng-repeat="homework in dog.Homeworks| slice: pagination.limit:((pagination.currentPage-1)*pagination.limit) |orderBy: 'EndDate':true">
-          {{homework.Title}}<a ng-href="#/homework/{{homework.id}}" class="btn btn-sm btn-default pull-right">View</a>
+    <div class="panel panel-default" ng-if="dog.Homeworks.length > 0">
+      <div class="panel-heading">
+        Homework <span ng-show="dog.Homeworks.length>0" class="badge pull-right" ng-bind="dog.Homeworks.length"></span>
+      </div>
+      <div class="panel-body">
+        <div class="panel panel-default" ng-repeat="homework in dog.Homeworks| slice: pagination.limit:((pagination.currentPage-1)*pagination.limit) |orderBy: 'EndDate':true">
+          <div class="panel-heading">
+            <p ng-bind="homework.Title"></p>
+          </div>
+          <div class="panel-body homework-description" ng-bind="homework.Description">
+          </div>
+          <div class="panel-footer">
+              <a ng-href="#/homework/{{homework.id}}" class="btn btn-sm btn-primary btn-block">View</a>
+          </div>
         </div>
-      </p>
-      <a ng-href="#/library/{{dog.Name}}">View All Homework For {{dog.Name}}</a>
-      <pagination total-items="(dog.Homeworks).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
+        <pagination total-items="(dog.Homeworks).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
+        <div class="clearfix col-xs-12"></div>
+        <a class="pull-right" ng-href="#/library/{{dog.Name}}">View All Homework For {{dog.Name}}</a>
+      </div>
     </div>
   </div>
 
