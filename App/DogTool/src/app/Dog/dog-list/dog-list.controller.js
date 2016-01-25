@@ -21,7 +21,7 @@ angular.module('dogToolApp')
 
     var loadAllDogs = function () {
       $scope.dogs = $localStorage.dogs;
-      FactoryDog.getAll()
+      FactoryDog.getAllNoPopulate()
         .success(function (response) {
           var found = false;
           $localStorage.dogs.splice(0, $localStorage.dogs.length);
