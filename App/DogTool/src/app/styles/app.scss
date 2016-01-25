@@ -16,6 +16,13 @@
   display: block;
 }
 
+.homework-description {
+    height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .panel.panel-info .panel-heading a,
 .panel.panel-danger .panel-heading a {
   color: white;

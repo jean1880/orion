@@ -33,15 +33,18 @@
     <div ng-repeat="homework in homeworkByTitle|orderBy: sortBy |filter:{$:searchDog} | slice: pagination.limit:((pagination.currentPage-1)*pagination.limit)">
         <div class="panel panel-primary">
             <div class="btn-group pull-right">
-                <button class="btn btn-danger pull-right" ng-click="deleteHomework(homework.id)"><span class="glyphicon glyphicon-remove "></span>
+                <button class="btn btn-danger pull-right" ng-click="deleteHomework(homework.id)">
+                    <span class="glyphicon glyphicon-remove "></span>&nbsp;&nbsp;Delete
                 </button>
-                <button class="btn btn-primary pull-right" ng-click="edit(homework.id)"><span class="glyphicon glyphicon-edit"></span>
+                <button class="btn btn-primary pull-right" ng-click="edit(homework.id)">
+                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit
                 </button>
-                <button class="btn btn-primary" ng-click="duplicateHomework(homeworkId)"><span class="glyphicon glyphicon-copy"></span>
+                <button class="btn btn-primary" ng-click="duplicateHomework(homeworkId)">
+                    <span class="glyphicon glyphicon-copy"></span>&nbsp;&nbsp;Duplicate
                 </button>
             </div>
             <div class="panel-heading">
-                <h6 class="panel-title">{{homework.Title}} 
+                <h6 class="panel-title">{{homework.Title}}
         </h6>
             </div>
             <div class="panel-body">
