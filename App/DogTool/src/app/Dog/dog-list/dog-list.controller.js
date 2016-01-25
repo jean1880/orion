@@ -8,12 +8,12 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('DogListCtrl', function ($scope, $location, FactoryDog, flash, $localStorage, $routeParams) {
+  .controller('DogListCtrl', function ($scope, $location, FactoryDog, flash, $localStorage, $stateParams) {
     $scope.pagination = {
       currentPage: 1,
       limit: 9
     };
-    console.log($routeParams);
+    console.log($stateParams);
     $scope.showDeceased = false;
     var init = function () {
       loadAllDogs();

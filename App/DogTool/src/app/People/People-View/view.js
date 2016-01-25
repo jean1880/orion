@@ -8,9 +8,9 @@
  * Controller of the dogToolApp
  */
 angular.module('dogToolApp')
-  .controller('PeopleViewCtrl', function ($scope, $location, FactoryPeople, flash, $routeParams, FactoryDog, $modal, FactoryAddress, FactoryNote) {
+  .controller('PeopleViewCtrl', function ($scope, $location, FactoryPeople, flash, $stateParams, FactoryDog, $modal, FactoryAddress, FactoryNote) {
     var init = function () {
-      loadPerson($routeParams.id);
+      loadPerson($stateParams.id);
     };
 
     var loadPerson = function (id) {
