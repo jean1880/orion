@@ -67,6 +67,7 @@
 
       /**
        * Goes to the jobs for the day
+       * @method GotoJob
        * @param {Object} date Moment.js date object
        */
       var GotoJob = function (date) {
@@ -84,7 +85,8 @@
       };
 
       /**
-       * [CreateEvent description]
+       * Creates new event
+       * @method CreateEvent
        * @param {[type]} startDate [description]
        * @param {[type]} endDate   [description]
        */
@@ -143,6 +145,7 @@
 
       /**
        * Creates an event from given datetime range
+       * @method SelectDateRange
        * @param {[type]} start [description]
        * @param {[type]} end   [description]
        */
@@ -211,24 +214,18 @@
       var AddtoCalendar = function (data, title, id, note) {
         var eventColour = note ? EVENT_COLOURS.event : EVENT_COLOURS.booking;
         var colour = data.Colour || eventColour;
-        async.each($localStorage.calendarData, function (calandar, cb) {
+        async.forEachOf($localStorage.calendarData, function (calandar, index, cb) {
           var found = false;
           if (calandar.id === data.id) {
             found = true;
-            calandar = {
-              title: title,
-              start: new Date(data.StartDate),
-              end: new Date(data.EndDate),
-              allDay: data.IsAllDay,
-              color: colour,
-              jobId: id,
-              note: note,
-              id: data.id,
-              stick: true
-            };
+            $localStorage.calendarData[index].title = title;
+            $localStorage.calendarData[index].start = new Date(data.StartDate);
+            $localStorage.calendarData[index].end = new Date(data.EndDate);
+            $localStorage.calendarData[index].jobId = id;
+            $localStorage.calendarData[index].note = note;
           }
           cb(found);
-      }, function (found) {
+        }, function (found) {
           if (!found) {
             $localStorage.calendarData.push({
               title: title,
