@@ -6,7 +6,7 @@
     </div>
     <div class="panel-body">
         <div class="img-container">
-            <img class="img img-responsive" dog-image="dog" alt="{{ dog.Name }}" />
+            <img class="img img-responsive" ng-src="{{dog.photoURL ? dogURL + dog.photoURL : '/images/no-dog-image.jpg'}}" alt="{{ dog.Name }}" />
         </div>
         <div class="info-area">
             <div>

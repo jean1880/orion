@@ -51,7 +51,7 @@
                     controller: 'JobsEditCtrl'
                 })
                 .state('jobs_new_specific', {
-                    url: '/jobs/:startDate/:endDate',
+                    url: '/jobs/new/:startDate/:endDate',
                     templateUrl: 'app/Booking/New/job-new.html',
                     controller: 'NewJobsCtrl'
                 })

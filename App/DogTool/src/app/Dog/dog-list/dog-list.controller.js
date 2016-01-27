@@ -13,7 +13,6 @@ angular.module('dogToolApp')
       currentPage: 1,
       limit: 9
     };
-    console.log($stateParams);
     $scope.showDeceased = false;
     var init = function () {
       loadAllDogs();

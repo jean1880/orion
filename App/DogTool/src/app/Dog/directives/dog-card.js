@@ -18,7 +18,8 @@ angular.module('dogToolApp')
         btnType: '='
       },
       templateUrl: 'app/Dog/directives/dog-card.html',
-      controller: function ($scope, $location) {
+      controller: function ($scope, $location, SAILS_URL) {
+          $scope.dogURL = SAILS_URL;
         $scope.gotoDogPage = function () {
           if (!$scope.noClick) {
             $location.path('/dog/' + $scope.dog.id);

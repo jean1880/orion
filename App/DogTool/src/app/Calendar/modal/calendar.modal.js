@@ -47,10 +47,7 @@
       $modalInstance.close();
       var eventColour = EVENT_COLOURS.event;
       var startDay = new Date($scope.startTime.valueOf())
-      startDay.setHours(startDay.getHours());
-
       var endDay = new Date($scope.endTime.valueOf());
-      endDay.setHours(endDay.getHours());
 
       factoryCalendar.post({
         StartDate: startDay,
