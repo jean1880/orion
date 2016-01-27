@@ -289,6 +289,17 @@
                 }
             }
 
+            /**
+             * Completely resets the calendar
+             * @return {[type]} [description]
+             */
+            $scope.reload = function(){
+                console.log('test');
+                delete $localStorage.calendarData;
+                $localStorage.calendarData = [];
+                init();
+            }
+
             /**Initializer function called when controller is called
              * @method init
              * @private
