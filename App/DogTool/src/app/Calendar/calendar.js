@@ -9,7 +9,7 @@
      * Controller of the dogToolApp, manages the calendar/view.html
      */
     angular.module('dogToolApp')
-        .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash, $interval, $localStorage) {
+        .controller('CalendarCtrl', function ($scope, $location, $timeout, factoryCalendar, FactoryJob, FactoryNote, $modal, $modalStack, EVENT_COLOURS, flash, $interval, $localStorage, $state) {
             /**
              * Rounds the date to the bottom, or top of the hour
              * @param  {object} date new date object
@@ -57,6 +57,7 @@
             /**
              * Calendar settings
              */
+            $localStorage.calendarData = $localStorage.calendarData || [];
             $scope.eventSources = [$localStorage.calendarData]
             $scope.addingEvent = false;
             $scope.allDay = true;
@@ -294,10 +295,8 @@
              * @return {[type]} [description]
              */
             $scope.reload = function(){
-                console.log('test');
                 delete $localStorage.calendarData;
-                $localStorage.calendarData = [];
-                init();
+                $state.go('calendar',null,{reload: true});
             }
 
             /**Initializer function called when controller is called
