@@ -9,7 +9,7 @@
    * Factory in the dogToolApp.
    */
   angular.module('dogToolApp')
-    .factory('factoryCalendar', function ($http, SailsRoute, poller) {
+    .factory('factoryCalendar', function ($http, SailsRoute, poller, $localStorage) {
       return {
         /**
          * One time fetch from server for single Calendar dataset
@@ -64,6 +64,9 @@
          * @returns {$http.promise}
          */
         remove: function (id) {
+          delete _.find($localStorage.calendarData, function (item) {
+            return item.id === id;
+          });
           return $http.delete(SailsRoute.Calendar.delete(id));
         }
       };
