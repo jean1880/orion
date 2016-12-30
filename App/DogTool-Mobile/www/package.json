@@ -1,0 +1,63 @@
+{
+    "chromium-args": "",
+    "license": "ISC",
+    "nodejs": true,
+    "version": "1.0.0",
+    "js-flags": "",
+    "single-instance": true,
+    "app_name": "Not Just Kibble",
+    "window": {
+        "kiosk": false,
+        "mac_icon": "",
+        "as_desktop": false,
+        "height": 480,
+        "title": "Not Just Kibble",
+        "exe_icon": "",
+        "transparent": false,
+        "resizable": true,
+        "visible": true,
+        "always-on-top": false,
+        "frame": true,
+        "show_in_taskbar": true,
+        "position": "center",
+        "fullscreen": false,
+        "show": true,
+        "icon": "",
+        "kiosk_emulation": false,
+        "toolbar": true,
+        "width": 640
+    },
+    "inject_js_start": "app.js",
+    "main": "index.html",
+    "name": "orion",
+    "webkit": {
+        "plugin": false,
+        "page-cache": true,
+        "java": false
+    },
+    "author": "",
+    "dependencies": {
+        "moment": "^2.11.2"
+    },
+    "devDependencies": {},
+    "keywords": [],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "description": "",
+    "webexe_settings": {
+        "nw_version": "0.13.0-beta6",
+        "nw_compression_level": 0,
+        "windows-x32": false,
+        "force_download": false,
+        "uncompressed_folder": false,
+        "linux-x32": false,
+        "linux-x64": false,
+        "mac-x32": false,
+        "mac-x64": false,
+        "windows-x64": true,
+        "export_dir": "C:\\Users\\Jean-Luc\\Desktop",
+        "download_dir": "C:\\Users\\Jean-Luc\\Downloads",
+        "custom_script": ""
+    }
+}

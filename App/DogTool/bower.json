@@ -51,6 +51,7 @@
     }
   },
   "resolutions": {
-    "moment": "^2.11.0"
+    "moment": "^2.11.0",
+    "angular": "1.6.1"
   }
 }
