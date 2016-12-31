@@ -1,0 +1,32 @@
+<div class="panel panel-default dog-card clearfix" ng-click="gotoDogPage()">
+    <div class="panel-heading">
+        <div class="text-center">
+            <strong>{{dog.Name | characters:25 }}</strong>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="img-container">
+            <img class="img img-responsive" ng-src="{{dog.photoURL ? dogURL + dog.photoURL : 'images/no-dog-image.jpg'}}" alt="{{ dog.Name }}" />
+        </div>
+        <div class="info-area">
+            <div>
+                <span class="behave-flag behave-thin" style="background-color: {{ dog.BehaviourFlag.Colour || '#FFFFFF' }}"></span>
+            </div>
+            <div class="text-center">
+                {{ dog.Owner.Name }}
+            </div>
+            <div class="text-center">
+                {{ dog.Owner.Phone }}
+            </div>
+            <div class="text-center">
+                {{ dog.Owner.Email }}
+            </div>
+            <div class="text-center">
+                <strong>{{ dog.Deceased ? "Deceased" : "&nbsp;" }}</strong>
+            </div>
+        </div>
+        <div ng-show="btnText">
+            <a class="btn btn-{{ btnType || 'default' }} btn-block action-btn" ng-click="callButtonCallback($event)">{{ btnText }}</a>
+        </div>
+    </div>
+</div>

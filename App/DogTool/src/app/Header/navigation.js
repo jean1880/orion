@@ -12,7 +12,7 @@
       return {
         restrict: 'E',
         scope: true,
-        templateUrl: 'app/Header/navigation.html',
+        templateUrl: '/app/Header/navigation.html',
         controller: navigationController
       };
 

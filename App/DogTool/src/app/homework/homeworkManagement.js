@@ -56,7 +56,7 @@ angular.module('dogToolApp')
        */
     $scope.deleteHomework = function (homeworIdToDelete) {
       FactoryHomework.remove(homeworIdToDelete)
-        .success(function (res) {
+        .then(function (res) {
           flash.success = "Homework Deleted";
           $scope.dogHomeworkGroup = {};
           $scope.dog = {};
@@ -64,7 +64,7 @@ angular.module('dogToolApp')
           loadHomework();
           $scope.$apply();
         })
-        .error(function (err) {
+       .catch(function (err) {
           flash.error = "Sorry but could not delete the homework";
         });
     };
@@ -84,23 +84,23 @@ angular.module('dogToolApp')
      */
     $scope.updateHomework = function (homeworkId) {
       FactoryHomework.update($scope.LibraryList[homeworkId])
-        .success(function (homeworkRes) {
+        .then(function (homeworkRes) {
           flash.success = "Status Saved";
         })
-        .error(function (errorHomework) {
+       .catch(function (errorHomework) {
           flash.error = "Sorry there was an issue saving the status change";
         })
     }
 
     var loadHomework = function () {
         FactoryHomework.getAll()
-          .success(function (response) {
+          .then(function (response) {
             createLibraryLookup(response);
             FactoryDog.getAllNoPopulate()
-              .success(function (response) {
+              .then(function (response) {
                 createDogLookup(response, parseDogs);
               })
-              .error(function () {
+             .catch(function () {
                 flash.error = 'A error occured while loading dogs.';
               });
           });

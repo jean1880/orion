@@ -7,7 +7,7 @@
  * Handles api calls between sails and angular for Addresses
  */
 angular.module('dogToolApp')
-  .factory('FactoryAddress', function ($http, SailsRoute, poller) {
+  .factory('FactoryAddress', function ($http, SailsRoute, poller, returnDataOnly) {
 
 
     return {
@@ -19,7 +19,8 @@ angular.module('dogToolApp')
        * @return {Http.promise} Returns a http promise
        */
       get: function (id) {
-        return $http.get(SailsRoute.Address.get(id));
+        return $http.get(SailsRoute.Address.get(id))
+          .then(returnDataOnly);
       },
       /**
        * Gets all addresses from sails
@@ -28,7 +29,8 @@ angular.module('dogToolApp')
        * @return {Http.promise} Returns a http promise
        */
       getAll: function () {
-        return $http.get(SailsRoute.Address.getAll);
+        return $http.get(SailsRoute.Address.getAll)
+          .then(returnDataOnly);
       },
       /**
        * Listen for changes
@@ -37,7 +39,8 @@ angular.module('dogToolApp')
        * @return {Poller.promise} Returns a poller promise
        */
       listen: function () {
-        return poller.get(SailsRoute.Address.listen);
+        return poller.get(SailsRoute.Address.listen)
+          .then(returnDataOnly);
       },
       /**
        * Adds the given adress to sails
@@ -57,7 +60,8 @@ angular.module('dogToolApp')
        * @return {Http.promise} Returns a http promise
        */
       find: function (searchObject) {
-        return $http.post(SailsRoute.Address.find, searchObject);
+        return $http.post(SailsRoute.Address.find, searchObject)
+          .then(returnDataOnly);
       },
 
       /**

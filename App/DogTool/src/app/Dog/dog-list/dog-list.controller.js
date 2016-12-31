@@ -21,7 +21,7 @@ angular.module('dogToolApp')
     var loadAllDogs = function () {
       $scope.dogs = $localStorage.dogs;
       FactoryDog.getAllNoPopulate()
-        .success(function (response) {
+        .then(function (response) {
           var found = false;
           $localStorage.dogs.splice(0, $localStorage.dogs.length);
           for (var x = response.length - 1; x >= 0; x--) {
@@ -29,7 +29,7 @@ angular.module('dogToolApp')
           }
           $scope.dogs = $localStorage.dogs;;
         })
-        .error(function () {
+       .catch(function () {
           flash.error = 'A error occured while loading dogs.';
         });
     };

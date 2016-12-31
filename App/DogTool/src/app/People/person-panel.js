@@ -62,7 +62,7 @@ angular.module('dogToolApp')
      */
     $scope.personIdChanged = function (newId) {
       FactoryPeople.get(newId)
-        .success(function (response) {
+        .then(function (response) {
           $scope.person = response;
           $scope.disableEditMode();
 

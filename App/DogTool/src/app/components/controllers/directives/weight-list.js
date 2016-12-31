@@ -24,8 +24,8 @@ angular.module('dogToolApp')
         prepareNewWeight($scope.newWeight);
 
         FactoryWeight.post($scope.newWeight)
-          .success(processValidPost)
-          .error(processInvalidPost)
+          .then(processValidPost)
+         .catch(processInvalidPost)
           .finally(postComplete);
       }
     };

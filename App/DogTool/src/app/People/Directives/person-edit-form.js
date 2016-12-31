@@ -14,7 +14,7 @@ angular.module('dogToolApp')
         person: '=',
         formSubmit: '='
       },
-      templateUrl: 'app/People/Directives/person-edit-form.html',
+      templateUrl: '/app/People/Directives/person-edit-form.html',
       controller: 'PersonEditFormCtrl'
     };
   });

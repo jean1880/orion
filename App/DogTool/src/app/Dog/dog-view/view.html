@@ -1,16 +1,19 @@
 <div class="row">
   <div class="col-xs-12">
     <h1>
-      {{dog.Name}}
+      <span ng-bind="dog.Name"></span>
       <small ng-show="dog.Deceased">
         (Deceased)
       </small>
+      <button class="btn btn-primary pull-right hidden-print" ng-click="print()">
+        <i class="fa fa-print"></i>
+      </button>
     </h1>
     <hr />
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-4 col-lg-3">
+  <div class="col-sm-4 col-lg-3 col-print-6">
     <div class="row">
 
       <div class="col-xs-12">
@@ -23,7 +26,7 @@
     </div>
   </div>
 
-  <div class="col-sm-4 col-lg-6">
+  <div class="col-sm-4 col-lg-6 hidden-print">
     <notes-panel notes="dog.Notes" on-notes-changed="updateNotes()" default-types="['Medical', 'Shots' ,'General', 'Behavioural','Client Care', 'Friends', 'Foes' ]"></notes-panel>
     <div class="panel panel-default" ng-if="dog.Homeworks.length > 0">
       <div class="panel-heading">
@@ -42,12 +45,12 @@
         </div>
         <pagination total-items="(dog.Homeworks).length" ng-model="pagination.currentPage" items-per-page="pagination.limit"></pagination>
         <div class="clearfix col-xs-12"></div>
-        <a class="pull-right" ng-href="#/library/{{dog.Name}}">View All Homework For {{dog.Name}}</a>
+        <a class="pull-right" ng-href="#/library/{{dog.Name}}">View All Homework For <span ng-bind="dog.name"></span></a>
       </div>
     </div>
   </div>
 
-  <div class="col-sm-4 col-lg-3">
+  <div class="col-sm-4 col-lg-3 col-print-6">
     <div class="row">
       <div class="col-xs-12">
         <person-panel person="dog.Owner" person-updated="ownerUpdated" panel-title="Owner" panel-type="info" unlinkable="false"></person-panel>

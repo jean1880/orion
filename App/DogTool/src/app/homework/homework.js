@@ -54,18 +54,18 @@ angular.module('dogToolApp')
             $scope.dogs = null;
 
             FactoryDog.getAll()
-                .success(function (response) {
+                .then(function (response) {
                     $scope.dogs = response;
                     loadHomework();
                 })
-                .error(function () {
+               .catch(function () {
                     flash.error = 'A error occured while loading dogs.';
                 });
         };
 
         var loadHomework = function () {
             FactoryHomework.get($stateParams.id)
-                .success(function (response) {
+                .then(function (response) {
                     $scope.Homework = response;
                     var doglistArray = HelperService.convert.objectArrayToIdArray($scope.dogs);
                     console.log(doglistArray);
@@ -82,7 +82,7 @@ angular.module('dogToolApp')
                     $scope.Homework.EndDate = new Date($scope.Homework.EndDate);
                     console.log("status:", $scope.Homework.Status);
                 })
-                .error(function (error) {
+               .catch(function (error) {
                     flash.error = 'Sorry we could not access the job in question.';
                 });
         };
@@ -124,12 +124,12 @@ angular.module('dogToolApp')
 
                     $scope.Homework.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
                     FactoryHomework.update($scope.Homework)
-                        .success(function (res) {
+                        .then(function (res) {
                             $rootScope.HomeworkSubmitted = true;
 
                             flash.success = "Homework Saved";
                         })
-                        .error(function (err) {
+                       .catch(function (err) {
 
                         });
                 }

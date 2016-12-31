@@ -6,7 +6,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryDaycare', function ($http, SailsRoute, poller) {
+  .factory('FactoryDaycare', function ($http, SailsRoute, poller, returnDataOnly) {
     return {
       /**
        * One time fetch from server for single Daycare dataset
@@ -14,7 +14,8 @@ angular.module('dogToolApp')
        * @param id
        */
       get: function (id) {
-        return $http.get(SailsRoute.Daycare.get(id));
+        return $http.get(SailsRoute.Daycare.get(id))
+          .then(returnDataOnly);
       },
 
       /**
@@ -22,7 +23,8 @@ angular.module('dogToolApp')
        * @method getAll
        */
       getAll: function () {
-        return $http.get(SailsRoute.Daycare.getAll);
+        return $http.get(SailsRoute.Daycare.getAll)
+          .then(returnDataOnly);
       },
 
       /**
@@ -48,7 +50,8 @@ angular.module('dogToolApp')
        * @param searchObject
        */
       find: function (searchObject) {
-        return $http.post(SailsRoute.Daycare.find, searchObject);
+        return $http.post(SailsRoute.Daycare.find, searchObject)
+          .then(returnDataOnly);
       },
 
       /**

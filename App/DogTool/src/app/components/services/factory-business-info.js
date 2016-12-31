@@ -7,12 +7,13 @@
  * Handles api calls between sails and angular for Business Information
  */
 angular.module('dogToolApp')
-  .factory('FactoryBusinessInfo', function ($http, SailsRoute, poller) {
+  .factory('FactoryBusinessInfo', function ($http, SailsRoute, poller,returnDataOnly) {
 
     return {
 
 		get: function() {
-			return $http.get(SailsRoute.BusinessInfo.getAll);
+			return $http.get(SailsRoute.BusinessInfo.getAll)
+        .then(returnDataOnly);
 		},
 
 		update: function (object) {

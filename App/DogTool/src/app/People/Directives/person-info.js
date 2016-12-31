@@ -14,7 +14,7 @@ angular.module('dogToolApp')
         person: '=',
         hideName: '@'
       },
-      templateUrl: 'app/People/Directives/person-info.html',
+      templateUrl: '/app/People/Directives/person-info.html',
       controller: 'PersonInfoCtrl'
     };
   });

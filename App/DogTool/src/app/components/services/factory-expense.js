@@ -6,7 +6,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryExpense', function ($http, SailsRoute, poller, Upload) {
+  .factory('FactoryExpense', function ($http, SailsRoute, poller, Upload, returnDataOnly) {
     return {
       /**
        * One time fetch from server for single Expense dataset based on id
@@ -14,7 +14,8 @@ angular.module('dogToolApp')
        * @param id
        */
       get: function (id) {
-        return $http.get(SailsRoute.Expense.get(id));
+        return $http.get(SailsRoute.Expense.get(id))
+          .then(returnDataOnly);
       },
 
       /**
@@ -22,7 +23,8 @@ angular.module('dogToolApp')
        * @method getAll
        */
       getAll: function () {
-        return $http.get(SailsRoute.Expense.getAll);
+        return $http.get(SailsRoute.Expense.getAll)
+          .then(returnDataOnly);
       },
 
       /**
@@ -48,7 +50,8 @@ angular.module('dogToolApp')
        * @param searchObject
        */
       find: function (searchObject) {
-        return $http.post(SailsRoute.Expense.find, searchObject);
+        return $http.post(SailsRoute.Expense.find, searchObject)
+          .then(returnDataOnly);
       },
 
       /**
@@ -61,4 +64,3 @@ angular.module('dogToolApp')
       }
     };
   });
-

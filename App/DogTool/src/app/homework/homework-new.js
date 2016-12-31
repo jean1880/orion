@@ -31,7 +31,7 @@ angular.module('dogToolApp')
                 Status: false
             }
             if ($stateParams.id != null) {
-                FactoryHomework.get($stateParams.id).success(function (homeworkRes) {
+                FactoryHomework.get($stateParams.id).then(function (homeworkRes) {
                     $scope.Homework.Title = homeworkRes.Title;
                     $scope.Homework.Description = homeworkRes.Description;
                 })
@@ -58,10 +58,10 @@ angular.module('dogToolApp')
             $scope.dogs = null;
 
             FactoryDog.getAll()
-                .success(function (response) {
+                .then(function (response) {
                     $scope.dogs = response;
                 })
-                .error(function () {
+               .catch(function () {
                     flash.error = 'A error occured while loading dogs.';
                 });
             if ($rootScope.HomeworkSubmitted) {
@@ -85,12 +85,12 @@ angular.module('dogToolApp')
                 if ($scope.Homework.Title != "" && $scope.Homework.Description != "") {
                     $scope.Homework.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
                     FactoryHomework.post($scope.Homework)
-                        .success(function (res) {
+                        .then(function (res) {
                             $rootScope.HomeworkSubmitted = true;
                             flash.success = "Homework Saved";
                             $window.location.href = "#/homework/" + res.id;
                         })
-                        .error(function (err) {
+                       .catch(function (err) {
                             flash.error = "Failed to Sve Homework";
                         });
                 }

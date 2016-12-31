@@ -15,7 +15,7 @@ angular.module('dogToolApp')
         selectedId: '@',
         personIdChanged: '='
       },
-      templateUrl: 'app/People/Directives/person-select-create.html',
+      templateUrl: '/app/People/Directives/person-select-create.html',
       controller: 'PersonSelectCreateCtrl'
     };
   });

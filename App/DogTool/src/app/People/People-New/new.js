@@ -22,11 +22,11 @@ angular.module('dogToolApp')
      */
     $scope.editFormSubmit = function () {
       FactoryPeople.post($scope.person)
-        .success(function (response) {
+        .then(function (response) {
           flash.success = 'Person created';
           $location.path('/people/' + response.id);
         })
-        .error(function () {
+       .catch(function () {
           flash.error = 'An error occured';
         });
     };

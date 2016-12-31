@@ -32,7 +32,7 @@
         </div>
         <dog-card dog="dog" ng-repeat="dog in job.Dogs | filter:searchDog | filter:searchOwner | orderBy:'Name'"></dog-card>
         <div class="col-xs-12">
-          <a class="btn btn-primary margin-10 pull-right" href="#/jobs/{{job.id}}">View Booking</a>
+          <a class="btn btn-primary margin-10 pull-right" ui-sref="jobs_detail({id: job.id})">View Booking</a>
         </div>
       </div>
     </div>

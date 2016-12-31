@@ -8,7 +8,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryQuote', function (SailsRoute, $http, poller) {
+  .factory('FactoryQuote', function (SailsRoute, $http, poller, returnDataOnly) {
 	return {
       /**
        * One time fetch from server for single Quote dataset
@@ -16,7 +16,8 @@ angular.module('dogToolApp')
        * @param id
        */
       get: function (id) {
-        return $http.get(SailsRoute.Quote.get(id));
+        return $http.get(SailsRoute.Quote.get(id))
+          .then(returnDataOnly);
       },
 
       /**
@@ -24,7 +25,8 @@ angular.module('dogToolApp')
        * @method getAll
        */
       getAll: function () {
-        return $http.get(SailsRoute.Quote.getAll);
+        return $http.get(SailsRoute.Quote.getAll)
+          .then(returnDataOnly);
       },
 
       /**

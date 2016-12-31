@@ -15,11 +15,11 @@ angular.module('dogToolApp')
 
     var loadPerson = function (id) {
       FactoryPeople.get(id)
-        .success(function (response) {
+        .then(function (response) {
           $scope.person = response;
           loadDogsForPerson($scope.person);
         })
-        .error(function (response, status) {
+       .catch(function (response, status) {
           switch (status) {
           case 404:
             flash.error = 'Person not found';
@@ -37,21 +37,21 @@ angular.module('dogToolApp')
       FactoryDog.find({
           Owner: person.id
         })
-        .success(function (res) {
+        .then(function (res) {
           person.Dogs = res;
         })
-        .error(function () {
+       .catch(function () {
           flash.error = 'An error occured loading dog info';
         });
     };
 
     /**
-     * Confirms with user to delete the person, if confirmed the user 
+     * Confirms with user to delete the person, if confirmed the user
      * is removed from the database
      */
     $scope.ConfirmDelete = function () {
       var modal = $modal.open({
-        templateUrl: 'app/confirm-delete/confirm-delete.modal.html',
+        templateUrl: '/app/confirm-delete/confirm-delete.modal.html',
         controller: 'confirmDeleteModalCtrl',
         size: 'sm',
         animation: true,
@@ -77,7 +77,7 @@ angular.module('dogToolApp')
         FactoryAddress.remove($scope.person.Address.id);
       }
 
-      FactoryPeople.remove($scope.person.id).success(function () {
+      FactoryPeople.remove($scope.person.id).then(function () {
         flash.success = "Successfully deleted " + $scope.person.Name;
         $location.path("/people");
       }).error(function () {
@@ -129,11 +129,11 @@ angular.module('dogToolApp')
      */
     $scope.editInfoSubmit = function () {
       FactoryPeople.update($scope.editedPerson)
-        .success(function (response) {
+        .then(function (response) {
           $scope.person = response;
           $scope.editingInfo = false;
         })
-        .error(function () {
+       .catch(function () {
           flash.error = 'An error occured';
         });
     };

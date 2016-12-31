@@ -42,17 +42,17 @@
       var getBookingTypes = function () {
         //get the booking types
         FactoryJobType.getAll()
-          .success(function (response) {
+          .then(function (response) {
             $scope.jobTypes = response;
           })
-          .error(function () {
+         .catch(function () {
             flash.error = 'An error occured while loading job types.';
           });
       };
       var loadBookingData = function () {
         //get the specific booking information
         FactoryJob.get($stateParams.id)
-          .success(function (res) {
+          .then(function (res) {
             $scope.booking = res;
             $scope.booking.Calendars.EndDate = new Date($scope.booking.Calendars.EndDate);
             $scope.booking.Calendars.StartDate = new Date($scope.booking.Calendars.StartDate);
@@ -84,7 +84,7 @@
               '&q=' + locationParam
             );
           })
-          .error(function () {
+         .catch(function () {
             flash.error = 'An error occured. Unable to load booking information';
           });
 
@@ -125,7 +125,7 @@
         };
 
         FactoryBehaviourFlag.getAll()
-          .success(function (res) {
+          .then(function (res) {
             $scope.colours = res;
           });
         getBookingTypes();
@@ -170,11 +170,11 @@
         $scope.dogs = $localStorage.dogs;
 
         FactoryDog.getAll()
-          .success(function (response) {
+          .then(function (response) {
             $scope.dogs = response;
             loadBookingData();
           })
-          .error(function () {
+         .catch(function () {
             flash.error = 'An error occured while loading dogs.';
           });
       };
@@ -196,7 +196,7 @@
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.booking.Dogs);
 
           FactoryJob.update($scope.booking)
-            .success(function (data) {
+            .then(function (data) {
               flash.success = "Job Updated";
               for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
                 if ($localStorage.calendarData[i].id == data.id) {
@@ -205,7 +205,7 @@
                 }
               }
             })
-            .error(function () {
+           .catch(function () {
               flash.error = "Something went wrong"
             });
         }
@@ -270,7 +270,7 @@
        */
       $scope.ConfirmDelete = function () {
         var modal = $modal.open({
-          templateUrl: 'app/Booking/modal/confirm-delete.html',
+          templateUrl: '/app/Booking/modal/confirm-delete.html',
           controller: 'confirmBookingDeleteModalCtrl',
           size: 'sm',
           animation: true,
@@ -319,7 +319,7 @@
 
       var DestroyBooking = function () {
         FactoryJob.remove($scope.booking.id)
-          .success(function () {
+          .then(function () {
             flash.success = 'Successfully removed the booking';
             for (var i = $localStorage.calendarData.length; i >= 0; i--) {
               if ($localStorage.calendarData.jobId = $scope.booking.id) {
@@ -329,7 +329,7 @@
             }
             $location.url('/');
           })
-          .error(function () {
+         .catch(function () {
             flash.error = 'Failed.';
           });
       };

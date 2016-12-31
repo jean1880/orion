@@ -44,14 +44,14 @@ angular.module('dogToolApp')
      */
     $scope.createFormSubmit = function () {
       FactoryPeople.post($scope.newPerson)
-        .success(function (response) {
+        .then(function (response) {
           $scope.people.push(response);
           $scope.selectedId = response.id;
           $scope.newPerson = {};
 
           callPersonIdChanged();
         })
-        .error(function () {
+       .catch(function () {
           flash.error = 'An error occured';
         });
     };
@@ -96,7 +96,7 @@ angular.module('dogToolApp')
      */
     var loadAllPeople = function () {
       FactoryPeople.getAll()
-        .success(function (response) {
+        .then(function (response) {
           $scope.people = response;
         });
     };

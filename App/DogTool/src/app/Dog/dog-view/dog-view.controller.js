@@ -11,23 +11,21 @@
  * Controller for the viewing of a dog based on a id from routeParams
  */
 angular.module('dogToolApp')
-  .controller('DogViewCtrl', function ($scope, $stateParams, $location, FactoryDog, flash, FactoryNote, $modal) {
-    /**
-     * Prepares the controller for use
-     *
-     * @private
-     * @method init
-     */
-    var init = function () {
-      loadDog($stateParams.id);
-      $scope.editingInfo = false;
-      $scope.editOwner = false;
-      $scope.editVet = false;
-      $scope.editEmgContact = false;
-      $scope.pagination = {};
-      $scope.pagination.limit = 10;
-      $scope.pagination.currentPage = 1;
-    };
+  .controller('DogViewCtrl', function($scope, $stateParams, $window, $location, FactoryDog, flash, FactoryNote, $modal) {
+
+    loadDog($stateParams.id);
+    $scope.editingInfo = false;
+    $scope.editOwner = false;
+    $scope.editVet = false;
+    $scope.editEmgContact = false;
+    $scope.pagination = {};
+    $scope.pagination.limit = 10;
+    $scope.pagination.currentPage = 1;
+
+    /******** Public Functions ********/
+    $scope.print = print;
+    $scope.ownerUpdated = ownerUpdated;
+    $scope.vetUpdated = vetUpdated;
 
     /**
      * Loads a given dog from sails
@@ -38,26 +36,24 @@ angular.module('dogToolApp')
      * @method loadDog
      * @param  {ID} id The id of the dog to load from sails
      */
-    var loadDog = function (id) {
+    function loadDog(id) {
       FactoryDog.get(id)
-        .success(function (response) {
+        .then(function(response) {
           var dog = response;
 
           FactoryDog.processDog(dog);
 
           $scope.dog = dog;
         })
-        .error(function (response, status) {
+        .catch(function(response, status) {
           switch (status) {
-          case 404:
-            flash.error = 'Dog not found';
-            break;
-          default:
-            flash.error = 'An error occured';
-            break;
+            case 404:
+              flash.error = 'Dog not found';
+              break;
+            default:
+              flash.error = 'An error occured';
+              break;
           }
-
-          $location.path('/');
         });
     };
 
@@ -67,7 +63,7 @@ angular.module('dogToolApp')
      * @method ownerUpdated
      * @param  {ID} newId The ID of the new Owner
      */
-    $scope.ownerUpdated = function (newId) {
+    function ownerUpdated (newId) {
       updatePerson('Owner', newId);
     };
 
@@ -77,7 +73,7 @@ angular.module('dogToolApp')
      * @method vetUpdated
      * @param  {ID} newId The ID of the new Vet
      */
-    $scope.vetUpdated = function (newId) {
+    function vetUpdated (newId) {
       updatePerson('Vet', newId);
     };
 
@@ -87,22 +83,22 @@ angular.module('dogToolApp')
      * @method vetUpdated
      * @param  {ID} newId The ID of the new Vet
      */
-    $scope.emgContactUpdated = function (newId) {
+    $scope.emgContactUpdated = function(newId) {
       updatePerson('EmergencyContact', newId);
     };
 
-    $scope.updateNotes = function () {
+    $scope.updateNotes = function() {
       var payload = {
         id: $scope.dog.id,
         Notes: $scope.dog.Notes
       };
 
       FactoryDog.update(payload)
-        .success(function (res) {
+        .then(function(res) {
           $scope.dog = res;
           flash.success = 'Notes saved';
         })
-        .error(function () {
+        .catch(function() {
           flash.error = 'An error occured while saving notes.';
         });
     };
@@ -114,7 +110,7 @@ angular.module('dogToolApp')
      * @param  {string} relation The name of the field to update
      * @param  {ID} newId The ID of the new Vet
      */
-    var updatePerson = function (relation, newId) {
+    var updatePerson = function(relation, newId) {
       var payload = {
         id: $scope.dog.id
       };
@@ -123,13 +119,16 @@ angular.module('dogToolApp')
       payload[relation] = newId;
 
       FactoryDog.update(payload)
-        .success(function () {
+        .then(function() {
           flash.success = 'Dog updated';
         })
-        .error(function () {
+        .catch(function() {
           flash.error = 'Error updating dog';
         });
     };
 
-    init();
+    function print(){
+      $window.print();
+    }
+
   });

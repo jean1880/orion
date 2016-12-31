@@ -7,7 +7,7 @@
  * Handles api calls between sails and angular for BehaviourFlages
  */
 angular.module('dogToolApp')
-    .factory('FactoryBehaviourFlag', function ($http, SailsRoute, poller) {
+    .factory('FactoryBehaviourFlag', function ($http, SailsRoute, poller, returnDataOnly) {
 
 
         return {
@@ -19,7 +19,8 @@ angular.module('dogToolApp')
              * @return {Http.promise} Returns a http promise
              */
             get: function (id) {
-                return $http.get(SailsRoute.BehaviourFlag.get(id));
+                return $http.get(SailsRoute.BehaviourFlag.get(id))
+                  .then(returnDataOnly);
             },
             /**
              * Gets all BehaviourFlages from sails
@@ -28,7 +29,8 @@ angular.module('dogToolApp')
              * @return {Http.promise} Returns a http promise
              */
             getAll: function () {
-                return $http.get(SailsRoute.BehaviourFlag.getAll);
+                return $http.get(SailsRoute.BehaviourFlag.getAll)
+                  .then(returnDataOnly);
             },
             /**
              * Listen for changes
@@ -37,7 +39,8 @@ angular.module('dogToolApp')
              * @return {Poller.promise} Returns a poller promise
              */
             listen: function () {
-                return poller.get(SailsRoute.BehaviourFlag.listen);
+                return poller.get(SailsRoute.BehaviourFlag.listen)
+                  .then(returnDataOnly);
             },
             /**
              * Adds the given adress to sails
@@ -47,7 +50,8 @@ angular.module('dogToolApp')
              * @return {Http.promise} Returns a http promise
              */
             post: function (BehaviourFlag) {
-                return $http.post(SailsRoute.BehaviourFlag.post, BehaviourFlag);
+                return $http.post(SailsRoute.BehaviourFlag.post, BehaviourFlag)
+                  .then(returnDataOnly);
             },
             /**
              * Finds BehaviourFlages that match the given search object

@@ -1,0 +1,43 @@
+<div class="panel panel-default weight-list">
+	<div class="panel-heading">
+		Weights
+	</div>
+	<div class="list-group">
+		<div class="list-group-item hidden-print">
+			<form name="weightForm" novalidate ng-submit="weightFormSubmitted()">
+				<div class="form-group">
+					<div class="input-group" ng-class="{'has-error': weightForm.$submitted && weightForm.Weight.$invalid}">
+						<input type="number" class="form-control" ng-disabled="processing" placeholder="weight" ng-model="newWeight.Weight" name="Weight" required/>
+						<span class="input-group-addon">lb</span>
+						<span class="input-group-btn">
+							<button class="btn btn-primary" ng-disabled="processing" type="submit">Add</button>
+						</span>
+					</div>
+					<div ng-show="weightForm.$submitted || weightForm.$dirty">
+				        <div ng-show="weightForm.Weight.$error.required">Weight is required</div>
+				        <div ng-show="weightForm.Weight.$error.number">Weight must be a number</div>
+				    </div>
+				</div>
+			</form>
+		</div>
+		<div class="list-group-item"
+				ng-repeat="weight in dog.Weights
+				| orderBy : convertDateTakenToDate : true
+				| limitTo : page * countPerPage
+				| limitTo : countPerPage * -1">
+			<div class="row">
+				<div class="col-xs-12">
+					<strong>Date Taken:</strong>
+					{{weight.DateTaken | date : "longDate"}}
+				</div>
+				<div class="col-xs-12">
+					<strong>Weight:</strong>
+					{{weight.Weight}} lb
+				</div>
+			</div>
+		</div>
+		<div class="list-group-item paging-btns" ng-hide="dog.Weights.length <= countPerPage">
+	    	<pagination total-items="dog.Weights.length" ng-model="page" items-per-page="countPerPage" class="pagination-sm" previous-text="newer" next-text="older" max-size="4"></pagination>
+		</div>
+	</div>
+</div>

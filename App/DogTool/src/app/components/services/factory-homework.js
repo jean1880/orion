@@ -8,7 +8,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryHomework', function ($http, SailsRoute, poller) {
+  .factory('FactoryHomework', function ($http, SailsRoute, poller, returnDataOnly) {
     return {
       /**
        * One time fetch from server for single Homework dataset
@@ -16,21 +16,24 @@ angular.module('dogToolApp')
        * @param id
        */
       get: function (id) {
-        return $http.get(SailsRoute.Homework.get(id));
+        return $http.get(SailsRoute.Homework.get(id))
+          .then(returnDataOnly);
       },
       /**
        * One time fetch from server for full Homework dataset
        * @method getAll
        */
       getAll: function () {
-        return $http.get(SailsRoute.Homework.getAll);
+        return $http.get(SailsRoute.Homework.getAll)
+          .then(returnDataOnly);
       },
       /**
        * One time fetch from server for full Homework dataset
        * @method listen
        */
       listen: function () {
-        return poller.get(SailsRoute.Homework.listen);
+        return poller.get(SailsRoute.Homework.listen)
+          .then(returnDataOnly);
       },
       /**
        * Post the new Homework dataset
@@ -46,7 +49,8 @@ angular.module('dogToolApp')
        * @param searchObject
        */
       find: function (searchObject) {
-        return $http.post(SailsRoute.Homework.find, searchObject);
+        return $http.post(SailsRoute.Homework.find, searchObject)
+          .then(returnDataOnly);
       },
 
       /**

@@ -11,8 +11,9 @@ angular.module('dogToolApp')
                 };
 
                 return $http.post(loginURL, data)
-                    .success(function (res) {
-                        FactoryAuthToken.setToken(res.token);
+                    .then(function (res) {
+                        FactoryAuthToken.setToken(res.data.token);
+                        return res.data;
                     });
             },
             validate: function () {
@@ -21,10 +22,11 @@ angular.module('dogToolApp')
                 };
 
                 return $http.post(loginURL + '/validate', data)
-                    .success(function (res) {
+                    .then(function (res) {
                         if (!res.valid) {
                             FactoryAuthToken.delToken();
                         }
+                        return res.data;
                     });
             }
         };

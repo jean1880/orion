@@ -9,7 +9,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryNote', function ($http, SailsRoute, poller) {
+  .factory('FactoryNote', function ($http, SailsRoute, poller, returnDataOnly) {
     return {
       /**
        * One time fetch from server for single Note dataset
@@ -17,7 +17,8 @@ angular.module('dogToolApp')
        * @param id
        */
       get: function (id) {
-        return $http.get(SailsRoute.Note.get(id));
+        return $http.get(SailsRoute.Note.get(id))
+          .then(returnDataOnly);
       },
 
       /**
@@ -25,7 +26,8 @@ angular.module('dogToolApp')
        * @method getAll
        */
       getAll: function () {
-        return $http.get(SailsRoute.Note.getAll);
+        return $http.get(SailsRoute.Note.getAll)
+          .then(returnDataOnly);
       },
 
       /**
@@ -42,7 +44,8 @@ angular.module('dogToolApp')
        * @param note
        */
       post: function (note) {
-        return $http.post(SailsRoute.Note.post, note);
+        return $http.post(SailsRoute.Note.post, note)
+          .then(returnDataOnly);
       },
 
       /**
@@ -51,7 +54,8 @@ angular.module('dogToolApp')
        * @param searchObject
        */
       find: function (searchObject) {
-        return $http.post(SailsRoute.Note.find, searchObject);
+        return $http.post(SailsRoute.Note.find, searchObject)
+          .then(returnDataOnly);
       },
 
       update: function (note) {

@@ -9,7 +9,7 @@
    * Factory in the dogToolApp.
    */
   angular.module('dogToolApp')
-    .factory('FactoryJob', function ($http, SailsRoute, poller) {
+    .factory('FactoryJob', function ($http, SailsRoute, poller, returnDataOnly) {
       return {
         /**
          * One time fetch from server for single job dataset
@@ -17,21 +17,24 @@
          * @param id
          */
         get: function (id) {
-          return $http.get(SailsRoute.Job.get(id));
+          return $http.get(SailsRoute.Job.get(id))
+            .then(returnDataOnly);
         },
         /**
          * One time fetch from server for full job dataset
          * @method getAll
          */
         getAll: function () {
-          return $http.get(SailsRoute.Job.getAll);
+          return $http.get(SailsRoute.Job.getAll)
+            .then(returnDataOnly);
         },
         /**
          * Wait for changes from the server
          * @method listen
          */
         listen: function () {
-          return poller.get(SailsRoute.Job.listen);
+          return poller.get(SailsRoute.Job.listen)
+            .then(returnDataOnly);
         },
         /**
          * Add a new Booking with the value of cost
@@ -39,7 +42,8 @@
          * @param consultation
          */
         post: function (consultation) {
-          return $http.post(SailsRoute.Job.post, consultation);
+          return $http.post(SailsRoute.Job.post, consultation)
+            .then(returnDataOnly);
         },
         /**
          * One time fetch from server for full job dataset
@@ -47,7 +51,8 @@
          * @param searchObject
          */
         find: function (searchObject) {
-          return $http.post(SailsRoute.Job.find, searchObject);
+          return $http.post(SailsRoute.Job.find, searchObject)
+            .then(returnDataOnly);
         },
         /**
          * One time fetch from server for full job dataset

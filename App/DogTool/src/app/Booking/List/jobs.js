@@ -16,12 +16,12 @@
       var LoadJobs = function (range) {
         FactoryJob.find({
           Calendars: range
-        }).success(function (data) {
+        }).then(function (data) {
           $scope.isLoading = false;
           $scope.JobList = data;
           for (var i = data.length - 1; i >= 0; i--) {
             for (var x = data[i].Dogs.length - 1; x >= 0; x--) {
-              FactoryDog.get(data[i].Dogs[x].id).success(function (dog) {
+              FactoryDog.get(data[i].Dogs[x].id).then(function (dog) {
                 for (var y = $scope.JobList.length - 1; y >= 0; y--) {
                   for (var z = $scope.JobList[y].Dogs.length - 1; z >= 0; z--) {
                     if ($scope.JobList[y].Dogs[z].id == dog.id) {
@@ -53,7 +53,7 @@
           EndDate: {
             '>=': end
           }
-        }).success(function (data) {
+        }).then(function (data) {
 
           $scope.events = data;
           var ids = [];

@@ -20,7 +20,7 @@ angular.module('dogToolApp')
         panelTitle: '=',
         panelType: '='
       },
-      templateUrl: 'app/views/directives/notes-panel.html',
+      templateUrl: '/app/Note/notes-panel.html',
       link: function ($scope, element, attrs) {
         if (!angular.isDefined(attrs.showSaveBtn)) {
           $scope.showSaveBtn = true;
@@ -92,8 +92,8 @@ angular.module('dogToolApp')
             }
 
             action
-              .success(function (res) {})
-              .error(function (res) {});
+              .then(function (res) {})
+             .catch(function (res) {});
           }
         };
 
@@ -106,17 +106,17 @@ angular.module('dogToolApp')
           }
 
           action
-            .success(function (res) {
+            .then(function (res) {
               callback(null, res);
             })
-            .error(function (res) {
+           .catch(function (res) {
               callback(res);
             });
         };
 
         $scope.comfirmDelete = function (note) {
           var modal = $modal.open({
-            templateUrl: 'app/Note/Modal/confirm-note-delete.html',
+            templateUrl: '/app/Note/Modal/confirm-note-delete.html',
             controller: 'confirmNoteDeleteModalCtrl',
             size: 'sm',
             animation: true,
@@ -138,7 +138,7 @@ angular.module('dogToolApp')
           var index = $scope.notes.indexOf(note);
 
           FactoryNote.destroy(note)
-            .success(function (res) {
+            .then(function (res) {
               $scope.notes.splice(index, 1);
 
               var tab = findTabByName(note.NoteType);
@@ -148,7 +148,7 @@ angular.module('dogToolApp')
 
               $scope.onNotesChanged();
             })
-            .error(function (res) {
+           .catch(function (res) {
               flash.error = 'An error occured while deleteing the Note';
             });
         };
@@ -161,13 +161,13 @@ angular.module('dogToolApp')
           };
 
           FactoryNote.post(note)
-            .success(function (res) {
+            .then(function (res) {
               $scope.notes.push(res);
               tab.notes.push(res);
 
               $scope.onNotesChanged();
             })
-            .error(function () {
+           .catch(function () {
               flash.error = 'An error occured while creating a Note';
             });
         };

@@ -17,31 +17,31 @@ angular.module('dogToolApp')
          */
         var init = function () {
             FactoryJob.get($stateParams.id)
-                .success(function (response) {
+                .then(function (response) {
                     $scope.bookingData = response;
                     FactoryJobType.getAll()
-                        .success(function (response) {
+                        .then(function (response) {
                             $scope.jobTypes = response;
                         })
-                        .error(function () {
+                       .catch(function () {
                             flash.error = 'An error occured while loading job types.';
                         });
                     FactoryPeople.get(response.Dogs[0].Owner)
-                        .success(function (ownerRes) {
+                        .then(function (ownerRes) {
                             $scope.ownerData = ownerRes;
                         })
-                        .error(function (ownerErr) {
+                       .catch(function (ownerErr) {
                             flash.error = "There was a problem loading the owner"
                         });
                     FactoryInvoice.get(response.Invoice.id)
-                        .success(function (res) {
+                        .then(function (res) {
                             $scope.invoiceData = res;
                         })
-                        .error(function (err) {
+                       .catch(function (err) {
                             flash.error = "Sorry, there was a problem with loading the invoice";
                         });
                 })
-                .error(function (err) {
+               .catch(function (err) {
                     flash.error = "Sorry there was a problem loading the booking information";
                 });
 
@@ -76,7 +76,7 @@ angular.module('dogToolApp')
             $scope.today = new Date();
             $scope.dateDue = new Date();
             FactoryBusinessInfo.get()
-                .success(function (res) {
+                .then(function (res) {
                     $scope.BusinessInfo = res;
                 });
         };
@@ -114,10 +114,10 @@ angular.module('dogToolApp')
         $scope.saveInvoice = function () {
 
             FactoryInvoice.update($scope.invoiceData)
-                .success(function (res) {
+                .then(function (res) {
                     flash.success = "Invoice Saved";
                 })
-                .error(function (err) {
+               .catch(function (err) {
                     flash.error = "Sorry, there was a problem with loading the invoice";
                 });
         }

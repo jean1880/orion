@@ -33,7 +33,7 @@ angular.module('dogToolApp')
     var loadAddressForPerson = function (person) {
       if(typeof person.Address === 'string') {
         FactoryAddress.get(person.Address)
-          .success(function (response) {
+          .then(function (response) {
             person.Address = response;
           });
       }

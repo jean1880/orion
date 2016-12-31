@@ -8,7 +8,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryInvoice', function ($http, SailsRoute, poller) {
+  .factory('FactoryInvoice', function ($http, SailsRoute, poller, returnDataOnly) {
     return {
       /**
        * One time fetch from server for single Invoice dataset
@@ -16,21 +16,24 @@ angular.module('dogToolApp')
        * @param id
        */
       get: function (id) {
-        return $http.get(SailsRoute.Invoice.get(id));
+        return $http.get(SailsRoute.Invoice.get(id))
+          .then(returnDataOnly);
       },
       /**
        * One time fetch from server for full Invoice dataset
        * @method getAll
        */
       getAll: function () {
-        return $http.get(SailsRoute.Invoice.getAll);
+        return $http.get(SailsRoute.Invoice.getAll)
+          .then(returnDataOnly);
       },
       /**
        * One time fetch from server for full Invoice dataset
        * @method listen
        */
       listen: function () {
-        return poller.get(SailsRoute.Invoice.listen);
+        return poller.get(SailsRoute.Invoice.listen)
+          .then(returnDataOnly);
       },
       /**
        * Post the new Invoice dataset
@@ -46,7 +49,8 @@ angular.module('dogToolApp')
        * @param searchObject
        */
       find: function (searchObject) {
-        return $http.post(SailsRoute.Invoice.find, searchObject);
+        return $http.post(SailsRoute.Invoice.find, searchObject)
+          .then(returnDataOnly);
       },
 
       /**

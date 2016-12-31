@@ -7,21 +7,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#/">Not Just Kibble</a>
+      <a class="navbar-brand" ui-sref="dogs">Not Just Kibble</a>
     </div>
     <div class="collapse navbar-collapse" id="js-navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li ng-class="{'active': $state.current.name.indexOf('dog') !== -1}"><a href="#/">Dogs</a>
+        <li ng-class="{'active': $state.current.name.indexOf('dog') !== -1}"><a ui-sref="dogs">Dogs</a>
         </li>
-        <li ng-class="{'active': $state.current.name.indexOf('calendar') !== -1}"><a href="#/calendar">Calendar</a>
+        <li ng-class="{'active': $state.current.name.indexOf('calendar') !== -1}"><a ui-sref="calendar">Calendar</a>
         </li>
-        <li ng-class="{'active': $state.current.name.indexOf('businessInfo') !== -1}"><a href="#/businessInfo">Admin</a>
+        <li ng-class="{'active': $state.current.name.indexOf('businessInfo') !== -1}"><a ui-sref="businessInfo">Admin</a>
         </li>
-        <li ng-class="{'active': $state.current.name === 'jobs'}"><a href="#/jobs">Today</a>
+        <li ng-class="{'active': $state.current.name === 'jobs'}"><a ui-sref="jobs">Today</a>
         </li>
-        <li ng-class="{'active': $state.current.name.indexOf('jobs_new') !== -1 || $state.current.name.indexOf('jobs_detail') !== -1}"><a href="#/jobs/new">Jobs</a>
+        <li ng-class="{'active': $state.current.name.indexOf('jobs_new') !== -1 || $state.current.name.indexOf('jobs_detail') !== -1}"><a ui-sref="jobs_new">Jobs</a>
         </li>
-        <li ng-class="{'active': $state.current.name.indexOf('homework') !== -1}"><a href="#/library">Homework</a>
+        <li ng-class="{'active': $state.current.name.indexOf('homework') !== -1}"><a ui-sref="library">Homework</a>
         </li>
       </ul>
     </div>

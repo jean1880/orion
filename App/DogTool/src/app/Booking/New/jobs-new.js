@@ -79,7 +79,7 @@
         };
 
         FactoryBehaviourFlag.getAll()
-          .success(function (res) {
+          .then(function (res) {
             $scope.colours = res;
           });
         LoadDate();
@@ -119,13 +119,13 @@
         $scope.dogs = $localStorage.dogs;
 
         FactoryDog.getAll()
-          .success(function (response) {
+          .then(function (response) {
             $scope.dogs = response;
             FactoryJobType.getAll()
-              .success(function (response) {
+              .then(function (response) {
                 $scope.jobTypes = response;
               })
-              .error(function () {
+             .catch(function () {
                 flash.error = 'An error occured while loading job types.';
               });
             if ($rootScope.bookingLog != null && $rootScope.bookingLog.id == null) {
@@ -139,7 +139,7 @@
 
             //          $scope.addedDogUI = $scope.booking.Dogs;
           })
-          .error(function () {
+         .catch(function () {
             flash.error = 'An error occured while loading dogs.';
           });
       };
@@ -158,7 +158,7 @@
         $scope.submitted = true;
         if ($scope.addedDogUI.length > 0) {
           $scope.booking.Dogs = HelperService.convert.objectArrayToIdArray($scope.addedDogUI);
-          FactoryJob.post($scope.booking).success(function (data) {
+          FactoryJob.post($scope.booking).then(function (data) {
             flash.success = 'Job Created.';
             $localStorage.calendarData.push(data);
             $window.location.href = "#/jobs/" + data.id;

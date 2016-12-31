@@ -59,8 +59,8 @@
           IsAllDay: $scope.allDay || false
         },
         Colour: EVENT_COLOURS.event
-      }).success(function (data) {
-        FactoryNote.get(data.Note).success(function (item) {
+      }).then(function (data) {
+        FactoryNote.get(data.Note).then(function (item) {
           $localStorage.calendarData.push({
             id: data.id,
             color: data.Colour,

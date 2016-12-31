@@ -34,11 +34,11 @@ angular.module('dogToolApp')
       $scope.people = null;
 
       FactoryPeople.getAll()
-        .success(function (response) {
+        .then(function (response) {
           $scope.people = response;
           console.log(response);
         })
-        .error(function () {
+       .catch(function () {
           flash.error = 'A error occured while loading people.';
         });
     };

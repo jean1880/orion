@@ -6,7 +6,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-    .factory('FactoryCost', function ($http, SailsRoute, poller) {
+    .factory('FactoryCost', function ($http, SailsRoute, poller, returnDataOnly) {
 
 
         return {
@@ -16,14 +16,16 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(SailsRoute.Cost.get(id));
+                return $http.get(SailsRoute.Cost.get(id))
+                  .then(returnDataOnly);
             },
             /**
              * Fetch all entries in the dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Cost.getAll);
+                return $http.get(SailsRoute.Cost.getAll)
+                  .then(returnDataOnly);
             },
             /**
              * Wait for changes from the server
@@ -38,7 +40,8 @@ angular.module('dogToolApp')
              * @param cost
              */
             post: function (cost) {
-                return $http.post(SailsRoute.Cost.post, cost);
+                return $http.post(SailsRoute.Cost.post, cost)
+                  .then(returnDataOnly);
             },
             /**
              * Find an item that matches the searchObject value
@@ -46,7 +49,8 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(SailsRoute.Cost.find, searchObject);
+                return $http.post(SailsRoute.Cost.find, searchObject)
+                  .then(returnDataOnly);
             },
 
             /**

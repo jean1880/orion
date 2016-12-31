@@ -18,7 +18,7 @@
       //****************************************************************************************
 
       FactoryExpense.getAll()
-        .success(function (res) {
+        .then(function (res) {
           $scope.ExpenseInfo = res;
         });
 
@@ -54,13 +54,13 @@
 
       var addNewExpense = function (expense) {
         FactoryExpense.post(expense)
-          .success(processSuccessExpense)
-          .error(processErrorExpense);
+          .then(processSuccessExpense)
+         .catch(processErrorExpense);
       };
 
       var processSuccessExpense = function () {
         FactoryExpense.getAll()
-          .success(function (res) {
+          .then(function (res) {
             $scope.ExpenseInfo = res;
           });
         $scope.cancelExpense();
@@ -75,7 +75,7 @@
       //****************************************************************************************
 
       FactoryBusinessInfo.get()
-        .success(function (res) {
+        .then(function (res) {
           $scope.BusinessInfo = res;
         });
 
@@ -111,8 +111,8 @@
 
       var updateInfo = function (info) {
         FactoryBusinessInfo.update(info)
-          .success(processSuccess)
-          .error(processError);
+          .then(processSuccess)
+         .catch(processError);
       };
 
       /**

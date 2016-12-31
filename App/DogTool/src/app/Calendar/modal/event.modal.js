@@ -27,7 +27,7 @@
         Note: $scope.event.note,
         Colour: eventColour,
         id: $scope.event.id
-      }).success(function () {
+      }).then(function () {
         $modalInstance.close();
         for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {
           if ($localStorage.calendarData[i].id == $scope.event.id) {
@@ -40,7 +40,7 @@
 
 
     $scope.deleteEvent = function (id) {
-      factoryCalendar.remove(id).success(function () {
+      factoryCalendar.remove(id).then(function () {
         $scope.cancel();
         flash.success = "Removed event";
         for (var i = $localStorage.calendarData.length - 1; i >= 0; i--) {

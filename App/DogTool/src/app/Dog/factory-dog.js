@@ -9,7 +9,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryDog', function ($http, SailsRoute, SAILS_URL, poller, Upload) {
+  .factory('FactoryDog', function ($http, SailsRoute, SAILS_URL, poller, Upload, returnDataOnly) {
     return {
       /**
        * One time fetch from server for single Dog dataset based on id
@@ -17,7 +17,8 @@ angular.module('dogToolApp')
        * @param id
        */
       get: function (id) {
-        return $http.get(SailsRoute.Dog.get(id));
+        return $http.get(SailsRoute.Dog.get(id))
+          .then(returnDataOnly);
       },
 
       /**
@@ -25,11 +26,13 @@ angular.module('dogToolApp')
        * @method getAll
        */
       getAll: function () {
-        return $http.get(SailsRoute.Dog.getAll);
+        return $http.get(SailsRoute.Dog.getAll)
+          .then(returnDataOnly);
       },
 
       getAllNoPopulate: function () {
-        return $http.get(SailsRoute.Dog.getAll + '?populate=[BehaviourFlag,Owner]');
+        return $http.get(SailsRoute.Dog.getAll + '?populate=[BehaviourFlag,Owner]')
+          .then(returnDataOnly);
       },
 
       /**
@@ -37,7 +40,8 @@ angular.module('dogToolApp')
        * @method listen
        */
       listen: function () {
-        return poller.get(SailsRoute.Dog.listen);
+        return poller.get(SailsRoute.Dog.listen)
+          .then(returnDataOnly);
       },
 
       /**
@@ -46,7 +50,8 @@ angular.module('dogToolApp')
        * @param Dog
        */
       post: function (dog) {
-        return $http.post(SailsRoute.Dog.post, dog);
+        return $http.post(SailsRoute.Dog.post, dog)
+          .then(returnDataOnly);
       },
 
       /**
@@ -55,7 +60,8 @@ angular.module('dogToolApp')
        * @param searchObject
        */
       find: function (searchObject) {
-        return $http.post(SailsRoute.Dog.find, searchObject);
+        return $http.post(SailsRoute.Dog.find, searchObject)
+          .then(returnDataOnly);
       },
 
       /**
@@ -64,7 +70,8 @@ angular.module('dogToolApp')
        * @param searchObject
        */
       update: function (dog) {
-        return $http.put(SailsRoute.Dog.update(dog.id), dog);
+        return $http.put(SailsRoute.Dog.update(dog.id), dog)
+          .then(returnDataOnly);
       },
 
       /**

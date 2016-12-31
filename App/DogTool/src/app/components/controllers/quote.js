@@ -16,7 +16,7 @@
       //--------------------------------------Business Info Stuff------------------------------------------------------
 
       FactoryBusinessInfo.get()
-        .success(function (res) {
+        .then(function (res) {
           $scope.BusinessInfo = res;
         });
 
@@ -27,7 +27,7 @@
       $scope.addingService = false;
 
       FactoryService.getAll()
-        .success(function (res) {
+        .then(function (res) {
           $scope.ServiceList = res;
         });
 
@@ -52,10 +52,10 @@
           if ($scope.AddServiceForm.$dirty) {
 
             FactoryQuote.post($scope.Services)
-              .success(function () {
+              .then(function () {
                 flash.success = "Quote has been Saved!";
               })
-              .error(function () {
+             .catch(function () {
                 flash.error = "A Problem has Occured";
               });
           }

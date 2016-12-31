@@ -33,11 +33,11 @@ angular.module('dogToolApp')
 
       if(formIsValid()) {
         FactoryDog.post($scope.dog)
-          .success(function (response) {
+          .then(function (response) {
             flash.success = 'Dog Created';
             $location.path('/dog/' + response.id);
           })
-          .error(function () {
+         .catch(function () {
             flash.error = 'Error saving dog';
           });
       }

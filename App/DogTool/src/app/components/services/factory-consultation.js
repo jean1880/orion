@@ -7,7 +7,7 @@
  * Factory in the dogToolApp.
  */
 angular.module('dogToolApp')
-  .factory('FactoryConsultation', function ($http, SailsRoute, poller) {
+  .factory('FactoryConsultation', function ($http, SailsRoute, poller, returnDataOnly) {
     return {
             /**
              * One time fetch from server for single Consultation dataset
@@ -15,21 +15,24 @@ angular.module('dogToolApp')
              * @param id
              */
             get: function (id) {
-                return $http.get(SailsRoute.Consultation.get(id));
+                return $http.get(SailsRoute.Consultation.get(id))
+                  .then(returnDataOnly);
             },
             /**
              * One time fetch from server for full Consultation dataset
              * @method getAll
              */
             getAll: function () {
-                return $http.get(SailsRoute.Consultation.getAll);
+                return $http.get(SailsRoute.Consultation.getAll)
+                  .then(returnDataOnly);
             },
             /**
              * One time fetch from server for full Consultation dataset
              * @method listen
              */
             listen: function () {
-                return poller.get(SailsRoute.Consultation.listen);
+                return poller.get(SailsRoute.Consultation.listen)
+                  .then(returnDataOnly);
             },
             /**
              * One time fetch from server for full Consultation dataset
@@ -37,7 +40,8 @@ angular.module('dogToolApp')
              * @param consultation
              */
             post: function (consultation) {
-                return $http.post(SailsRoute.Consultation.post, consultation);
+                return $http.post(SailsRoute.Consultation.post, consultation)
+                  .then(returnDataOnly);
             },
             /**
              * One time fetch from server for full Consultation dataset
@@ -45,7 +49,8 @@ angular.module('dogToolApp')
              * @param searchObject
              */
             find: function (searchObject) {
-                return $http.post(SailsRoute.Consultation.find, searchObject);
+                return $http.post(SailsRoute.Consultation.find, searchObject)
+                  .then(returnDataOnly);
             },
 			/**
              * One time fetch from server for full Consultation dataset

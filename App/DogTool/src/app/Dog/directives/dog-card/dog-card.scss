@@ -1,0 +1,37 @@
+.dog-card {
+  width: 200px;
+  display: block;
+  float: left;
+  margin: 5px;
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: antiquewhite;
+  }
+
+  .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125px;
+  }
+
+  .img-container img {
+    max-height: 125px;
+    max-width: 125px;
+  }
+
+  .info-area {
+    min-height: 100px;
+    font-weight: bold;
+  }
+
+  .action-btn {
+    margin-top: 5px;
+  }
+
+  .action-btn:hover {
+     margin-top: 6px;
+   }
+}
